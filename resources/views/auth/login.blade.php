@@ -55,8 +55,10 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Wrapper-->
 						<div class="w-lg-500px p-10">
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="index.html" action="#">
-								<!--begin::Heading-->
+							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="{{ route('dashboard') }}" action="{{ route('login.proses') }}" method="POST">
+								@csrf
+                                @method('POST')
+                                <!--begin::Heading-->
 								<div class="text-center mb-11">
 									<!--begin::Title-->
 									<h1 class="text-gray-900 fw-bolder mb-3">Sign In</h1>
@@ -95,13 +97,19 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Input group=-->
 								<div class="fv-row mb-8">
 									<!--begin::Email-->
-									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{ old('email') }}" />
+                                    @error('email')
+                                        <small>{{ $message }}</small>
+                                    @enderror
 									<!--end::Email-->
 								</div>
 								<!--end::Input group=-->
 								<div class="fv-row mb-3">
 									<!--begin::Password-->
 									<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
+                                    @error('password')
+                                        <small>{{ $message }}</small>
+                                    @enderror
 									<!--end::Password-->
 								</div>
 								<!--end::Input group=-->
@@ -221,7 +229,7 @@ License: For each use you must have a valid license purchased only from above li
 					<!--begin::Content-->
 					<div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100">
 						<!--begin::Logo-->
-						<a href="index.html" class="mb-0 mb-lg-12">
+						<a href="{{ route('dashboard') }}" class="mb-0 mb-lg-12">
 							<img alt="Logo" src="assets/media/logos/custom-1.png" class="h-60px h-lg-75px" />
 						</a>
 						<!--end::Logo-->

@@ -3,7 +3,7 @@
     <!--begin::User panel-->
     <div class="d-flex flex-stack ms-7">
         <!--begin::Link-->
-        <a href="authentication/flows/basic/sign-in.html" class="btn btn-sm btn-icon btn-active-color-primary btn-icon-gray-600 btn-text-gray-600">
+        <a href="{{ route('logout') }}" class="btn btn-sm btn-icon btn-active-color-primary btn-icon-gray-600 btn-text-gray-600">
             <i class="ki-duotone ki-entrance-left fs-1 me-2">
                 <span class="path1"></span>
                 <span class="path2"></span>
