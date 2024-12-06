@@ -441,7 +441,11 @@
                             </div>
                             <!--begin::User details-->
                         </td>
-                        <td>Administrator</td>
+                        <td>
+                            @foreach($user->roles as $role)
+                            <span>{{ $role->name }}</span><br>
+                            @endforeach
+                        </td>
                         <td>
                             <div class="badge badge-light fw-bold">Yesterday</div>
                         </td>

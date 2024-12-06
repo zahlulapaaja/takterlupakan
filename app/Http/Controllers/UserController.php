@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -24,6 +25,9 @@ class UserController extends Controller
 
         // return view('user-management.users');
         $users = User::all();
+        foreach ($users as $user) {
+            $user['roles'] = $user->roles;
+        }
         return view('user-management.users', compact('users'));
     }
 }

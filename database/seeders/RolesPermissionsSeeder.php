@@ -75,7 +75,10 @@ class RolesPermissionsSeeder extends Seeder
 
         User::find(1)->assignRole('administrator');
         User::find(2)->assignRole('ketua tim');
-        User::find(3)->assignRole('pegawai');
         User::find(4)->assignRole('trial');
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->assignRole('pegawai');
+        }
     }
 }
