@@ -1430,7 +1430,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('user-management.users') }}" target="_blank" title="Check out over 200 in-house components" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+						<a class="menu-link" href="{{ route('user-management.users.index') }}" target="_blank" title="Check out over 200 in-house components" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -1468,7 +1468,7 @@
 									<!--begin:Menu item-->
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="{{ route('user-management.users') }}">
+										<a class="menu-link" href="{{ route('user-management.users.index') }}">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>

@@ -13,7 +13,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
     Route::name('user-management.')->group(function () {
-        Route::get('/user-management/users', [UserController::class, 'index'])->name('users');
+        Route::resource('/user-management/users', UserController::class);
         Route::get('/user-management/users/view', [HomeController::class, 'users_view'])->name('users_view');
         Route::get('/user-management/roles', [HomeController::class, 'roles'])->name('roles');
         Route::get('/user-management/roles/view', [HomeController::class, 'roles_view'])->name('roles_view');
