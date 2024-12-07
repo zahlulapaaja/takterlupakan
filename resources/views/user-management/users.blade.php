@@ -205,7 +205,7 @@
                         <td class="d-flex align-items-center">
                             <!--begin:: Avatar -->
                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                <a href="apps/user-management/users/view.html">
+                                <a href="{{ route('user-management.users.show', ['user' => $user->id]) }}">
                                     <div class="symbol-label">
                                         <img src="assets/media/avatars/300-6.jpg" alt="Emma Smith" class="w-100" />
                                     </div>
@@ -214,7 +214,7 @@
                             <!--end::Avatar-->
                             <!--begin::User details-->
                             <div class="d-flex flex-column">
-                                <a href="apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                <a href="{{ route('user-management.users.show', ['user' => $user->id]) }}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
                                 <span>{{ $user->email }}</span>
                             </div>
                             <!--begin::User details-->
@@ -236,7 +236,7 @@
                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="apps/user-management/users/view.html" class="menu-link px-3">Edit</a>
+                                    <a href="{{ route('user-management.users.show', ['user' => $user->id]) }}" class="menu-link px-3">Edit</a>
                                 </div>
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->

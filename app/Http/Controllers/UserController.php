@@ -51,4 +51,54 @@ class UserController extends Controller
         $res->assignRole([$request->role]);
         return redirect()->route('user-management.users.index');
     }
+
+    public function show($id)
+    {
+        $data = User::find($id);
+        $data['roles'] = $data->roles;
+        // dd($data);
+
+
+        return view('user-management.user_detail', compact('data'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $find = User::find($id);
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'name'  => 'required',
+            // 'password'  => 'nullable',
+            // 'avatar'    => 'nullable|mimes:png,jpg,jpeg|max:2048',
+        ]);
+
+        // $avatar     = $request->file('avatar');
+
+        // if ($avatar) {
+        //     $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
+        //     $path       = 'avatar-user/' . $filename;
+
+        //     if ($find->image) {
+        //         Storage::disk('public')->delete('avatar-user/' . $find->image);
+        //     }
+        //     Storage::disk('public')->put($path, file_get_contents($avatar));
+
+        //     $data['image'] = $filename;
+        // }
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+
+        // if ($request->password) {
+        //     $data['password'] = Hash::make($request->password);
+        // }
+
+        // dd($data);
+
+        $find->update($data);
+        return redirect()->route('user-management.users.show', ['user' => $find->id]);
+    }
 }
