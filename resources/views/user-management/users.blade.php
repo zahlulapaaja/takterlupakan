@@ -241,7 +241,12 @@
                                 <!--end::Menu item-->
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
+                                    <form class="menu-link px-3" method="POST" action="{{ route('user-management.users.destroy', ['user' => $user->id]) }}" data-kt-users-table-filter="delete_row">
+                                        @method('DELETE')
+                                        @csrf
+                                        <input style="all: unset" type="submit" value="Delete" />
+                                    </form>
+                                    <!-- <a href="{{ route('user-management.users.destroy', ['user' => $user->id]) }}" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a> -->
                                 </div>
                                 <!--end::Menu item-->
                             </div>

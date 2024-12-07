@@ -6,6 +6,7 @@ use App\Models\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -100,5 +101,17 @@ class UserController extends Controller
 
         $find->update($data);
         return redirect()->route('user-management.users.show', ['user' => $find->id]);
+    }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            DB::table('model_has_roles')->where('model_id', '=', $user->id)->delete();
+        }
+
+        return redirect()->route('user-management.users.index');
     }
 }
