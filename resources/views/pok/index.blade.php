@@ -96,13 +96,13 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted bg-light">
-                            <th class="ps-4 min-w-50px rounded-start">No</th>
+                            <th class="ps-4 min-w-25px rounded-start">No</th>
                             <th class="min-w-300px">Kegiatan</th>
-                            <th class="min-w-125px">Vol</th>
-                            <th class="min-w-125px">Satuan</th>
-                            <th class="min-w-200px">Harga</th>
-                            <th class="min-w-150px">Jumlah</th>
-                            <th class="min-w-200px text-end rounded-end"></th>
+                            <th class="min-w-25px text-center">Vol</th>
+                            <th class="min-w-25px text-center">Satuan</th>
+                            <th class="min-w-125px text-center">Harga</th>
+                            <th class="min-w-125px text-center">Jumlah</th>
+                            <th class="min-w-150px text-end rounded-end"></th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
@@ -112,22 +112,23 @@
 
                             <tr class="bg-blue-400 hover:bg-blue-600">
                             <td>
-                                <span class="text-muted fw-semibold text-muted d-block text-center fs-7">{{$i}}</span>
+                                <!-- <span class="text-muted fw-semibold text-muted d-block text-center fs-7">{{$i}}</span> -->
+                                <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$i}}</span>
                             </td>
                             <td>
-                                <a href="#" class="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
+                                <a href="#" class="text-gray-900 fw-bold text-hover-black text-nowrap mb-1 fs-6">2886.EBA : Layanan Dukungan Manajemen Internal[Base Line]</a>
                             </td>
                             <td>
-                                <span class="text-muted fw-semibold text-muted d-block fs-7">Paid</span>
+                                <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">10</span>
                             </td>
                             <td>
-                                <span class="text-muted fw-semibold text-muted d-block fs-7">Web, UI/UX Design</span>
+                                <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">THN</span>
                             </td>
                             <td>
-                                <span class="text-muted fw-semibold text-muted d-block fs-7 mt-1">Best Rated</span>
+                                <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">3.711.789.000</span>
                             </td>
                             <td>
-                                <a href="#" class="text-gray-900 fw-bold text-hover-primary d-block mb-1 fs-6">$8,000,000</a>
+                                <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">3.711.789.000</span>
                             </td>
                             <td class="text-end">
                                 <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
