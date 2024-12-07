@@ -35,11 +35,11 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="dashboards/ecommerce.html">
+						<a class="menu-link" href="{{ route('pok') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">eCommerce</span>
+							<span class="menu-title">POK</span>
 						</a>
 						<!--end:Menu link-->
 					</div>
