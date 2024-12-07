@@ -40,6 +40,7 @@
     {!! sprintf('
     <link rel="stylesheet" href="%s">', asset($path)) !!}
     @endforeach
+    <script src="https://cdn.tailwindcss.com"></script>
     <!--end::Custom Stylesheets-->
 
     @livewireStyles
