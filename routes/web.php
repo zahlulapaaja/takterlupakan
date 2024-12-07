@@ -24,4 +24,6 @@ Route::middleware('auth')->group(function () {
         // Route::resource('/user-management/permissions', HomeController::class);
     });
     Route::get('/pok', [PokController::class, 'index'])->name('pok');
+    Route::get('/pok/impor', [PokController::class, 'impor'])->name('pok.impor');
+    Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('pok.prosesimpor');
 });

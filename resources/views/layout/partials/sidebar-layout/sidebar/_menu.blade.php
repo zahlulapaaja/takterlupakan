@@ -47,11 +47,11 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="dashboards/projects.html">
+						<a class="menu-link" href="{{ route('pok.impor') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Projects</span>
+							<span class="menu-title">Impor POK</span>
 						</a>
 						<!--end:Menu link-->
 					</div>
