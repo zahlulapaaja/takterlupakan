@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('poks', function (Blueprint $table) {
             $table->id();
-            $table->string('nis')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('nis')->nullable();
+            $table->string('name')->nullable();
+            $table->string('alahai')->nullable();
             $table->timestamps();
         });
     }

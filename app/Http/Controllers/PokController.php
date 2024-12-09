@@ -25,8 +25,8 @@ class PokController extends Controller
             'file' => 'required|mimes:xls,xlsx'
         ]);
 
+        // dd($request->file('file'));
         $res = Excel::import(new PokImport, $request->file('file'));
-        dd($res);
         return redirect()->back()->with('success', 'Data pok berhasil di import');
     }
 }

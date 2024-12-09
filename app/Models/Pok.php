@@ -14,6 +14,6 @@ class Pok extends Model
     protected $fillable = [
         'nis',
         'name',
-        'email'
+        'alahai'
     ];
 }
