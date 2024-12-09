@@ -12,8 +12,25 @@ class Pok extends Model
     protected $table = "poks";
 
     protected $fillable = [
-        'nis',
-        'name',
-        'alahai'
+        'kode_program',
+        'program',
+        'kode_kegiatan',
+        'kegiatan',
+        'kode_output',
+        'output',
+        'kode_suboutput',
+        'suboutput',
+        'kode_komponen',
+        'komponen',
+        'kode_subkomponen',
+        'subkomponen',
+        'kode_akun',
+        'akun',
+        'item_kegiatan',
+        'volume',
+        'satuan',
+        'harga',
+        'jumlah',
+        'tahun'
     ];
 }

@@ -27,6 +27,8 @@ class PokController extends Controller
 
         // dd($request->file('file'));
         $res = Excel::import(new PokImport, $request->file('file'));
+        // dd(session()->all());
+        // dd($res);
         return redirect()->back()->with('success', 'Data pok berhasil di import');
     }
 }
