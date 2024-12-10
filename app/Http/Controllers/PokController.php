@@ -16,7 +16,7 @@ class PokController extends Controller
         $pokk = $jlh_pokk = $sama = [];
         $j = $k = $l = $m = $n = $o = $p = 0;
 
-        for ($i = 0; $i < 593; $i++) {
+        for ($i = 0; $i < count($poks); $i++) {
 
             if ($i == 0) {
                 // baris pertama
@@ -129,7 +129,6 @@ class PokController extends Controller
 
         // dd($request->file('file'));
         $res = Excel::import(new PokImport, $request->file('file'));
-        dd($res);
         session()->pull('kode_pro');
         session()->pull('pro');
         session()->pull('kode_keg');
