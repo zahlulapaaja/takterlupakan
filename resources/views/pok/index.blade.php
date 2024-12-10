@@ -91,8 +91,21 @@
         <div class="card-body py-3">
             <!--begin::Table container-->
             <div class="table-responsive">
+                <!--begin::Compact form-->
+                <div class="d-flex align-items-center mb-4">
+                    <!--begin::Input group-->
+                    <div class="position-relative w-md-400px me-md-2">
+                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        <input id="searchPok" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                    </div>
+                    <!--end::Input group-->
+                </div>
+                <!--end::Compact form-->
                 <!--begin::Table-->
-                <table class="table align-middle gs-0 gy-4">
+                <table class="table align-middle gs-0 gy-4 datatable">
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted bg-light">
@@ -118,4 +131,28 @@
         <!--begin::Body-->
     </div>
     <!--end::Tables Widget 12-->
+
+    @push('scripts')
+    <!-- <script type="text/javascript">
+        $(document).ready(function() {
+            let table = $('.datatable').DataTable({
+                paging: false,
+                ordering: false,
+                columnDefs: [{
+                        targets: [0, 1],
+                        searchable: true,
+                    },
+                    {
+                        targets: [2, 3, 4, 5],
+                        searchable: false,
+                    },
+                ]
+            });
+
+            $('#searchPok').on('keyup', function() {
+                table.columns(2).search(this.value).draw();
+            });
+        }); -->
+    </script>
+    @endpush
 </x-default-layout>
