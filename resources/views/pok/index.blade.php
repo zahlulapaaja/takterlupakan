@@ -97,12 +97,11 @@
                     <thead>
                         <tr class="fw-bold text-muted bg-light">
                             <th class="ps-4 min-w-25px rounded-start">No</th>
-                            <th class="min-w-300px">Kegiatan</th>
+                            <th class="min-w-500px">Kegiatan</th>
                             <th class="min-w-25px text-center">Vol</th>
                             <th class="min-w-25px text-center">Satuan</th>
                             <th class="min-w-125px text-center">Harga</th>
                             <th class="min-w-125px text-center">Jumlah</th>
-                            <th class="min-w-150px text-end rounded-end"></th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
