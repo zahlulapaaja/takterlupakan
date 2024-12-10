@@ -28,7 +28,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-0 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_program . ' : ' . $poks[$i]->program }}</span>
+            <span class="pl-0 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['program'][$j] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['program'][$j] }}</span>
@@ -43,7 +43,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-2 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_kegiatan . ' : ' . $poks[$i]->kegiatan }}</span>
+            <span class="pl-2 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['kegiatan'][$k] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['kegiatan'][$k] }}</span>
@@ -58,7 +58,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-4 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_output . ' : ' . $poks[$i]->output }}</span>
+            <span class="pl-4 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['output'][$l] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['output'][$l] }}</span>
@@ -73,7 +73,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-6 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_suboutput . ' : ' . $poks[$i]->suboutput }}</span>
+            <span class="pl-6 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['suboutput'][$m] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['suboutput'][$m] }}</span>
@@ -88,7 +88,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_komponen . ' : ' . $poks[$i]->komponen }}</span>
+            <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['komponen'][$n] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['komponen'][$n] }}</span>
@@ -103,7 +103,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_subkomponen . ' : ' . $poks[$i]->subkomponen }}</span>
+            <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['subkomponen'][$o] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['subkomponen'][$o] }}</span>
@@ -118,7 +118,7 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$q++}}</span>
         </td>
         <td colspan="4">
-            <span class="pl-10 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $poks[$i]->kode_akun . ' : ' . $poks[$i]->akun }}</span>
+            <span class="pl-10 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['akun'][$p] }}</span>
         </td>
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['akun'][$p] }}</span>

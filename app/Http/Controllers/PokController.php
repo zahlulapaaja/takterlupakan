@@ -21,19 +21,19 @@ class PokController extends Controller
             if ($i == 0) {
                 // baris pertama
                 $jlh_pokk['program'][] = $poks[$i]->jumlah;
-                $pokk['program'][] = $poks[$i]->kode_program . " : " . $poks[$i]->program;
+                $pokk['program'][] = substr($poks[$i]->kode_program, 1, 2) . " : " . $poks[$i]->program;
                 $jlh_pokk['kegiatan'][] = $poks[$i]->jumlah;
-                $pokk['kegiatan'][] = $poks[$i]->kode_kegiatan . " : " . $poks[$i]->kegiatan;
+                $pokk['kegiatan'][] = substr($poks[$i]->kode_kegiatan, 1, 4) . " : " . $poks[$i]->kegiatan;
                 $jlh_pokk['output'][] = $poks[$i]->jumlah;
-                $pokk['output'][] = $poks[$i]->kode_output . " : " . $poks[$i]->output;
+                $pokk['output'][] = substr($poks[$i]->kode_kegiatan, 1, 4) . '.' . substr($poks[$i]->kode_output, 1, 3) . " : " . $poks[$i]->output;
                 $jlh_pokk['suboutput'][] = $poks[$i]->jumlah;
-                $pokk['suboutput'][] = $poks[$i]->kode_suboutput . " : " . $poks[$i]->suboutput;
+                $pokk['suboutput'][] = substr($poks[$i]->kode_kegiatan, 1, 4) . '.' . substr($poks[$i]->kode_output, 1, 3) . '.' . substr($poks[$i]->kode_suboutput, 1, 3) . " : " . $poks[$i]->suboutput;
                 $jlh_pokk['komponen'][] = $poks[$i]->jumlah;
-                $pokk['komponen'][] = $poks[$i]->kode_komponen . " : " . $poks[$i]->komponen;
+                $pokk['komponen'][] = substr($poks[$i]->kode_komponen, 1, 3) . " : " . $poks[$i]->komponen;
                 $jlh_pokk['subkomponen'][] = $poks[$i]->jumlah;
-                $pokk['subkomponen'][] = $poks[$i]->kode_subkomponen . " : " . $poks[$i]->subkomponen;
+                $pokk['subkomponen'][] = substr($poks[$i]->kode_subkomponen, 1, 1) . " : " . $poks[$i]->subkomponen;
                 $jlh_pokk['akun'][] = $poks[$i]->jumlah;
-                $pokk['akun'][] = $poks[$i]->kode_akun . " : " . $poks[$i]->akun;
+                $pokk['akun'][] = substr($poks[$i]->kode_akun, 1, 6) . " : " . $poks[$i]->akun;
             } else {
                 $sama['program'] = $poks[$i]->kode_program == $poks[$i - 1]->kode_program;
                 $sama['kegiatan'] = $poks[$i]->kode_kegiatan == $poks[$i - 1]->kode_kegiatan;
@@ -49,7 +49,7 @@ class PokController extends Controller
                 } else {
                     $j++;
                     $jlh_pokk['program'][$j] = $poks[$i]->jumlah;
-                    $pokk['program'][] = $poks[$i]->kode_program . " : " . $poks[$i]->program;
+                    $pokk['program'][] = substr($poks[$i]->kode_program, 1, 2) . " : " . $poks[$i]->program;
                 }
 
                 // kegiatan 
@@ -58,7 +58,7 @@ class PokController extends Controller
                 } else {
                     $k++;
                     $jlh_pokk['kegiatan'][$k] = $poks[$i]->jumlah;
-                    $pokk['kegiatan'][] = $poks[$i]->kode_kegiatan . " : " . $poks[$i]->kegiatan;
+                    $pokk['kegiatan'][] = substr($poks[$i]->kode_kegiatan, 1, 4) . " : " . $poks[$i]->kegiatan;
                 }
 
                 // output 
@@ -67,7 +67,7 @@ class PokController extends Controller
                 } else {
                     $l++;
                     $jlh_pokk['output'][$l] = $poks[$i]->jumlah;
-                    $pokk['output'][] = $poks[$i]->kode_output . " : " . $poks[$i]->output;
+                    $pokk['output'][] = substr($poks[$i]->kode_kegiatan, 1, 4) . '.' . substr($poks[$i]->kode_output, 1, 3) . " : " . $poks[$i]->output;
                 }
 
                 // suboutput 
@@ -76,7 +76,7 @@ class PokController extends Controller
                 } else {
                     $m++;
                     $jlh_pokk['suboutput'][$m] = $poks[$i]->jumlah;
-                    $pokk['suboutput'][] = $poks[$i]->kode_suboutput . " : " . $poks[$i]->suboutput;
+                    $pokk['suboutput'][] = substr($poks[$i]->kode_kegiatan, 1, 4) . '.' . substr($poks[$i]->kode_output, 1, 3) . '.' . substr($poks[$i]->kode_suboutput, 1, 3) . " : " . $poks[$i]->suboutput;
                 }
 
                 // komponen 
@@ -85,7 +85,7 @@ class PokController extends Controller
                 } else {
                     $n++;
                     $jlh_pokk['komponen'][$n] = $poks[$i]->jumlah;
-                    $pokk['komponen'][] = $poks[$i]->kode_komponen . " : " . $poks[$i]->komponen;
+                    $pokk['komponen'][] = substr($poks[$i]->kode_komponen, 1, 3) . " : " . $poks[$i]->komponen;
                 }
 
                 // subkomponen 
@@ -94,7 +94,7 @@ class PokController extends Controller
                 } else {
                     $o++;
                     $jlh_pokk['subkomponen'][$o] = $poks[$i]->jumlah;
-                    $pokk['subkomponen'][] = $poks[$i]->kode_subkomponen . " : " . $poks[$i]->subkomponen;
+                    $pokk['subkomponen'][] = substr($poks[$i]->kode_subkomponen, 1, 1) . " : " . $poks[$i]->subkomponen;
                 }
 
                 // akun 
@@ -103,12 +103,11 @@ class PokController extends Controller
                 } else {
                     $p++;
                     $jlh_pokk['akun'][$p] = $poks[$i]->jumlah;
-                    $pokk['akun'][] = $poks[$i]->kode_akun . " : " . $poks[$i]->akun;
+                    $pokk['akun'][] = substr($poks[$i]->kode_akun, 1, 6) . " : " . $poks[$i]->akun;
                 }
             }
         }
 
-        $sama['akun'] = true; //disini dibuat true agar di front end baris nol bisa tampil
         // dd($pokk);
         // dd($jlh_pokk);
         // dd($sama);
