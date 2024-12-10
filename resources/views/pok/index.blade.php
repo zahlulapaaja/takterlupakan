@@ -108,34 +108,7 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @for ($i = 1; $i <= 10; $i++)
-
-                            <tr class="bg-blue-400 hover:bg-blue-600">
-                            <td>
-                                <!-- <span class="text-muted fw-semibold text-muted d-block text-center fs-7">{{$i}}</span> -->
-                                <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{$i}}</span>
-                            </td>
-                            <td>
-                                <a href="#" class="text-gray-900 fw-bold text-hover-black text-nowrap mb-1 fs-6">2886.EBA : Layanan Dukungan Manajemen Internal[Base Line]</a>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">10</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">THN</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">3.711.789.000</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">3.711.789.000</span>
-                            </td>
-                            <td class="text-end">
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-                                <a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
-                            </td>
-                            </tr>
-                            @endfor
+                        @include('pok._table-body-pok')
                     </tbody>
                     <!--end::Table body-->
                 </table>
