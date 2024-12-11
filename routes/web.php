@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::name('kegiatan.')->group(function () {
+        Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
         Route::resource('/kegiatan/sk', SkController::class);
     });
 });

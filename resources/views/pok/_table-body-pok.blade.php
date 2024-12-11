@@ -94,7 +94,18 @@
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{$jlh_pokk['komponen'][$n]}}</span>
         </td>
         <td class="bg-white">
-            <a href="{{ route('dashboard') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">SK</span>
+            <form method="post" action="{{ route('kegiatan.sk.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+                @csrf
+                @method('POST')
+                <input type="hidden" name="kode_kegiatan" value="{{$poks[$i]->kode_kegiatan}}" />
+                <input type="hidden" name="kode_output" value="{{$poks[$i]->kode_output}}" />
+                <input type="hidden" name="output" value="{{$poks[$i]->output}}" />
+                <input type="hidden" name="kode_suboutput" value="{{$poks[$i]->kode_suboutput}}" />
+                <input type="hidden" name="suboutput" value="{{$poks[$i]->suboutput}}" />
+                <input type="hidden" name="kode_komponen" value="{{$poks[$i]->kode_komponen}}" />
+                <input type="hidden" name="komponen" value="{{$poks[$i]->komponen}}" />
+                <button type="submit"> SK </button>
+            </form>
         </td>
     </tr>
     <?php $n++; ?>

@@ -23,15 +23,15 @@
                         <div class="fv-row">
                             <!--begin::Output-->
                             <label class="form-label mb-0 mt-2">Output</label>
-                            <div class="fw-semibold fs-6">2906.BMA : Data dan Informasi Publik</div>
+                            <div class="fw-semibold fs-6">{{ $pok['kode_kegiatan'] . '.' . $pok['kode_output'] . ' : ' . $pok['output'] }}</div>
                             <!--end::Output-->
                             <!--begin::Sub Output-->
                             <label class="form-label mb-0 mt-2">Sub Output</label>
-                            <div class="fw-semibold fs-6">2906.BMA.006 : PUBLIKASI/LAPORAN SUSENAS</div>
+                            <div class="fw-semibold fs-6">{{ $pok['kode_kegiatan'] . '.' . $pok['kode_output'] . '.' . $pok['kode_suboutput'] . ' : ' . $pok['suboutput'] }}</div>
                             <!--end::Sub Output-->
                             <!--begin::Komponen-->
                             <label class="form-label mb-0 mt-2">Komponen</label>
-                            <div class="fw-semibold fs-6">005 : Dukungan Penyelenggaraan Tugas dan Fungsi Unit</div>
+                            <div class="fw-semibold fs-6">{{ $pok['kode_komponen'] . ' : ' . $pok['komponen'] }}</div>
                             <!--end::Komponen-->
                         </div>
                         <!--end::Input group-->
