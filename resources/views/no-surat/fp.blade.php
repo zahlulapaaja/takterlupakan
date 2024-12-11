@@ -8,7 +8,7 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
             </h3>
             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click to add a user">
-                <a href="#" class="btn btn-sm btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">
+                <a href="#" class="btn btn-sm btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#add_nofp">
                     <i class="ki-duotone ki-plus fs-2"></i>New Member</a>
             </div>
         </div>
@@ -17,8 +17,21 @@
         <div class="card-body py-3">
             <!--begin::Table container-->
             <div class="table-responsive">
+                <!--begin::Compact form-->
+                <div class="d-flex align-items-center mb-4">
+                    <!--begin::Input group-->
+                    <div class="position-relative w-md-400px me-md-2">
+                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        <input id="searchFp" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                    </div>
+                    <!--end::Input group-->
+                </div>
+                <!--end::Compact form-->
                 <!--begin::Table-->
-                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 datatable">
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
@@ -29,28 +42,28 @@
                             </th>
                             <th class="min-w-200px">Nomor</th>
                             <th class="min-w-150px">Rincian</th>
-                            <th class="min-w-150px">Tanggal</th>
+                            <th class="min-w-100px">Tanggal</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @for($i = 0; $i < 10; $i++)
-                            <tr>
+                        @foreach($data as $d)
+                        <tr>
                             <td>
                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
                                     <input class="form-check-input widget-9-check" type="checkbox" value="1" />
                                 </div>
                             </td>
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">B-0228.1A/92800/KU.600/10/2024</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_surat }}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">honor petugas pengolahan (seruti triwulan 1 dan 3)</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->rincian}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">01 Oktober 2024</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->tgl}}</span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -77,8 +90,8 @@
                                     </a>
                                 </div>
                             </td>
-                            </tr>
-                            @endfor
+                        </tr>
+                        @endforeach
                     </tbody>
                     <!--end::Table body-->
                 </table>
@@ -89,4 +102,17 @@
         <!--begin::Body-->
     </div>
     <!--end::Tables Widget 9-->
+    @push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            let table = $('.datatable').DataTable({
+                "bDestroy": true,
+            });
+
+            $('#searchFp').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+        });
+    </script>
+    @endpush
 </x-default-layout>
