@@ -38,4 +38,37 @@ class NoFpController extends Controller
         $res = NoFp::create($data);
         return redirect()->route('no-surat.fp.index');
     }
+
+    public function edit($id)
+    {
+        $data = NoFp::find($id);
+        return view('no-surat.fp-edit', compact('data'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $find = NoFp::find($id);
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'no'        => 'required',
+            'rincian'   => 'required',
+            'tgl'       => 'required',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $data['no'] = $request->no;
+        $data['rincian'] = $request->rincian;
+        $data['tgl'] = $request->tgl;
+
+        $find->update($data);
+        return redirect()->route('no-surat.fp.index');
+    }
+
+    public function destroy($id)
+    {
+        $user = NoFp::find($id);
+        $user->delete();
+        return redirect()->route('no-surat.fp.index');
+    }
 }
