@@ -90,8 +90,11 @@
         <td colspan="4">
             <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $pokk['komponen'][$n] }}</span>
         </td>
-        <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['komponen'][$n] }}</span>
+        <td class="p-0">
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{$jlh_pokk['komponen'][$n]}}</span>
+        </td>
+        <td class="bg-white">
+            <a href="{{ route('dashboard') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">SK</span>
         </td>
     </tr>
     <?php $n++; ?>

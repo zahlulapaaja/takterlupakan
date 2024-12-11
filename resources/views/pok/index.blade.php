@@ -115,6 +115,7 @@
                             <th class="min-w-25px text-center">Satuan</th>
                             <th class="min-w-125px text-center">Harga</th>
                             <th class="min-w-125px text-center">Jumlah</th>
+                            <th class="min-w-25px text-center">Input Kegiatan</th>
                         </tr>
                     </thead>
                     <!--end::Table head-->

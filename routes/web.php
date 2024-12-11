@@ -3,8 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PokController;
-use App\Http\Controllers\Surat\NoFpController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Kegiatan\SkController;
+use App\Http\Controllers\Surat\NoFpController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
@@ -30,5 +31,9 @@ Route::middleware('auth')->group(function () {
 
     Route::name('no-surat.')->group(function () {
         Route::resource('/no-surat/fp', NoFpController::class);
+    });
+
+    Route::name('kegiatan.')->group(function () {
+        Route::resource('/kegiatan/sk', SkController::class);
     });
 });
