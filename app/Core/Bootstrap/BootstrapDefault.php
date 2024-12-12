@@ -26,6 +26,7 @@ class BootstrapDefault
     {
         # Include global vendors
         addVendors(['datatables']);
+        addVendors(['formrepeater']);
 
         # Include global javascript files
         addJavascriptFile('assets/js/custom/widgets.js');
@@ -83,5 +84,4 @@ class BootstrapDefault
 
         addHtmlClass('body', 'app-default');
     }
-
 }
