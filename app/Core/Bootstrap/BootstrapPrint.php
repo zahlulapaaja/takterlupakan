@@ -2,11 +2,11 @@
 
 namespace App\Core\Bootstrap;
 
-class BootstrapAuth
+class BootstrapPrint
 {
     public function init()
     {
-        // See also starterkit/app/View/Components/SystemLayout.php to change the layout
+        // See also starterkit/app/View/Components/PrintLayout.php to change the layout
 
         addHtmlClass('body', 'app-blank');
     }

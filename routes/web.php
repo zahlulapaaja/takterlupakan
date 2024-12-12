@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
     Route::name('kegiatan.')->group(function () {
         Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
+        Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::resource('/kegiatan/sk', SkController::class);
     });
 

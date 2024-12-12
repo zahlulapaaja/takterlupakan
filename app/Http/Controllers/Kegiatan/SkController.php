@@ -85,4 +85,9 @@ class SkController extends Controller
 
         return redirect()->route('kegiatan.sk.index');
     }
+
+    public function print($id)
+    {
+        return view('kegiatan.sk-print');
+    }
 }

@@ -4,7 +4,7 @@ return [
 
     'KT_THEME_BOOTSTRAP' => [
         'default' => \App\Core\Bootstrap\BootstrapDefault::class,
-        'auth' => \App\Core\Bootstrap\BootstrapAuth::class,
+        'print' => \App\Core\Bootstrap\BootstrapPrint::class,
         'system' => \App\Core\Bootstrap\BootstrapSystem::class,
     ],
 

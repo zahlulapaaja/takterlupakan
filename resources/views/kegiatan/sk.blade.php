@@ -73,6 +73,12 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
+                                    <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                        <i class="ki-duotone ki-switch fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
                                     <a href="{{route('no-surat.fp.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
