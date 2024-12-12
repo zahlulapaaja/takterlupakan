@@ -13,7 +13,7 @@ class SkController extends Controller
 {
     public function index()
     {
-        // $data = Sk::all();
+        $data = Sk::all();
         // foreach ($data as $d) {
         //     $tgl = explode('-', $d->tgl);
         //     $d->no_surat = 'B-' . $d->no . 'A/92800/KU.600/' . $tgl[1] . '/' . $tgl[0];
@@ -38,15 +38,15 @@ class SkController extends Controller
             $mitra = Mitra::orderBy('nama', 'ASC')->get(); // harusnya per year nanti
             $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
             $petugas = [];
-            foreach ($mitra as $m) {
-                $m->list = '[N] ' . $m->nama;
-                $m->status = '[N]';
-                $petugas[] = $m;
-            }
             foreach ($pegawai as $p) {
                 $p->list = '[O] ' . $p->nama;
-                $p->status = '[O]';
+                $p->status = 'O';
                 $petugas[] = $p;
+            }
+            foreach ($mitra as $m) {
+                $m->list = '[N] ' . $m->nama;
+                $m->status = 'N';
+                $petugas[] = $m;
             }
             return view('kegiatan.sk-create', compact('pok', 'petugas'));
         } else {
@@ -56,6 +56,7 @@ class SkController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'no'             => 'required',
             'tentang'        => 'required',
@@ -69,16 +70,19 @@ class SkController extends Controller
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
 
-        $data['no'] = $request->no;
-        $data['tentang'] = $request->tentang;
-        $data['tgl_mulai'] = $request->tgl_mulai;
-        $data['tgl_akhir'] = $request->tgl_akhir;
-        $data['tgl_berlaku'] = $request->tgl_berlaku;
-        $data['tgl_ditetapkan'] = $request->tgl_ditetapkan;
-        $data['daftar_petugas'] = $request->daftar_petugas; // hapus
+        $sk['no'] = $request->no;
+        $sk['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
+        $sk['tentang'] = $request->tentang;
+        $sk['tgl_mulai'] = $request->tgl_mulai;
+        $sk['tgl_akhir'] = $request->tgl_akhir;
+        $sk['tgl_berlaku'] = $request->tgl_berlaku;
+        $sk['tgl_ditetapkan'] = $request->tgl_ditetapkan;
 
-        dd($data);
-        // $res = User::create($data);
-        // return redirect()->route('user-management.users.index');
+        // insert data
+        $res_sk = Sk::create($sk);
+        $res_sk->insertHonor($res_sk->id, $request->uraian_honor, $request->honor);
+        $res_sk->insertPetugas($res_sk->id, $request->daftar_petugas);
+
+        return redirect()->route('kegiatan.sk.index');
     }
 }

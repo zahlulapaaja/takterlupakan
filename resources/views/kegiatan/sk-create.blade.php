@@ -26,14 +26,18 @@
                             <!--begin::Output-->
                             <label class="form-label mb-0 mt-2">Output</label>
                             <div class="fw-semibold fs-6 bg-amber-300">{{ $pok['kode_kegiatan'] . '.' . $pok['kode_output'] . ' : ' . $pok['output'] }}</div>
+                            <input type="hidden" name="kode_kegiatan" value="{{$pok['kode_kegiatan']}}" />
+                            <input type="hidden" name="kode_output" value="{{$pok['kode_output']}}" />
                             <!--end::Output-->
                             <!--begin::Sub Output-->
                             <label class="form-label mb-0 mt-2">Sub Output</label>
                             <div class="fw-semibold fs-6 bg-yellow-300">{{ $pok['kode_kegiatan'] . '.' . $pok['kode_output'] . '.' . $pok['kode_suboutput'] . ' : ' . $pok['suboutput'] }}</div>
+                            <input type="hidden" name="kode_suboutput" value="{{$pok['kode_suboutput']}}" />
                             <!--end::Sub Output-->
                             <!--begin::Komponen-->
                             <label class="form-label mb-0 mt-2">Komponen</label>
                             <div class="fw-semibold fs-6 bg-lime-300">{{ $pok['kode_komponen'] . ' : ' . $pok['komponen'] }}</div>
+                            <input type="hidden" name="kode_komponen" value="{{$pok['kode_komponen']}}" />
                             <!--end::Komponen-->
                         </div>
                         <!--end::Input group-->
@@ -162,7 +166,7 @@
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Select2-->
                                         <div class="w-2/5">
-                                            <select class="form-select" name="petugas[]" data-placeholder="Select a variation" data-kt-ecommerce-catalog-add-product="product_option">
+                                            <select class="form-select" name="petugas" data-placeholder="Select a variation" data-kt-ecommerce-catalog-add-product="product_option" required>
                                                 <option></option>
                                                 @foreach($petugas as $p)
                                                 <option value="{{$p->status . '-' . $p->id}}">{{$p->list}}</option>
@@ -171,7 +175,7 @@
                                         </div>
                                         <!--end::Select2-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control w-2/5" name="sebagai" placeholder="Sebagai" />
+                                        <input type="text" class="form-control w-2/5" name="sebagai" placeholder="Sebagai" required />
                                         <!--end::Input-->
                                         <button type="button" data-repeater-delete="" class="w-1/5 btn btn-sm btn-icon btn-light-danger">
                                             <i class="ki-duotone ki-cross fs-1">
