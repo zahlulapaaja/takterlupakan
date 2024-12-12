@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mitra;
 use App\Models\Pegawai;
 use App\Models\Sk;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -88,6 +89,18 @@ class SkController extends Controller
 
     public function print($id)
     {
-        return view('kegiatan.sk-print');
+        $data = Sk::find($id);
+        $data->no_sk = $data->no . '/SK/BPS-1107/' . explode('-', $data->tgl_ditetapkan)[0];
+
+        $tgl_ttd = Carbon::parse($data->tgl_ditetapkan)->locale('id');
+        $tgl_ttd->settings(['formatFunction' => 'translatedFormat']);
+        $data->tgl_ditetapkan = $tgl_ttd->format('j F Y');
+
+        $tgl_berlaku = Carbon::parse($data->tgl_berlaku)->locale('id');
+        $tgl_berlaku->settings(['formatFunction' => 'translatedFormat']);
+        $data->tgl_berlaku = $tgl_berlaku->format('j F Y');
+        // dd($date->format('l, j F Y ; h:i a')); // Selasa, 16 Maret 2021 ; 08:27 pagi
+
+        return view('kegiatan.sk-print', compact('data'));
     }
 }

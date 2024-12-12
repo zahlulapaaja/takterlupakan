@@ -1,13 +1,251 @@
 @section('head-print')
-<h5 class="text-center text-lg font-bold uppercase">KEPUTUSAN KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK<br>{{ config('constants.KABUPATEN') }}<br>NOMOR: <?php echo '$nomorsk'; ?></h5>
-<br>
-<h5><strong>TENTANG</strong></h5>
-<br>
-<h5><strong><?php echo 'wordwrap($judulsk, 75, "<br>\n")'; ?></strong></h5>
-<br>
-<h5><strong>KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK <?php echo 'strtoupper($kab)'; ?></strong></h5>
+<div class="d-flex flex-column text-xl mb-8">
+    <span>KEPUTUSAN KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK</span>
+    <span>{{ config('constants.KABUPATEN') }}</span>
+    <span>NOMOR: {{$data->no_sk}}</span>
+</div>
+<div class="text-xl mb-8">TENTANG</div>
+<div class="text-xl mb-8">{{ $data->tentang . ' ' . config('constants.SATKER') }}</div>
+<div class="text-xl mb-8">KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK {{ config('constants.KABUPATEN') }}</div>
 @endsection
 
 <x-print-layout>
-    oi
+    <div class="leading-loose text-justify text-lg bg-blue-200">
+        <table class="mx-12 mt-8">
+            <tr>
+                <td class="align-top font-bold" width="10%">MENIMBANG</td>
+                <td class="align-top" width="1%">:</td>
+                <td class="align-top" width="3%"></td>
+                <td class="align-top" width="86%">
+                    Bahwa untuk kelancaran pelaksanaan kegiatan, perlu menetapkan
+                    <span class="capitalize">{{ $data->tentang . ' ' . config('constants.SATKER') }}</span>
+                    Keputusan Kuasa Pengguna Anggaran <br>
+                </td>
+            </tr>
+        </table>
+
+        <table class="mx-12 mt-8">
+            <tr>
+                <td class="align-top"><b>MENGINGAT</b></td>
+                <td class="align-top">:</td>
+                <td class="align-top">1.</td>
+                <td class="align-top">Undang-undang Nomor 16 Tahun 1997 tentang Statistik (Lembaran Negara Nomor 39 Tahun 1997, Tambahan Lembaran Negara Republik Indonesia Nomor 3683);</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">2.</td>
+                <td class="align-top">Undang-undang Nomor 17 Tahun 2003 tentang Keuangan Negara (Lembaran Negara RI Tahun 2003 Nomor 47, Tambahan Lembaran Negara RI Nomor 4287);</td>
+            </tr>
+
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">3.</td>
+                <td class="align-top">Undang-Undang Nomor 1 Tahun 2004 tentang Perbendaharaan Negara (Lembaran Negara Tahun 2004 Nomor 5, Tambahan Lembaran Negara Nomor 4355);</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">4.</td>
+                <td class="align-top">Undang-Undang Nomor 9 Tahun 2020 tentang Anggaran dan Pendapatan Belanja Negara Tahun Anggaran 2021 (Lembar Negara Republik Indonesia Tahun 2020 Nomor 239);</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">5.</td>
+                <td class="align-top">Peraturan Pemerintah Nomor 51 Tahun 1999 tentang Penyelenggaraan Statistik (Lembaran Negara Tahun 1999 Nomor 96, Tambahan Lembaran Negara Republik Indonesia Nomor 3854);</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">6.</td>
+                <td class="align-top">Peraturan Pemerintah Nomor 50 Tahun 2018 tentang Tata Cara Pelaksanaan Anggaran Pendapatan dan Belanja Negara (Lembaran Negara Tahun 2018 Nomor 229);</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">7.</td>
+                <td class="align-top">Peraturan Presiden Nomor 86 Tahun 2007 tentang Badan Pusat Statistik (Lembaran Negara Republik Indonesia Tahun 2017 Nomor 139);</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">8.</td>
+                <td class="align-top">Keputusan Kepala Badan Pusat Statistik Nomor 121 Tahun 2001 tentang Organisasi dan Tata Kerja Perwakilan BPS di Daerah;</td>
+            </tr>
+            <tr>
+                <td class="align-top"></td>
+                <td class="align-top"></td>
+                <td class="align-top">9.</td>
+                <td class="align-top">
+                    Keputusan Kepala Badan Pusat Statistik Nomor {{ config('constants.NO_SK_KPA') }}
+                    Tanggal {{ config('constants.TANGGAL_SK_KPA')}} tentang Kuasa Pengguna Anggaran Badan Pusat Statistik
+                    Tahun {{ config('constants.TAHUN_DIPA') }} di Wilayah Provinsi Aceh.
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="leading-loose text-justify text-lg bg-blue-200">
+        <table class="mx-12 mt-8">
+            <tr>
+                <td class="align-top" width="10%"><b>MEMPERHATIKAN</b></td>
+                <td class="align-top" width="1%">:</td>
+                <td class="align-top" width="3%"></td>
+                <td class="align-top" width="86%">
+                    Pengesahan DIPA Tahun Anggaran {{ config('constants.TAHUN_DIPA') }}
+                    Nomor {{ config('constants.DIPA') }}
+                    tanggal {{ config('constants.TANGGAL_DIPA') }}
+                    {{ config('constants.INSTANSI') }}
+                    {{ config('constants.KABUPATEN') }}
+
+                </td>
+            </tr>
+        </table>
+
+        <div class="text-center font-bold text-xl my-8">
+            <div>MEMUTUSKAN</div>
+        </div>
+
+        <table class="mx-12 mt-8">
+            <tr>
+                <td class="align-top font-bold">MENETAPKAN</td>
+                <td class="align-top"></td>
+                <td class="align-top">:</td>
+                <td class="align-top uppercase">
+                    KEPUTUSAN KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}
+                    {{ config('constants.KABUPATEN') }} TENTANG {{ $data->tentang }}
+                    {{ config('constants.SATKER') }}.
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top font-bold">PERTAMA</td>
+                <td class="align-top"></td>
+                <td class="align-top">:</td>
+                <td class="align-top">
+                    Menetapkan <span class="capitalize">{{ $data->tentang }}</span>
+                    {{ config('constants.SATKER') }} sebagaimana tersebut dalam Lampiran Keputusan ini,
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top font-bold">KEDUA</td>
+                <td class="align-top"></td>
+                <td class="align-top">:</td>
+                <td class="align-top">
+                    <span class="capitalize">{{ $data->tentang }}</span> {{ config('constants.SATKER') }}
+                    sebagaimana tersebut pada diktum PERTAMA mempunyai tanggungjawab penuh dalam pelaksanaan
+                    <span class="capitalize">{{ $data->tentang }}</span> sesuai dengan jadwal yang telah ditetapkan,
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top font-bold">KETIGA</td>
+                <td class="align-top"></td>
+                <td class="align-top">:</td>
+                <td class="align-top">
+                    Kepada Petugas {{ $data->tentang }} diberikan honor sesuai dengan beban kerja masing-masing;
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top font-bold">KEEMPAT</td>
+                <td class="align-top"></td>
+                <td class="align-top">:</td>
+                <td class="align-top">
+                    Pembiayaan untuk pelaksanaan Keputusan ini dibebankan pada DIPA Tahun Anggaran
+                    {{ config('constants.TAHUN_DIPA') }} Nomor {{ config('constants.DIPA') }}
+                    tanggal {{ config('constants.TANGGAL_DIPA') }} {{ config('constants.INSTANSI') }}
+                    {{ config('constants.KABUPATEN') }}
+                </td>
+            </tr>
+
+            <tr>
+                <td class="align-top font-bold">KELIMA</td>
+                <td class="align-top"></td>
+                <td class="align-top">:</td>
+                <td class="align-top">
+                    Keputusan ini mulai berlaku tanggal {{ $data->tgl_berlaku }}, dengan ketentuan apabila
+                    dikemudian hari terdapat kekeliruan akan diadakan perbaikan sebagaimana mestinya.
+                </td>
+            </tr>
+        </table>
+
+        <div class="flex flex-row text-center ml-12 mt-20">
+            <div class="w-2/5"></div>
+            <div class="w-3/5 flex flex-col leading-normal">
+                <span>Ditetapkan di : {{ config('constants.MEULABOH') }}</span>
+                <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
+                <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
+                <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
+                <span class="font-bold">{{ config('constants.KPA') }}</span>
+                <span>NIP. {{ config('constants.NIP_KPA') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="flex flex-col text-left">
+        <span>
+            Lampiran Keputusan Kuasa Pengguna Anggaran
+            {{ config('constants.INSTANSI') . ' ' . config('constants.KABUPATEN') }}
+        </span>
+        <div class="flex flex-row">
+            <span class="w-20">Nomor</span>
+            <span>: {{ $data->no_sk }}</span>
+        </div>
+        <div class="flex flex-row">
+            <span class="w-20">Tanggal</span>
+            <span>: {{ $data->tgl_ditetapkan }}</span>
+        </div>
+    </div>
+
+    <div class="text-center font-bold uppercase mt-20">
+        <div class="text-xl mb-8">DAFTAR PETUGAS {{ $data->tentang }}</div>
+    </div>
+
+    <div class="mx-12">
+        <table class="w-full border text-center font-medium">
+            <thead>
+                <tr>
+                    <th class="border border-black py-2 font-bold">No.</td>
+                    <th class="border border-black py-2 font-bold">Nama Petugas</td>
+                    <th class="border border-black py-2 font-bold">Gol</td>
+                    <th class="border border-black py-2 font-bold">Sebagai</td>
+                    <th class="border border-black py-2 font-bold">Keterangan</td>
+                </tr>
+                <tr class="text-sm font-thin">
+                    <th class="border border-black">(1)</td>
+                    <th class="border border-black">(2)</td>
+                    <th class="border border-black">(3)</td>
+                    <th class="border border-black">(4)</td>
+                    <th class="border border-black">(5)</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for($i = 0; $i < 10; $i++)
+                    <tr>
+                    <th class="border border-black">{{ $i+1 }}.</td>
+                    <th class="border border-black text-left pl-2">M. Apriesya Wastu Nirbhaya, S.Tr.Stat.</td>
+                    <th class="border border-black">III/a</td>
+                    <th class="border border-black">Pengawas</td>
+                    <th class="border border-black">-</td>
+                        </tr>
+                        @endfor
+            </tbody>
+        </table>
+    </div>
+
+    <div class="flex flex-row text-center ml-12 mt-20">
+        <div class="w-2/5"></div>
+        <div class="w-3/5 flex flex-col leading-normal">
+            <span>Ditetapkan di : {{ config('constants.MEULABOH') }}</span>
+            <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
+            <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
+            <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
+            <span class="font-bold">{{ config('constants.KPA') }}</span>
+            <span>NIP. {{ config('constants.NIP_KPA') }}</span>
+        </div>
+    </div>
 </x-print-layout>

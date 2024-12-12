@@ -43,6 +43,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!--end::Custom Stylesheets-->
 
+    <!--end::Custom Javascript-->
+    @stack('css')
+    <!--end::Javascript-->
     @livewireStyles
 </head>
 <!--end::Head-->
