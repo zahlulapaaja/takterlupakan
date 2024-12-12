@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -60,5 +61,33 @@ class Sk extends Model
         }
 
         return $res;
+    }
+
+    public function dateIndonesia($tanggal)
+    {
+        $result = Carbon::parse($tanggal)->locale('id');
+        $result->settings(['formatFunction' => 'translatedFormat']);
+        $tanggal = $result->format('j F Y');
+        // dd($result->format('l, j F Y ; h:i a')); // Selasa, 16 Maret 2021 ; 08:27 pagi
+
+        return $result;
+    }
+
+    public function getPetugas($id)
+    {
+        $result = DB::table('sks_petugas')->where('sks_id', $id)->get();
+        foreach ($result as $value) {
+            if ($value == 'O') {
+                $pegawai = Pegawai::find($value->pegawai_id);
+                $value->nama = $pegawai->nama;
+                $value->gol = $pegawai->golongan;
+            } else {
+                $mitra = Mitra::find($value->mitra_id);
+                $value->nama = $mitra->nama;
+                $value->gol = '-';
+            }
+        }
+
+        return $result;
     }
 }

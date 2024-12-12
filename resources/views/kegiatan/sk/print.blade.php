@@ -10,7 +10,7 @@
 @endsection
 
 <x-print-layout>
-    <div class="leading-loose text-justify text-lg bg-blue-200">
+    <div class="leading-loose text-justify text-lg">
         <table class="mx-12 mt-8">
             <tr>
                 <td class="align-top font-bold" width="10%">MENIMBANG</td>
@@ -89,7 +89,7 @@
 
     <div class="page-break"></div>
 
-    <div class="leading-loose text-justify text-lg bg-blue-200">
+    <div class="leading-loose text-justify text-lg">
         <table class="mx-12 mt-8">
             <tr>
                 <td class="align-top" width="10%"><b>MEMPERHATIKAN</b></td>
@@ -146,6 +146,7 @@
                 <td class="align-top">:</td>
                 <td class="align-top">
                     Kepada Petugas {{ $data->tentang }} diberikan honor sesuai dengan beban kerja masing-masing;
+                    @include('kegiatan.sk._table-honor')
                 </td>
             </tr>
             <tr>
@@ -209,30 +210,30 @@
         <table class="w-full border text-center font-medium">
             <thead>
                 <tr>
-                    <th class="border border-black py-2 font-bold">No.</td>
-                    <th class="border border-black py-2 font-bold">Nama Petugas</td>
-                    <th class="border border-black py-2 font-bold">Gol</td>
-                    <th class="border border-black py-2 font-bold">Sebagai</td>
-                    <th class="border border-black py-2 font-bold">Keterangan</td>
+                    <th class="border border-black py-2 font-bold">No.</th>
+                    <th class="border border-black py-2 font-bold">Nama Petugas</th>
+                    <th class="border border-black py-2 font-bold">Gol</th>
+                    <th class="border border-black py-2 font-bold">Sebagai</th>
+                    <th class="border border-black py-2 font-bold">Keterangan</th>
                 </tr>
                 <tr class="text-sm font-thin">
-                    <th class="border border-black">(1)</td>
-                    <th class="border border-black">(2)</td>
-                    <th class="border border-black">(3)</td>
-                    <th class="border border-black">(4)</td>
-                    <th class="border border-black">(5)</td>
+                    <td class="border border-black">(1)</td>
+                    <td class="border border-black">(2)</td>
+                    <td class="border border-black">(3)</td>
+                    <td class="border border-black">(4)</td>
+                    <td class="border border-black">(5)</td>
                 </tr>
             </thead>
             <tbody>
-                @for($i = 0; $i < 10; $i++)
-                    <tr>
-                    <th class="border border-black">{{ $i+1 }}.</td>
-                    <th class="border border-black text-left pl-2">M. Apriesya Wastu Nirbhaya, S.Tr.Stat.</td>
-                    <th class="border border-black">III/a</td>
-                    <th class="border border-black">Pengawas</td>
-                    <th class="border border-black">-</td>
-                        </tr>
-                        @endfor
+                @foreach($data->petugas as $key => $p)
+                <tr>
+                    <td class="border border-black">{{ $key+1 }}.</td>
+                    <td class="border border-black text-left pl-2">{{ $p->nama }}</td>
+                    <td class="border border-black">{{ $p->gol }}</td>
+                    <td class="border border-black">{{ $p->sebagai }}</td>
+                    <td class="border border-black">-</td>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

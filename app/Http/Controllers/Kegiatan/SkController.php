@@ -8,6 +8,7 @@ use App\Models\Pegawai;
 use App\Models\Sk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,7 @@ class SkController extends Controller
             $d->no_sk = $d->no . '/SK/BPS-1107/' . $tgl[0];
             $d->rincian = Str::limit($d->tentang, 25);
         }
-        return view('kegiatan.sk', compact('data'));
+        return view('kegiatan.sk.index', compact('data'));
     }
 
     public function create(Request $request)
@@ -49,7 +50,7 @@ class SkController extends Controller
                 $m->status = 'N';
                 $petugas[] = $m;
             }
-            return view('kegiatan.sk-create', compact('pok', 'petugas'));
+            return view('kegiatan.sk.create', compact('pok', 'petugas'));
         } else {
             return redirect()->route('pok');
         }
@@ -91,16 +92,13 @@ class SkController extends Controller
     {
         $data = Sk::find($id);
         $data->no_sk = $data->no . '/SK/BPS-1107/' . explode('-', $data->tgl_ditetapkan)[0];
+        $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
+        $data->petugas = $data->getPetugas($id);
+        // dd($data);
 
-        $tgl_ttd = Carbon::parse($data->tgl_ditetapkan)->locale('id');
-        $tgl_ttd->settings(['formatFunction' => 'translatedFormat']);
-        $data->tgl_ditetapkan = $tgl_ttd->format('j F Y');
+        $data->tgl_ditetapkan = $data->dateIndonesia($data->tgl_ditetapkan);
+        $data->tgl_berlaku = $data->dateIndonesia($data->tgl_berlaku);
 
-        $tgl_berlaku = Carbon::parse($data->tgl_berlaku)->locale('id');
-        $tgl_berlaku->settings(['formatFunction' => 'translatedFormat']);
-        $data->tgl_berlaku = $tgl_berlaku->format('j F Y');
-        // dd($date->format('l, j F Y ; h:i a')); // Selasa, 16 Maret 2021 ; 08:27 pagi
-
-        return view('kegiatan.sk-print', compact('data'));
+        return view('kegiatan.sk.print', compact('data'));
     }
 }
