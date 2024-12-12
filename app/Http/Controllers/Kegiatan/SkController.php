@@ -8,19 +8,19 @@ use App\Models\Pegawai;
 use App\Models\Sk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SkController extends Controller
 {
     public function index()
     {
         $data = Sk::all();
-        // foreach ($data as $d) {
-        //     $tgl = explode('-', $d->tgl);
-        //     $d->no_surat = 'B-' . $d->no . 'A/92800/KU.600/' . $tgl[1] . '/' . $tgl[0];
-        // }
-        // $last = NoFP::latest('no')->first();
-        // dd($last);
-        return view('no-surat.fp', compact('data'));
+        foreach ($data as $d) {
+            $tgl = explode('-', $d->tgl_ditetapkan);
+            $d->no_sk = $d->no . '/SK/BPS-1107/' . $tgl[0];
+            $d->rincian = Str::limit($d->tentang, 25);
+        }
+        return view('kegiatan.sk', compact('data'));
     }
 
     public function create(Request $request)
