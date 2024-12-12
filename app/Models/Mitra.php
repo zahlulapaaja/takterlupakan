@@ -15,7 +15,6 @@ class Mitra extends Model
         'nama',
         'email',
         'id_sobat',
-        'email',
         'posisi',
         'alamat_detail',
         'alamat_prov',
@@ -23,6 +22,7 @@ class Mitra extends Model
         'alamat_kec',
         'alamat_desa',
         'jk',
+        'tgl_lahir',
         'agama',
         'status',
         'pendidikan',
@@ -32,6 +32,7 @@ class Mitra extends Model
         'catatan',
         'no_rek',
         'nama_bank',
-        'an_rek'
+        'an_rek',
+        'tahun'
     ];
 }

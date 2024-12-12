@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('alamat_kec')->nullable();
             $table->string('alamat_desa')->nullable();
             $table->date('tgl_lahir')->nullable();
-            $table->string('jk')->nullable();
+            $table->string('jk');
             $table->string('agama')->nullable();
             $table->string('status')->nullable();
             $table->string('pendidikan')->nullable();
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('no_rek')->nullable();
             $table->string('nama_bank')->nullable();
             $table->string('an_rek')->nullable();
+            $table->integer('tahun');
             $table->timestamps();
         });
     }

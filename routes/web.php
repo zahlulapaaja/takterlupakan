@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\SkController;
+use App\Http\Controllers\MitraController;
 use App\Http\Controllers\Surat\NoFpController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
         Route::resource('/kegiatan/sk', SkController::class);
     });
+
+    Route::get('/mitra/impor', [MitraController::class, 'impor'])->name('mitra.impor');
+    Route::post('/mitra/impor', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
 });
