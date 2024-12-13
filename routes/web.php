@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\SkController;
+use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\Surat\BastController;
 use App\Http\Controllers\Surat\NoFpController;
@@ -39,9 +40,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::resource('/kegiatan/sk', SkController::class);
-        Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
+        Route::post('/kegiatan/pjk/create', [KegiatanController::class, 'create'])->name('pjk.create');
+        Route::post('/kegiatan/item/create', [KegiatanController::class, 'create'])->name('item.create');
+        Route::post('/kegiatan/item/get-petugas', [KegiatanController::class, 'getPetugas'])->name('item.get-petugas');
+        Route::resource('/kegiatan/item', KegiatanController::class);
+        // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
         // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');
-        Route::resource('/kegiatan/bast', BastController::class);
+        // Route::resource('/kegiatan/bast', BastController::class);
     });
 
     Route::get('/mitra/impor', [MitraController::class, 'impor'])->name('mitra.impor');
