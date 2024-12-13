@@ -27,12 +27,12 @@ class SkController extends Controller
 
     public function create(Request $request)
     {
-        $pok['kode_kegiatan'] = substr($request->kode_kegiatan, 1, 4);
-        $pok['kode_output'] = substr($request->kode_output, 1, 3);
+        $pok['kode_kegiatan'] = $request->kode_kegiatan;
+        $pok['kode_output'] = $request->kode_output;
         $pok['output'] = $request->output;
-        $pok['kode_suboutput'] = substr($request->kode_suboutput, 1, 3);
+        $pok['kode_suboutput'] = $request->kode_suboutput;
         $pok['suboutput'] = $request->suboutput;
-        $pok['kode_komponen'] = substr($request->kode_komponen, 1, 3);
+        $pok['kode_komponen'] = $request->kode_komponen;
         $pok['komponen'] = $request->komponen;
 
 

@@ -35,21 +35,23 @@ class PokImport implements ToModel, WithStartRow
 
         // ($row[0]) ? session(['kode_pro' => $row[0], 'pro' => $row[7]]) : null;
         // ($row[1]) ? session(['kode_keg' => $row[1], 'keg' => $row[7]]) : null;
-        ($row[0]) ? session(['kode_pro' => $row[0]]) : null;
+        ($row[0]) ? session(['kode_pro' => substr($row[0], 1, 2)]) : null;
         ($row[0]) ? session(['pro' => $row[7]]) : null;
-        ($row[1]) ? session(['kode_keg' => $row[1]]) : null;
+        ($row[1]) ? session(['kode_keg' => substr($row[1], 1, 4)]) : null;
         ($row[1]) ? session(['keg' => $row[7]]) : null;
-        ($row[2]) ? session(['kode_out' => $row[2]]) : null;
+        ($row[2]) ? session(['kode_out' => substr($row[2], 1, 3)]) : null;
         ($row[2]) ? session(['out' => $row[7]]) : null;
-        ($row[3]) ? session(['kode_subout' => $row[3]]) : null;
+        ($row[3]) ? session(['kode_subout' => substr($row[3], 1, 3)]) : null;
         ($row[3]) ? session(['subout' => $row[7]]) : null;
-        ($row[4]) ? session(['kode_komp' => $row[4]]) : null;
+        ($row[4]) ? session(['kode_komp' => substr($row[4], 1, 3)]) : null;
         ($row[4]) ? session(['komp' => $row[7]]) : null;
-        ($row[5]) ? session(['kode_subkomp' => $row[5]]) : null;
+        ($row[5]) ? session(['kode_subkomp' => substr($row[5], 1, 1)]) : null;
         ($row[5]) ? session(['subkomp' => $row[7]]) : null;
-        ($row[6]) ? session(['kode_akun' => $row[6]]) : null;
+        ($row[6]) ? session(['kode_akun' => substr($row[6], 1, 6)]) : null;
         ($row[6]) ? session(['akun' => $row[7]]) : null;
 
+        // dd($row);
+        // dd(session()->all());
 
         if (is_int($row[7])) {
             return new Pok([
@@ -81,6 +83,6 @@ class PokImport implements ToModel, WithStartRow
 
     public function startRow(): int
     {
-        return 7;
+        return 8;
     }
 }
