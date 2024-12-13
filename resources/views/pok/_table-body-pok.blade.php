@@ -137,6 +137,27 @@
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['akun'][$p] }}</span>
         </td>
+        @if(in_array($poks[$i]->kode_akun, $list_akun_input))
+        <td class="bg-white">
+            <form method="post" action="{{ route('kegiatan.bast.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+                @csrf
+                @method('POST')
+                <select name="pj">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">4</option>
+                </select>
+                <input type="hidden" name="kode_kegiatan" value="{{$poks[$i]->kode_kegiatan}}" />
+                <input type="hidden" name="kode_output" value="{{$poks[$i]->kode_output}}" />
+                <input type="hidden" name="output" value="{{$poks[$i]->output}}" />
+                <input type="hidden" name="kode_suboutput" value="{{$poks[$i]->kode_suboutput}}" />
+                <input type="hidden" name="suboutput" value="{{$poks[$i]->suboutput}}" />
+                <input type="hidden" name="kode_komponen" value="{{$poks[$i]->kode_komponen}}" />
+                <input type="hidden" name="komponen" value="{{$poks[$i]->komponen}}" />
+                <button type="submit"> PJ </button>
+            </form>
+        </td>
+        @endif
     </tr>
     <?php $p++; ?>
     @endif

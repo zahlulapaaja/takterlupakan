@@ -15,6 +15,7 @@ class PokController extends Controller
         $poks = Pok::all();
         $pokk = $jlh_pokk = $sama = [];
         $j = $k = $l = $m = $n = $o = $p = 0;
+        $list_akun_input = ['524113', '521213', '524111'];
 
         for ($i = 0; $i < count($poks); $i++) {
 
@@ -112,7 +113,7 @@ class PokController extends Controller
         // dd($jlh_pokk);
         // dd($sama);
 
-        return view('pok.index', compact('poks', 'pokk', 'jlh_pokk', 'sama'));
+        return view('pok.index', compact('poks', 'pokk', 'jlh_pokk', 'sama', 'list_akun_input'));
     }
 
     public function impor()
