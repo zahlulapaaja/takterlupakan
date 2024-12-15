@@ -1,18 +1,43 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pok;
 
-use App\Imports\PokImport;
+use App\Http\Controllers\Controller;
 use App\Models\Pok;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
-class PokController extends Controller
+class DropdownController extends Controller
 {
     public function index()
+
+    {
+        // $data['countries'] = Country::get(["name", "id"]);
+        // return view('dropdown', $data);
+    }
+
+    public function fetchRevisi(Request $request)
+    {
+        $data['revisi'] = DB::table('poks')->distinct()
+            ->where("tahun", $request->tahun)
+            ->get('revisi');
+
+        return response()->json($data);
+    }
+
+    public function getPok(Request $request)
     {
 
-        $poks = Pok::all();
+        // mengambil data pok terbaru
+        $tahun = $request->tahun;
+        $revisi = $request->revisi;
+        $poks = Pok::where('tahun', $tahun)
+            ->where('revisi', $revisi)
+            ->get();
+        // dd($request->all());
+        // dd($poks);
+
+        // inisiasi data untuk tampilan pok
         $pokk = $jlh_pokk = $sama = [];
         $j = $k = $l = $m = $n = $o = $p = 0;
         $list_akun_input = ['524113', '521213', '524111'];
@@ -113,37 +138,9 @@ class PokController extends Controller
         // dd($jlh_pokk);
         // dd($sama);
 
-        return view('pok.index', compact('poks', 'pokk', 'jlh_pokk', 'sama', 'list_akun_input'));
-    }
-
-    public function impor()
-    {
-        return view('pok.impor');
-    }
-
-    public function proses_impor(Request $request)
-    {
-        $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
-        ]);
-
-        // dd($request->file('file'));
-        $res = Excel::import(new PokImport, $request->file('file'));
-        session()->pull('kode_pro');
-        session()->pull('pro');
-        session()->pull('kode_keg');
-        session()->pull('keg');
-        session()->pull('kode_out');
-        session()->pull('out');
-        session()->pull('kode_subout');
-        session()->pull('subout');
-        session()->pull('kode_komp');
-        session()->pull('komp');
-        session()->pull('kode_subkomp');
-        session()->pull('subkomp');
-        session()->pull('kode_akun');
-        session()->pull('akun');
-        // dd(session()->all());
-        return redirect()->back()->with('success', 'Data pok berhasil di import');
+        $view = view('pok._table-body-pok', compact('poks', 'pokk', 'jlh_pokk', 'sama', 'list_akun_input'))->render();
+        // dd($view);
+        return response()->json(['view' => $view], 200);
+        // return view('pok._table-body-pok', compact('poks', 'pokk', 'jlh_pokk', 'sama', 'list_akun_input'));
     }
 }

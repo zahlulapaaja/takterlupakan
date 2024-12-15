@@ -74,7 +74,8 @@ class PokImport implements ToModel, WithStartRow
                 'satuan' => $row[10],
                 'harga' => $row[11],
                 'jumlah' => $row[13],
-                'tahun' => '2024',
+                'tahun' => '2023',
+                'revisi' => '15',
             ]);
         }
 

@@ -31,6 +31,7 @@ class Pok extends Model
         'satuan',
         'harga',
         'jumlah',
-        'tahun'
+        'tahun',
+        'revisi',
     ];
 }

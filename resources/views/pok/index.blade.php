@@ -1,4 +1,9 @@
 <x-default-layout>
+
+    @section('title')
+    POK
+    @endsection
+
     <!--begin::Tables Widget 12-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
@@ -102,6 +107,21 @@
                         <input id="searchPok" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="position-relative me-md-2">
+                        <select id="revisi-dropdown" name="revisi" class="form-control form-control-solid">
+                        </select>
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
+                    <div class="position-relative me-md-2">
+                        <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
+                            @for($i = 2023; $i < 2029; $i++)
+                                <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                        </select>
+                    </div>
+                    <!--end::Input group-->
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
@@ -120,7 +140,7 @@
                     </thead>
                     <!--end::Table head-->
                     <!--begin::Table body-->
-                    <tbody>
+                    <tbody id="tabel-pok">
                         @include('pok._table-body-pok')
                     </tbody>
                     <!--end::Table body-->
@@ -134,26 +154,112 @@
     <!--end::Tables Widget 12-->
 
     @push('scripts')
-    <!-- <script type="text/javascript">
+
+    <script type="text/javascript">
         $(document).ready(function() {
-            let table = $('.datatable').DataTable({
-                paging: false,
-                ordering: false,
-                columnDefs: [{
-                        targets: [0, 1],
-                        searchable: true,
+
+            // Tahun Dropdown Change Event
+            $('#tahun-dropdown').on('change', function() {
+                var tahun = this.value;
+                $("#revisi-dropdown").html('');
+
+                $.ajax({
+                    url: "{{url('api/fetch-revisi')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        _token: '{{csrf_token()}}'
                     },
-                    {
-                        targets: [2, 3, 4, 5],
-                        searchable: false,
-                    },
-                ]
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#revisi-dropdown').html('<option value="">Pilih Revisi Ke</option>');
+
+                        $.each(result.revisi, function(key, value) {
+                            console.log(value);
+                            $("#revisi-dropdown").append('<option value="' +
+                                value.revisi + '">' + value.revisi + '</option>');
+                        });
+                    }
+
+                });
+
             });
 
-            $('#searchPok').on('keyup', function() {
-                table.columns(2).search(this.value).draw();
+
+
+            /*------------------------------------------
+
+            --------------------------------------------
+
+            State Dropdown Change Event
+
+            --------------------------------------------
+
+            --------------------------------------------*/
+
+            $('#revisi-dropdown').on('change', function() {
+
+                var revisi = this.value;
+                var tahun = $('#tahun-dropdown').find(":selected").val();
+                $("#tabel-pok").html('');
+
+                $.ajax({
+
+                    url: "{{url('api/get-pok')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        revisi: revisi,
+                        _token: '{{csrf_token()}}'
+                    },
+
+                    dataType: 'json',
+
+                    success: function(res) {
+
+                        $('#tabel-pok').html(res.view);
+                        // $('#city-dropdown').html('<option value="">-- Select City --</option>');
+
+                        // $.each(res.cities, function(key, value) {
+
+                        //     $("#city-dropdown").append('<option value="' + value
+
+                        //         .id + '">' + value.name + '</option>');
+
+                        // });
+
+                    }
+
+                });
+
             });
-        }); -->
+
+
+
+        });
+        // $("#meetingPlace").on("change", function() {
+        //     var selected = $(this).val();
+        //     makeAjaxRequest(selected);
+        // });
+        // $(document).ready(function() {
+        // let table = $('.datatable').DataTable({
+        // paging: false,
+        // ordering: false,
+        // columnDefs: [{
+        //         targets: [0, 1],
+        //         searchable: true,
+        //     },
+        //         {
+        //             targets: [2, 3, 4, 5],
+        //             searchable: false,
+        //         },
+        //     ]
+        // });
+
+        //     $('#searchPok').on('keyup', function() {
+        //         table.columns(2).search(this.value).draw();
+        //     });
+        // });
     </script>
     @endpush
 </x-default-layout>

@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\SkController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\MitraController;
+use App\Http\Controllers\Pok\DropdownController;
+use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\BastController;
 use App\Http\Controllers\Surat\NoFpController;
 use Illuminate\Support\Facades\Route;
@@ -51,4 +52,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/mitra/impor', [MitraController::class, 'impor'])->name('mitra.impor');
     Route::post('/mitra/impor', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
+
+    Route::get('dropdown', [DropdownController::class, 'index']);
+    Route::post('api/fetch-revisi', [DropdownController::class, 'fetchRevisi']);
+    Route::post('api/get-pok', [DropdownController::class, 'getPok']);
 });

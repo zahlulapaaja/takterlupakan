@@ -32,7 +32,8 @@ return new class extends Migration
             $table->string('satuan');
             $table->string('harga');
             $table->string('jumlah');
-            $table->string('tahun');
+            $table->integer('tahun');
+            $table->integer('revisi');
             $table->timestamps();
         });
 
