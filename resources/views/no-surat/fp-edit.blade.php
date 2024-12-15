@@ -1,10 +1,15 @@
 <x-default-layout>
+
+    @section('title')
+    Nomor Surat
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Edit No Surat FP</span>
+                <span class="card-label fw-bold fs-3 mb-1">Edit Nomor Surat Form Permintaan</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
             </h3>
         </div>
@@ -62,9 +67,9 @@
                 <!--end::Input group-->
                 <!--begin::Actions-->
                 <div class="text-center pt-15">
-                    <a href="{{ route('no-surat.fp.index') }}" class="btn btn-light me-3">Discard</a>
+                    <a href="{{ route('no-surat.fp.index') }}" class="btn btn-light me-3">Kembali</a>
                     <button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
-                        <span class="indicator-label">Submit</span>
+                        <span class="indicator-label">Simpan</span>
                         <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                     </button>

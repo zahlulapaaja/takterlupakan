@@ -82,7 +82,8 @@ class Sk extends Model
                 $value->nama = $pegawai->nama;
                 $value->gol = $pegawai->golongan;
             } else {
-                $mitra = Mitra::find($value->mitra_id);
+                $mitra = Mitra::find($id);
+                // dd($mitra);
                 $value->nama = $mitra->nama;
                 $value->gol = '-';
             }

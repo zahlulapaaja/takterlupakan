@@ -94,27 +94,26 @@
         <!--end::Header-->
         <!--begin::Body-->
         <div class="card-body py-3">
-            <!--begin::Table container-->
-            <div class="table-responsive">
-                <!--begin::Compact form-->
-                <div class="d-flex align-items-center mb-4">
+            <!--begin::Compact form-->
+            <div class="d-flex flex-row sm:flex-col justify-between mb-4">
+                <!--begin::Input group-->
+                <div class="position-relative w-md-400px me-md-2">
+                    <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    <input id="searchPok" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                </div>
+                <!--end::Input group-->
+                <div class="position-relative d-flex flex-row">
                     <!--begin::Input group-->
-                    <div class="position-relative w-md-400px me-md-2">
-                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <input id="searchPok" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="position-relative me-md-2">
+                    <div class="flex me-md-2">
                         <select id="revisi-dropdown" name="revisi" class="form-control form-control-solid">
                         </select>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="position-relative me-md-2">
+                    <div class="flex me-md-2">
                         <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
                             @for($i = 2023; $i < 2029; $i++)
                                 <option value="{{$i}}">{{$i}}</option>
@@ -123,9 +122,12 @@
                     </div>
                     <!--end::Input group-->
                 </div>
-                <!--end::Compact form-->
+            </div>
+            <!--end::Compact form-->
+            <!--begin::Table container-->
+            <div class="table-responsive">
                 <!--begin::Table-->
-                <table class="table align-middle gs-0 gy-4 datatable">
+                <table class="table align-middle gs-0 gy-4">
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted bg-light">
@@ -172,7 +174,7 @@
                     },
                     dataType: 'json',
                     success: function(result) {
-                        $('#revisi-dropdown').html('<option hidden>Pilih Revisi Ke</option>');
+                        $('#revisi-dropdown').html('<option hidden>Revisi Ke...</option>');
 
                         $.each(result.revisi, function(key, value) {
                             console.log(value);

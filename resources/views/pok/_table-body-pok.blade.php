@@ -138,7 +138,7 @@
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $jlh_pokk['akun'][$p] }}</span>
         </td>
         @if(in_array($poks[$i]->kode_akun, $list_akun_input))
-        <td class="bg-white">
+        <!-- <td class="bg-white">
             <form method="post" action="{{ route('kegiatan.pjk.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
@@ -156,7 +156,7 @@
                 <input type="hidden" name="komponen" value="{{$poks[$i]->komponen}}" />
                 <button type="submit"> PJ </button>
             </form>
-        </td>
+        </td> -->
         @endif
     </tr>
     <?php $p++; ?>
@@ -182,14 +182,14 @@
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $poks[$i]->jumlah }}</span>
         </td>
         @if(in_array($poks[$i]->kode_akun, $list_akun_input))
-        <td class="bg-white">
+        <!-- <td class="bg-white">
             <form method="post" action="{{ route('kegiatan.item.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="pok_id" value="{{$poks[$i]->id}}" />
                 <button type="submit"> Input </button>
             </form>
-        </td>
+        </td> -->
         @endif
     </tr>
     <!-- end::Item Kegiatan -->

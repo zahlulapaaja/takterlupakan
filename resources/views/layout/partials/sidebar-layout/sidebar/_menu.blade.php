@@ -39,7 +39,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Masuk & Keluar</span>
+							<!-- <span class="menu-title">Masuk & Keluar</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -51,7 +51,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Tim Kerja</span>
+							<!-- <span class="menu-title">Tim Kerja</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -86,42 +86,6 @@
 								<span class="bullet bullet-dot"></span>
 							</span>
 							<span class="menu-title">Impor Mitra</span>
-						</a>
-						<!--end:Menu link-->
-					</div>
-					<!--end:Menu item-->
-					<!--begin:Menu item-->
-					<div class="menu-item">
-						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('dashboard') }}">
-							<span class="menu-bullet">
-								<span class="bullet bullet-dot"></span>
-							</span>
-							<span class="menu-title">Impor Pegawai</span>
-						</a>
-						<!--end:Menu link-->
-					</div>
-					<!--end:Menu item-->
-					<!--begin:Menu item-->
-					<div class="menu-item">
-						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('dashboard') }}">
-							<span class="menu-bullet">
-								<span class="bullet bullet-dot"></span>
-							</span>
-							<span class="menu-title">RPD</span>
-						</a>
-						<!--end:Menu link-->
-					</div>
-					<!--end:Menu item-->
-					<!--begin:Menu item-->
-					<div class="menu-item">
-						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('dashboard') }}">
-							<span class="menu-bullet">
-								<span class="bullet bullet-dot"></span>
-							</span>
-							<span class="menu-title">Realisasi</span>
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -179,7 +143,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Revisi POK</span>
+							<!-- <span class="menu-title">Revisi POK</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -191,7 +155,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">RPD</span>
+							<!-- <span class="menu-title">RPD</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -203,7 +167,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Realisasi</span>
+							<!-- <span class="menu-title">Realisasi</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -235,7 +199,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">KAK</span>
+							<!-- <span class="menu-title">KAK</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -291,7 +255,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Semula Menjadi</span>
+							<!-- <span class="menu-title">Semula Menjadi</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -303,7 +267,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Perjadin</span>
+							<!-- <span class="menu-title">Perjadin</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -315,7 +279,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">Honor</span>
+							<!-- <span class="menu-title">Honor</span> -->
 						</a>
 						<!--end:Menu link-->
 					</div>
@@ -340,6 +304,18 @@
 				<!--end:Menu link-->
 				<!--begin:Menu sub-->
 				<div class="menu-sub menu-sub-accordion">
+					<!--begin:Menu item-->
+					<div class="menu-item">
+						<!--begin:Menu link-->
+						<a class="menu-link" href="{{ route('dashboard') }}">
+							<span class="menu-bullet">
+								<span class="bullet bullet-dot"></span>
+							</span>
+							<span class="menu-title">Referensi</span>
+						</a>
+						<!--end:Menu link-->
+					</div>
+					<!--end:Menu item-->
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->

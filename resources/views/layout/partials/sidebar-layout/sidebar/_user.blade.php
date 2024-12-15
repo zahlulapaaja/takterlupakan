@@ -5,7 +5,7 @@
 						<div class="d-flex align-items-center flex-column">
 							<!--begin::Symbol-->
 							<div class="symbol symbol-75px mb-4">
-								<img src="assets/media/avatars/300-1.jpg" alt="" />
+								<img src="{{ image('avatars/300-1.jpg') }}" alt="" />
 							</div>
 							<!--end::Symbol-->
 							<!--begin::Info-->
@@ -14,7 +14,7 @@
 								<a href="pages/user-profile/overview.html" class="text-gray-800 text-hover-primary fs-4 fw-bolder">{{ session('name') }}</a>
 								<!--end::Username-->
 								<!--begin::Description-->
-								<span class="text-gray-600 fw-semibold d-block fs-7 mb-1">{{ session('role') }}</span>
+								<span class="capitalize text-gray-600 fw-semibold d-block fs-7 mb-1">{{ session('role') }}</span>
 								<!--end::Description-->
 							</div>
 							<!--end::Info-->

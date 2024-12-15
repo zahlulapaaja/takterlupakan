@@ -1,15 +1,20 @@
 <x-default-layout>
+
+    @section('title')
+    Nomor Surat
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">No Surat FP</span>
+                <span class="card-label fw-bold fs-3 mb-1">No Surat Form Permintaan</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
             </h3>
-            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Click to add a user">
+            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Klik untuk tambah nomor">
                 <a href="#" class="btn btn-sm btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#add_nofp">
-                    <i class="ki-duotone ki-plus fs-2"></i>New Member</a>
+                    <i class="ki-duotone ki-plus fs-2"></i>Tambah</a>
             </div>
         </div>
         <!--end::Header-->
@@ -67,12 +72,6 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-switch fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a>
                                     <a href="{{route('no-surat.fp.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>

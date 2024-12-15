@@ -72,9 +72,9 @@
 					<!--end::Input group-->
 					<!--begin::Actions-->
 					<div class="text-center pt-15">
-						<button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Discard</button>
+						<button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3" data-bs-dismiss="modal">Kembali</button>
 						<button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
-							<span class="indicator-label">Submit</span>
+							<span class="indicator-label">Simpan</span>
 							<span class="indicator-progress">Please wait...
 								<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 						</button>

@@ -44,6 +44,7 @@ class AuthController extends Controller
             $user = Auth::user();
             Session::put('name', $user->name);
             Session::put('role', User::find($user->id)->roles[0]->name);
+            Session::put('email', User::find($user->id)->roles[0]->email);
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('login')->with('failed', 'Email atau Password Salah');
@@ -55,6 +56,7 @@ class AuthController extends Controller
         if (session()->has('name')) {
             session()->pull('name');
             session()->pull('role');
+            session()->pull('email');
         }
         Auth::logout();
         return redirect()->route('login')->with('success', 'Anda berhasil logout');
