@@ -9,12 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class DropdownController extends Controller
 {
-    public function index()
-
-    {
-        // $data['countries'] = Country::get(["name", "id"]);
-        // return view('dropdown', $data);
-    }
 
     public function fetchRevisi(Request $request)
     {
@@ -28,14 +22,11 @@ class DropdownController extends Controller
     public function getPok(Request $request)
     {
 
-        // mengambil data pok terbaru
+        // mengambil data pok sesuai request
         $tahun = $request->tahun;
         $revisi = $request->revisi;
         $poks = Pok::where('tahun', $tahun)
-            ->where('revisi', $revisi)
-            ->get();
-        // dd($request->all());
-        // dd($poks);
+            ->where('revisi', $revisi)->get();
 
         // inisiasi data untuk tampilan pok
         $pokk = $jlh_pokk = $sama = [];
@@ -134,13 +125,7 @@ class DropdownController extends Controller
             }
         }
 
-        // dd($pokk);
-        // dd($jlh_pokk);
-        // dd($sama);
-
         $view = view('pok._table-body-pok', compact('poks', 'pokk', 'jlh_pokk', 'sama', 'list_akun_input'))->render();
-        // dd($view);
         return response()->json(['view' => $view], 200);
-        // return view('pok._table-body-pok', compact('poks', 'pokk', 'jlh_pokk', 'sama', 'list_akun_input'));
     }
 }

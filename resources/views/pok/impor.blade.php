@@ -11,6 +11,11 @@
 
                 <form action="{{ route('pok.prosesimpor') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('POST')
+
+                    <input type="number" name="tahun" class="form-control" placeholder="Tahun...">
+                    <input type="number" name="revisi" class="form-control" placeholder="Revisi Ke...">
+
                     <div class="mb-3">
                         <label for="file" class="form-label">File excel</label>
                         <input class="form-control" type="file" id="file" name="file" required>

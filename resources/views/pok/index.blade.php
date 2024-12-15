@@ -172,7 +172,7 @@
                     },
                     dataType: 'json',
                     success: function(result) {
-                        $('#revisi-dropdown').html('<option value="">Pilih Revisi Ke</option>');
+                        $('#revisi-dropdown').html('<option hidden>Pilih Revisi Ke</option>');
 
                         $.each(result.revisi, function(key, value) {
                             console.log(value);
@@ -185,26 +185,13 @@
 
             });
 
-
-
-            /*------------------------------------------
-
-            --------------------------------------------
-
-            State Dropdown Change Event
-
-            --------------------------------------------
-
-            --------------------------------------------*/
-
+            // Revisi Dropdown Change Event
             $('#revisi-dropdown').on('change', function() {
-
                 var revisi = this.value;
                 var tahun = $('#tahun-dropdown').find(":selected").val();
                 $("#tabel-pok").html('');
 
                 $.ajax({
-
                     url: "{{url('api/get-pok')}}",
                     type: "POST",
                     data: {
@@ -212,35 +199,14 @@
                         revisi: revisi,
                         _token: '{{csrf_token()}}'
                     },
-
                     dataType: 'json',
-
                     success: function(res) {
-
                         $('#tabel-pok').html(res.view);
-                        // $('#city-dropdown').html('<option value="">-- Select City --</option>');
-
-                        // $.each(res.cities, function(key, value) {
-
-                        //     $("#city-dropdown").append('<option value="' + value
-
-                        //         .id + '">' + value.name + '</option>');
-
-                        // });
-
                     }
-
                 });
-
             });
-
-
-
         });
-        // $("#meetingPlace").on("change", function() {
-        //     var selected = $(this).val();
-        //     makeAjaxRequest(selected);
-        // });
+
         // $(document).ready(function() {
         // let table = $('.datatable').DataTable({
         // paging: false,

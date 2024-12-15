@@ -15,26 +15,8 @@ class PokImport implements ToModel, WithStartRow
      */
     public function model(array $row)
     {
-        // klo null bisa ga masuk
-        // if ($row[6] != null) {
-        //     return new Pok([
-        //         'nis' => $row[7],
-        //         'name' => $row[12],
-        //         'alahai' => $row[13],
-        //     ]);
-        // }
 
-        // bisa deteksi angka atau bukan
-        // if (is_int($row[7])) {
-        //     return new Pok([
-        //         'nis' => $row[8],
-        //         'name' => $row[9],
-        //         'alahai' => $row[10],
-        //     ]);
-        // }
-
-        // ($row[0]) ? session(['kode_pro' => $row[0], 'pro' => $row[7]]) : null;
-        // ($row[1]) ? session(['kode_keg' => $row[1], 'keg' => $row[7]]) : null;
+        // inisiasi data sementara ke session
         ($row[0]) ? session(['kode_pro' => substr($row[0], 1, 2)]) : null;
         ($row[0]) ? session(['pro' => $row[7]]) : null;
         ($row[1]) ? session(['kode_keg' => substr($row[1], 1, 4)]) : null;
@@ -74,8 +56,8 @@ class PokImport implements ToModel, WithStartRow
                 'satuan' => $row[10],
                 'harga' => $row[11],
                 'jumlah' => $row[13],
-                'tahun' => '2023',
-                'revisi' => '15',
+                'tahun' => session('tahun'),
+                'revisi' => session('revisi'),
             ]);
         }
 

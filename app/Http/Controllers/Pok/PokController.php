@@ -136,8 +136,16 @@ class PokController extends Controller
             'file' => 'required|mimes:xls,xlsx'
         ]);
 
-        // dd($request->file('file'));
-        $res = Excel::import(new PokImport, $request->file('file'));
+        // inisiasi data session
+        session([
+            'tahun' => $request->tahun,
+            'revisi' => $request->revisi,
+        ]);
+
+        // import file
+        Excel::import(new PokImport, $request->file('file'));
+
+        // hapus data session
         session()->pull('kode_pro');
         session()->pull('pro');
         session()->pull('kode_keg');
@@ -152,7 +160,12 @@ class PokController extends Controller
         session()->pull('subkomp');
         session()->pull('kode_akun');
         session()->pull('akun');
+        session()->pull('tahun');
+        session()->pull('revisi');
         // dd(session()->all());
+
         return redirect()->back()->with('success', 'Data pok berhasil di import');
     }
+
+    public function getViewPok(Pok $poks) {}
 }
