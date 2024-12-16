@@ -109,15 +109,18 @@
                     <!--begin::Input group-->
                     <div class="flex me-md-2">
                         <select id="revisi-dropdown" name="revisi" class="form-control form-control-solid">
+                            @foreach($list_revisi as $rvs)
+                            <option value="{{ $rvs->revisi }}">{{ $rvs->revisi }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="flex me-md-2">
                         <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
-                            @for($i = 2023; $i < 2029; $i++)
-                                <option value="{{$i}}">{{$i}}</option>
-                                @endfor
+                            @foreach($list_tahun as $thn)
+                            <option value="{{ $thn->tahun }}">{{ $thn->tahun }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <!--end::Input group-->
@@ -204,6 +207,39 @@
                     dataType: 'json',
                     success: function(res) {
                         $('#tabel-pok').html(res.view);
+                    }
+                });
+            });
+
+            var searchRequest = null;
+            $(function() {
+                var minlength = 3;
+
+                $("#searchPok").keyup(function() {
+                    var that = this,
+                        value = $(this).val();
+                    var tahun = $('#tahun-dropdown').find(":selected").val();
+                    var revisi = $('#revisi-dropdown').find(":selected").val();
+
+                    if (value.length >= minlength) {
+                        if (searchRequest != null)
+                            searchRequest.abort();
+                        searchRequest = $.ajax({
+                            type: "GET",
+                            url: "{{ url('api/search-pok') }}",
+                            data: {
+                                'search_keyword': value
+                            },
+                            dataType: "json",
+                            success: function(res) {
+                                //we need to check if the value is the same
+                                if (value == $(that).val()) {
+                                    // console.log(value);
+                                    $('#tabel-pok').html(res.view);
+                                    //Receiving the result of search here
+                                }
+                            }
+                        });
                     }
                 });
             });
