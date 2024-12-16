@@ -106,6 +106,7 @@
                 <input type="hidden" name="suboutput" value="{{$data[$i]->suboutput}}" />
                 <input type="hidden" name="kode_komponen" value="{{$data[$i]->kode_komponen}}" />
                 <input type="hidden" name="komponen" value="{{$data[$i]->komponen}}" />
+                <input type="hidden" name="id_pok" value="{{$data[$i]->id}}" />
                 <button type="submit"> SK </button>
             </form>
         </td>

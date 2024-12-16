@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tgl_akhir');
             $table->date('tgl_berlaku');
             $table->date('tgl_ditetapkan');
+            $table->integer('tahun');
             $table->timestamps();
         });
 

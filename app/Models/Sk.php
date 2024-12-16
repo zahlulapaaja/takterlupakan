@@ -22,6 +22,7 @@ class Sk extends Model
         'tgl_akhir',
         'tgl_berlaku',
         'tgl_ditetapkan',
+        'tahun',
     ];
 
     public function insertHonor($sks_id, $uraian_honor, $honor)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kegiatan;
 use App\Http\Controllers\Controller;
 use App\Models\Mitra;
 use App\Models\Pegawai;
+use App\Models\Pok;
 use App\Models\Sk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,17 +28,11 @@ class SkController extends Controller
 
     public function create(Request $request)
     {
-        $pok['kode_kegiatan'] = $request->kode_kegiatan;
-        $pok['kode_output'] = $request->kode_output;
-        $pok['output'] = $request->output;
-        $pok['kode_suboutput'] = $request->kode_suboutput;
-        $pok['suboutput'] = $request->suboutput;
-        $pok['kode_komponen'] = $request->kode_komponen;
-        $pok['komponen'] = $request->komponen;
-
+        $pok = Pok::find($request->id_pok);
+        $last_no = Sk::where('tahun', $pok->tahun)->max('no');
 
         if ($request->has('kode_output')) {
-            $mitra = Mitra::orderBy('nama', 'ASC')->get(); // harusnya per year nanti
+            $mitra = Mitra::orderBy('nama', 'ASC')->where('tahun', $pok->tahun)->get();
             $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
             $petugas = [];
             foreach ($pegawai as $p) {
@@ -50,7 +45,7 @@ class SkController extends Controller
                 $m->status = 'N';
                 $petugas[] = $m;
             }
-            return view('kegiatan.sk.create', compact('pok', 'petugas'));
+            return view('kegiatan.sk.create', compact('pok', 'petugas', 'last_no'));
         } else {
             return redirect()->route('pok');
         }
@@ -79,6 +74,7 @@ class SkController extends Controller
         $sk['tgl_akhir'] = $request->tgl_akhir;
         $sk['tgl_berlaku'] = $request->tgl_berlaku;
         $sk['tgl_ditetapkan'] = $request->tgl_ditetapkan;
+        $sk['tahun'] = explode('-', $request->tgl_ditetapkan)[0];
 
         // insert data
         $res_sk = Sk::create($sk);

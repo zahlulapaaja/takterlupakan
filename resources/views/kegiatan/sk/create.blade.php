@@ -1,4 +1,9 @@
 <x-default-layout>
+
+    @section('title')
+    Membuat SK
+    @endsection
+
     @push('css')
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
     @endpush
@@ -24,34 +29,63 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <!--begin::Output-->
-                            <label class="form-label mb-0 mt-2">Output</label>
-                            <div class="fw-semibold fs-6 bg-amber-300">{{ $pok['kode_kegiatan'] . '.' . $pok['kode_output'] . ' : ' . $pok['output'] }}</div>
-                            <input type="hidden" name="kode_kegiatan" value="{{$pok['kode_kegiatan']}}" />
-                            <input type="hidden" name="kode_output" value="{{$pok['kode_output']}}" />
+                            <label class="form-label bg-amber-300 mb-0 mt-2">Output</label>
+                            <div class="fw-semibold fs-6">{{ $pok->kode_kegiatan . '.' . $pok->kode_output . ' : ' . $pok->output }}</div>
+                            <input type="hidden" name="kode_kegiatan" value="{{$pok->kode_kegiatan}}" />
+                            <input type="hidden" name="kode_output" value="{{$pok->kode_output}}" />
                             <!--end::Output-->
                             <!--begin::Sub Output-->
-                            <label class="form-label mb-0 mt-2">Sub Output</label>
-                            <div class="fw-semibold fs-6 bg-yellow-300">{{ $pok['kode_kegiatan'] . '.' . $pok['kode_output'] . '.' . $pok['kode_suboutput'] . ' : ' . $pok['suboutput'] }}</div>
-                            <input type="hidden" name="kode_suboutput" value="{{$pok['kode_suboutput']}}" />
+                            <label class="form-label bg-yellow-300 mb-0 mt-2">Sub Output</label>
+                            <div class="fw-semibold fs-6">{{ $pok->kode_kegiatan . '.' . $pok->kode_output . '.' . $pok->kode_suboutput . ' : ' . $pok->suboutput }}</div>
+                            <input type="hidden" name="kode_suboutput" value="{{$pok->kode_suboutput}}" />
                             <!--end::Sub Output-->
                             <!--begin::Komponen-->
-                            <label class="form-label mb-0 mt-2">Komponen</label>
-                            <div class="fw-semibold fs-6 bg-lime-300">{{ $pok['kode_komponen'] . ' : ' . $pok['komponen'] }}</div>
-                            <input type="hidden" name="kode_komponen" value="{{$pok['kode_komponen']}}" />
+                            <label class="form-label bg-lime-300 mb-0 mt-2">Komponen</label>
+                            <div class="fw-semibold fs-6">{{ $pok->kode_komponen . ' : ' . $pok->komponen }}</div>
+                            <input type="hidden" name="kode_komponen" value="{{$pok->kode_komponen}}" />
                             <!--end::Komponen-->
                         </div>
                         <!--end::Input group-->
+                    </div>
+                </div>
+                <!--end::Card header-->
+            </div>
+            <!--end::Order details-->
+            <!--begin::Order details-->
+            <div class="card card-flush py-4 my-10">
+                <!--begin::Card header-->
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Nomor SK</h2>
+                    </div>
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <div class="d-flex flex-column gap-10">
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">No SK</label>
                             <input type="text" class="form-control" placeholder="001" name="no" />
-                            <div class="text-muted fs-7">Apa ya deskripsi untuk nomornya...</div>
+                            <div class="text-muted fs-7">Nomor terakhir tahun ini : {{$last_no}}</div>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">SK Tentang</label>
                             <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" />
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row">
+                            <label class="required form-label">Tim Kerja</label>
+                            <select class="form-select" name="tim" data-placeholder="Pilih Tim Kerja" required>
+                                <option></option>
+                                @for($i = 0; $i < 5; $i++)
+                                    <option value="{{$i}}">Tim {{$i}}</option>
+                                    @endfor
+                            </select>
+                            <!-- <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" /> -->
                         </div>
                         <!--end::Input group-->
                     </div>
