@@ -228,7 +228,9 @@
                             type: "GET",
                             url: "{{ url('api/search-pok') }}",
                             data: {
-                                'search_keyword': value
+                                tahun: tahun,
+                                revisi: revisi,
+                                search_keyword: value
                             },
                             dataType: "json",
                             success: function(res) {
