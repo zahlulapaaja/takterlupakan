@@ -431,3 +431,10 @@ if (!function_exists('getIcon')) {
         return theme()->getIcon($name, $class, $type, $tag);
     }
 }
+
+if (!function_exists('currency_IDR')) {
+    function currency_IDR($value)
+    {
+        return "Rp" . number_format($value, 0, ',', '.');
+    }
+}

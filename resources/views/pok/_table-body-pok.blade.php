@@ -33,7 +33,7 @@
             <span class="pl-0 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['program'][$j] }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data->jlh_pokk['program'][$j] }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['program'][$j]) }}</span>
         </td>
     </tr>
     <?php $j++; ?>
@@ -48,7 +48,7 @@
             <span class="pl-2 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['kegiatan'][$k] }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data->jlh_pokk['kegiatan'][$k] }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['kegiatan'][$k]) }}</span>
         </td>
     </tr>
     <?php $k++; ?>
@@ -63,7 +63,7 @@
             <span class="pl-4 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['output'][$l] }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data->jlh_pokk['output'][$l] }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['output'][$l]) }}</span>
         </td>
     </tr>
     <?php $l++; ?>
@@ -78,7 +78,7 @@
             <span class="pl-6 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['suboutput'][$m] }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data->jlh_pokk['suboutput'][$m] }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['suboutput'][$m]) }}</span>
         </td>
     </tr>
     <?php $m++; ?>
@@ -93,7 +93,7 @@
             <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['komponen'][$n] }}</span>
         </td>
         <td class="p-0">
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{$data->jlh_pokk['komponen'][$n]}}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['komponen'][$n]) }}</span>
         </td>
         <td class="bg-white">
             <form method="post" action="{{ route('kegiatan.sk.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
@@ -122,7 +122,7 @@
             <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['subkomponen'][$o] }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data->jlh_pokk['subkomponen'][$o] }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['subkomponen'][$o]) }}</span>
         </td>
     </tr>
     <?php $o++; ?>
@@ -137,7 +137,7 @@
             <span class="pl-10 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['akun'][$p] }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data->jlh_pokk['akun'][$p] }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['akun'][$p]) }}</span>
         </td>
         @if(in_array($data[$i]->kode_akun, $list_akun_input))
         <!-- <td class="bg-white">
@@ -178,10 +178,10 @@
             <span class="text-gray-900 fw-semibold text-center text-hover-black d-block fs-6">{{ $data[$i]->satuan }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data[$i]->harga }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data[$i]->harga) }}</span>
         </td>
         <td>
-            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ $data[$i]->jumlah }}</span>
+            <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data[$i]->jumlah) }}</span>
         </td>
         @if(in_array($data[$i]->kode_akun, $list_akun_input))
         <!-- <td class="bg-white">
