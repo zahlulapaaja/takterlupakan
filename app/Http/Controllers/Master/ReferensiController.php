@@ -11,7 +11,8 @@ class ReferensiController extends Controller
 {
     public function index()
     {
-        // $data = Referensi::all();
+        $list_tahun = Referensi::select('id', 'tahun')->orderBy('tahun', 'ASC')->get();
+        // dd($list_tahun);
         // foreach ($data as $d) {
         //     $tgl = explode('-', $d->tgl);
         //     $d->no_surat = 'B-' . $d->no . 'A/92800/KU.600/' . $tgl[1] . '/' . $tgl[0];
@@ -19,15 +20,18 @@ class ReferensiController extends Controller
         // $last = NoFP::latest('no')->first();
         // dd($last);
         // return view('master.referensi.index', compact('data'));
-        return view('master.referensi.index');
+        return view('master.referensi.index', compact('list_tahun'));
     }
 
     public function create()
     {
         $last_tahun = Referensi::max('tahun');
-        if ($last_tahun == null) $last_tahun = explode('-', now())[0];
+        if ($last_tahun == null) {
+            $last_tahun = explode('-', now())[0];
+        } else {
+            $last_tahun++;
+        }
 
-        // dd($last_tahun);
         return view('master.referensi.create', compact('last_tahun'));
     }
 

@@ -34,36 +34,23 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @for($i = 2024; $i < 2026; $i++)
-                            <tr>
+                        @foreach($list_tahun as $thn)
+                        <tr>
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">Referensi Tahun {{ $i }}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">Referensi Tahun {{ $thn->tahun }}</span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{route('no-surat.fp.edit', $i)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('master.referensi.edit', $thn->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <form method="post" action="{{route('no-surat.fp.destroy', $i)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button style="all: unset" type="submit">
-                                            <i class="ki-duotone ki-trash fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                                <span class="path4"></span>
-                                                <span class="path5"></span>
-                                        </button>
-                                        </i>
-                                    </form>
                                 </div>
                             </td>
-                            </tr>
-                            @endfor
+                        </tr>
+                        @endforeach
                     </tbody>
                     <!--end::Table body-->
                 </table>
