@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\SkController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\Master\ReferensiController;
 use App\Http\Controllers\MitraController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
@@ -48,6 +49,10 @@ Route::middleware('auth')->group(function () {
         // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
         // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');
         // Route::resource('/kegiatan/bast', BastController::class);
+    });
+
+    Route::name('master.')->group(function () {
+        Route::resource('/master/referensi', ReferensiController::class);
     });
 
     Route::get('/mitra/impor', [MitraController::class, 'impor'])->name('mitra.impor');

@@ -307,7 +307,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('dashboard') }}">
+						<a class="menu-link" href="{{ route('master.referensi.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
