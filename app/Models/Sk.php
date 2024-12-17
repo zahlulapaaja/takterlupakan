@@ -64,16 +64,6 @@ class Sk extends Model
         return $res;
     }
 
-    public function dateIndonesia($tanggal)
-    {
-        $result = Carbon::parse($tanggal)->locale('id');
-        $result->settings(['formatFunction' => 'translatedFormat']);
-        $tanggal = $result->format('j F Y');
-        // dd($result->format('l, j F Y ; h:i a')); // Selasa, 16 Maret 2021 ; 08:27 pagi
-
-        return $result;
-    }
-
     public function getPetugas($id)
     {
         $result = DB::table('sks_petugas')->where('sks_id', $id)->get();

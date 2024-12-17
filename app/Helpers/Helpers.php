@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (!function_exists('theme')) {
     function theme()
     {
@@ -436,5 +438,15 @@ if (!function_exists('currency_IDR')) {
     function currency_IDR($value)
     {
         return "Rp" . number_format($value, 0, ',', '.');
+    }
+}
+
+if (!function_exists('date_indo')) {
+    function date_indo($value)
+    {
+        $result = Carbon::parse($value)->locale('id')->isoFormat('D MMMM Y');
+        // dd($result->format('l, j F Y ; h:i a')); // Selasa, 16 Maret 2021 ; 08:27 pagi
+
+        return $result;
     }
 }

@@ -79,9 +79,9 @@
                 <td class="align-top"></td>
                 <td class="align-top">9.</td>
                 <td class="align-top">
-                    Keputusan Kepala Badan Pusat Statistik Nomor {{ config('constants.NO_SK_KPA') }}
-                    Tanggal {{ config('constants.TANGGAL_SK_KPA')}} tentang Kuasa Pengguna Anggaran Badan Pusat Statistik
-                    Tahun {{ config('constants.TAHUN_DIPA') }} di Wilayah Provinsi Aceh.
+                    Keputusan Kepala Badan Pusat Statistik Nomor {{ $ref->no_sk_kpa }}
+                    Tanggal {{ $ref->tgl_sk_kpa }} tentang Kuasa Pengguna Anggaran Badan Pusat Statistik
+                    Tahun {{ $ref->tahun }} di Wilayah Provinsi Aceh.
                 </td>
             </tr>
         </table>
@@ -96,12 +96,9 @@
                 <td class="align-top" width="1%">:</td>
                 <td class="align-top" width="3%"></td>
                 <td class="align-top" width="86%">
-                    Pengesahan DIPA Tahun Anggaran {{ config('constants.TAHUN_DIPA') }}
-                    Nomor {{ config('constants.DIPA') }}
-                    tanggal {{ config('constants.TANGGAL_DIPA') }}
-                    {{ config('constants.INSTANSI') }}
-                    {{ config('constants.KABUPATEN') }}
-
+                    Pengesahan DIPA Tahun Anggaran {{ $ref->tahun }}
+                    Nomor {{ $ref->no_dipa }} tanggal {{ $ref->tgl_dipa }}
+                    {{ config('constants.INSTANSI') }} {{ config('constants.KABUPATEN') }}
                 </td>
             </tr>
         </table>
@@ -155,8 +152,8 @@
                 <td class="align-top">:</td>
                 <td class="align-top">
                     Pembiayaan untuk pelaksanaan Keputusan ini dibebankan pada DIPA Tahun Anggaran
-                    {{ config('constants.TAHUN_DIPA') }} Nomor {{ config('constants.DIPA') }}
-                    tanggal {{ config('constants.TANGGAL_DIPA') }} {{ config('constants.INSTANSI') }}
+                    {{ $ref->tahun }} Nomor {{ $ref->no_dipa }}
+                    tanggal {{ $ref->tgl_dipa }} {{ config('constants.INSTANSI') }}
                     {{ config('constants.KABUPATEN') }}
                 </td>
             </tr>
@@ -179,8 +176,8 @@
                 <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
                 <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
                 <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
-                <span class="font-bold">{{ config('constants.KPA') }}</span>
-                <span>NIP. {{ config('constants.NIP_KPA') }}</span>
+                <span class="font-bold">{{ $ref->nama_kpa }}</span>
+                <span>NIP. {{ $ref->nip_kpa }}</span>
             </div>
         </div>
     </div>
@@ -245,8 +242,8 @@
             <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
             <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
             <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
-            <span class="font-bold">{{ config('constants.KPA') }}</span>
-            <span>NIP. {{ config('constants.NIP_KPA') }}</span>
+            <span class="font-bold">{{ $ref->nama_kpa }}</span>
+            <span>NIP. {{ $ref->nip_kpa }}</span>
         </div>
     </div>
 </x-print-layout>

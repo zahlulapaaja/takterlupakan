@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Referensi;
 use App\Models\Mitra;
 use App\Models\Pegawai;
 use App\Models\Pok;
@@ -87,14 +88,19 @@ class SkController extends Controller
     public function print($id)
     {
         $data = Sk::find($id);
+        $ref = Referensi::where('tahun', $data->tahun)->first();
         $data->no_sk = $data->no . '/SK/BPS-1107/' . explode('-', $data->tgl_ditetapkan)[0];
         $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
         $data->petugas = $data->getPetugas($id);
-        // dd($data);
 
-        $data->tgl_ditetapkan = $data->dateIndonesia($data->tgl_ditetapkan);
-        $data->tgl_berlaku = $data->dateIndonesia($data->tgl_berlaku);
+        // format tanggal data sk
+        $data->tgl_ditetapkan = date_indo($data->tgl_ditetapkan);
+        $data->tgl_berlaku = date_indo($data->tgl_berlaku);
 
-        return view('kegiatan.sk.print', compact('data'));
+        // format tanggal data referensi
+        $ref->tgl_dipa = date_indo($ref->tgl_dipa);
+        $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
+
+        return view('kegiatan.sk.print', compact('data', 'ref'));
     }
 }
