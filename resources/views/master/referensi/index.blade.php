@@ -41,6 +41,12 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
+                                    <a href="{{route('master.referensi.show', $thn->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                        <i class="ki-duotone ki-book-open fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
                                     <a href="{{route('master.referensi.edit', $thn->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
