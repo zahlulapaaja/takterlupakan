@@ -1,4 +1,9 @@
 <x-default-layout>
+
+    @section('title')
+    Kegiatan
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
@@ -81,7 +86,7 @@
                                             <span class="path3"></span>
                                         </i>
                                     </a>
-                                    <a href="{{route('no-surat.fp.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('kegiatan.sk.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>

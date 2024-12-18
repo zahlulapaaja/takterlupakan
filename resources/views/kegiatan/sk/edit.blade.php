@@ -1,7 +1,7 @@
 <x-default-layout>
 
     @section('title')
-    Membuat SK
+    Edit SK
     @endsection
 
     @push('css')
@@ -9,9 +9,9 @@
     @endpush
 
     <!--begin::Form-->
-    <form id="form_create_sk" method="post" action="{{ route('kegiatan.sk.store') }}" class="form d-flex flex-column flex-lg-row">
+    <form id="form_create_sk" method="post" action="{{ route('kegiatan.sk.update', $sk->id) }}" class="form d-flex flex-column flex-lg-row">
         @csrf
-        @method('POST')
+        @method('PUT')
         <!--begin::Aside column-->
         <div class="w-100 flex-lg-row-auto w-lg-400px mb-7 me-7 me-lg-10">
             <!--begin::Order details-->
@@ -66,14 +66,14 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">No SK</label>
-                            <input type="text" class="form-control" placeholder="001" name="no" />
+                            <input type="text" class="form-control" placeholder="001" name="no" value="{{$sk->no}}" />
                             <div class="text-muted fs-7">Nomor terakhir tahun ini : {{$last_no}}</div>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">SK Tentang</label>
-                            <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" />
+                            <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" value="{{$sk->tentang}}" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -108,13 +108,13 @@
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Mulai</label>
-                            <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" />
+                            <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_mulai}}" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Akhir</label>
-                            <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" />
+                            <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_akhir}}" />
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -122,14 +122,14 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Berlaku</label>
-                            <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" />
+                            <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_berlaku}}" />
                             <!-- <div class="text-muted fs-7">Set the date of the order to process.</div> -->
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Ditetapkan</label>
-                            <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" />
+                            <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_ditetapkan}}" />
                             <!-- <div class="text-muted fs-7">Set the date of the order to process.</div> -->
                         </div>
                         <!--end::Input group-->
@@ -163,10 +163,18 @@
                             </thead>
                             <tbody>
                                 @for($i = 0; $i < 10; $i++)
+                                    @isset($sk->honor[$i])
                                     <tr class="flex">
-                                    <td class="w-3/5"><input class="form-control p-1 w-full border-2" type="text" name="uraian_honor[]"></td>
-                                    <td class="w-2/5"><input class="form-control p-1 w-full border-2" type="number" name="honor[]"></td>
+                                        <td class="w-3/5"><input class="form-control p-1 w-full border-2" type="text" name="uraian_honor[]" value="{{$sk->honor[$i]->uraian}}"></td>
+                                        <td class="w-2/5"><input class="form-control p-1 w-full border-2" type="number" name="honor[]" value="{{$sk->honor[$i]->honor}}"></td>
                                     </tr>
+                                    @endisset
+                                    @empty($sk->honor[$i])
+                                    <tr class="flex">
+                                        <td class="w-3/5"><input class="form-control p-1 w-full border-2" type="text" name="uraian_honor[]"></td>
+                                        <td class="w-2/5"><input class="form-control p-1 w-full border-2" type="number" name="honor[]"></td>
+                                    </tr>
+                                    @endempty
                                     @endfor
                             </tbody>
                         </table>
@@ -197,11 +205,12 @@
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <div data-repeater-list="daftar_petugas" class="d-flex flex-column gap-3">
+                                    @foreach($petugas as $ptg)
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Select2-->
                                         <div class="w-2/5">
                                             <select class="form-select" name="petugas" data-placeholder="Select a variation" data-kt-ecommerce-catalog-add-product="product_option" required>
-                                                <option></option>
+                                                <option value="{{$ptg->status . '-' . $ptg->id_status}}" selected>{{'[' . $ptg->status . '] ' . $ptg->nama}}</option>
                                                 @foreach($list_petugas as $p)
                                                 <option value="{{$p->status . '-' . $p->id}}">{{$p->list}}</option>
                                                 @endforeach
@@ -209,7 +218,7 @@
                                         </div>
                                         <!--end::Select2-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control w-2/5" name="sebagai" placeholder="Sebagai" required />
+                                        <input type="text" class="form-control w-2/5" name="sebagai" placeholder="Sebagai" value="{{$ptg->sebagai}}" required />
                                         <!--end::Input-->
                                         <button type="button" data-repeater-delete="" class="w-1/5 btn btn-sm btn-icon btn-light-danger">
                                             <i class="ki-duotone ki-cross fs-1">
@@ -218,6 +227,7 @@
                                             </i>
                                         </button>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!--end::Form group-->
@@ -237,7 +247,7 @@
             <!--end::Variations-->
             <div class="d-flex justify-content-end">
                 <!--begin::Button-->
-                <a href="{{ route('pok') }}" id="form_create_sk_cancel" class="btn btn-light me-5">Kembali</a>
+                <a href="{{ route('kegiatan.sk.index') }}" id="form_create_sk_cancel" class="btn btn-light me-5">Kembali</a>
                 <!--end::Button-->
                 <!--begin::Button-->
                 <button type="submit" id="form_create_sk_submit" class="btn btn-primary">

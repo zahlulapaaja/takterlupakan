@@ -30,23 +30,14 @@ class SkController extends Controller
     public function create(Request $request)
     {
         $pok = Pok::find($request->id_pok);
-        $last_no = Sk::where('tahun', $pok->tahun)->max('no');
+        $sk = new Sk();
+        $last_no = $sk->where('tahun', $pok->tahun)->max('no');
 
         if ($request->has('kode_output')) {
             $mitra = Mitra::orderBy('nama', 'ASC')->where('tahun', $pok->tahun)->get();
             $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
-            $petugas = [];
-            foreach ($pegawai as $p) {
-                $p->list = '[O] ' . $p->nama;
-                $p->status = 'O';
-                $petugas[] = $p;
-            }
-            foreach ($mitra as $m) {
-                $m->list = '[N] ' . $m->nama;
-                $m->status = 'N';
-                $petugas[] = $m;
-            }
-            return view('kegiatan.sk.create', compact('pok', 'petugas', 'last_no'));
+            $list_petugas = $sk->getListPetugas($pok->tahun);
+            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'last_no'));
         } else {
             return redirect()->route('pok');
         }
@@ -82,6 +73,63 @@ class SkController extends Controller
         $res_sk->insertHonor($res_sk->id, $request->uraian_honor, $request->honor);
         $res_sk->insertPetugas($res_sk->id, $request->daftar_petugas);
 
+        return redirect()->route('kegiatan.sk.index');
+    }
+
+    public function edit($id, Request $request)
+    {
+        // mengambil data
+        $sk = Sk::find($id);
+        $mak = explode('.', $sk->mak);
+        $pok = Pok::where('kode_kegiatan', $mak[0])
+            ->where('kode_output', $mak[1])
+            ->where('kode_suboutput', $mak[2])
+            ->where('kode_komponen', $mak[3])
+            ->where('tahun', $sk->tahun)
+            ->first();
+
+        $last_no = Sk::where('tahun', $pok->tahun)->max('no');
+
+        if ($pok->kode_output) {
+            // mengambil data petugas dan honor
+            $sk->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
+            $list_petugas = $sk->getListPetugas($pok->tahun);
+            $petugas = $sk->getPetugas($id);
+
+            return view('kegiatan.sk.edit', compact('sk', 'pok', 'petugas', 'list_petugas', 'last_no'));
+        } else {
+            return redirect()->route('kegiatan.sk.index');
+        }
+    }
+
+    public function update($id, Request $request)
+    {
+        $find = Sk::find($id);
+        $validator = Validator::make($request->all(), [
+            'no'             => 'required',
+            'tentang'        => 'required',
+            'tgl_mulai'      => 'required',
+            'tgl_akhir'      => 'required',
+            'tgl_berlaku'    => 'required',
+            'tgl_ditetapkan' => 'required',
+            'daftar_petugas' => 'required',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $data['no'] = $request->no;
+        $data['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
+        $data['tentang'] = $request->tentang;
+        $data['tgl_mulai'] = $request->tgl_mulai;
+        $data['tgl_akhir'] = $request->tgl_akhir;
+        $data['tgl_berlaku'] = $request->tgl_berlaku;
+        $data['tgl_ditetapkan'] = $request->tgl_ditetapkan;
+        $data['tahun'] = explode('-', $request->tgl_ditetapkan)[0];
+
+        // update data
+        $find->update($data);
+        $find->updateHonor($id, $request->uraian_honor, $request->honor);
+        $find->updatePetugas($id, $request->daftar_petugas);
         return redirect()->route('kegiatan.sk.index');
     }
 
