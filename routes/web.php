@@ -3,13 +3,12 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Kegiatan\KegiatanController;
 use App\Http\Controllers\Kegiatan\SkController;
-use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\Master\MitraController;
 use App\Http\Controllers\Master\ReferensiController;
-use App\Http\Controllers\MitraController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
-use App\Http\Controllers\Surat\BastController;
 use App\Http\Controllers\Surat\NoFpController;
 use Illuminate\Support\Facades\Route;
 

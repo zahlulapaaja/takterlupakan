@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Kegiatan;
 
-use App\Models\Mitra;
-use App\Models\Pegawai;
+use App\Http\Controllers\Controller;
+use App\Models\Kegiatan\Sk;
 use App\Models\Pok;
-use App\Models\Sk;
 use Illuminate\Http\Request;
 
 class KegiatanController extends Controller

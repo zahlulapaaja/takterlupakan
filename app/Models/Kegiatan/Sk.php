@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Kegiatan;
 
-use Carbon\Carbon;
+use App\Models\Master\Mitra;
+use App\Models\Master\Pegawai;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
