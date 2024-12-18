@@ -41,4 +41,13 @@ class DropdownController extends Controller
         $view = view('pok._table-body-pok', compact('data', 'list_akun_input'))->render();
         return response()->json(['view' => $view], 200);
     }
+
+    public function fetchBeban(Request $request)
+    {
+        $data['petugas'] = DB::table('sks_petugas')
+            ->where("sks_id", $request->id_sk)
+            ->get();
+
+        return response()->json($data);
+    }
 }

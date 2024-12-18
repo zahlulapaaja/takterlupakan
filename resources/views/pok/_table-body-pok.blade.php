@@ -142,7 +142,7 @@
         </td>
         @if(in_array($data[$i]->kode_akun, $list_akun_input))
         <!-- <td class="bg-white">
-            <form method="post" action="{{ route('kegiatan.pjk.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+            <form method="post" action="{{ route('kegiatan.spj.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
                 <select name="pj">
@@ -185,14 +185,14 @@
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data[$i]->jumlah) }}</span>
         </td>
         @if(in_array($data[$i]->kode_akun, $list_akun_input))
-        <!-- <td class="bg-white">
-            <form method="post" action="{{ route('kegiatan.item.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+        <td class="bg-white">
+            <form method="post" action="{{ route('kegiatan.spj.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="pok_id" value="{{$data[$i]->id}}" />
                 <button type="submit"> Input </button>
             </form>
-        </td> -->
+        </td>
         @endif
     </tr>
     <!-- end::Item Kegiatan -->

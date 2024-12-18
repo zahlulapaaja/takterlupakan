@@ -5,16 +5,20 @@ namespace App\Models\Kegiatan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kegiatan extends Model
+class Spj extends Model
 {
     use HasFactory;
 
-    protected $table = "kegiatans";
+    protected $table = "spjs";
 
     protected $fillable = [
         'poks_id',
-        'nama',
+        'no',
+        'nama_kegiatan',
         'tgl_mulai',
-        'tgl_akhir'
+        'tgl_akhir',
+        'tgl_spj',
+        'pjk',
+        'tahun'
     ];
 }
