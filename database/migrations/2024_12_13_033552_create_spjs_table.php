@@ -27,20 +27,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Schema::create('pjks', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('mak');
-        //     $table->string('tahun');
-        //     $table->foreignId('pjk')->constrained(
-        //         table: 'pegawais',
-        //         indexName: 'id'
-        //     );
-        // });
-
         Schema::create('spjs_alokasi_beban', function (Blueprint $table) {
             $table->id();
             $table->foreignId('spjs_id');
-            $table->foreignId('sks_petugas_id');
+            $table->string('status');
+            $table->string('mitra_id')->nullable();
+            $table->string('pegawai_id')->nullable();
             $table->integer('beban');
             $table->string('melakukan');
             $table->string('lokasi');

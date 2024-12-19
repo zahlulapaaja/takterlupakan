@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Pok;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kegiatan\Sk;
 use App\Models\Pok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -44,10 +45,10 @@ class DropdownController extends Controller
 
     public function fetchBeban(Request $request)
     {
-        $data['petugas'] = DB::table('sks_petugas')
-            ->where("sks_id", $request->id_sk)
-            ->get();
+        $sk = Sk::find($request->id_sk);
+        $list_petugas = $sk->getPetugas($sk->id);
 
-        return response()->json($data);
+        $view = view('kegiatan.spj._table-alokasi-beban', compact('list_petugas'))->render();
+        return response()->json(['view' => $view], 200);
     }
 }

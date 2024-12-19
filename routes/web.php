@@ -42,8 +42,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::resource('/kegiatan/sk', SkController::class);
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
-        // Route::post('/kegiatan/item/create', [KegiatanController::class, 'create'])->name('item.create');
-        // Route::post('/kegiatan/item/get-petugas', [KegiatanController::class, 'getPetugas'])->name('item.get-petugas');
         Route::resource('/kegiatan/spj', SpjController::class);
         // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
         // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');

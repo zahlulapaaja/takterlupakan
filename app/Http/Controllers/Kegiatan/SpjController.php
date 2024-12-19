@@ -8,9 +8,24 @@ use App\Models\Kegiatan\Spj;
 use App\Models\Master\Pegawai;
 use App\Models\Pok;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class SpjController extends Controller
 {
+    public function index()
+    {
+        // punya sk
+        $data = Sk::all();
+        foreach ($data as $d) {
+            $tgl = explode('-', $d->tgl_ditetapkan);
+            $d->no_sk = $d->no . '/SK/BPS-1107/' . $tgl[0];
+            $d->rincian = Str::limit($d->tentang, 25);
+        }
+        // punya sk
+        return view('kegiatan.spj.index', compact('data'));
+    }
+
     public function create(Request $request)
     {
         if (!($request->has('pok_id'))) {
@@ -28,29 +43,39 @@ class SpjController extends Controller
             $pok->kode_akun;
 
         $sk = Sk::all();
+        $list_petugas = [];
         $last_no = Spj::where('tahun', $pok->tahun)->max('no');
         $list_pegawai = Pegawai::all();
 
-
-        // $mitra = Mitra::orderBy('nama', 'ASC')->get(); // harusnya per year nanti
-        // $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
-        // $petugas = [];
-        // foreach ($pegawai as $p) {
-        //     $p->list = '[O] ' . $p->nama;
-        //     $p->status = 'O';
-        //     $petugas[] = $p;
-        // }
-        // foreach ($mitra as $m) {
-        //     $m->list = '[N] ' . $m->nama;
-        //     $m->status = 'N';
-        //     $petugas[] = $m;
-        // }
-        return view('kegiatan.spj.create', compact('pok', 'sk', 'list_pegawai'));
+        return view('kegiatan.spj.create', compact('pok', 'sk', 'list_pegawai', 'last_no', 'list_petugas'));
     }
 
-    public function getPetugas(Request $request)
+    public function store(Request $request)
     {
-        dd($request);
-        return 'oiii';
+        $validator = Validator::make($request->all(), [
+            'no'             => 'required',
+            'nama_kegiatan'  => 'required',
+            'tgl_mulai'      => 'required',
+            'tgl_akhir'      => 'required',
+            'tgl_spj'        => 'required',
+            'pjk'            => 'required',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $spj['poks_id'] = $request->poks_id;
+        $spj['no'] = $request->no;
+        $spj['nama_kegiatan'] = $request->nama_kegiatan;
+        $spj['tgl_mulai'] = $request->tgl_mulai;
+        $spj['tgl_akhir'] = $request->tgl_akhir;
+        $spj['tgl_spj'] = $request->tgl_spj;
+        $spj['pjk'] = $request->pjk;
+        $spj['tahun'] = $request->tahun;
+
+        // insert data
+        $res_spj =  Spj::create($spj);
+        $res_spj->insertAlokasiBeban($res_spj->id, $request->all());
+
+        return redirect()->route('kegiatan.spj.index');
     }
 }
