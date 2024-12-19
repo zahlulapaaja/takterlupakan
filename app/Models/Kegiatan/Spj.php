@@ -47,4 +47,25 @@ class Spj extends Model
 
         return $res;
     }
+
+    public function getPetugas($sks_id)
+    {
+        // $result = DB::table('sks_petugas')->where('sks_id', $sks_id)->get();
+
+        // foreach ($result as $value) {
+        //     if ($value->status == 'O') {
+        //         $pegawai = Pegawai::find($value->pegawai_id);
+        //         $value->nama = $pegawai->nama;
+        //         $value->gol = $pegawai->golongan;
+        //         $value->id_status = $pegawai->id;
+        //     } else {
+        //         $mitra = Mitra::find($value->mitra_id);
+        //         $value->nama = $mitra->nama;
+        //         $value->gol = '-';
+        //         $value->id_status = $mitra->id;
+        //     }
+        // }
+
+        return '$result';
+    }
 }

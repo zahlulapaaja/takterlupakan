@@ -1,15 +1,17 @@
-@section('head-print')
-<div class="d-flex flex-column text-xl mb-8">
-    <span>KEPUTUSAN KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK</span>
-    <span>{{ config('constants.KABUPATEN') }}</span>
-    <span>NOMOR: {{$data->no_sk}}</span>
-</div>
-<div class="text-xl mb-8">TENTANG</div>
-<div class="text-xl mb-8">{{ $data->tentang . ' ' . config('constants.SATKER') }}</div>
-<div class="text-xl mb-8">KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK {{ config('constants.KABUPATEN') }}</div>
-@endsection
-
 <x-print-layout>
+
+    @section('head-print')
+    @include('layout.partials.print-layout._kop')
+    <div class="d-flex flex-column text-xl mb-8">
+        <span>KEPUTUSAN KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK</span>
+        <span>{{ config('constants.KABUPATEN') }}</span>
+        <span>NOMOR: {{$data->no_sk}}</span>
+    </div>
+    <div class="text-xl mb-8">TENTANG</div>
+    <div class="text-xl mb-8">{{ $data->tentang . ' ' . config('constants.SATKER') }}</div>
+    <div class="text-xl mb-8">KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK {{ config('constants.KABUPATEN') }}</div>
+    @endsection
+
     <div class="leading-loose text-justify text-lg">
         <table class="mx-12 mt-8">
             <tr>

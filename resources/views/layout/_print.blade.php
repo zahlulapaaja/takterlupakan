@@ -22,8 +22,6 @@
 @endpush
 @section('content')
 <div class="flex flex-col place-items-center text-center font-bold uppercase">
-    <img class="w-24" src="{{ image('logos/logo-bps.png') }}">
-    <div class="text-3xl italic mb-8">{{ config('constants.INSTANSI') }}<br>{{ config('constants.KABUPATEN') }}</div>
     @yield('head-print')
 </div>
 <div>
