@@ -31,7 +31,7 @@
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <input id="searchFp" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                        <input id="searchSk" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
                 </div>
@@ -92,7 +92,7 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <form method="post" action="{{route('no-surat.fp.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
+                                    <form method="post" action="{{route('kegiatan.sk.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
                                         @csrf
                                         @method('DELETE')
                                         <button style="all: unset" type="submit">
@@ -126,7 +126,7 @@
                 "bDestroy": true,
             });
 
-            $('#searchFp').on('keyup', function() {
+            $('#searchSk').on('keyup', function() {
                 table.search(this.value).draw();
             });
         });

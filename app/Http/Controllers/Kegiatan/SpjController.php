@@ -15,14 +15,12 @@ class SpjController extends Controller
 {
     public function index()
     {
-        // punya sk
-        $data = Sk::all();
+        $data = Spj::orderBy('tgl_spj', 'DESC')->orderBy('no', 'DESC')->get();
         foreach ($data as $d) {
-            $tgl = explode('-', $d->tgl_ditetapkan);
-            $d->no_sk = $d->no . '/SK/BPS-1107/' . $tgl[0];
-            $d->rincian = Str::limit($d->tentang, 25);
+            $tgl = explode('-', $d->tgl_spj);
+            $d->no_spj = $d->no . '/SPJ/BPS-1107/' . $tgl[0];
+            $d->rincian = Str::limit($d->nama_kegiatan, 25);
         }
-        // punya sk
         return view('kegiatan.spj.index', compact('data'));
     }
 

@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::resource('/kegiatan/sk', SkController::class);
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
+        Route::get('/kegiatan/spj/{spj}/print', [SpjController::class, 'print'])->name('spj.print');
         Route::resource('/kegiatan/spj', SpjController::class);
         // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
         // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');

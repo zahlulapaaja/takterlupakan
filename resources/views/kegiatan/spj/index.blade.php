@@ -12,7 +12,7 @@
                 <span class="card-label fw-bold fs-3 mb-1">Daftar SPJ</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
             </h3>
-            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Buat SK">
+            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Buat SPJ">
                 <a href="{{ route('pok') }}" class="btn btn-sm btn-light btn-active-primary">
                     <i class="ki-duotone ki-plus fs-2"></i>Tambah
                 </a>
@@ -31,7 +31,7 @@
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <input id="searchFp" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                        <input id="searchSpj" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
                 </div>
@@ -63,13 +63,13 @@
                                 </div>
                             </td>
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_sk }}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_spj }}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->rincian}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->tgl_ditetapkan}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->tgl_spj}}</span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -79,20 +79,20 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{ route('kegiatan.spj.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-printer fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
                                         </i>
                                     </a>
-                                    <a href="{{route('kegiatan.sk.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('kegiatan.spj.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <form method="post" action="{{route('no-surat.fp.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
+                                    <form method="post" action="{{route('kegiatan.spj.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
                                         @csrf
                                         @method('DELETE')
                                         <button style="all: unset" type="submit">
@@ -126,7 +126,7 @@
                 "bDestroy": true,
             });
 
-            $('#searchFp').on('keyup', function() {
+            $('#searchSpj').on('keyup', function() {
                 table.search(this.value).draw();
             });
         });
