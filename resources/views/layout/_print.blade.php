@@ -6,11 +6,14 @@
         margin: 0mm;
         padding: 12mm 16mm;
 
+        /* size: landscape; */
     }
 
     body {
         width: 21cm;
         height: 29.7cm;
+        /* height: 21cm;
+        width: 29.7cm; */
         color: black !important;
     }
 
