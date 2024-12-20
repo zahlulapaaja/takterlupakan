@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('user-management.permissions');
     }
+
+    public function soon()
+    {
+        return view('coming-soon');
+    }
 }

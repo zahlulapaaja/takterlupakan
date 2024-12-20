@@ -13,6 +13,7 @@ use App\Http\Controllers\Surat\NoFpController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
+Route::get('/soon', [HomeController::class, 'soon'])->name('soon');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('login.proses');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
