@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Kegiatan\KakController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\SkController;
 use App\Http\Controllers\Kegiatan\SpjController;
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/spj/{spj}/print', [SpjController::class, 'print'])->name('spj.print');
         Route::resource('/kegiatan/spj', SpjController::class);
         Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
+        Route::get('/kegiatan/bast/{bast}/print', [SpkController::class, 'bast_print'])->name('bast.print');
+        Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
         // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
         // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');
         // Route::resource('/kegiatan/bast', BastController::class);
