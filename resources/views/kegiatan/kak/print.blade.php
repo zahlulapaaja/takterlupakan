@@ -56,9 +56,14 @@
                 <td class="align-top font-bold p-2 text-wrap">SUMBER DANA DAN PERKIRAAN BIAYA</td>
                 <td class="align-top py-2 pl-20">:</td>
                 <td class="align-top p-2">
-                    a. Sumber dana: DIPA BPS Kabupaten Aceh Barat Nomor: SP DIPA-054.01.2.019738/2024 Tanggal 28 November 2024.
-                    <br>
-                    b. Perkiraan biaya maksimal disesuaikan dengan DIPA yang ada.
+                    <div class="d-flex flex-row gap-3">
+                        <span>a.</span>
+                        <span> Sumber dana: DIPA BPS Kabupaten Aceh Barat Nomor: SP DIPA-054.01.2.019738/2024 Tanggal 28 November 2024.</span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>b.</span>
+                        <span> Perkiraan biaya maksimal disesuaikan dengan DIPA yang ada. </span>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -66,11 +71,79 @@
                 <td class="align-top font-bold p-2 text-wrap">PESERTA</td>
                 <td class="align-top py-2 pl-20">:</td>
                 <td class="align-top p-2">
-                    Petugas Pemutakhiran Master File Desa (MFD) Dan Master Blok Sensus (MBS) BPS Kabupaten Aceh Barat Tahun 2024 sebanyak 1 orang.
+                    <div>
+                        Pelatihan Petugas Sakernas Agustus 2024 terdiri dari 1 kelas, diikuti oleh peserta sebagai berikut:
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>a.</span>
+                        <span> Petugas Sakerns Agustus 2024 dari Kabupaten Aceh Barat sebanyak 25 orang. </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>b</span>
+                        <span> Panitia sebanyak 2 orang. </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>c.</span>
+                        <span> Inda sebanyak 2 orang. </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>d.</span>
+                        <span> Total Seluruhnya sebanyak 29 Orang. </span>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td class="align-top font-bold p-2">7.</td>
+                <td class="align-top font-bold p-2 text-wrap">PERSIAPAN</td>
+                <td class="align-top py-2 pl-20">:</td>
+                <td class="align-top p-2">
+                    <div>
+                        Persiapan administrasi :
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>a.</span>
+                        <span>Setiap peserta membawa kelengkapan Surat Tugas dari BPS Kabupaten Aceh Barat; </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>b</span>
+                        <span> Persiapan Pribadi : </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3 ms-8">
+                        <span>i.</span>
+                        <span> Pakaian pada waktu pembukaan menggunakan batik lengan panjang dan selama pelaksanaan kegiatan bebas rapi; </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3 ms-8">
+                        <span>ii.</span>
+                        <span> Selama dalam acara pertemuan diwajibkan mengenakan sepatu, mengubah handphone dalam nada diam, tidak bertelepon dalam ruang kegiatan, dan berperilaku sesuai dengan etika kesopanan. </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>c.</span>
+                        <span> Transport dan Akomodasi Peserta </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3 ms-8">
+                        <span>i.</span>
+                        <span> Panitia menyediakan transport lokal sesuai aturan yang berlaku. </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3 ms-8">
+                        <span>ii.</span>
+                        <span> Panitia menyediakan penginapan karena pelatihan diadakan fullboard </span>
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <span>d.</span>
+                        <span> Seluruh peserta pelatihan akan memperoleh materi yang akan disampaikan oleh Instruktur Daerah. </span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top font-bold p-2">8.</td>
+                <td class="align-top font-bold p-2 text-wrap">AKOMODASI, KONSUMSI, DAN LAINNYA</td>
+                <td class="align-top py-2 pl-20">:</td>
+                <td class="align-top p-2">
+                    Konsumsi dan akomodasi selama pelaksanaan ditanggung oleh Panitia Penyelenggara.
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top font-bold p-2">9.</td>
                 <td class="align-top font-bold p-2 text-wrap">PEMBIAYAAN</td>
                 <td class="align-top py-2 pl-20">:</td>
                 <td class="align-top p-2">
