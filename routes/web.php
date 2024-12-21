@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\SkController;
 use App\Http\Controllers\Kegiatan\SpjController;
+use App\Http\Controllers\Kegiatan\SpkController;
 use App\Http\Controllers\Master\MitraController;
 use App\Http\Controllers\Master\ReferensiController;
 use App\Http\Controllers\Pok\DropdownController;
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
         Route::get('/kegiatan/spj/{spj}/print', [SpjController::class, 'print'])->name('spj.print');
         Route::resource('/kegiatan/spj', SpjController::class);
+        Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
         // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
         // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');
         // Route::resource('/kegiatan/bast', BastController::class);

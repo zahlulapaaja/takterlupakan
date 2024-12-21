@@ -5,15 +5,9 @@
         size: auto;
         margin: 0mm;
         padding: 12mm 16mm;
-
-        /* size: landscape; */
     }
 
     body {
-        width: 21cm;
-        height: 29.7cm;
-        /* height: 21cm;
-        width: 29.7cm; */
         color: black !important;
     }
 
@@ -21,20 +15,63 @@
         display: block;
         page-break-before: always;
     }
+
+    @page orientation-portrait {
+        size: portrait;
+        width: 21cm;
+        height: 29.7cm;
+    }
+
+    @page orientation-landscape {
+        size: landscape;
+        width: 29.7cm;
+        height: 21cm;
+
+    }
+
+    .landscape-page {
+        page: orientation-landscape;
+        width: 29.7cm;
+        height: 21cm;
+    }
+
+    .portrait-page {
+        page: orientation-portrait;
+        width: 21cm;
+        height: 29.7cm;
+    }
 </style>
 @endpush
 @section('content')
 <div class="flex flex-col place-items-center text-center font-bold uppercase">
     @yield('head-print')
 </div>
-<div>
+<div class="potrait-page">
     {{ $slot }}
 </div>
 
 
 @push('scripts')
 <script type="text/javascript">
-    window.addEventListener("load", window.print());
+    // var is_chrome = function() {
+    //     return Boolean(window.chrome);
+    // }
+    // window.onload = function() {
+    //     if (is_chrome()) {
+    //         window.print();
+    //         setTimeout(function() {
+    //             window.close();
+    //         }, 10000);
+    //         //give them 10 seconds to print, then close
+    //     } else {
+    //         window.print();
+    //         window.close();
+    //     }
+    // }
+    window.onload = function() {
+        window.print();
+    }
+    // window.addEventListener("load", window.print());
 </script>
 @endpush
 @endsection
