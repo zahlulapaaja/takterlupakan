@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Kegiatan\KakController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Kegiatan\KakController;
 use App\Http\Controllers\Kegiatan\SkController;
 use App\Http\Controllers\Kegiatan\SpjController;
 use App\Http\Controllers\Kegiatan\SpkController;
 use App\Http\Controllers\Master\MitraController;
+use App\Http\Controllers\Master\PegawaiController;
 use App\Http\Controllers\Master\ReferensiController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function () {
 
     Route::name('master.')->group(function () {
         Route::resource('/master/referensi', ReferensiController::class);
+        Route::resource('/master/pegawai', PegawaiController::class);
     });
 
     Route::get('/mitra/impor', [MitraController::class, 'impor'])->name('mitra.impor');

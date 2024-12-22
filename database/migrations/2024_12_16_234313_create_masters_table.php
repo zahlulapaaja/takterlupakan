@@ -16,16 +16,19 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nip_lama')->nullable();
             $table->string('nip_baru');
-            $table->string('nik')->nullable();
-            $table->string('golongan')->nullable();
-            $table->string('pangkat')->nullable();
-            $table->string('jabatan')->nullable();
+            $table->string('avatar')->nullable();
+            // $table->string('nik')->nullable();
+            $table->string('golongan');
+            $table->string('pangkat');
+            $table->string('jabatan');
             $table->string('email');
+            $table->string('no_hp');
             $table->string('no_rek')->nullable();
             $table->string('nama_bank')->nullable();
             $table->string('an_rek')->nullable();
-            $table->string('no_hp')->nullable();
+            $table->string('catatan')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('mitras', function (Blueprint $table) {

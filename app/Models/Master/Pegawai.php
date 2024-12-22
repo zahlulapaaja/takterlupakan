@@ -4,10 +4,11 @@ namespace App\Models\Master;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pegawai extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = "pegawais";
 
@@ -15,14 +16,15 @@ class Pegawai extends Model
         'nama',
         'nip_lama',
         'nip_baru',
-        'nik',
+        'avatar',
         'golongan',
         'pangkat',
         'jabatan',
         'email',
-        'no_rek',
+        'no_hp',
         'nama_bank',
+        'no_rek',
         'an_rek',
-        'no_hp'
+        'catatan',
     ];
 }
