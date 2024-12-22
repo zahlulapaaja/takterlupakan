@@ -59,10 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::name('master.')->group(function () {
         Route::resource('/master/referensi', ReferensiController::class);
         Route::resource('/master/pegawai', PegawaiController::class);
+        Route::resource('/master/mitra', MitraController::class);
+        Route::get('/master/impor/mitra', [MitraController::class, 'impor'])->name('mitra.impor');
+        Route::post('/master/impor/mitra', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
+        Route::get('/master/mitra/list/{tahun}', [MitraController::class, 'list'])->name('mitra.list');
+        Route::get('/master/mitra/delete/{tahun}', [MitraController::class, 'delete'])->name('mitra.delete');
     });
 
-    Route::get('/mitra/impor', [MitraController::class, 'impor'])->name('mitra.impor');
-    Route::post('/mitra/impor', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
 
     Route::get('api/search-pok', [DropdownController::class, 'searchPok']);
     Route::post('api/fetch-revisi', [DropdownController::class, 'fetchRevisi']);

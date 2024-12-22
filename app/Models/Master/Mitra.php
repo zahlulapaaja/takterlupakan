@@ -30,9 +30,43 @@ class Mitra extends Model
         'no_telp',
         'npwp',
         'catatan',
-        'no_rek',
         'nama_bank',
+        'no_rek',
         'an_rek',
         'tahun'
     ];
+
+    public function getAgamaDesc($kode)
+    {
+        $desc = [
+            1 => 'Islam',
+            2 => 'Kristen',
+            3 => 'Katolik',
+            4 => 'Hindu',
+            5 => 'Buddha',
+            6 => 'Khonghucu',
+            7 => 'Lainnya',
+        ];
+        return $desc[$kode];
+    }
+
+    public function getStatusDesc($kode)
+    {
+        $desc = [
+            1 => 'Belum Kawin',
+            2 => 'Kawin',
+            3 => 'Cerai Hidup',
+            4 => 'Cerai Mati'
+        ];
+        return $desc[$kode];
+    }
+
+    public function getJkDesc($kode)
+    {
+        $desc = [
+            1 => 'Laki-laki',
+            2 => 'Perempuan',
+        ];
+        return $desc[$kode];
+    }
 }
