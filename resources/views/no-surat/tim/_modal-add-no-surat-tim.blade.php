@@ -30,7 +30,7 @@
 						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
 							<span class="required">Tahun</span>
 						</label>
-						<select id="tahun-dropdown" name="tahun" class="form-control form-control-solid" data-placeholder="Pilih Tahun">
+						<select id="tahun-dropdown-modal" name="tahun" class="form-control form-control-solid" data-placeholder="Pilih Tahun">
 							<option hidden>Pilih Tahun...</option>
 							@foreach($list_tahun as $thn)
 							<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
@@ -43,7 +43,7 @@
 						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
 							<span class="required">Tim</span>
 						</label>
-						<select id="tim-dropdown" name="tim" class="form-control form-control-solid" data-placeholder="Pilih Tim Kerja">
+						<select id="tim-dropdown-modal" name="tim" class="form-control form-control-solid" data-placeholder="Pilih Tim Kerja">
 						</select>
 					</div>
 					<!--end::Input group-->
@@ -111,9 +111,9 @@
 @push('scripts')
 <script>
 	// Tahun Dropdown Change Event
-	$('#tahun-dropdown').on('change', function() {
+	$('#tahun-dropdown-modal').on('change', function() {
 		var tahun = this.value;
-		$("#tim-dropdown").html('');
+		$("#tim-dropdown-modal").html('');
 
 		$.ajax({
 			url: "{{url('api/fetch-tim')}}",
@@ -123,12 +123,12 @@
 				_token: '{{csrf_token()}}'
 			},
 			dataType: 'json',
-			success: function(result) {
-				$('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
+			success: function(res) {
+				$('#tim-dropdown-modal').html('<option hidden>Pilih Tim Kerja...</option>');
 
-				$.each(result.tim, function(key, value) {
+				$.each(res.tim, function(key, value) {
 					console.log(value.singkatan);
-					$("#tim-dropdown").append('<option value="' +
+					$("#tim-dropdown-modal").append('<option value="' +
 						value.id + '">' + value.singkatan + ' - ' + value.kode + '</option>');
 				});
 			}

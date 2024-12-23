@@ -43,6 +43,12 @@
                     <div class="position-relative d-flex flex-row">
                         <!--begin::Input group-->
                         <div class="flex me-md-2">
+                            <select id="jenis-dropdown" name="jenis" class="form-control form-control-solid">
+                            </select>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="flex me-md-2">
                             <select id="tim-dropdown" name="tim" class="form-control form-control-solid">
                                 @foreach($list_tim as $tim)
                                 <option value="{{ $tim->id }}">{{ $tim->singkatan }}</option>
@@ -93,10 +99,10 @@
                         _token: '{{csrf_token()}}'
                     },
                     dataType: 'json',
-                    success: function(result) {
+                    success: function(res) {
                         $('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
 
-                        $.each(result.tim, function(key, value) {
+                        $.each(res.tim, function(key, value) {
                             console.log(value);
                             $("#tim-dropdown").append('<option value="' +
                                 value.id + '">' + value.singkatan + '</option>');
@@ -107,14 +113,14 @@
 
             });
 
-            // Revisi Dropdown Change Event
+            // Tim Dropdown Change Event
             $('#tim-dropdown').on('change', function() {
                 var tim = this.value;
                 var tahun = $('#tahun-dropdown').find(":selected").val();
                 $("#tabel-no-surat").html('');
 
                 $.ajax({
-                    url: "{{url('api/get-no-surat')}}",
+                    url: "{{url('api/get-no-surat-by-tim')}}",
                     type: "POST",
                     data: {
                         tahun: tahun,
@@ -123,6 +129,45 @@
                     },
                     dataType: 'json',
                     success: function(res) {
+                        // munculkan dropdown jenis
+                        $('#jenis-dropdown').html('<option hidden>Pilih Jenis...</option>');
+
+                        $.each(res.list_jenis, function(key, value) {
+                            $("#jenis-dropdown").append('<option value="' +
+                                value.jenis + '">' + value.jenis + '</option>');
+                        });
+
+                        // udah langsung ngasih result
+                        $('#tabel-no-surat').html(res.view);
+                        let table = $('.datatable').DataTable({
+                            "bDestroy": true,
+                        });
+                        $('#searchNoSurat').on('keyup', function() {
+                            table.search(this.value).draw();
+                        });
+                    }
+                });
+            });
+
+            // Jenis Dropdown Change Event
+            $('#jenis-dropdown').on('change', function() {
+                var jenis = this.value;
+                var tim = $('#tim-dropdown').find(":selected").val();
+                var tahun = $('#tahun-dropdown').find(":selected").val();
+                $("#tabel-no-surat").html('');
+
+                $.ajax({
+                    url: "{{url('api/get-no-surat-by-jenis')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        tim: tim,
+                        jenis: jenis,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        // return resultnya 
                         $('#tabel-no-surat').html(res.view);
                         let table = $('.datatable').DataTable({
                             "bDestroy": true,

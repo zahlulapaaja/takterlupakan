@@ -61,11 +61,34 @@ class DropdownController extends Controller
         return response()->json($data);
     }
 
-    public function getNoSurat(Request $request)
+    public function getNoSuratByTim(Request $request)
     {
         $data = NoSuratTim::where('tahun', $request->tahun)
             ->where('tim', $request->tim)
-            ->orderBy('created_at', 'DESC')->get();
+            ->orderBy('no', 'DESC')->get();
+        foreach ($data as $d) {
+            $tim = Tim::find($d->tim);
+            $tgl = explode('-', $d->tgl);
+            $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
+        }
+        $list_jenis = NoSuratTim::distinct()
+            ->where('tahun', $request->tahun)
+            ->where('tim', $request->tim)
+            ->get('jenis');
+
+        $view = view('no-surat.tim._table-no-surat', compact('data'))->render();
+        return response()->json([
+            'view' => $view,
+            'list_jenis' => $list_jenis,
+        ], 200);
+    }
+
+    public function getNoSuratByJenis(Request $request)
+    {
+        $data = NoSuratTim::where('tahun', $request->tahun)
+            ->where('tim', $request->tim)
+            ->where('jenis', $request->jenis)
+            ->orderBy('no', 'DESC')->get();
         foreach ($data as $d) {
             $tim = Tim::find($d->tim);
             $tgl = explode('-', $d->tgl);
