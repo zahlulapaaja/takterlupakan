@@ -28,14 +28,22 @@
 					<!--begin::Input group-->
 					<div class="d-flex flex-column mb-7 fv-row">
 						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+							<span class="required">Tahun</span>
+						</label>
+						<select id="tahun-dropdown" name="tahun" class="form-control form-control-solid" data-placeholder="Pilih Tahun">
+							<option hidden>Pilih Tahun...</option>
+							@foreach($list_tahun as $thn)
+							<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
+							@endforeach
+						</select>
+					</div>
+					<!--end::Input group-->
+					<!--begin::Input group-->
+					<div class="d-flex flex-column mb-7 fv-row">
+						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
 							<span class="required">Tim</span>
 						</label>
-						<select name="tim" class="form-control form-control-solid" data-placeholder="Pilih Tim Kerja">
-							<option hidden>Pilih Tim Kerja...</option>
-							<option value="IPDS">IPDS</option>
-							<option value="Dist">Dist</option>
-							<option value="Sosial">Sosial</option>
-							<option value="Neraca">Neraca</option>
+						<select id="tim-dropdown" name="tim" class="form-control form-control-solid" data-placeholder="Pilih Tim Kerja">
 						</select>
 					</div>
 					<!--end::Input group-->
@@ -76,7 +84,7 @@
 					<!--begin::Input group-->
 					<div class="d-flex flex-column mb-7 fv-row">
 						<label class="fs-6 fw-semibold form-label mb-2">Keterangan</label>
-						<textarea name="keterangan	" rows="2" class="form-control form-control-solid" placeholder="Masukkan keterangan jika ada..."></textarea>
+						<textarea name="keterangan" rows="2" class="form-control form-control-solid" placeholder="Masukkan keterangan jika ada..."></textarea>
 					</div>
 					<!--end::Input group-->
 					<!--begin::Actions-->
@@ -99,3 +107,34 @@
 	<!--end::Modal dialog-->
 </div>
 <!--end::Modal - New Card-->
+
+@push('scripts')
+<script>
+	// Tahun Dropdown Change Event
+	$('#tahun-dropdown').on('change', function() {
+		var tahun = this.value;
+		$("#tim-dropdown").html('');
+
+		$.ajax({
+			url: "{{url('api/fetch-tim')}}",
+			type: "POST",
+			data: {
+				tahun: tahun,
+				_token: '{{csrf_token()}}'
+			},
+			dataType: 'json',
+			success: function(result) {
+				$('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
+
+				$.each(result.tim, function(key, value) {
+					console.log(value.singkatan);
+					$("#tim-dropdown").append('<option value="' +
+						value.id + '">' + value.singkatan + ' - ' + value.kode + '</option>');
+				});
+			}
+
+		});
+
+	});
+</script>
+@endpush

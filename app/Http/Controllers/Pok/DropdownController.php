@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pok;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Sk;
+use App\Models\Master\Tim;
 use App\Models\Pok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,5 +51,12 @@ class DropdownController extends Controller
 
         $view = view('kegiatan.spj._table-alokasi-beban', compact('list_petugas'))->render();
         return response()->json(['view' => $view], 200);
+    }
+
+    public function fetchTim(Request $request)
+    {
+        $data['tim'] = Tim::where("tahun", $request->tahun)->get();
+
+        return response()->json($data);
     }
 }

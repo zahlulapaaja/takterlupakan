@@ -1,7 +1,7 @@
 <x-default-layout>
 
     @section('title')
-    Edit Nomor Surat
+    Detail Nomor Surat
     @endsection
 
     <!--begin::Tables Widget 9-->
@@ -9,7 +9,7 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Edit Nomor Surat Tim Kerja</span>
+                <span class="card-label fw-bold fs-3 mb-1">Detail Nomor Surat Tim Kerja</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
             </h3>
         </div>
@@ -26,13 +26,10 @@
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Tahun</span>
+                                <span>Tahun</span>
                             </label>
-                            <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
+                            <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid" disabled>
                                 <option value="{{$data->tahun}}" hidden>{{$data->tahun}}</option>
-                                @foreach($list_tahun as $thn)
-                                <option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
-                                @endforeach
                             </select>
                         </div>
                         <!--end::Input group-->
@@ -41,9 +38,9 @@
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Tim</span>
+                                <span>Tim</span>
                             </label>
-                            <select id="tim-dropdown" name="tim" class="form-control form-control-solid">
+                            <select id="tim-dropdown" name="tim" class="form-control form-control-solid" disabled>
                                 <option value="{{$data->tim->id}}">{{$data->tim->singkatan}} - {{$data->tim->kode}}</option>
                             </select>
                         </div>
@@ -58,9 +55,9 @@
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Nomor</span>
+                                <span>Nomor</span>
                             </label>
-                            <input name="no" type="text" class="form-control form-control-solid" placeholder="001" value="{{ $data->no }}" />
+                            <input name="no" type="text" class="form-control form-control-solid" placeholder="001" value="{{ $data->no }}" disabled />
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -68,9 +65,9 @@
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-7 fv-row">
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                                <span class="required">Jenis</span>
+                                <span>Jenis</span>
                             </label>
-                            <input name="jenis" type="text" list="jenis_nomor" class="form-control form-control-solid" placeholder="Masukkan Jenis Surat..." value="{{ $data->jenis }}" />
+                            <input name="jenis" type="text" list="jenis_nomor" class="form-control form-control-solid" placeholder="Masukkan Jenis Surat..." value="{{ $data->jenis }}" disabled />
                             <datalist id="jenis_nomor">
                                 <option value="ST">ST</option>
                                 <option value="SPJ">SPJ</option>
@@ -85,33 +82,28 @@
 
                 <!--begin::Input group-->
                 <div class="d-flex flex-column mb-7 fv-row">
-                    <label class="required fs-6 fw-semibold form-label mb-2">Tanggal</label>
-                    <input name="tgl" type="date" class="form-control form-control-solid" value="{{ $data->tgl }}" />
+                    <label class="fs-6 fw-semibold form-label mb-2">Tanggal</label>
+                    <input name="tgl" type="date" class="form-control form-control-solid" value="{{ $data->tgl }}" disabled />
                 </div>
                 <!--end::Input group-->
 
                 <!--begin::Input group-->
                 <div class="d-flex flex-column mb-7 fv-row">
-                    <label class="required fs-6 fw-semibold form-label mb-2">Rincian</label>
-                    <input name="rincian" type="text" class="form-control form-control-solid" placeholder="Masukkan rincian..." value="{{ $data->rincian }}" />
+                    <label class="fs-6 fw-semibold form-label mb-2">Rincian</label>
+                    <input name="rincian" type="text" class="form-control form-control-solid" placeholder="Masukkan rincian..." value="{{ $data->rincian }}" disabled />
                 </div>
                 <!--end::Input group-->
 
                 <!--begin::Input group-->
                 <div class="d-flex flex-column mb-7 fv-row">
                     <label class="fs-6 fw-semibold form-label mb-2">Keterangan</label>
-                    <textarea name="keterangan" rows="2" class="form-control form-control-solid" placeholder="Masukkan keterangan jika ada...">{{ $data->keterangan }}</textarea>
+                    <textarea name="keterangan" rows="2" class="form-control form-control-solid" placeholder="Masukkan keterangan jika ada..." disabled>{{ $data->keterangan }}</textarea>
                 </div>
                 <!--end::Input group-->
 
                 <!--begin::Actions-->
-                <div class="text-center pt-15">
+                <div class="text-right pt-15">
                     <a href="{{ route('no-surat.tim.index') }}" class="btn btn-light me-3">Kembali</a>
-                    <button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
-                        <span class="indicator-label">Simpan</span>
-                        <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
                 </div>
                 <!--end::Actions-->
             </form>

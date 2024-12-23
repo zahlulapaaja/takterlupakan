@@ -76,4 +76,5 @@ Route::middleware('auth')->group(function () {
     Route::post('api/fetch-revisi', [DropdownController::class, 'fetchRevisi']);
     Route::post('api/get-pok', [DropdownController::class, 'getPok']);
     Route::post('api/fetch-beban', [DropdownController::class, 'fetchBeban']);
+    Route::post('api/fetch-tim', [DropdownController::class, 'fetchTim']);
 });

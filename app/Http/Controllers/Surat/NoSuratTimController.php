@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Surat;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Tim;
 use App\Models\Surat\NoSuratTim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,11 +14,13 @@ class NoSuratTimController extends Controller
     {
         $data = NoSuratTim::all();
         foreach ($data as $d) {
+            $tim = Tim::find($d->tim);
             $tgl = explode('-', $d->tgl);
-            $d->no_surat = $d->no . '/' . $d->jenis . '/11076/' . $tgl[1] . '/' . $tgl[0];
+            $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
         }
+        $list_tahun = Tim::distinct()->get('tahun');
 
-        return view('no-surat.tim.index', compact('data'));
+        return view('no-surat.tim.index', compact('data', 'list_tahun'));
     }
 
     public function store(Request $request)
@@ -45,16 +48,19 @@ class NoSuratTimController extends Controller
         return redirect()->route('no-surat.tim.index')->with('success', 'Nomor Surat berhasil ditambah');
     }
 
-    // public function show($id)
-    // {
-    //     $data = NoSuratTim::find($id);
-    //     return view('no-surat.tim.show', compact('data'));
-    // }
+    public function show($id)
+    {
+        $data = NoSuratTim::find($id);
+        $data->tim = Tim::find($data->tim);
+        return view('no-surat.tim.show', compact('data'));
+    }
 
     public function edit($id)
     {
         $data = NoSuratTim::find($id);
-        return view('no-surat.tim.edit', compact('data'));
+        $data->tim = Tim::find($data->tim);
+        $list_tahun = Tim::distinct()->get('tahun');
+        return view('no-surat.tim.edit', compact('data', 'list_tahun'));
     }
 
     public function update($id, Request $request)
@@ -80,7 +86,7 @@ class NoSuratTimController extends Controller
         $data['edited_by'] = session('user_id');
 
         $find->update($data);
-        return redirect()->route('no-surat.fp.index')->with('success', 'Nomor Surat berhasil diperbarui');
+        return redirect()->route('no-surat.tim.index')->with('success', 'Nomor Surat berhasil diperbarui');
     }
 
     public function destroy($id)
