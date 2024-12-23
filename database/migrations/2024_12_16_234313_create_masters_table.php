@@ -79,6 +79,20 @@ return new class extends Migration
             $table->integer('tahun');
             $table->timestamps();
         });
+
+        Schema::create('tims', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('singkatan');
+            $table->string('kode');
+            $table->unsignedBigInteger('ketua');
+            $table->foreign('ketua')
+                ->references('id')
+                ->on('pegawais')
+                ->onDelete('cascade');
+            $table->integer('tahun');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -89,5 +103,6 @@ return new class extends Migration
         Schema::dropIfExists('pegawais');
         Schema::dropIfExists('mitras');
         Schema::dropIfExists('referensis');
+        Schema::dropIfExists('tims');
     }
 };

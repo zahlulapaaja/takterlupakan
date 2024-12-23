@@ -10,6 +10,7 @@ use App\Http\Controllers\Kegiatan\SpkController;
 use App\Http\Controllers\Master\MitraController;
 use App\Http\Controllers\Master\PegawaiController;
 use App\Http\Controllers\Master\ReferensiController;
+use App\Http\Controllers\Master\TimController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
@@ -60,8 +61,10 @@ Route::middleware('auth')->group(function () {
 
     Route::name('master.')->group(function () {
         Route::resource('/master/referensi', ReferensiController::class);
+        Route::resource('/master/tim', TimController::class);
         Route::resource('/master/pegawai', PegawaiController::class);
         Route::resource('/master/mitra', MitraController::class);
+        Route::get('/master/tim/list/{tahun}', [TimController::class, 'list'])->name('tim.list');
         Route::get('/master/impor/mitra', [MitraController::class, 'impor'])->name('mitra.impor');
         Route::post('/master/impor/mitra', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
         Route::get('/master/mitra/list/{tahun}', [MitraController::class, 'list'])->name('mitra.list');
