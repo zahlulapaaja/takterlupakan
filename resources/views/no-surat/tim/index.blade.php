@@ -30,7 +30,7 @@
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Compact form-->
-                <div class="d-flex align-items-center mb-4">
+                <div class="d-flex flex-row sm:flex-col justify-between mb-4">
                     <!--begin::Input group-->
                     <div class="position-relative w-md-400px me-md-2">
                         <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
@@ -40,78 +40,32 @@
                         <input id="searchNoSurat" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
+                    <div class="position-relative d-flex flex-row">
+                        <!--begin::Input group-->
+                        <div class="flex me-md-2">
+                            <select id="tim-dropdown" name="tim" class="form-control form-control-solid">
+                                @foreach($list_tim as $tim)
+                                <option value="{{ $tim->id }}">{{ $tim->singkatan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="flex me-md-2">
+                            <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
+                                @foreach($list_tahun as $thn)
+                                <option value="{{ $thn->tahun }}">{{ $thn->tahun }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!--end::Input group-->
+                    </div>
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
-                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 datatable">
-                    <!--begin::Table head-->
-                    <thead>
-                        <tr class="fw-bold text-muted">
-                            <th class="w-25px">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                </div>
-                            </th>
-                            <th class="min-w-200px">Nomor</th>
-                            <th class="min-w-150px">Rincian</th>
-                            <th class="min-w-100px">Tanggal</th>
-                            <th class="min-w-100px text-end">Actions</th>
-                        </tr>
-                    </thead>
-                    <!--end::Table head-->
-                    <!--begin::Table body-->
-                    <tbody>
-                        @foreach($data as $d)
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_surat }}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->rincian}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->tgl}}</span>
-                            </td>
-                            <td>
-                                <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{route('no-surat.tim.show', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-information fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </a>
-                                    <a href="{{route('no-surat.tim.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a>
-                                    <form method="post" action="{{route('no-surat.tim.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button style="all: unset" type="submit">
-                                            <i class="ki-duotone ki-trash fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                                <span class="path4"></span>
-                                                <span class="path5"></span>
-                                        </button>
-                                        </i>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <!--end::Table body-->
-                </table>
+                <div id="tabel-no-surat">
+                    @include('no-surat.tim._table-no-surat')
+                </div>
                 <!--end::Table-->
             </div>
             <!--end::Table container-->
@@ -125,13 +79,61 @@
     @push('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            let table = $('.datatable').DataTable({
-                "bDestroy": true,
+
+            // Tahun Dropdown Change Event
+            $('#tahun-dropdown').on('change', function() {
+                var tahun = this.value;
+                $("#tim-dropdown").html('');
+
+                $.ajax({
+                    url: "{{url('api/fetch-tim')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function(result) {
+                        $('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
+
+                        $.each(result.tim, function(key, value) {
+                            console.log(value);
+                            $("#tim-dropdown").append('<option value="' +
+                                value.id + '">' + value.singkatan + '</option>');
+                        });
+                    }
+
+                });
+
             });
 
-            $('#searchNoSurat').on('keyup', function() {
-                table.search(this.value).draw();
+            // Revisi Dropdown Change Event
+            $('#tim-dropdown').on('change', function() {
+                var tim = this.value;
+                var tahun = $('#tahun-dropdown').find(":selected").val();
+                $("#tabel-no-surat").html('');
+
+                $.ajax({
+                    url: "{{url('api/get-no-surat')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        tim: tim,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        $('#tabel-no-surat').html(res.view);
+                        let table = $('.datatable').DataTable({
+                            "bDestroy": true,
+                        });
+                        $('#searchNoSurat').on('keyup', function() {
+                            table.search(this.value).draw();
+                        });
+                    }
+                });
             });
+
         });
     </script>
     @endpush

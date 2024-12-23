@@ -18,9 +18,11 @@ class NoSuratTimController extends Controller
             $tgl = explode('-', $d->tgl);
             $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
         }
-        $list_tahun = Tim::distinct()->get('tahun');
+        $last_tahun = NoSuratTim::max('tahun');
+        $list_tahun = Tim::distinct()->orderBy('tahun', 'DESC')->get('tahun');
+        $list_tim = Tim::distinct()->where('tahun', $last_tahun)->get('tahun');
 
-        return view('no-surat.tim.index', compact('data', 'list_tahun'));
+        return view('no-surat.tim.index', compact('data', 'list_tahun', 'list_tim', 'last_tahun'));
     }
 
     public function store(Request $request)

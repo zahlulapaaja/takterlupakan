@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Sk;
 use App\Models\Master\Tim;
 use App\Models\Pok;
+use App\Models\Surat\NoSuratTim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -58,5 +59,20 @@ class DropdownController extends Controller
         $data['tim'] = Tim::where("tahun", $request->tahun)->get();
 
         return response()->json($data);
+    }
+
+    public function getNoSurat(Request $request)
+    {
+        $data = NoSuratTim::where('tahun', $request->tahun)
+            ->where('tim', $request->tim)
+            ->orderBy('created_at', 'DESC')->get();
+        foreach ($data as $d) {
+            $tim = Tim::find($d->tim);
+            $tgl = explode('-', $d->tgl);
+            $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
+        }
+
+        $view = view('no-surat.tim._table-no-surat', compact('data'))->render();
+        return response()->json(['view' => $view], 200);
     }
 }
