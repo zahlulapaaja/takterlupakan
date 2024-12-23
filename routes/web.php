@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::name('no-surat.')->group(function () {
         Route::resource('/no-surat/fp', NoFpController::class);
+        Route::get('/no-surat/tim', [NoFpController::class, 'tim'])->name('tim');
     });
 
     Route::name('kegiatan.')->group(function () {

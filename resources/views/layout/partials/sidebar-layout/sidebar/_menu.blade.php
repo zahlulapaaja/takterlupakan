@@ -47,7 +47,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('soon') }}">
+						<a class="menu-link" href="{{ route('no-surat.tim') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>

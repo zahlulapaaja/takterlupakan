@@ -9,7 +9,7 @@ class NoFp extends Model
 {
     use HasFactory;
 
-    protected $table = "nofps";
+    protected $table = "no_fps";
 
     // artinya semua column fillable
     protected $guarded = [];

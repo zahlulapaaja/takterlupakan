@@ -71,4 +71,10 @@ class NoFpController extends Controller
         $user->delete();
         return redirect()->route('no-surat.fp.index');
     }
+
+
+    public function tim()
+    {
+        return view('no-surat.tim');
+    }
 }
