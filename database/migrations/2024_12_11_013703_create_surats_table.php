@@ -72,8 +72,8 @@ return new class extends Migration
             $table->string('rincian');
             $table->string('keterangan')->nullable();
             $table->integer('tahun');
-            $table->integer('tim');
-            $table->integer('jenis');
+            $table->string('tim');
+            $table->string('jenis');
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')

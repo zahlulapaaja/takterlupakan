@@ -13,6 +13,7 @@ use App\Http\Controllers\Master\ReferensiController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
+use App\Http\Controllers\Surat\NoSuratTimController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
@@ -39,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::name('no-surat.')->group(function () {
         Route::resource('/no-surat/fp', NoFpController::class);
-        Route::get('/no-surat/tim', [NoFpController::class, 'tim'])->name('tim');
+        Route::resource('/no-surat/tim', NoSuratTimController::class);
     });
 
     Route::name('kegiatan.')->group(function () {

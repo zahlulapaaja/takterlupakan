@@ -42,6 +42,7 @@ class AuthController extends Controller
         // dd(session()->all());
         if (Auth::attempt($data)) {
             $user = Auth::user();
+            Session::put('user_id', $user->id);
             Session::put('name', $user->name);
             Session::put('role', User::find($user->id)->roles[0]->name);
             Session::put('email', User::find($user->id)->roles[0]->email);
@@ -54,6 +55,7 @@ class AuthController extends Controller
     public function logout()
     {
         if (session()->has('name')) {
+            session()->pull('user_id');
             session()->pull('name');
             session()->pull('role');
             session()->pull('email');

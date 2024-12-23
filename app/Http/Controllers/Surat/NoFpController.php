@@ -67,14 +67,8 @@ class NoFpController extends Controller
 
     public function destroy($id)
     {
-        $user = NoFp::find($id);
-        $user->delete();
+        $data = NoFp::find($id);
+        $data->delete();
         return redirect()->route('no-surat.fp.index');
-    }
-
-
-    public function tim()
-    {
-        return view('no-surat.tim');
     }
 }
