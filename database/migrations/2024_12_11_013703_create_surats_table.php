@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('no');
             $table->string('rincian');
             $table->date('tgl');
-            $table->foreignId('edited_by')->constrained(
-                table: 'users',
-                indexName: 'id'
-            );
+            $table->unsignedBigInteger('edited_by');
+            $table->foreign('edited_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -49,17 +50,18 @@ return new class extends Migration
             $table->string('keterangan')->nullable();
         });
 
-        Schema::create('no_surat_masuk_keluars', function (Blueprint $table) {
+        Schema::create('no_surat_masuk_keluar', function (Blueprint $table) {
             $table->id();
             $table->string('no');
             $table->foreignId('no_surat_masuks_id')->nullable();
             $table->foreignId('no_surat_keluars_id')->nullable();
             $table->date('tgl');
             $table->integer('tahun');
-            $table->foreignId('edited_by')->constrained(
-                table: 'users',
-                indexName: 'id'
-            );
+            $table->unsignedBigInteger('edited_by');
+            $table->foreign('edited_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -72,10 +74,11 @@ return new class extends Migration
             $table->integer('tahun');
             $table->integer('tim');
             $table->integer('jenis');
-            $table->foreignId('edited_by')->constrained(
-                table: 'users',
-                indexName: 'id'
-            );
+            $table->unsignedBigInteger('edited_by');
+            $table->foreign('edited_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -87,5 +90,9 @@ return new class extends Migration
     {
         Schema::dropIfExists('no_fps');
         Schema::dropIfExists('perjadin_fp');
+        Schema::dropIfExists('no_surat_masuks');
+        Schema::dropIfExists('no_surat_keluars');
+        Schema::dropIfExists('no_surat_masuk_keluar');
+        Schema::dropIfExists('no_surat_tims');
     }
 };
