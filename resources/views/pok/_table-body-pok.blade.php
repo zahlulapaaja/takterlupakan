@@ -186,10 +186,10 @@
         </td>
         @if(in_array($data[$i]->kode_akun, config('constants.LIST_AKUN_INPUT')))
         <td class="bg-white">
-            <form method="post" action="{{ route('kegiatan.spj.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+            <form method="post" action="{{ route('kegiatan.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
-                <input type="hidden" name="pok_id" value="{{$data[$i]->id}}" />
+                <input type="hidden" name="poks_id" value="{{$data[$i]->id}}" />
                 <button type="submit"> Input </button>
             </form>
         </td>

@@ -13,9 +13,10 @@ class Kegiatan extends Model
 
     protected $fillable = [
         'poks_id',
-        'nama_kegiatan',
+        'nama',
         'tgl_mulai',
         'tgl_akhir',
+        'tim',
         'pjk',
         'tahun',
         'edited_by',

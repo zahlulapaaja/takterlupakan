@@ -18,15 +18,21 @@ return new class extends Migration
                 ->references('id')
                 ->on('poks')
                 ->onDelete('cascade'); // bisa ga ya kalo ga cascade
-            $table->string('nama_kegiatan');
+            $table->string('nama');
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
+            $table->unsignedBigInteger('tim');
+            $table->foreign('tim')
+                ->references('id')
+                ->on('tims')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('pjk');
             $table->foreign('pjk')
                 ->references('id')
                 ->on('pegawais')
                 ->onDelete('cascade');
             $table->integer('tahun');
+            $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
                 ->on('users')
