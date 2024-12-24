@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Sk;
 use App\Models\Master\Tim;
 use App\Models\Pok;
+use App\Models\Surat\NoSuratMasukKeluar;
 use App\Models\Surat\NoSuratTim;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -96,6 +97,26 @@ class DropdownController extends Controller
         }
 
         $view = view('no-surat.tim._table-no-surat', compact('data'))->render();
+        return response()->json(['view' => $view], 200);
+    }
+
+    public function getNoSuratByMasukKeluar(Request $request)
+    {
+        $data = NoSuratMasukKeluar::where('tahun', $request->tahun);
+        if ($request->jenis) $data->where('jenis', $request->jenis);
+        $data = $data->orderBy('no', 'DESC')->get();
+
+        foreach ($data as $d) {
+            if ($d->jenis == 'masuk') {
+                $m = DB::table('no_surat_masuks')->find($d->no_surat_masuks_id);
+                $d->rincian = $m->rincian;
+            } else {
+                $k = DB::table('no_surat_keluars')->find($d->no_surat_keluars_id);
+                $d->rincian = $k->rincian;
+            }
+        }
+
+        $view = view('no-surat.masuk-keluar._table-no-surat', compact('data'))->render();
         return response()->json(['view' => $view], 200);
     }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\Master\TimController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
+use App\Http\Controllers\Surat\NoSuratMasukKeluarController;
 use App\Http\Controllers\Surat\NoSuratTimController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::name('no-surat.')->group(function () {
         Route::resource('/no-surat/fp', NoFpController::class);
         Route::resource('/no-surat/tim', NoSuratTimController::class);
+        Route::resource('/no-surat/masuk-keluar', NoSuratMasukKeluarController::class);
     });
 
     Route::name('kegiatan.')->group(function () {
@@ -79,4 +81,5 @@ Route::middleware('auth')->group(function () {
     Route::post('api/fetch-tim', [DropdownController::class, 'fetchTim']);
     Route::post('api/get-no-surat-by-tim', [DropdownController::class, 'getNoSuratByTim']);
     Route::post('api/get-no-surat-by-jenis', [DropdownController::class, 'getNoSuratByJenis']);
+    Route::post('api/get-no-surat-masuk-keluar', [DropdownController::class, 'getNoSuratByMasukKeluar']);
 });

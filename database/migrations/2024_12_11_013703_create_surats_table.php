@@ -53,6 +53,7 @@ return new class extends Migration
         Schema::create('no_surat_masuk_keluar', function (Blueprint $table) {
             $table->id();
             $table->string('no');
+            $table->string('jenis');
             $table->foreignId('no_surat_masuks_id')->nullable();
             $table->foreignId('no_surat_keluars_id')->nullable();
             $table->date('tgl');
