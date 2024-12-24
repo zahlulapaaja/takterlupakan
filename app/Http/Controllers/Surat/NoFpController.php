@@ -18,7 +18,7 @@ class NoFpController extends Controller
         }
         // $last = NoFP::latest('no')->first();
         // dd($last);
-        return view('no-surat.fp', compact('data'));
+        return view('no-surat.fp.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -42,7 +42,7 @@ class NoFpController extends Controller
     public function edit($id)
     {
         $data = NoFp::find($id);
-        return view('no-surat.fp-edit', compact('data'));
+        return view('no-surat.fp.edit', compact('data'));
     }
 
     public function update($id, Request $request)
