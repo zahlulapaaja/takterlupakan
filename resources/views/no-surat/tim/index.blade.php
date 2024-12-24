@@ -100,7 +100,7 @@
                     },
                     dataType: 'json',
                     success: function(res) {
-                        $('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
+                        $('#tim-dropdown').html('<option value="" hidden>Pilih Tim Kerja...</option>');
 
                         $.each(res.tim, function(key, value) {
                             console.log(value);
@@ -130,7 +130,7 @@
                     dataType: 'json',
                     success: function(res) {
                         // munculkan dropdown jenis
-                        $('#jenis-dropdown').html('<option hidden>Pilih Jenis...</option>');
+                        $('#jenis-dropdown').html('<option value="" hidden>Pilih Jenis...</option>');
 
                         $.each(res.list_jenis, function(key, value) {
                             $("#jenis-dropdown").append('<option value="' +

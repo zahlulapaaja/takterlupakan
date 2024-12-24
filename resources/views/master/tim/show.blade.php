@@ -50,7 +50,7 @@
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                             <span>Ketua Tim</span>
                         </label>
-                        <select name="ketua" class="form-control form-control-solid" data-placeholder="Pilih Tim Kerja" disabled>
+                        <select name="ketua" class="form-control form-control-solid" disabled>
                             <option value="{{$data->ketua->id}}" selected hidden>{{$data->ketua->nama}}</option>
                         </select>
                     </div>

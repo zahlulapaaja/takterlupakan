@@ -92,7 +92,7 @@
                     },
                     dataType: 'json',
                     success: function(res) {
-                        $('#jenis-dropdown').html('<option hidden>Pilih Jenis Surat...</option>');
+                        $('#jenis-dropdown').html('<option value="" hidden>Pilih Jenis Surat...</option>');
                         $("#jenis-dropdown").append('<option value="masuk">Masuk</option>');
                         $("#jenis-dropdown").append('<option value="keluar">Keluar</option>');
 

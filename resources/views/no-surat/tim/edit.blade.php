@@ -43,9 +43,12 @@
                             <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                                 <span class="required">Tim</span>
                             </label>
-                            <select id="tim-dropdown" name="tim" class="form-control form-control-solid">
+                            <select id="tim-dropdown" name="tim" class="form-control form-control-solid" data-placehoder="Pilih Tim Kerja..." required>
                                 <option value="{{$data->tim->id}}">{{$data->tim->singkatan}} - {{$data->tim->kode}}</option>
                             </select>
+                            @error('tim')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -137,7 +140,7 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    $('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
+                    $('#tim-dropdown').html('<option value="" hidden>Pilih Tim Kerja...</option>');
 
                     $.each(result.tim, function(key, value) {
                         console.log(value.singkatan);

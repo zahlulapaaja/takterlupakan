@@ -35,7 +35,7 @@ class NoSuratMasukKeluarController extends Controller
         $validator = Validator::make($request->all(), [
             'no'        => 'required',
             'jenis'     => 'required',
-            'tgl'       => 'required',
+            'tgl'       => 'required|date',
             'rincian'   => 'required'
         ]);
 
@@ -109,14 +109,14 @@ class NoSuratMasukKeluarController extends Controller
         $validator = Validator::make($request->all(), [
             'no'        => 'required',
             'jenis'     => 'required',
-            'tgl'       => 'required',
+            'tgl'       => 'required|date',
             'rincian'   => 'required'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         if ($request->jenis == 'masuk') {
-            $data_masuk = DB::table('no_surat_masuks')->find($find->no_surat_masuks_id);
+            DB::table('no_surat_masuks')->find($find->no_surat_masuks_id);
 
             $masuk['pengirim'] = $request->pengirim;
             $masuk['no_masuk'] = $request->no_masuk;
@@ -129,7 +129,7 @@ class NoSuratMasukKeluarController extends Controller
                 ->where('id', $find->no_surat_masuks_id)
                 ->update($masuk);
         } else if ($request->jenis == 'keluar') {
-            $data_keluar = DB::table('no_surat_keluars')->find($find->no_surat_keluars_id);
+            DB::table('no_surat_keluars')->find($find->no_surat_keluars_id);
 
             $keluar['rincian'] = $request->rincian;
             $keluar['tujuan'] = $request->tujuan;

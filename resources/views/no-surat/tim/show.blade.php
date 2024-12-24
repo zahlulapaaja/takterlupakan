@@ -129,7 +129,7 @@
                 },
                 dataType: 'json',
                 success: function(result) {
-                    $('#tim-dropdown').html('<option hidden>Pilih Tim Kerja...</option>');
+                    $('#tim-dropdown').html('<option value="" hidden>Pilih Tim Kerja...</option>');
 
                     $.each(result.tim, function(key, value) {
                         console.log(value.singkatan);

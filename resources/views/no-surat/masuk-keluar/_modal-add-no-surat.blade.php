@@ -38,8 +38,8 @@
 						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
 							<span class="required">Jenis</span>
 						</label>
-						<select id="jenis-dropdown-modal" name="jenis" class="form-control form-control-solid" data-placeholder="Pilih Tahun">
-							<option hidden>Pilih Jenis...</option>
+						<select id="jenis-dropdown-modal" name="jenis" class="form-control form-control-solid">
+							<option value="" hidden>Pilih Jenis...</option>
 							<option value="masuk">Masuk</option>
 							<option value="keluar">Keluar</option>
 						</select>

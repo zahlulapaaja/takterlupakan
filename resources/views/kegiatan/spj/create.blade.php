@@ -108,7 +108,7 @@
                             <div class="fv-row">
                                 <label class="required form-label">Tim Kerja (perlu ga ya)</label>
                                 <select class="form-select" name="tim" required>
-                                    <option hidden>Pilih Tim Kerja</option>
+                                    <option value="" hidden>Pilih Tim Kerja</option>
                                     @for($i = 0; $i < 5; $i++)
                                         <option value="{{$i}}">Tim {{$i}}</option>
                                         @endfor
@@ -157,7 +157,7 @@
                             <div class="fv-row">
                                 <label class="required form-label">PJK</label>
                                 <select class="form-select" name="pjk" required>
-                                    <option hidden>Pilih PJK</option>
+                                    <option value="" hidden>Pilih PJK</option>
                                     @foreach($list_pegawai as $p)
                                     <option value="{{$p->id}}">{{$p->nama}}</option>
                                     @endforeach
@@ -185,8 +185,8 @@
                     <!--begin::Input group-->
                     <div class="fv-row">
                         <label class="required form-label">No SK</label>
-                        <select id="no-sk-dropdown" class="form-select" name="tim" data-placeholder="Pilih Tim Kerja" required>
-                            <option hidden>Pilih No SK</option>
+                        <select id="no-sk-dropdown" class="form-select" name="tim" required>
+                            <option value="" hidden>Pilih No SK...</option>
                             @foreach($sk as $s)
                             <option value="{{$s->id}}">{{$s->no . '/SK/BPS-1107/' . $s->tahun}}</option>
                             @endforeach

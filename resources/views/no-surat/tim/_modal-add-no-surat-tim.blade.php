@@ -30,8 +30,8 @@
 						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
 							<span class="required">Tahun</span>
 						</label>
-						<select id="tahun-dropdown-modal" name="tahun" class="form-control form-control-solid" data-placeholder="Pilih Tahun">
-							<option hidden>Pilih Tahun...</option>
+						<select id="tahun-dropdown-modal" name="tahun" class="form-control form-control-solid">
+							<option value="" hidden>Pilih Tahun...</option>
 							@foreach($list_tahun as $thn)
 							<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
 							@endforeach
@@ -43,7 +43,7 @@
 						<label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
 							<span class="required">Tim</span>
 						</label>
-						<select id="tim-dropdown-modal" name="tim" class="form-control form-control-solid" data-placeholder="Pilih Tim Kerja">
+						<select id="tim-dropdown-modal" name="tim" class="form-control form-control-solid">
 						</select>
 					</div>
 					<!--end::Input group-->
@@ -124,7 +124,7 @@
 			},
 			dataType: 'json',
 			success: function(res) {
-				$('#tim-dropdown-modal').html('<option hidden>Pilih Tim Kerja...</option>');
+				$('#tim-dropdown-modal').html('<option value="" hidden>Pilih Tim Kerja...</option>');
 
 				$.each(res.tim, function(key, value) {
 					console.log(value.singkatan);

@@ -197,7 +197,7 @@
                                 <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan" data-placeholder="Pilih Golongan">
+                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan">
                                         <option value="{{$data->golongan}}" selected hidden>{{$data->golongan}}</option>
                                         <option value="I/a">I/a</option>
                                         <option value="I/b">I/b</option>
@@ -235,7 +235,7 @@
                                 <!--end::Label-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat" data-placeholder="Pilih Pangkat">
+                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat">
                                         <option value="{{$data->pangkat}}" selected hidden>{{$data->pangkat}}</option>
                                         <option value="Juru Muda">Juru Muda</option>
                                         <option value="Juru Muda Tingkat I">Juru Muda Tingkat I</option>
@@ -327,7 +327,7 @@
                                 <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank" data-placeholder="Pilih Bank">
+                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank">
                                         <option value="{{$data->nama_bank}}" selected hidden>{{$data->nama_bank}}</option>
                                         <option value="BSI">BSI</option>
                                         <option value="Bank Aceh">Bank Aceh</option>

@@ -27,7 +27,7 @@
                         <span class="required">KPA (Kuasa Pengguna Anggaran)</span>
                     </label>
                     <select name="kpa" type="text" class="form-control form-control-solid" required>
-                        <option hidden>Pilih KPA...</option>
+                        <option value="" hidden>Pilih KPA...</option>
                         @foreach($pegawai as $p)
                         <option value="{{$p->id}}">{{$p->nama}}</option>
                         @endforeach
@@ -41,7 +41,7 @@
                             <span class="required">PPK</span>
                         </label>
                         <select name="ppk" type="text" class="form-control form-control-solid" required>
-                            <option hidden>Pilih PPK...</option>
+                            <option value="" hidden>Pilih PPK...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>
                             @endforeach
@@ -52,7 +52,7 @@
                             <span class="required">Bendahara</span>
                         </label>
                         <select name="bend" type="text" class="form-control form-control-solid" required>
-                            <option hidden>Pilih Bendahara...</option>
+                            <option value="" hidden>Pilih Bendahara...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>
                             @endforeach

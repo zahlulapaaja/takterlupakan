@@ -306,7 +306,7 @@
                                 </label>
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank" data-placeholder="Pilih Bank">
+                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank">
                                         <option value="{{$data->nama_bank}}" selected hidden>{{$data->nama_bank}}</option>
                                         <option value="BSI">BSI</option>
                                         <option value="Bank Aceh">Bank Aceh</option>

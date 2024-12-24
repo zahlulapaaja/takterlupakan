@@ -177,7 +177,7 @@
                     },
                     dataType: 'json',
                     success: function(result) {
-                        $('#revisi-dropdown').html('<option hidden>Revisi Ke...</option>');
+                        $('#revisi-dropdown').html('<option value="" hidden>Revisi Ke...</option>');
 
                         $.each(result.revisi, function(key, value) {
                             console.log(value);

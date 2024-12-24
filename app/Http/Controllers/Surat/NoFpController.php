@@ -16,8 +16,7 @@ class NoFpController extends Controller
             $tgl = explode('-', $d->tgl);
             $d->no_surat = 'B-' . $d->no . 'A/92800/KU.600/' . $tgl[1] . '/' . $tgl[0];
         }
-        // $last = NoFP::latest('no')->first();
-        // dd($last);
+
         return view('no-surat.fp.index', compact('data'));
     }
 
@@ -26,7 +25,7 @@ class NoFpController extends Controller
         $validator = Validator::make($request->all(), [
             'no'        => 'required',
             'rincian'   => 'required',
-            'tgl'       => 'required'
+            'tgl'       => 'required|date'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -34,6 +33,7 @@ class NoFpController extends Controller
         $data['no'] = $request->no;
         $data['rincian'] = $request->rincian;
         $data['tgl'] = $request->tgl;
+        $data['edited_by'] = session('user_id');
 
         $res = NoFp::create($data);
         return redirect()->route('no-surat.fp.index');
@@ -48,11 +48,11 @@ class NoFpController extends Controller
     public function update($id, Request $request)
     {
         $find = NoFp::find($id);
-        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'no'        => 'required',
             'rincian'   => 'required',
-            'tgl'       => 'required',
+            'tgl'       => 'required|date',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -60,6 +60,7 @@ class NoFpController extends Controller
         $data['no'] = $request->no;
         $data['rincian'] = $request->rincian;
         $data['tgl'] = $request->tgl;
+        $data['edited_by'] = session('user_id');
 
         $find->update($data);
         return redirect()->route('no-surat.fp.index');

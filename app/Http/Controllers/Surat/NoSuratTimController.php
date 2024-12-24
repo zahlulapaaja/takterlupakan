@@ -28,11 +28,11 @@ class NoSuratTimController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'tim'       => 'required',
+            'tim'       => 'required|numeric',
             'jenis'     => 'required',
             'no'        => 'required',
             'rincian'   => 'required',
-            'tgl'       => 'required'
+            'tgl'       => 'required|date'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -69,11 +69,11 @@ class NoSuratTimController extends Controller
     {
         $find = NoSuratTim::find($id);
         $validator = Validator::make($request->all(), [
-            'tim'       => 'required',
+            'tim'       => 'required|numeric',
             'jenis'     => 'required',
             'no'        => 'required',
             'rincian'   => 'required',
-            'tgl'       => 'required',
+            'tgl'       => 'required|date',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);

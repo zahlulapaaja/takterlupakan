@@ -79,8 +79,8 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tim Kerja</label>
-                            <select class="form-select" name="tim" data-placeholder="Pilih Tim Kerja" required>
-                                <option></option>
+                            <select class="form-select" name="tim" required>
+                                <option value="" hidden>Pilih Tim Kerja...</option>
                                 @for($i = 0; $i < 5; $i++)
                                     <option value="{{$i}}">Tim {{$i}}</option>
                                     @endfor
@@ -209,7 +209,7 @@
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Select2-->
                                         <div class="w-2/5">
-                                            <select class="form-select" name="petugas" data-placeholder="Select a variation" data-kt-ecommerce-catalog-add-product="product_option" required>
+                                            <select class="form-select" name="petugas" data-kt-ecommerce-catalog-add-product="product_option" required>
                                                 <option value="{{$ptg->status . '-' . $ptg->id_status}}" selected>{{'[' . $ptg->status . '] ' . $ptg->nama}}</option>
                                                 @foreach($list_petugas as $p)
                                                 <option value="{{$p->status . '-' . $p->id}}">{{$p->list}}</option>

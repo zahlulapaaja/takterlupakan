@@ -197,8 +197,8 @@
                                 <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan" data-placeholder="Pilih Golongan">
-                                        <option hidden></option>
+                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan">
+                                        <option value="" hidden>Pilih Golongan</option>
                                         <option value="I/a">I/a</option>
                                         <option value="I/b">I/b</option>
                                         <option value="I/c">I/c</option>
@@ -235,8 +235,8 @@
                                 <!--end::Label-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat" data-placeholder="Pilih Pangkat">
-                                        <option hidden></option>
+                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat">
+                                        <option value="" hidden>Pilih Pangkat</option>
                                         <option value="Juru Muda">Juru Muda</option>
                                         <option value="Juru Muda Tingkat I">Juru Muda Tingkat I</option>
                                         <option value="Juru">Juru</option>
@@ -327,8 +327,8 @@
                                 <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank" data-placeholder="Pilih Bank">
-                                        <option hidden></option>
+                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank">
+                                        <option value="" hidden>Pilih Nama Bank</option>
                                         <option value="BSI">BSI</option>
                                         <option value="Bank Aceh">Bank Aceh</option>
                                         <option value="BRI">BRI</option>
