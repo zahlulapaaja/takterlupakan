@@ -34,25 +34,40 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @foreach($list_tahun as $thn)
+                        @foreach($data as $d)
                         <tr>
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">Referensi Tahun {{ $thn->tahun }}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">Referensi Tahun {{ $d->tahun }}</span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{route('master.referensi.show', $thn->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('master.referensi.show', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-book-open fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="{{route('master.referensi.edit', $thn->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('master.referensi.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
                                     </a>
+                                    @if($loop->last)
+                                    <form method="post" action="{{route('master.referensi.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button style="all: unset" type="submit">
+                                            <i class="ki-duotone ki-trash fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                                <span class="path3"></span>
+                                                <span class="path4"></span>
+                                                <span class="path5"></span>
+                                        </button>
+                                        </i>
+                                    </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

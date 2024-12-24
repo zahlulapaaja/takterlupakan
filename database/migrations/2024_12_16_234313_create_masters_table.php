@@ -60,22 +60,13 @@ return new class extends Migration
 
         Schema::create('referensis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kpa');
-            $table->string('nip_kpa');
-            $table->string('nama_ppk');
-            $table->string('nip_ppk');
-            $table->string('nama_bend');
-            $table->string('nip_bend');
+            $table->integer('kpa');
+            $table->integer('ppk');
+            $table->integer('bend');
             $table->string('no_dipa');
             $table->date('tgl_dipa');
             $table->string('no_sk_kpa');
             $table->date('tgl_sk_kpa');
-            $table->string('jln')->nullable();
-            $table->string('kab')->nullable();
-            $table->integer('kodepos')->nullable();
-            $table->string('tlp')->nullable();
-            $table->string('email')->nullable();
-            $table->string('web')->nullable();
             $table->integer('tahun');
             $table->timestamps();
         });

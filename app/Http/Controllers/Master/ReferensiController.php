@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -11,40 +12,32 @@ class ReferensiController extends Controller
 {
     public function index()
     {
-        $list_tahun = Referensi::select('id', 'tahun')->orderBy('tahun', 'ASC')->get();
-        // dd($list_tahun);
-        // foreach ($data as $d) {
-        //     $tgl = explode('-', $d->tgl);
-        //     $d->no_surat = 'B-' . $d->no . 'A/92800/KU.600/' . $tgl[1] . '/' . $tgl[0];
-        // }
-        // $last = NoFP::latest('no')->first();
-        // dd($last);
-        // return view('master.referensi.index', compact('data'));
-        return view('master.referensi.index', compact('list_tahun'));
+        $data = Referensi::select('id', 'tahun')->orderBy('tahun', 'ASC')->get();
+
+        return view('master.referensi.index', compact('data'));
     }
 
     public function create()
     {
         $last_tahun = Referensi::max('tahun');
+        $pegawai = Pegawai::all();
+
         if ($last_tahun == null) {
             $last_tahun = explode('-', now())[0];
         } else {
             $last_tahun++;
         }
 
-        return view('master.referensi.create', compact('last_tahun'));
+        return view('master.referensi.create', compact('last_tahun', 'pegawai'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'tahun'       => 'required',
-            'nama_kpa'    => 'required',
-            'nip_kpa'     => 'required',
-            'nama_ppk'    => 'required',
-            'nip_ppk'     => 'required',
-            'nama_bend'   => 'required',
-            'nip_bend'    => 'required',
+            'kpa'         => 'required',
+            'ppk'         => 'required',
+            'bend'        => 'required',
             'no_dipa'     => 'required',
             'tgl_dipa'    => 'required',
             'no_sk_kpa'   => 'required',
@@ -54,22 +47,13 @@ class ReferensiController extends Controller
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         $data['tahun'] = $request->tahun;
-        $data['nama_kpa'] = $request->nama_kpa;
-        $data['nip_kpa'] = $request->nip_kpa;
-        $data['nama_ppk'] = $request->nama_ppk;
-        $data['nip_ppk'] = $request->nip_ppk;
-        $data['nama_bend'] = $request->nama_bend;
-        $data['nip_bend'] = $request->nip_bend;
+        $data['kpa'] = $request->kpa;
+        $data['ppk'] = $request->ppk;
+        $data['bend'] = $request->bend;
         $data['no_dipa'] = $request->no_dipa;
         $data['tgl_dipa'] = $request->tgl_dipa;
         $data['no_sk_kpa'] = $request->no_sk_kpa;
         $data['tgl_sk_kpa'] = $request->tgl_sk_kpa;
-        $data['jln'] = $request->jln;
-        $data['kab'] = $request->kab;
-        $data['kodepos'] = $request->kodepos;
-        $data['tlp'] = $request->tlp;
-        $data['email'] = $request->email;
-        $data['web'] = $request->web;
 
         Referensi::create($data);
         return redirect()->route('master.referensi.index');
@@ -78,12 +62,21 @@ class ReferensiController extends Controller
     public function edit($id)
     {
         $data = Referensi::find($id);
-        return view('master.referensi.edit', compact('data'));
+        $data->kpa = Pegawai::find($data->kpa);
+        $data->ppk = Pegawai::find($data->ppk);
+        $data->bend = Pegawai::find($data->bend);
+        $pegawai = Pegawai::all();
+
+        return view('master.referensi.edit', compact('data', 'pegawai'));
     }
 
     public function show($id)
     {
         $data = Referensi::find($id);
+        $data->kpa = Pegawai::find($data->kpa);
+        $data->ppk = Pegawai::find($data->ppk);
+        $data->bend = Pegawai::find($data->bend);
+
         return view('master.referensi.show', compact('data'));
     }
 
@@ -91,12 +84,9 @@ class ReferensiController extends Controller
     {
         $find = Referensi::find($id);
         $validator = Validator::make($request->all(), [
-            'nama_kpa'    => 'required',
-            'nip_kpa'     => 'required',
-            'nama_ppk'    => 'required',
-            'nip_ppk'     => 'required',
-            'nama_bend'   => 'required',
-            'nip_bend'    => 'required',
+            'kpa'         => 'required',
+            'ppk'         => 'required',
+            'bend'        => 'required',
             'no_dipa'     => 'required',
             'tgl_dipa'    => 'required',
             'no_sk_kpa'   => 'required',
@@ -105,25 +95,23 @@ class ReferensiController extends Controller
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
-        $data['nama_kpa'] = $request->nama_kpa;
-        $data['nip_kpa'] = $request->nip_kpa;
-        $data['nama_ppk'] = $request->nama_ppk;
-        $data['nip_ppk'] = $request->nip_ppk;
-        $data['nama_bend'] = $request->nama_bend;
-        $data['nip_bend'] = $request->nip_bend;
+        $data['kpa'] = $request->kpa;
+        $data['ppk'] = $request->ppk;
+        $data['bend'] = $request->bend;
         $data['no_dipa'] = $request->no_dipa;
         $data['tgl_dipa'] = $request->tgl_dipa;
         $data['no_sk_kpa'] = $request->no_sk_kpa;
         $data['tgl_sk_kpa'] = $request->tgl_sk_kpa;
-        $data['jln'] = $request->jln;
-        $data['kab'] = $request->kab;
-        $data['kodepos'] = $request->kodepos;
-        $data['tlp'] = $request->tlp;
-        $data['email'] = $request->email;
-        $data['web'] = $request->web;
 
-        // dd($find);
         $find->update($data);
         return redirect()->route('master.referensi.index');
+    }
+
+    public function destroy($id)
+    {
+        $data = Referensi::find($id);
+        $data->delete();
+
+        return redirect()->route('master.referensi.index')->with('success', 'Data Referensi berhasil dihapus');
     }
 }

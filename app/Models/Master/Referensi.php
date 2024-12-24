@@ -12,22 +12,13 @@ class Referensi extends Model
     protected $table = "referensis";
 
     protected $fillable = [
-        'nama_kpa',
-        'nip_kpa',
-        'nama_ppk',
-        'nip_ppk',
-        'nama_bend',
-        'nip_bend',
+        'kpa',
+        'ppk',
+        'bend',
         'no_dipa',
         'tgl_dipa',
         'no_sk_kpa',
         'tgl_sk_kpa',
-        'jln',
-        'kab',
-        'kodepos',
-        'tlp',
-        'email',
-        'web',
         'tahun',
     ];
 }
