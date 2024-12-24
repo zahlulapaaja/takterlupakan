@@ -135,10 +135,13 @@ class SkController extends Controller
     public function print($id)
     {
         $data = Sk::find($id);
-        $ref = Referensi::where('tahun', $data->tahun)->first();
         $data->no_sk = $data->no . '/SK/BPS-1107/' . explode('-', $data->tgl_ditetapkan)[0];
         $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
         $data->petugas = $data->getPetugas($id);
+
+        // mengambil referensi
+        $ref = Referensi::where('tahun', $data->tahun)->first();
+        $ref->kpa = Pegawai::find($ref->kpa);
 
         // format tanggal data sk
         $data->tgl_ditetapkan = date_indo($data->tgl_ditetapkan);

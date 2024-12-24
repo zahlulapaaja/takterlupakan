@@ -79,7 +79,7 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
                                         <i class="ki-duotone ki-printer fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>

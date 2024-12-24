@@ -12,8 +12,8 @@
     <div class="text-xl mb-8">KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK {{ config('constants.KABUPATEN') }}</div>
     @endsection
 
-    <div class="leading-loose text-justify text-lg">
-        <table class="mx-12 mt-8">
+    <div class="leading-normal text-justify text-lg">
+        <table class="mx-12 mt-4">
             <tr>
                 <td class="align-top font-bold" width="10%">MENIMBANG</td>
                 <td class="align-top" width="1%">:</td>
@@ -87,11 +87,7 @@
                 </td>
             </tr>
         </table>
-    </div>
 
-    <div class="page-break"></div>
-
-    <div class="leading-loose text-justify text-lg">
         <table class="mx-12 mt-8">
             <tr>
                 <td class="align-top" width="10%"><b>MEMPERHATIKAN</b></td>
@@ -178,8 +174,8 @@
                 <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
                 <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
                 <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
-                <span class="font-bold">{{ $ref->nama_kpa }}</span>
-                <span>NIP. {{ $ref->nip_kpa }}</span>
+                <span class="font-bold">{{ $ref->kpa->nama }}</span>
+                <span>NIP. {{ $ref->kpa->nip_baru }}</span>
             </div>
         </div>
     </div>
@@ -244,8 +240,8 @@
             <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
             <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
             <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
-            <span class="font-bold">{{ $ref->nama_kpa }}</span>
-            <span>NIP. {{ $ref->nip_kpa }}</span>
+            <span class="font-bold">{{ $ref->kpa->nama }}</span>
+            <span>NIP. {{ $ref->kpa->nip_baru }}</span>
         </div>
     </div>
 </x-print-layout>
