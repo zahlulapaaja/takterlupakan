@@ -140,7 +140,7 @@
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['akun'][$p]) }}</span>
         </td>
-        @if(in_array($data[$i]->kode_akun, $list_akun_input))
+        @if(in_array($data[$i]->kode_akun, config('constants.LIST_AKUN_INPUT')))
         <!-- <td class="bg-white">
             <form method="post" action="{{ route('kegiatan.spj.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
@@ -184,7 +184,7 @@
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data[$i]->jumlah) }}</span>
         </td>
-        @if(in_array($data[$i]->kode_akun, $list_akun_input))
+        @if(in_array($data[$i]->kode_akun, config('constants.LIST_AKUN_INPUT')))
         <td class="bg-white">
             <form method="post" action="{{ route('kegiatan.spj.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf

@@ -12,7 +12,6 @@ class PokController extends Controller
 {
     public function index()
     {
-
         // mengambil data tahun dan revisi terbaru
         $tahun = Pok::max('tahun');
         $revisi = Pok::where('tahun', $tahun)->max('revisi');
@@ -24,13 +23,8 @@ class PokController extends Controller
         // list untuk tampilan
         $list_tahun = Pok::distinct()->orderBy('tahun', 'DESC')->get('tahun');
         $list_revisi = Pok::distinct()->orderBy('revisi', 'DESC')->where('tahun', $tahun)->get('revisi');
-        $list_akun_input = ['524113', '521213', '524111'];
 
-        // dd($pokk);
-        // dd($jlh_pokk);
-        // dd($sama);
-
-        return view('pok.index', compact('data', 'list_tahun', 'list_revisi', 'list_akun_input'));
+        return view('pok.index', compact('data', 'list_tahun', 'list_revisi',));
     }
 
     public function impor()

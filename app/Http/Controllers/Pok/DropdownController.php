@@ -28,9 +28,8 @@ class DropdownController extends Controller
 
         $pok = new Pok();
         $data = $pok->getViewPok($request->tahun, $request->revisi);
-        $list_akun_input = ['524113', '521213', '524111'];
 
-        $view = view('pok._table-body-pok', compact('data', 'list_akun_input'))->render();
+        $view = view('pok._table-body-pok', compact('data'))->render();
         return response()->json(['view' => $view], 200);
     }
 
@@ -40,9 +39,8 @@ class DropdownController extends Controller
         // return $request->search_keyword;
         $pok = new Pok();
         $data = $pok->getViewPok($request->tahun, $request->revisi, $request->search_keyword);
-        $list_akun_input = ['524113', '521213', '524111'];
 
-        $view = view('pok._table-body-pok', compact('data', 'list_akun_input'))->render();
+        $view = view('pok._table-body-pok', compact('data'))->render();
         return response()->json(['view' => $view], 200);
     }
 
