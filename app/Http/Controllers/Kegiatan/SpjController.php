@@ -135,6 +135,14 @@ class SpjController extends Controller
         return redirect()->route('kegiatan.spj.index');
     }
 
+    public function destroy($id)
+    {
+        $data = Spj::find($id);
+        $data->deleteSpj($data);
+        $data->delete();
+        return redirect()->route('kegiatan.spj.index')->with('success', 'SPJ berhasil dihapus');
+    }
+
     public function print($id)
     {
         $data = Spj::find($id);

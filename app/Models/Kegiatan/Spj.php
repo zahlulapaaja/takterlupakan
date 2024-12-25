@@ -122,4 +122,17 @@ class Spj extends Model
             return $res;
         }
     }
+
+    public function deleteSpj($spj)
+    {
+        if ($spj->kode_akun == config('constants.AKUN_HONOR')) {
+            DB::table('spjs_honor')->where('spjs_id', $spj->id)
+                ->delete();
+            return true;
+        } else if ($spj->kode_akun == config('constants.AKUN_TRANSLOK')) {
+            DB::table('spjs_translok')->where('spjs_id', $spj->id)
+                ->delete();
+            return true;
+        }
+    }
 }
