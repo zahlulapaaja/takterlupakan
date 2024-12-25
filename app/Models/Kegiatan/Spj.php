@@ -13,20 +13,17 @@ class Spj extends Model
     protected $table = "spjs";
 
     protected $fillable = [
-        'poks_id',
-        'no',
-        'nama_kegiatan',
-        'tgl_mulai',
-        'tgl_akhir',
-        'tgl_spj',
-        'pjk',
-        'tahun'
+        'kegiatans_id',
+        'tgl',
+        'no_st',
+        'tgl_st',
+        'kode_akun',
+        'tahun',
+        'edited_by',
     ];
 
-    public function insertAlokasiBeban($spj_id, $request)
+    public function insertSpjHonor($spj_id, $request)
     {
-
-        // dd($data['status']);
         for ($i = 0; $i < count($request['status']); $i++) {
             $data['spjs_id'] = $spj_id;
             $data['status'] = $request['status'][$i];
@@ -39,33 +36,34 @@ class Spj extends Model
             }
 
             $data['beban'] = $request['beban'][$i];
-            $data['melakukan'] = $request['melakukan'][$i];
-            $data['lokasi'] = $request['lokasi'][$i];
-
-            $res[] = DB::table('spjs_alokasi_beban')->insert($data);
+            $res[] = DB::table('spjs_honor')->insert($data);
         }
 
         return $res;
     }
 
-    public function getPetugas($sks_id)
+    public function insertSpjTranslok($spj_id, $request)
     {
-        // $result = DB::table('sks_petugas')->where('sks_id', $sks_id)->get();
+        for ($i = 0; $i < count($request['status']); $i++) {
+            $data['spjs_id'] = $spj_id;
+            $data['status'] = $request['status'][$i];
+            if ($request['status'][$i] == "N") {
+                $data['mitra_id'] = $request['id_status'][$i];
+                $data['pegawai_id'] = null;
+            } else {
+                $data['mitra_id'] = null;
+                $data['pegawai_id'] = $request['id_status'][$i];
+            }
 
-        // foreach ($result as $value) {
-        //     if ($value->status == 'O') {
-        //         $pegawai = Pegawai::find($value->pegawai_id);
-        //         $value->nama = $pegawai->nama;
-        //         $value->gol = $pegawai->golongan;
-        //         $value->id_status = $pegawai->id;
-        //     } else {
-        //         $mitra = Mitra::find($value->mitra_id);
-        //         $value->nama = $mitra->nama;
-        //         $value->gol = '-';
-        //         $value->id_status = $mitra->id;
-        //     }
-        // }
+            $data['byk_kunj'] = $request['kunj'][$i];
+            $data['melakukan'] = $request['melakukan'][$i];
+            $data['lokasi'] = $request['lokasi'][$i];
+            $data['tgl_kunj'] = $request['tgl_kunj'][$i];
+            $data['nominal'] = $request['nominal'][$i];
 
-        return '$result';
+            $res[] = DB::table('spjs_translok')->insert($data);
+        }
+
+        return $res;
     }
 }

@@ -48,14 +48,15 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('/kegiatan', KegiatanController::class)->except(['create', 'show']);
+    Route::post('/kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
     Route::name('kegiatan.')->group(function () {
-        // Route::resource('/kegiatan/kegiatan', KegiatanController::class)->except(['create']);
-        Route::post('/kegiatan/create', [KegiatanController::class, 'create'])->name('create');
-        Route::resource('/kegiatan/sk', SkController::class)->except(['create']);
         Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
+        Route::resource('/kegiatan/sk', SkController::class)->except(['create']);
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
-        Route::resource('/kegiatan/spj', SpjController::class)->except(['create']);
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
+        Route::resource('/kegiatan/spj', SpjController::class);
+
+        // masih coba-coba 
         Route::get('/kegiatan/spj/{spj}/print', [SpjController::class, 'print'])->name('spj.print');
         Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
         Route::get('/kegiatan/bast/{bast}/print', [SpkController::class, 'bast_print'])->name('bast.print');

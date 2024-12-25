@@ -48,8 +48,10 @@ class DropdownController extends Controller
     {
         $sk = Sk::find($request->id_sk);
         $list_petugas = $sk->getPetugas($sk->id);
+        $satuan = $request->satuan;
+        $akun = $request->akun;
 
-        $view = view('kegiatan.spj._table-alokasi-beban', compact('list_petugas'))->render();
+        $view = view('kegiatan.spj._table-alokasi-beban', compact('list_petugas', 'akun', 'satuan'))->render();
         return response()->json(['view' => $view], 200);
     }
 

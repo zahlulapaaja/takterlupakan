@@ -19,7 +19,7 @@
                 <!--begin::Card header-->
                 <div class="card-header">
                     <div class="card-title">
-                        <h2>Detail SK</h2>
+                        <h2>Detail Kegiatan</h2>
                     </div>
                 </div>
                 <!--end::Card header-->
@@ -28,45 +28,46 @@
                     <div class="d-flex flex-column gap-10">
                         <!--begin::Input group-->
                         <div class="fv-row">
-                            <input type="hidden" name="poks_id" value="{{$pok->id}}" />
-                            <input type="hidden" name="tahun" value="{{$pok->tahun}}" />
-                            <!--begin::Output-->
-                            <div class="d-flex flex-column flex-lg-row py-auto">
-                                <label class="w-32 font-semibold fs-6"><span class="bg-amber-300">Output</span></label>
-                                <div class="fw-semibold fs-6">[{{ $pok->kode_kegiatan . '.' . $pok->kode_output}}] {{ $pok->output }}</div>
+                            <input type="hidden" name="kegiatans_id" value="{{$data->id}}" />
+                            <input type="hidden" name="akun" value="{{$data->pok->kode_akun}}" />
+                            <input type="hidden" name="tahun" value="{{$data->pok->tahun}}" />
+                            <!--begin::MAK-->
+                            <div class="d-flex flex-column flex-lg-row py-auto gap-5">
+                                <label class="w-32 font-semibold fs-6">MAK</label>
+                                <div class="fw-semibold fs-6 bg-cyan-300">{{ $data->mak }}</div>
                             </div>
-                            <!--end::Output-->
-                            <!--begin::Sub Output-->
-                            <div class="d-flex flex-column flex-lg-row py-auto">
-                                <label class="w-32 font-semibold fs-6"><span class="bg-yellow-300">Sub Output</span></label>
-                                <div class="fw-semibold fs-6">[{{ $pok->kode_kegiatan . '.' . $pok->kode_output . '.' . $pok->kode_suboutput}}] {{$pok->suboutput }}</div>
+                            <!--end::MAK-->
+                            <!--begin::Nama Kegiatan-->
+                            <div class="d-flex flex-column flex-lg-row py-auto gap-5">
+                                <label class="w-32 font-semibold fs-6">Nama Kegiatan</label>
+                                <div class="fw-semibold fs-6">{{ $data->nama }}</div>
                             </div>
-                            <!--end::Sub Output-->
-                            <!--begin::Komponen-->
-                            <div class="d-flex flex-column flex-lg-row py-auto">
-                                <label class="w-32 font-semibold fs-6"><span class="bg-lime-300">Komponen</span></label>
-                                <div class="fw-semibold fs-6">[{{ $pok->kode_komponen }}] {{ $pok->komponen }}</div>
+                            <!--end::Nama Kegiatan-->
+                            <!--begin::Jadwal Kegiatan-->
+                            <div class="d-flex flex-column flex-lg-row py-auto gap-5">
+                                <label class="text-nowrap w-32 font-semibold fs-6">Jadwal Kegiatan</label>
+                                <div class="fw-semibold fs-6">{{$data->tgl_mulai}} s.d. {{$data->tgl_akhir}}</div>
                             </div>
-                            <!--end::Komponen-->
-                            <!--begin::Akun-->
-                            <div class="d-flex flex-column flex-lg-row py-auto">
-                                <label class="w-32 font-semibold fs-6"><span class="bg-cyan-300">Akun</span></label>
-                                <div class="fw-semibold fs-6">[{{ $pok->kode_akun }}] {{ $pok->akun }}</div>
+                            <!--end::Jadwal Kegiatan-->
+                            <!--begin::PJK-->
+                            <div class="d-flex flex-column flex-lg-row py-auto gap-5">
+                                <label class="w-32 font-semibold fs-6">PJK</label>
+                                <div class="fw-semibold fs-6">{{$data->pjk->nama}}</div>
                             </div>
-                            <!--end::Akun-->
+                            <!--end::PJK-->
                             <!--begin::Detil Kegiatan-->
-                            <div class="d-flex flex-column flex-lg-row py-auto">
+                            <div class="d-flex flex-column flex-lg-row py-auto gap-5">
                                 <label class="w-32 font-semibold fs-6">Detil Kegiatan</label>
-                                <div class="fw-semibold fs-6">{{ $pok->item_kegiatan }}</div>
+                                <div class="fw-semibold fs-6">{{ $data->pok->item_kegiatan }}</div>
                             </div>
                             <!--end::Detil Kegiatan-->
                             <!--begin::Anggaran-->
-                            <div class="d-flex flex-column flex-lg-row py-auto">
+                            <div class="d-flex flex-column flex-lg-row py-auto gap-5">
                                 <label class="w-32 font-semibold fs-6">Anggaran</label>
                                 <div class="fw-semibold fs-6 d-flex flex-column flex-lg-row">
-                                    <span class="mr-8">[Volume : {{ $pok->volume }}]</span>
-                                    <span class="mr-8">[Satuan : {{ $pok->satuan }}]</span>
-                                    <span>[Jumlah : {{ $pok->jumlah }}]</span>
+                                    <span class="mr-8">[Volume : {{ $data->pok->volume }}]</span>
+                                    <span class="mr-8">[Satuan : {{ $data->pok->satuan }}]</span>
+                                    <span>[Jumlah : {{ $data->pok->jumlah }}]</span>
                                 </div>
                             </div>
                             <!--end::Anggaran-->
@@ -78,98 +79,47 @@
             </div>
             <!--end::Order details-->
 
-            <div class="d-flex flex-column flex-lg-row gap-7">
-                <!--begin::No SPJ details-->
-                <div class="w-full w-lg-1/2 card card-flush py-4">
-                    <!--begin::Card header-->
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Nomor SPJ</h2>
-                        </div>
+            <div class="card card-flush py-4">
+                <!--begin::Card header-->
+                <div class="card-header">
+                    <div class="card-title">
+                        <h2>Tanggal SPJ</h2>
                     </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
-                    <div class="card-body pt-0">
-                        <div class="d-flex flex-column gap-5">
-                            <!--begin::Input group-->
-                            <div class="fv-row">
-                                <label class="required form-label">No SPJ</label>
-                                <input type="text" class="form-control" placeholder="001" name="no" required />
-                                <div class="text-muted fs-7">Nomor terakhir tahun ini : {{$last_no}}</div>
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row">
-                                <label class="required form-label">Tanggal SPJ</label>
-                                <input type="date" name="tgl_spj" class="form-control mb-2" />
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div class="fv-row">
-                                <label class="required form-label">Tim Kerja (perlu ga ya)</label>
-                                <select class="form-select" name="tim" required>
-                                    <option value="" hidden>Pilih Tim Kerja</option>
-                                    @for($i = 0; $i < 5; $i++)
-                                        <option value="{{$i}}">Tim {{$i}}</option>
-                                        @endfor
-                                </select>
-                            </div>
-                            <!--end::Input group-->
-                        </div>
-                    </div>
-                    <!--end::Card header-->
                 </div>
-                <!--end::No SPJ details-->
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <div class="d-flex flex-column gap-5">
+                        <!--begin::Input group-->
+                        <div class="fv-row">
+                            <label class="required form-label">Input SPJ</label>
+                            <input type="date" class="form-control" name="tgl" required />
+                        </div>
+                        <!--end::Input group-->
 
-                <!--begin::Kegiatan details-->
-                <div class="w-full w-lg-1/2 card card-flush py-4">
-                    <!--begin::Card header-->
-                    <div class="card-header">
-                        <div class="card-title">
-                            <h2>Detail Kegiatan</h2>
-                        </div>
-                    </div>
-                    <!--end::Card header-->
-                    <!--begin::Card body-->
-                    <div class="card-body pt-0">
-                        <div class="d-flex flex-column gap-5">
+                        @if($data->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
+                        <div class="d-flex flex-column flex-md-row gap-5">
                             <!--begin::Input group-->
-                            <div class="fv-row">
-                                <label class="required form-label">Nama Kegiatan</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan..." name="nama_kegiatan" />
+                            <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
+                                <label class="required form-label">Nomor Surat Tugas</label>
+                                <input type="text" name="no_st" class="form-control mb-2" placeholder="001/XX/XXXX/XXXX" />
+                                <div class="text-muted fs-7">Nomor surat tugas dari BOS</div>
                             </div>
                             <!--end::Input group-->
-                            <div class="d-flex flex-column flex-md-row gap-5">
-                                <!--begin::Input group-->
-                                <div class="fv-row flex-row-fluid">
-                                    <label class="required form-label">Tanggal Mulai</label>
-                                    <input type="date" name="tgl_mulai" class="form-control mb-2" />
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="fv-row flex-row-fluid">
-                                    <label class="required form-label">Tanggal Akhir</label>
-                                    <input type="date" name="tgl_akhir" class="form-control mb-2" />
-                                </div>
-                                <!--end::Input group-->
-                            </div>
                             <!--begin::Input group-->
-                            <div class="fv-row">
-                                <label class="required form-label">PJK</label>
-                                <select class="form-select" name="pjk" required>
-                                    <option value="" hidden>Pilih PJK</option>
-                                    @foreach($list_pegawai as $p)
-                                    <option value="{{$p->id}}">{{$p->nama}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
+                                <label class="required form-label">Tanggal Surat Tugas</label>
+                                <input type="date" name="tgl_st" class="form-control mb-2" />
                             </div>
                             <!--end::Input group-->
                         </div>
+                        @endif
+
                     </div>
-                    <!--end::Card header-->
                 </div>
-                <!--end::Kegiatan details-->
+                <!--end::Card header-->
             </div>
+            <!--end::No SPJ details-->
 
             <!--begin::Petugas-->
             <div class="card card-flush py-4">
@@ -195,7 +145,6 @@
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div id="daftar-petugas" class="my-4">
-                        @include('kegiatan.spj._table-alokasi-beban')
                     </div>
                     <!--end::Input group-->
                 </div>
@@ -221,13 +170,6 @@
     <!--end::Form-->
 
     @push('scripts')
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/ecommerce/sales/save-order.js') }}"></script>
-    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
     <script>
         $(document).ready(function() {
 
@@ -241,6 +183,8 @@
                     type: "POST",
                     data: {
                         id_sk: id_sk,
+                        akun: '{{$data->pok->kode_akun}}',
+                        satuan: '{{$data->pok->satuan}}',
                         _token: '{{csrf_token()}}'
                     },
                     dataType: 'json',
