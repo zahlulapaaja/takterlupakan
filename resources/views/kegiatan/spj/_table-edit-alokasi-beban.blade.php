@@ -11,11 +11,10 @@
             @foreach($list_petugas as $p)
             <div class="form-group d-flex flex-column flex-lg-row gap-5">
                 <!--begin::Input-->
-                <input type="hidden" name="id_status[]" value="{{$p->id_status}}" />
-                <input type="hidden" name="status[]" value="{{$p->status}}" />
+                <input type="hidden" name="id_honor[]" value="{{$p->id}}" />
                 <input type="text" class="form-control w-full w-lg-3/6" name="petugas[]" value="{{$p->nama}}" readonly />
-                <input type="number" class="form-control w-full w-lg-1/6" name="beban[]" placeholder="Beban" required />
-                <span class="w-full w-lg-1/6 text-left text-lg my-auto">{{$satuan}}</span>
+                <input type="number" class="form-control w-full w-lg-1/6" name="beban[]" value="{{$p->beban}}" placeholder="Beban" required />
+                <span class="w-full w-lg-1/6 text-left text-lg my-auto">{{$keg->pok->satuan}}</span>
                 <!--end::Input-->
             </div>
             @endforeach
@@ -31,17 +30,16 @@
             @foreach($list_petugas as $p)
             <div class="form-group d-flex flex-column flex-lg-row gap-5">
                 <!--begin::Input-->
-                <input type="hidden" name="id_status[]" value="{{$p->id_status}}" />
-                <input type="hidden" name="status[]" value="{{$p->status}}" />
+                <input type="hidden" name="id_translok[]" value="{{$p->id}}" />
                 <input type="text" class="form-control w-full w-lg-1/6" name="petugas[]" value="{{$p->nama}}" readonly />
                 <span class="d-flex flex-row w-full w-lg-1/6">
-                    <input type="number" class="form-control" name="byk_kunj[]" placeholder="Byk Kunj..." required />
-                    <span class="text-left text-lg my-auto text-nowrap mx-1">{{$satuan}}</span>
+                    <input type="number" class="form-control" name="byk_kunj[]" placeholder="Byk Kunj..." value="{{$p->byk_kunj}}" required />
+                    <span class="text-left text-lg my-auto text-nowrap mx-1">{{$keg->pok->satuan}}</span>
                 </span>
-                <input type="text" class="form-control w-full w-lg-1/6" name="melakukan[]" placeholder="Melakukan" required />
-                <input type="text" class="form-control w-full w-lg-1/6" name="lokasi[]" placeholder="Lokasi" required />
-                <input type="text" class="form-control w-full w-lg-1/6" name="tgl_kunj[]" placeholder="Tgl Kunj" required />
-                <input type="number" class="form-control w-full w-lg-1/6" name="nominal[]" placeholder="Realisasi" required />
+                <input type="text" class="form-control w-full w-lg-1/6" name="melakukan[]" placeholder="Melakukan" value="{{$p->melakukan}}" required />
+                <input type="text" class="form-control w-full w-lg-1/6" name="lokasi[]" placeholder="Lokasi" value="{{$p->lokasi}}" required />
+                <input type="text" class="form-control w-full w-lg-1/6" name="tgl_kunj[]" placeholder="Tgl Kunj" value="{{$p->tgl_kunj}}" required />
+                <input type="number" class="form-control w-full w-lg-1/6" name="nominal[]" placeholder="Realisasi" value="{{$p->nominal}}" required />
                 <!--end::Input-->
             </div>
             @endforeach

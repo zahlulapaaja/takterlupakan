@@ -147,4 +147,16 @@ class Pok extends Model
 
         return $data;
     }
+
+    public function getMak($pok)
+    {
+        $mak = $pok->kode_kegiatan . '.' .
+            $pok->kode_output . '.' .
+            $pok->kode_suboutput . '.' .
+            $pok->kode_komponen . '.' .
+            $pok->kode_subkomponen . '.' .
+            $pok->kode_akun;
+
+        return $mak;
+    }
 }

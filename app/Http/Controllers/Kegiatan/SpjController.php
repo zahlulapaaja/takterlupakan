@@ -49,22 +49,16 @@ class SpjController extends Controller
         }
 
         // mengambil data
-        $data = Kegiatan::find($request->kegiatans_id);
-        $data->pok = Pok::find($data->poks_id);
-        $data->tgl_mulai = date_indo($data->tgl_mulai);
-        $data->tgl_akhir = date_indo($data->tgl_akhir);
+        $keg = Kegiatan::find($request->kegiatans_id);
+        $keg->pok = Pok::find($keg->poks_id);
+        $keg->tgl_mulai = date_indo($keg->tgl_mulai);
+        $keg->tgl_akhir = date_indo($keg->tgl_akhir);
 
-        $data->mak = $data->pok->kode_kegiatan . '.' .
-            $data->pok->kode_output . '.' .
-            $data->pok->kode_suboutput . '.' .
-            $data->pok->kode_komponen . '.' .
-            $data->pok->kode_subkomponen . '.' .
-            $data->pok->kode_akun;
+        $keg->mak = $keg->pok->getMak($keg->pok);
+        $keg->pjk = Pegawai::find($keg->pjk);
+        $sk = Sk::where('tahun', $keg->tahun)->get();
 
-        $data->pjk = Pegawai::find($data->pjk);
-        $sk = Sk::where('tahun', $data->tahun)->get();
-
-        return view('kegiatan.spj.create', compact('data', 'sk'));
+        return view('kegiatan.spj.create', compact('keg', 'sk'));
     }
 
     public function store(Request $request)
@@ -72,8 +66,6 @@ class SpjController extends Controller
         $validator = Validator::make($request->all(), [
             'kegiatans_id'   => 'required',
             'tgl'            => 'required',
-            'no_st'          => 'required',
-            'tgl_st'         => 'required',
             'akun'           => 'required',
             'tahun'          => 'required',
         ]);
@@ -101,12 +93,46 @@ class SpjController extends Controller
 
     public function edit($id)
     {
-        return $id;
+        // mengambil data
+        $data = Spj::find($id);
+
+        // mengambil data detail kegiatan
+        $keg = Kegiatan::find($data->kegiatans_id);
+        $keg->pok = Pok::find($keg->poks_id);
+        $keg->tgl_mulai = date_indo($keg->tgl_mulai);
+        $keg->tgl_akhir = date_indo($keg->tgl_akhir);
+
+        $keg->mak = $keg->pok->getMak($keg->pok);
+        $keg->pjk = Pegawai::find($keg->pjk);
+
+        // mengambil data petugas
+        $akun = $data->kode_akun;
+        $list_petugas = $data->getPetugas($data, $akun);
+
+        return view('kegiatan.spj.edit', compact('data', 'keg', 'akun', 'list_petugas'));
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
-        return $id;
+        $data = Spj::find($id);
+        $validator = Validator::make($request->all(), [
+            'tgl'            => 'required',
+            'akun'           => 'required',
+            'tahun'          => 'required',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $spj['tgl'] = $request->tgl;
+        $spj['no_st'] = $request->no_st;
+        $spj['tgl_st'] = $request->tgl_st;
+        $spj['edited_by'] = session('user_id');
+
+        // update data
+        $data->update($spj);
+        $data->updateSpj($request->all());
+
+        return redirect()->route('kegiatan.spj.index');
     }
 
     public function print($id)

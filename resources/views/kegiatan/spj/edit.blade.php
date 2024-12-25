@@ -9,9 +9,9 @@
     @endpush
 
     <!--begin::Form-->
-    <form id="form_create_spj" method="post" action="{{ route('kegiatan.spj.store') }}" class="form d-flex flex-column flex-lg-row">
+    <form id="form_update_spj" method="post" action="{{ route('kegiatan.spj.update', $data->id) }}" class="form d-flex flex-column flex-lg-row">
         @csrf
-        @method('POST')
+        @method('PUT')
         <!--begin::Aside column-->
         <div class="d-flex flex-column flex-lg-row-fluid gap-7 gap-lg-10">
             <!--begin::Order details-->
@@ -28,9 +28,9 @@
                     <div class="d-flex flex-column gap-10">
                         <!--begin::Input group-->
                         <div class="fv-row">
-                            <input type="hidden" name="kegiatans_id" value="{{$keg->id}}" />
+                            <input type="hidden" name="kegiatans_id" value="{{$data->kegiatans_id}}" />
                             <input type="hidden" name="akun" value="{{$keg->pok->kode_akun}}" />
-                            <input type="hidden" name="tahun" value="{{$keg->pok->tahun}}" />
+                            <input type="hidden" name="tahun" value="{{$data->tahun}}" />
                             <!--begin::MAK-->
                             <div class="d-flex flex-column flex-lg-row py-auto gap-5">
                                 <label class="w-32 font-semibold fs-6">MAK</label>
@@ -93,7 +93,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Input SPJ</label>
-                            <input type="date" class="form-control" name="tgl" required />
+                            <input type="date" class="form-control" name="tgl" value="{{$data->tgl}}" required />
                         </div>
                         <!--end::Input group-->
 
@@ -102,14 +102,14 @@
                             <!--begin::Input group-->
                             <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
                                 <label class="form-label">Nomor Surat Tugas</label>
-                                <input type="text" name="no_st" class="form-control mb-2" placeholder="001/XX/XXXX/XXXX" />
+                                <input type="text" name="no_st" class="form-control mb-2" placeholder="001/XX/XXXX/XXXX" value="{{$data->no_st}}" />
                                 <div class="text-muted fs-7">Nomor surat tugas dari BOS</div>
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
                                 <label class="form-label">Tanggal Surat Tugas</label>
-                                <input type="date" name="tgl_st" class="form-control mb-2" />
+                                <input type="date" name="tgl_st" class="form-control mb-2" value="{{$data->tgl_st}}" />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -133,18 +133,8 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <!--begin::Input group-->
-                    <div class="fv-row">
-                        <label class="required form-label">No SK</label>
-                        <select id="no-sk-dropdown" class="form-select" name="tim" required>
-                            <option value="" hidden>Pilih No SK...</option>
-                            @foreach($sk as $s)
-                            <option value="{{$s->id}}">{{$s->no . '/SK/BPS-1107/' . $s->tahun}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
                     <div id="daftar-petugas" class="my-4">
+                        @include('kegiatan.spj._table-edit-alokasi-beban')
                     </div>
                     <!--end::Input group-->
                 </div>
@@ -153,10 +143,10 @@
             <!--end::Petugas-->
             <div class="d-flex justify-content-end">
                 <!--begin::Button-->
-                <a href="{{ route('pok') }}" id="form_create_spj_cancel" class="btn btn-light me-5">Kembali</a>
+                <a href="{{ route('pok') }}" id="form_update_spj_cancel" class="btn btn-light me-5">Kembali</a>
                 <!--end::Button-->
                 <!--begin::Button-->
-                <button type="submit" id="form_create_spj_submit" class="btn btn-primary">
+                <button type="submit" id="form_update_spj_submit" class="btn btn-primary">
                     <span class="indicator-label">Simpan</span>
                     <span class="indicator-progress">Please wait...
                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
