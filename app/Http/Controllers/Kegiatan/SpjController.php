@@ -21,15 +21,25 @@ class SpjController extends Controller
 {
     public function index()
     {
-        $data = Spj::orderBy('tgl', 'DESC')->get();
-        foreach ($data as $d) {
-            $d->keg = Kegiatan::find($d->kegiatans_id);
-            //     $tgl = explode('-', $d->tgl_spj);
-            //     $d->no_spj = $d->no . '/SPJ/BPS-1107/' . $tgl[0];
-            //     $d->rincian = Str::limit($d->nama_kegiatan, 25);
+        $data_honor = Spj::where('kode_akun', config('constants.AKUN_HONOR'))
+            ->orderBy('tgl', 'DESC')->get();
+        foreach ($data_honor as $d) {
+            $keg = Kegiatan::find($d->kegiatans_id);
+            $keg->nama = Str::limit($keg->nama, 25);
+            $d->keg = $keg;
+            $d->tgl = date_indo($d->tgl);
         }
-        // dd($data);
-        return view('kegiatan.spj.index', compact('data'));
+
+        $data_translok = Spj::where('kode_akun', config('constants.AKUN_TRANSLOK'))
+            ->orderBy('tgl', 'DESC')->get();
+        foreach ($data_translok as $d) {
+            $keg = Kegiatan::find($d->kegiatans_id);
+            $keg->nama = Str::limit($keg->nama, 25);
+            $d->keg = $keg;
+            $d->tgl = date_indo($d->tgl);
+        }
+
+        return view('kegiatan.spj.index', compact('data_honor', 'data_translok'));
     }
 
     public function create(Request $request)

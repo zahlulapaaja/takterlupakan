@@ -9,19 +9,16 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Latest Products</span>
+                <span class="card-label fw-bold fs-3 mb-1">Daftar SPJ</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">More than 400 new products</span>
             </h3>
             <div class="card-toolbar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-secondary fw-bold px-4 me-1 active" data-bs-toggle="tab" href="#kt_table_widget_5_tab_1">Month</a>
+                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-secondary fw-bold px-4 me-1 active" data-bs-toggle="tab" href="#table_spj_tab_1">Honor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-secondary fw-bold px-4 me-1" data-bs-toggle="tab" href="#kt_table_widget_5_tab_2">Week</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-secondary fw-bold px-4" data-bs-toggle="tab" href="#kt_table_widget_5_tab_3">Day</a>
+                        <a class="nav-link btn btn-sm btn-color-muted btn-active btn-active-secondary fw-bold px-4 me-1" data-bs-toggle="tab" href="#table_spj_tab_2">Translok</a>
                     </li>
                 </ul>
             </div>
@@ -31,7 +28,7 @@
         <div class="card-body py-3">
             <div class="tab-content">
                 <!--begin::Tap pane-->
-                <div class="tab-pane fade show active" id="kt_table_widget_5_tab_1">
+                <div class="tab-pane fade show active" id="table_spj_tab_1">
                     <!--begin::Table container-->
                     <div class="table-responsive">
                         <!--begin::Table-->
@@ -44,15 +41,15 @@
                                             <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
                                         </div>
                                     </th>
-                                    <th class="min-w-50px">Akun</th>
+                                    <th class="w-50px">Akun</th>
                                     <th class="min-w-150px">Kegiatan</th>
-                                    <th class="min-w-100px">Tanggal</th>
                                     <th class="min-w-100px text-end">Actions</th>
                                 </tr>
                             </thead>
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody>
+                                @foreach($data_honor as $d)
                                 <tr>
                                     <td>
                                         <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -60,125 +57,50 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span class="badge badge-light-success">521213</span>
+                                        <span class="badge badge-light-success">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">$d->keg->nama</a>
-                                        <span class="text-muted fw-semibold d-block">Movie Creator</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">React, HTML</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-success">Approved</span>
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{$d->keg->nama}}</a>
+                                        <span class="text-muted fw-semibold d-block">{{$d->tgl}}</span>
                                     </td>
                                     <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/telegram.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
+                                        <div class="d-flex justify-content-end flex-shrink-0">
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <i class="ki-duotone ki-switch fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{ route('kegiatan.spj.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
+                                                <i class="ki-duotone ki-printer fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{route('kegiatan.spj.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <i class="ki-duotone ki-pencil fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </a>
+                                            <form method="post" action="{{route('kegiatan.spj.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button style="all: unset" type="submit">
+                                                    <i class="ki-duotone ki-trash fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                        <span class="path4"></span>
+                                                        <span class="path5"></span>
+                                                </button>
+                                                </i>
+                                            </form>
                                         </div>
                                     </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Popular Authors</a>
-                                        <span class="text-muted fw-semibold d-block">Most Successful</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">Python, MySQL</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-warning">In Progress</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/vimeo.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">New Users</a>
-                                        <span class="text-muted fw-semibold d-block">Awesome Users</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">Laravel,Metronic</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-primary">Success</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/bebo.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Active Customers</a>
-                                        <span class="text-muted fw-semibold d-block">Movie Creator</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">AngularJS, C#</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-danger">Rejected</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/kickstarter.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Bestseller Theme</a>
-                                        <span class="text-muted fw-semibold d-block">Best Customers</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">ReactJS, Ruby</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-warning">In Progress</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -187,225 +109,79 @@
                 </div>
                 <!--end::Tap pane-->
                 <!--begin::Tap pane-->
-                <div class="tab-pane fade" id="kt_table_widget_5_tab_2">
+                <div class="tab-pane fade" id="table_spj_tab_2">
                     <!--begin::Table container-->
                     <div class="table-responsive">
                         <!--begin::Table-->
                         <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
                             <!--begin::Table head-->
                             <thead>
-                                <tr class="border-0">
-                                    <th class="p-0 w-50px"></th>
-                                    <th class="p-0 min-w-150px"></th>
-                                    <th class="p-0 min-w-140px"></th>
-                                    <th class="p-0 min-w-110px"></th>
-                                    <th class="p-0 min-w-50px"></th>
+                                <tr class="fw-bold text-muted">
+                                    <th class="w-25px">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
+                                        </div>
+                                    </th>
+                                    <th class="w-50px">Akun</th>
+                                    <th class="min-w-150px">Kegiatan</th>
+                                    <th class="min-w-100px text-end">Actions</th>
                                 </tr>
                             </thead>
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody>
+                                @foreach($data_translok as $d)
                                 <tr>
                                     <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/plurk.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input widget-9-check" type="checkbox" value="1" />
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Brad Simmons</a>
-                                        <span class="text-muted fw-semibold d-block">Movie Creator</span>
+                                        <span class="badge badge-light-info">{{$d->kode_akun}}</span>
                                     </td>
-                                    <td class="text-end text-muted fw-bold">React, HTML</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-success">Approved</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/telegram.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{$d->keg->nama}}</a>
+                                        <span class="text-muted fw-semibold d-block">{{$d->tgl}}</span>
+                                    </td>
+                                    <td class="text-end">
+                                        <div class="d-flex justify-content-end flex-shrink-0">
+                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <i class="ki-duotone ki-switch fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{ route('kegiatan.spj.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
+                                                <i class="ki-duotone ki-printer fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{route('kegiatan.spj.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <i class="ki-duotone ki-pencil fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </a>
+                                            <form method="post" action="{{route('kegiatan.spj.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button style="all: unset" type="submit">
+                                                    <i class="ki-duotone ki-trash fs-2">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                        <span class="path4"></span>
+                                                        <span class="path5"></span>
+                                                </button>
+                                                </i>
+                                            </form>
                                         </div>
                                     </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Popular Authors</a>
-                                        <span class="text-muted fw-semibold d-block">Most Successful</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">Python, MySQL</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-warning">In Progress</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/bebo.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Active Customers</a>
-                                        <span class="text-muted fw-semibold d-block">Movie Creator</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">AngularJS, C#</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-danger">Rejected</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <!--end::Table body-->
-                        </table>
-                    </div>
-                    <!--end::Table-->
-                </div>
-                <!--end::Tap pane-->
-                <!--begin::Tap pane-->
-                <div class="tab-pane fade" id="kt_table_widget_5_tab_3">
-                    <!--begin::Table container-->
-                    <div class="table-responsive">
-                        <!--begin::Table-->
-                        <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
-                            <!--begin::Table head-->
-                            <thead>
-                                <tr class="border-0">
-                                    <th class="p-0 w-50px"></th>
-                                    <th class="p-0 min-w-150px"></th>
-                                    <th class="p-0 min-w-140px"></th>
-                                    <th class="p-0 min-w-110px"></th>
-                                    <th class="p-0 min-w-50px"></th>
-                                </tr>
-                            </thead>
-                            <!--end::Table head-->
-                            <!--begin::Table body-->
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/kickstarter.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Bestseller Theme</a>
-                                        <span class="text-muted fw-semibold d-block">Best Customers</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">ReactJS, Ruby</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-warning">In Progress</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/bebo.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Active Customers</a>
-                                        <span class="text-muted fw-semibold d-block">Movie Creator</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">AngularJS, C#</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-danger">Rejected</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/vimeo.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">New Users</a>
-                                        <span class="text-muted fw-semibold d-block">Awesome Users</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">Laravel,Metronic</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-primary">Success</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="symbol symbol-45px me-2">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/brand-logos/telegram.svg" class="h-50 align-self-center" alt="" />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">Popular Authors</a>
-                                        <span class="text-muted fw-semibold d-block">Most Successful</span>
-                                    </td>
-                                    <td class="text-end text-muted fw-bold">Python, MySQL</td>
-                                    <td class="text-end">
-                                        <span class="badge badge-light-warning">In Progress</span>
-                                    </td>
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary">
-                                            <i class="ki-duotone ki-arrow-right fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                             <!--end::Table body-->
                         </table>
