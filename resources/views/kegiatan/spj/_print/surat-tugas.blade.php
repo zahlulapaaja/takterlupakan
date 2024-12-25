@@ -3,7 +3,7 @@
     @include('layout.partials.print-layout._kop')
     <div class="d-flex flex-column text-xl mb-8">
         <span>SURAT TUGAS</span>
-        <span>NOMOR : {{ '$data->surat-tugas' }}</span>
+        <span>NOMOR : {{$data->no_st}}</span>
     </div>
 </div>
 <!-- end::Header -->
@@ -41,8 +41,8 @@
             <td class="align-top pr-12">Kegiatan</td>
             <td class="align-top px-4">:</td>
             <td>
-                {{$data->nama_kegiatan}} dengan jadwal dari
-                {{$data->tgl_mulai}} sampai dengan {{$data->tgl_akhir}}
+                <span class="capitalize">{{$keg->nama}}</span> dengan jadwal dari
+                {{date_indo($keg->tgl_mulai)}} sampai dengan {{date_indo($keg->tgl_akhir)}}
             </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
         <tr>
             <td class="pr-12">Mata Anggaran</td>
             <td class="px-4">:</td>
-            <td>{{$data->mak}}</td>
+            <td>{{$keg->mak}}</td>
         </tr>
     </table>
 </div>
@@ -62,10 +62,10 @@
     <div class="flex flex-row text-center ml-12">
         <div class="w-2/5"></div>
         <div class="w-3/5 flex flex-col leading-normal">
-            <span>{{config('constants.MEULABOH')}}, {{$data->tgl_spj}}</span>
+            <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl)}}</span>
             <span class="pb-20">Kepala</span>
-            <span class="font-bold">{{$ref->nama_kpa}}</span>
-            <span>NIP. {{$ref->nip_kpa}}</span>
+            <span class="font-bold">{{$ref->kpa->nama}}</span>
+            <span>NIP. {{$ref->kpa->nip_baru}}</span>
         </div>
     </div>
 </div>
@@ -83,17 +83,17 @@
     Lampiran Surat Tugas
 </div>
 
-<div class="leading-loose text-lg">
+<div class="leading-tight text-lg">
     <table class="text-left">
         <tr>
             <td class="pr-4">Nomor</td>
             <td class="px-4">:</td>
-            <td>{{$data->no}}</td>
+            <td>{{$data->no_st}}</td>
         </tr>
         <tr>
             <td class="pr-4">Tanggal</td>
             <td class="px-4">:</td>
-            <td>{{$data->tgl_spj}}</td>
+            <td>{{date_indo($data->tgl_st)}}</td>
         </tr>
     </table>
 </div>
@@ -101,7 +101,7 @@
 <div class="leading-normal text-lg my-8 mx-4">
     <table class="table-auto w-full border border-black">
         <thead class="text-center">
-            <tr>
+            <tr class="py-2">
                 <th class="border border-black">No.</th>
                 <th class="border border-black">Nama Petugas</th>
                 <th class="border border-black">Jadwal Kegiatan</th>
@@ -115,24 +115,24 @@
             </tr>
         </thead>
         <tbody class="text-center">
-            @for($i = 0; $i < 5; $i++)
-                <tr>
-                <td class="border border-black align-top">{{$i+1}}.</td>
+            @foreach($data->petugas as $d)
+            <tr>
+                <td class="border border-black align-top">{{$loop->index+1}}.</td>
                 <td class="border border-black text-left align-top text-nowrap p-2">
-                    <span>Tika Widya Wardani, SE</span> <br>
-                    <span>NIP. 198807112014032003</span>
+                    <span>{{$d->nama}}</span> <br>
+                    <span>{{$d->nip}}</span>
                 </td>
                 <td class="border border-black text-left text-nowrap p-2">
-                    <span>Dari : {{$data->tgl_mulai}}</span> <br>
-                    <span>Sampai : {{$data->tgl_akhir}}</span> <br>
-                    <span>Kunj : 1 kunj.</span>
+                    <span>Dari : {{date_indo($keg->tgl_mulai)}}</span> <br>
+                    <span>Sampai : {{date_indo($keg->tgl_akhir)}}</span> <br>
+                    <span>Kunj : {{$d->byk_kunj}} kunj.</span>
                 </td>
                 <td class="border border-black text-left align-top p-2">
-                    Dalam Rangka {{$data->nama_kegiatan}}
-                    di Kec. Johan Pahlawan
+                    Dalam Rangka {{$d->melakukan}} {{$keg->nama}}
+                    di {{$d->lokasi}}
                 </td>
-                </tr>
-                @endfor
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -141,10 +141,10 @@
     <div class="flex flex-row text-center ml-12">
         <div class="w-2/5"></div>
         <div class="w-3/5 flex flex-col leading-normal">
-            <span>{{config('constants.MEULABOH')}}, {{$data->tgl_spj}}</span>
+            <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl)}}</span>
             <span class="pb-20">Kepala</span>
-            <span class="font-bold">{{$ref->nama_kpa}}</span>
-            <span>NIP. {{$ref->nip_kpa}}</span>
+            <span class="font-bold">{{$ref->kpa->nama}}</span>
+            <span>NIP. {{$ref->kpa->nip_baru}}</span>
         </div>
     </div>
 </div>

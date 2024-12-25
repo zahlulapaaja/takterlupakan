@@ -83,11 +83,19 @@ class Spj extends Model
                 $r->nama = $pegawai->nama;
                 $r->gol = $pegawai->golongan;
                 $r->id_status = $pegawai->id;
+                $r->nama_bank = $pegawai->nama_bank;
+                $r->no_rek = $pegawai->no_rek;
+                $r->an_rek = $pegawai->an_rek;
+                $r->nip = 'NIP. ' . $pegawai->nip_baru;
             } else {
                 $mitra = Mitra::find($r->mitra_id);
                 $r->nama = $mitra->nama;
                 $r->gol = '-';
                 $r->id_status = $mitra->id;
+                $r->nama_bank = $mitra->nama_bank;
+                $r->no_rek = $mitra->no_rek;
+                $r->an_rek = $mitra->an_rek;
+                $r->nip = $mitra->id_sobat;
             }
         }
 

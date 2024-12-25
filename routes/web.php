@@ -55,9 +55,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
         Route::resource('/kegiatan/spj', SpjController::class);
+        Route::get('/kegiatan/spj/{spj}/print', [SpjController::class, 'print'])->name('spj.print');
 
         // masih coba-coba 
-        Route::get('/kegiatan/spj/{spj}/print', [SpjController::class, 'print'])->name('spj.print');
         Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
         Route::get('/kegiatan/bast/{bast}/print', [SpkController::class, 'bast_print'])->name('bast.print');
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');

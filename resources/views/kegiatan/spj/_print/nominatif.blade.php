@@ -1,3 +1,7 @@
+<?php
+
+use Riskihajar\Terbilang\Facades\Terbilang;
+?>
 <div class="landscape-page">
     <!-- begin::Header -->
     <div class="flex flex-col place-items-center text-center font-bold uppercase">
@@ -8,7 +12,7 @@
                 DAN PEGAWAI TIDAK TETAP
             </div>
         </div>
-        <div class="w-full text-left text-xl capitalize ml-8">Daftar - Transport Lokal {{$data->nama_kegiatan}}</div>
+        <div class="w-full text-left text-xl capitalize ml-8">Daftar - Transport Lokal {{$keg->nama}}</div>
     </div>
     <!-- end::Header -->
 
@@ -17,37 +21,37 @@
             <tr>
                 <td class="pl-4 pr-12">Program</td>
                 <td class="px-4">:</td>
-                <td>{{$data->pok->program}}</td>
+                <td>{{$keg->pok->program}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">Kegiatan</td>
                 <td class="px-4">:</td>
-                <td>{{$data->pok->kegiatan}}</td>
+                <td>{{$keg->pok->kegiatan}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">KRO</td>
                 <td class="px-4">:</td>
-                <td>{{$data->pok->output}}</td>
+                <td>{{$keg->pok->output}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">RO</td>
                 <td class="px-4">:</td>
-                <td class="capitalize">{{$data->pok->suboutput}}</td>
+                <td class="capitalize">{{$keg->pok->suboutput}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">Komponen</td>
                 <td class="px-4">:</td>
-                <td class="capitalize">{{$data->pok->komponen}}</td>
+                <td class="capitalize">{{$keg->pok->komponen}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">Sub Komponen</td>
                 <td class="px-4">:</td>
-                <td class="capitalize">{{$data->pok->subkomponen}}</td>
+                <td class="capitalize">{{$keg->pok->subkomponen}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">Akun</td>
                 <td class="px-4">:</td>
-                <td>{{$data->pok->akun}}</td>
+                <td>{{$keg->pok->akun}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">Satuan Kerja</td>
@@ -62,17 +66,17 @@
             <tr>
                 <td class="pl-4 pr-12">Nomor Surat Tugas</td>
                 <td class="px-4">:</td>
-                <td>$no_surat_tugas</td>
+                <td>{{$data->no_st}}</td>
             </tr>
             <tr>
                 <td class="pl-4 pr-12">Tanggal</td>
                 <td class="px-4">:</td>
-                <td>{{$data->tgl_spj}}</td>
+                <td>{{date_indo($data->tgl_st)}}</td>
             </tr>
         </table>
     </div>
 
-    <div class="leading-loose text-lg my-8 mx-4">
+    <div class="leading-normal text-lg my-8 mx-4">
         <table class="table-auto w-full border border-black">
             <thead class="text-center">
                 <tr>
@@ -103,31 +107,45 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @for($i = 0; $i < 5; $i++)
-                    <tr>
-                    <td class="border border-black">no</td>
-                    <td class="border border-black text-left pl-4">nama</td>
-                    <td class="border border-black">asal</td>
-                    <td class="border border-black">tujuan</td>
-                    <td class="border border-black">tanggal</td>
-                    <td class="border border-black">banyaknya</td>
-                    <td class="border border-black">nominal</td>
-                    <td class="border border-black">berita</td>
-                    <td class="border border-black">bang</td>
-                    <td class="border border-black">rek a.n.</td>
-                    <td class="border border-black">norek</td>
-                    </tr>
-                    @endfor
+
+                <?php $jumlah = 0; ?>
+                @foreach($data->petugas as $d)
+                <?php $jumlah += $d->nominal; ?>
+                <tr>
+                    <td class="border border-black p-1">{{$loop->index+1}}.</td>
+                    <td class="border border-black p-1 text-left pl-4">
+                        <span class="text-nowrap">{{$d->nama}}</span><br>
+                        <span class="text-nowrap">{{$d->nip}}</span>
+                    </td>
+                    <td class="border border-black p-1">{{config('constants.SATKER')}}</td>
+                    <td class="border border-black p-1 text-left">
+                        {{$d->melakukan}} {{$keg->nama}} di {{$d->lokasi}}
+                    </td>
+                    <td class="border border-black p-1">{{$d->tgl_kunj}}</td>
+                    <td class="border border-black p-1">{{$d->byk_kunj}} Kunj</td>
+                    <td class="border border-black p-1">{{currency_IDR($d->nominal)}}</td>
+                    <td class="border border-black p-1">Trasport Lokal</td>
+                    <td class="border border-black p-1">{{$d->nama_bank}}</td>
+                    <td class="border border-black p-1">{{$d->an_rek}}</td>
+                    <td class="border border-black p-1">{{$d->no_rek}}</td>
+                </tr>
+                @endforeach
+
+                <tr class="font-bold">
+                    <td class="border border-black p-1" colspan="6">Jumlah</td>
+                    <td class="border border-black p-1">{{currency_IDR($jumlah)}}</td>
+                    <td class="border border-black p-1 capitalize" colspan="4">{{Terbilang::make($jumlah)}} rupiah</td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="leading-loose text-lg mt-12 mx-4">
+    <div class="leading-normal text-lg mt-12 mx-4">
         <table class="table-auto w-full text-center text-lg">
             <tr>
                 <td></td>
                 <td></td>
-                <td>{{config('constants.MEULABOH')}}, {{$data->tgl_spj}}</td>
+                <td>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl)}}</td>
             </tr>
             <tr>
                 <td class="pb-20">Bendahara Pengeluaran</td>
@@ -135,14 +153,14 @@
                 <td class="pb-20">Pembuat Daftar,</td>
             </tr>
             <tr>
-                <td>{{$ref->nama_bend}}</td>
-                <td>{{$ref->nama_ppk}}</td>
-                <td>{{'$data->nama_pjk'}}</td>
+                <td>{{$ref->bend->nama}}</td>
+                <td>{{$ref->ppk->nama}}</td>
+                <td>{{$keg->pjk->nama}}</td>
             </tr>
             <tr>
-                <td>NIP. {{$ref->nip_bend}}</td>
-                <td>NIP. {{$ref->nip_ppk}}</td>
-                <td>NIP. {{'$data->nip_pjk'}}</td>
+                <td>NIP. {{$ref->bend->nip_baru}}</td>
+                <td>NIP. {{$ref->ppk->nip_baru}}</td>
+                <td>NIP. {{$keg->pjk->nip_baru}}</td>
             </tr>
         </table>
     </div>
