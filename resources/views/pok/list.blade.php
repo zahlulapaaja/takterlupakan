@@ -59,6 +59,7 @@
                             </th>
                             <th class="min-w-100px">Tahun</th>
                             <th class="min-w-100px text-center">Revisi</th>
+                            <th class="min-w-100px text-center">Tanggal Upload</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -76,7 +77,10 @@
                                 <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->revisi}}</span>
+                                <span class="text-gray-900 d-block fs-6 text-center">{{$d->revisi}}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6 text-center">{{$d->uploaded_at}}</span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">

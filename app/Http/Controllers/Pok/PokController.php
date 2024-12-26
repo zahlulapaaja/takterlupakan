@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Pok;
 use App\Http\Controllers\Controller;
 use App\Imports\PokImport;
 use App\Models\Pok;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -71,11 +72,19 @@ class PokController extends Controller
 
     public function list()
     {
-        $data = Pok::select('tahun', 'revisi')
+        $data = Pok::select('tahun', 'revisi', 'created_at')
             ->groupBy('tahun')->groupBy('revisi')
             ->orderBy('tahun', 'DESC')
             ->orderBy('revisi', 'DESC')
             ->get();
+
+        foreach ($data as $d) {
+            // $d->uploaded_at = Carbon::parse($d->created_at)->locale('id')->isoFormat('D MMMM Y');
+            $d->uploaded_at = Carbon::parse($d->created_at)->locale('id')
+                ->settings(['formatFunction' => 'translatedFormat'])
+                ->format('l, j F Y ; h:i a');
+            # code...
+        }
 
         return view('pok.list', compact('data'));
     }
