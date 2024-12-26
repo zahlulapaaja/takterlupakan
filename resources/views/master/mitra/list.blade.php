@@ -4,13 +4,17 @@
     Master
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.mitra.list', $data->tahun) }}
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label fw-bold fs-3 mb-1">Daftar Mitra Tahun {{$data->tahun}}</span>
-                <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
+                <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
         </div>
         <!--end::Header-->

@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Edit Data Mitra
+    Master
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.mitra.edit', $data->id) }}
     @endsection
 
     <div class="row g-7">

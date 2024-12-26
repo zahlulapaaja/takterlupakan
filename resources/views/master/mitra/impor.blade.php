@@ -1,17 +1,22 @@
 <x-default-layout>
 
     @section('title')
-    Impor Mitra
+    Master
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.mitra.impor') }}
     @endsection
 
     <div class="container">
         <div class="card mt-3">
-            <div class="card-body">
+            <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bold fs-3 mb-1">Form Import Mitra Tahun {{$last_tahun}}</span>
-                    <!-- <span class="text-muted mt-1 fw-semibold fs-7">Selamat mengerjakan</span> -->
+                    <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
                 </h3>
-
+            </div>
+            <div class="card-body py-3">
                 <form action="{{ route('master.mitra.prosesimpor') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')

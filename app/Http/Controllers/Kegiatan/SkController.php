@@ -79,24 +79,24 @@ class SkController extends Controller
     public function edit($id, Request $request)
     {
         // mengambil data
-        $sk = Sk::find($id);
-        $mak = explode('.', $sk->mak);
+        $data = Sk::find($id);
+        $mak = explode('.', $data->mak);
         $pok = Pok::where('kode_kegiatan', $mak[0])
             ->where('kode_output', $mak[1])
             ->where('kode_suboutput', $mak[2])
             ->where('kode_komponen', $mak[3])
-            ->where('tahun', $sk->tahun)
+            ->where('tahun', $data->tahun)
             ->first();
 
         $last_no = Sk::where('tahun', $pok->tahun)->max('no');
 
         if ($pok->kode_output) {
             // mengambil data petugas dan honor
-            $sk->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
-            $list_petugas = $sk->getListPetugas($pok->tahun);
-            $petugas = $sk->getPetugas($id);
+            $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
+            $list_petugas = $data->getListPetugas($pok->tahun);
+            $petugas = $data->getPetugas($id);
 
-            return view('kegiatan.sk.edit', compact('sk', 'pok', 'petugas', 'list_petugas', 'last_no'));
+            return view('kegiatan.sk.edit', compact('data', 'pok', 'petugas', 'list_petugas', 'last_no'));
         } else {
             return redirect()->route('kegiatan.sk.index');
         }

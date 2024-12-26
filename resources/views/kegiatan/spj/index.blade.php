@@ -4,13 +4,17 @@
     Kegiatan
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('kegiatan.spj.index') }}
+    @endsection
+
     <!--begin::Tables Widget 5-->
     <div class="card h-md-100">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label fw-bold fs-3 mb-1">Daftar SPJ</span>
-                <span class="text-muted mt-1 fw-semibold fs-7">More than 400 new products</span>
+                <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
                 <ul class="nav">

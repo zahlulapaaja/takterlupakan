@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Membuat SPJ Kegiatan
+    Kegiatan
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('kegiatan.spj.create') }}
     @endsection
 
     @push('css')

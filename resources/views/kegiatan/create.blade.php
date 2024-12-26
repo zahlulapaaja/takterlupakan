@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Membuat Kegiatan
+    Kegiatan
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('kegiatan.create') }}
     @endsection
 
     @push('css')

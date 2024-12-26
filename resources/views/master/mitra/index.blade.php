@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Daftar Mitra
+    Master
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.mitra.index') }}
     @endsection
 
     <!--begin::Tables Widget 9-->
@@ -9,8 +13,8 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Master Mitra</span>
-                <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
+                <span class="card-label fw-bold fs-3 mb-1">Daftar Mitra</span>
+                <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
                 <a href="{{ route('master.mitra.impor') }}" class="btn btn-sm btn-light btn-active-primary">

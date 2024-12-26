@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Tambah Pegawai
+    Master
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.pegawai.create') }}
     @endsection
 
     <div class="row g-7">

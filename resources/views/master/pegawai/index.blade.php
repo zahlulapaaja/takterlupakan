@@ -4,6 +4,10 @@
     Master
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.pegawai.index') }}
+    @endsection
+
     <!--begin::Card-->
     <div class="card">
         <!--begin::Card header-->
@@ -12,10 +16,11 @@
             <div class="card-title">
                 <div class="d-flex flex-column">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bold fs-3 mb-4">Daftar Pegawai</span>
+                        <span class="card-label fw-bold fs-3 mb-1">Daftar Pegawai</span>
+                        <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
                     </h3>
                     <!--begin::Search-->
-                    <div class="d-flex align-items-center position-relative my-1">
+                    <div class="d-flex align-items-center position-relative my-4">
                         <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
                             <span class="path1"></span>
                             <span class="path2"></span>

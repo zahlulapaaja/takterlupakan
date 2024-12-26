@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('pok.prosesimpor');
 
     Route::name('no-surat.')->group(function () {
-        Route::get('/no-surat', [SuratController::class, 'index'])->name('index');
+        Route::get('/no-surat', [HomeController::class, 'noSurat'])->name('index');
         Route::resource('/no-surat/fp', NoFpController::class);
         Route::resource('/no-surat/tim', NoSuratTimController::class);
         Route::resource('/no-surat/masuk-keluar', NoSuratMasukKeluarController::class);
@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::name('master.')->group(function () {
+        Route::get('/master', [HomeController::class, 'master'])->name('index');
         Route::resource('/master/referensi', ReferensiController::class);
         Route::resource('/master/tim', TimController::class);
         Route::resource('/master/pegawai', PegawaiController::class);

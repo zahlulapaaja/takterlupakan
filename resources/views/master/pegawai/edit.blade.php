@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Edit Data Pegawai
+    Master
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.pegawai.edit', $data->id) }}
     @endsection
 
     <div class="row g-7">

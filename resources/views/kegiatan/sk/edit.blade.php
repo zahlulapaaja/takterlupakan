@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Edit SK
+    Kegiatan
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('kegiatan.sk.edit', $data->id) }}
     @endsection
 
     @push('css')
@@ -9,7 +13,7 @@
     @endpush
 
     <!--begin::Form-->
-    <form id="form_create_sk" method="post" action="{{ route('kegiatan.sk.update', $sk->id) }}" class="form d-flex flex-column flex-lg-row">
+    <form id="form_create_sk" method="post" action="{{ route('kegiatan.sk.update', $data->id) }}" class="form d-flex flex-column flex-lg-row">
         @csrf
         @method('PUT')
         <!--begin::Aside column-->
@@ -66,14 +70,14 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">No SK</label>
-                            <input type="text" class="form-control" placeholder="001" name="no" value="{{$sk->no}}" />
+                            <input type="text" class="form-control" placeholder="001" name="no" value="{{$data->no}}" />
                             <div class="text-muted fs-7">Nomor terakhir tahun ini : {{$last_no}}</div>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">SK Tentang</label>
-                            <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" value="{{$sk->tentang}}" />
+                            <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" value="{{$data->tentang}}" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
@@ -108,13 +112,13 @@
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Mulai</label>
-                            <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_mulai}}" />
+                            <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_mulai}}" />
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Akhir</label>
-                            <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_akhir}}" />
+                            <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_akhir}}" />
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -122,14 +126,14 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Berlaku</label>
-                            <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_berlaku}}" />
+                            <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_berlaku}}" />
                             <!-- <div class="text-muted fs-7">Set the date of the order to process.</div> -->
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Ditetapkan</label>
-                            <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" value="{{$sk->tgl_ditetapkan}}" />
+                            <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_ditetapkan}}" />
                             <!-- <div class="text-muted fs-7">Set the date of the order to process.</div> -->
                         </div>
                         <!--end::Input group-->
@@ -163,13 +167,13 @@
                             </thead>
                             <tbody>
                                 @for($i = 0; $i < 10; $i++)
-                                    @isset($sk->honor[$i])
+                                    @isset($data->honor[$i])
                                     <tr class="flex">
-                                        <td class="w-3/5"><input class="form-control p-1 w-full border-2" type="text" name="uraian_honor[]" value="{{$sk->honor[$i]->uraian}}"></td>
-                                        <td class="w-2/5"><input class="form-control p-1 w-full border-2" type="number" name="honor[]" value="{{$sk->honor[$i]->honor}}"></td>
+                                        <td class="w-3/5"><input class="form-control p-1 w-full border-2" type="text" name="uraian_honor[]" value="{{$data->honor[$i]->uraian}}"></td>
+                                        <td class="w-2/5"><input class="form-control p-1 w-full border-2" type="number" name="honor[]" value="{{$data->honor[$i]->honor}}"></td>
                                     </tr>
                                     @endisset
-                                    @empty($sk->honor[$i])
+                                    @empty($data->honor[$i])
                                     <tr class="flex">
                                         <td class="w-3/5"><input class="form-control p-1 w-full border-2" type="text" name="uraian_honor[]"></td>
                                         <td class="w-2/5"><input class="form-control p-1 w-full border-2" type="number" name="honor[]"></td>

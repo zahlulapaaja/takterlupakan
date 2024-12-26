@@ -4,13 +4,17 @@
     POK
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('pok') }}
+    @endsection
+
     <!--begin::Tables Widget 12-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label fw-bold fs-3 mb-1">POK</span>
-                <span class="text-muted mt-1 fw-semibold fs-7">Selamat mengerjakan</span>
+                <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
                 <!--begin::Menu-->

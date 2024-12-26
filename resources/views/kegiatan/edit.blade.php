@@ -1,7 +1,11 @@
 <x-default-layout>
 
     @section('title')
-    Edit Kegiatan
+    Kegiatan
+    @endsection
+
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('kegiatan.edit', $data->id) }}
     @endsection
 
     @push('css')

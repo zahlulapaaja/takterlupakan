@@ -4,18 +4,22 @@
     Master
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('master.referensi.edit', $data->id) }}
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
                 <span class="card-label fw-bold fs-3 mb-1">Edit Referensi Tahun {{$data->tahun}}</span>
-                <span class="text-muted mt-1 fw-semibold fs-7">Over 500 members</span>
+                <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
-        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+        <div class="card-body pt-8">
             <!--begin::Form-->
             <form class="form" action="{{ route('master.referensi.update', $data->id) }}" method="post">
                 @csrf
