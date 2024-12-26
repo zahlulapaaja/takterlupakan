@@ -17,7 +17,7 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Buat SK">
-                <a href="{{ route('pok') }}" class="btn btn-sm btn-light btn-active-primary">
+                <a href="{{ route('pok.index') }}" class="btn btn-sm btn-light btn-active-primary">
                     <i class="ki-duotone ki-plus fs-2"></i>Tambah
                 </a>
             </div>

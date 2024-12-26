@@ -17,7 +17,6 @@ use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
 use App\Http\Controllers\Surat\NoSuratMasukKeluarController;
 use App\Http\Controllers\Surat\NoSuratTimController;
-use App\Http\Controllers\Surat\SuratController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
@@ -38,9 +37,13 @@ Route::middleware('auth')->group(function () {
         // Route::resource('/user-management/roles', HomeController::class);
         // Route::resource('/user-management/permissions', HomeController::class);
     });
-    Route::get('/pok', [PokController::class, 'index'])->name('pok');
-    Route::get('/pok/impor', [PokController::class, 'impor'])->name('pok.impor');
-    Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('pok.prosesimpor');
+    Route::name('pok.')->group(function () {
+        Route::get('/pok', [PokController::class, 'index'])->name('index');
+        Route::get('/pok/impor', [PokController::class, 'impor'])->name('impor');
+        Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('prosesimpor');
+        Route::get('/pok/list', [PokController::class, 'list'])->name('list');
+        Route::delete('/pok/destroy', [PokController::class, 'destroy'])->name('destroy');
+    });
 
     Route::name('no-surat.')->group(function () {
         Route::get('/no-surat', [HomeController::class, 'noSurat'])->name('index');
@@ -63,9 +66,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
         Route::get('/kegiatan/bast/{bast}/print', [SpkController::class, 'bast_print'])->name('bast.print');
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
-        // Route::post('/kegiatan/bast/create', [BastController::class, 'create'])->name('bast.create');
-        // Route::get('/kegiatan/bast/{bast}/print', [BastController::class, 'print'])->name('bast.print');
-        // Route::resource('/kegiatan/bast', BastController::class);
     });
 
     Route::name('master.')->group(function () {

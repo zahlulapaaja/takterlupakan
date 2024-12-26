@@ -68,4 +68,24 @@ class PokController extends Controller
 
         return redirect()->back()->with('success', 'Data pok berhasil di import');
     }
+
+    public function list()
+    {
+        $data = Pok::select('tahun', 'revisi')
+            ->groupBy('tahun')->groupBy('revisi')
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('revisi', 'DESC')
+            ->get();
+
+        return view('pok.list', compact('data'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $data = Pok::where('tahun', $request->tahun)
+            ->where('revisi', $request->revisi);
+        $data->delete();
+
+        return response()->json(array('success' => true));
+    }
 }

@@ -241,7 +241,7 @@
             <!--end::Variations-->
             <div class="d-flex justify-content-end">
                 <!--begin::Button-->
-                <a href="{{ route('pok') }}" id="form_create_sk_cancel" class="btn btn-light me-5">Kembali</a>
+                <a href="{{ route('pok.index') }}" id="form_create_sk_cancel" class="btn btn-light me-5">Kembali</a>
                 <!--end::Button-->
                 <!--begin::Button-->
                 <button type="submit" id="form_create_sk_submit" class="btn btn-primary">

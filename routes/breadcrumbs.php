@@ -39,13 +39,19 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 // Home > POK
 Breadcrumbs::for('pok', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('POK', route('pok'));
+    $trail->push('POK', route('pok.index'));
 });
 
 // Home > POK > Impor
 Breadcrumbs::for('pok.impor', function (BreadcrumbTrail $trail) {
     $trail->parent('pok');
     $trail->push('Impor', route('pok.impor'));
+});
+
+// Home > POK > List
+Breadcrumbs::for('pok.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('pok');
+    $trail->push('List', route('pok.list'));
 });
 
 // Home > No Surat
@@ -95,13 +101,3 @@ Breadcrumbs::for("master.mitra.impor", function (BreadcrumbTrail $trail) {
     $trail->parent("master.mitra.index");
     $trail->push('Impor', route("master.mitra.impor"));
 });
-
-
-
-
-
-// Home > No Surat > Form Permintaan
-// Breadcrumbs::for('no-surat.fp.index', function (BreadcrumbTrail $trail) {
-//     $trail->parent('no-surat.index');
-//     $trail->push('Form Permintaan', route('no-surat.fp.index'));
-// });
