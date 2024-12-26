@@ -21,6 +21,11 @@ return new class extends Migration
             $table->date('tgl_berlaku');
             $table->date('tgl_ditetapkan');
             $table->integer('tahun');
+            $table->unsignedBigInteger('edited_by');
+            $table->foreign('edited_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
 

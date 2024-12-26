@@ -58,19 +58,20 @@ class SkController extends Controller
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
 
-        $sk['no'] = $request->no;
-        $sk['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
-        $sk['tentang'] = $request->tentang;
-        $sk['tgl_mulai'] = $request->tgl_mulai;
-        $sk['tgl_akhir'] = $request->tgl_akhir;
-        $sk['tgl_berlaku'] = $request->tgl_berlaku;
-        $sk['tgl_ditetapkan'] = $request->tgl_ditetapkan;
-        $sk['tahun'] = explode('-', $request->tgl_ditetapkan)[0];
+        $data['no'] = $request->no;
+        $data['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
+        $data['tentang'] = $request->tentang;
+        $data['tgl_mulai'] = $request->tgl_mulai;
+        $data['tgl_akhir'] = $request->tgl_akhir;
+        $data['tgl_berlaku'] = $request->tgl_berlaku;
+        $data['tgl_ditetapkan'] = $request->tgl_ditetapkan;
+        $data['tahun'] = explode('-', $request->tgl_ditetapkan)[0];
+        $data['edited_by'] = session('user_id');
 
         // insert data
-        $res_sk = Sk::create($sk);
-        $res_sk->insertHonor($res_sk->id, $request->uraian_honor, $request->honor);
-        $res_sk->insertPetugas($res_sk->id, $request->daftar_petugas);
+        $res = Sk::create($data);
+        $res->insertHonor($res->id, $request->uraian_honor, $request->honor);
+        $res->insertPetugas($res->id, $request->daftar_petugas);
 
         return redirect()->route('kegiatan.sk.index');
     }
@@ -124,6 +125,7 @@ class SkController extends Controller
         $data['tgl_berlaku'] = $request->tgl_berlaku;
         $data['tgl_ditetapkan'] = $request->tgl_ditetapkan;
         $data['tahun'] = explode('-', $request->tgl_ditetapkan)[0];
+        $data['edited_by'] = session('user_id');
 
         // update data
         $find->update($data);
