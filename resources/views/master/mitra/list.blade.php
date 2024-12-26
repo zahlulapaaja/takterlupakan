@@ -58,7 +58,7 @@
                     <!--begin::Table body-->
                     <tbody>
                         @foreach($data as $d)
-                        <tr class="hover:bg-blue-200">
+                        <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
                                     <input class="form-check-input widget-9-check" type="checkbox" value="1" />
@@ -90,19 +90,15 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <form method="post" action="{{route('master.mitra.destroy', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-data">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button style="all: unset" type="submit">
-                                            <i class="ki-duotone ki-trash fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                                <span class="path3"></span>
-                                                <span class="path4"></span>
-                                                <span class="path5"></span>
-                                        </button>
+                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->nama}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm mitra-delete">
+                                        <i class="ki-duotone ki-trash fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                            <span class="path5"></span>
                                         </i>
-                                    </form>
+                                    </a>
                                 </div>
                             </td>
                         </tr>
@@ -117,8 +113,10 @@
         <!--begin::Body-->
     </div>
     <!--end::Tables Widget 9-->
+
     @push('scripts')
     <script type="text/javascript">
+        var cancelButton;
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
                 "bDestroy": true,
@@ -126,6 +124,56 @@
 
             $('#searchSk').on('keyup', function() {
                 table.search(this.value).draw();
+            });
+
+
+            $(document.body).on('click', '.mitra-delete', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+
+                // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                Swal.fire({
+                    text: "Anda yakin ingin menghapus data " + name + " ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yakin",
+                    cancelButtonText: "Batal",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function(result) {
+                    if (result.value) {
+                        var url = "{{route('master.mitra.destroy',':id')}}";
+                        url = url.replace(':id', id);
+                        $.ajax({
+                            type: "DELETE",
+                            url: url,
+                            data: {
+                                _token: '{{csrf_token()}}',
+                            },
+                            success: function(data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        text: "Data berhasil dihapus",
+                                        icon: "success",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-success",
+                                        }
+                                    });
+
+                                    table.rows("#" + id + "").remove().draw();
+                                }
+                            }
+                        });
+                    } else if (result.dismiss === 'cancel') {
+                        modal.hide(); // Hide modal				
+                    }
+                });
             });
         });
     </script>

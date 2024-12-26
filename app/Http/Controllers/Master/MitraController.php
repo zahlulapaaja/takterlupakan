@@ -143,12 +143,13 @@ class MitraController extends Controller
         return redirect()->route('master.mitra.list', $find->tahun)->with('success', 'Data mitra berhasil diupdate');
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $data = Mitra::find($id);
         $tahun = $data->tahun;
         $data->delete();
 
-        return redirect()->route('master.mitra.list', $tahun)->with('success', 'Data mitra berhasil dihapus');
+        return response()->json(array('success' => true));
+        // return redirect()->route('master.mitra.list', $tahun)->with('success', 'Data mitra berhasil dihapus');
     }
 }
