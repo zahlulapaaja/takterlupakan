@@ -112,6 +112,6 @@ class ReferensiController extends Controller
         $data = Referensi::find($id);
         $data->delete();
 
-        return redirect()->route('master.referensi.index')->with('success', 'Data Referensi berhasil dihapus');
+        return response()->json(array('success' => true));
     }
 }

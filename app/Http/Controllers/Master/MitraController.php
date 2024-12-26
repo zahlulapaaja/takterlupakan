@@ -150,6 +150,5 @@ class MitraController extends Controller
         $data->delete();
 
         return response()->json(array('success' => true));
-        // return redirect()->route('master.mitra.list', $tahun)->with('success', 'Data mitra berhasil dihapus');
     }
 }

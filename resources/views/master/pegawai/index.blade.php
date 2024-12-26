@@ -68,7 +68,7 @@
                 </thead>
                 <tbody class="text-gray-600 fw-semibold">
                     @forelse($data as $p)
-                    <tr>
+                    <tr id="{{$p->id}}">
                         <td>
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="1" />
@@ -95,11 +95,9 @@
                         <td class="grid justify-items-end">
                             <div class="d-flex align-items-center">
                                 <a href="{{ route('master.pegawai.edit', $p->id) }}" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2">Edit</a>
-                                <form class="btn btn-danger btn-active-danger-primary btn-flex btn-center btn-sm mx-1 my-2" method="post" action="{{ route('master.pegawai.destroy', $p->id) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input style="all: unset" type="submit" value="Delete" />
-                                </form>
+                                <a href="#" data-id="{{$p->id}}" data-name="{{$p->nama}}" class="btn btn-danger btn-active-danger-primary btn-flex btn-center btn-sm mx-1 my-2 modal-delete">
+                                    Delete
+                                </a>
                             </div>
                         </td>
                     </tr>
@@ -120,18 +118,62 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#kt_table_pegawais').DataTable({
-                // serverSide: true,
-                // processing: true,
-                // ajax: {
-                //     url: '{{ route("user-management.users.index") }}'
-                // },
                 "bDestroy": true,
             });
-        });
 
-        let table = new DataTable('#kt_table_pegawais');
-        $('#searchPegawai').on('keyup', function() {
-            table.search(this.value).draw();
+            let table = new DataTable('#kt_table_pegawais');
+            $('#searchPegawai').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+
+            $(document.body).on('click', '.modal-delete', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+
+                // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                Swal.fire({
+                    text: "Anda yakin ingin menghapus data " + name + " ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yakin",
+                    cancelButtonText: "Batal",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function(result) {
+                    if (result.value) {
+                        var url = "{{route('master.pegawai.destroy',':id')}}";
+                        url = url.replace(':id', id);
+                        $.ajax({
+                            type: "DELETE",
+                            url: url,
+                            data: {
+                                _token: '{{csrf_token()}}',
+                            },
+                            success: function(data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        text: "Data berhasil dihapus",
+                                        icon: "success",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-success",
+                                        }
+                                    });
+
+                                    table.rows("#" + id + "").remove().draw();
+                                }
+                            }
+                        });
+                    } else if (result.dismiss === 'cancel') {
+                        modal.hide(); // Hide modal				
+                    }
+                });
+            });
         });
     </script>
     @endpush

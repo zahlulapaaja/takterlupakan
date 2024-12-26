@@ -147,4 +147,12 @@ class Sk extends Model
 
         return $result;
     }
+
+    public function deleteSk($sks_id)
+    {
+        DB::table('sks_honor')->where('sks_id', $sks_id)->delete();
+        DB::table('sks_petugas')->where('sks_id', $sks_id)->delete();
+
+        return true;
+    }
 }

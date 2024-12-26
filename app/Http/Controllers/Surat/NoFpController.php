@@ -70,6 +70,7 @@ class NoFpController extends Controller
     {
         $data = NoFp::find($id);
         $data->delete();
-        return redirect()->route('no-surat.fp.index');
+
+        return response()->json(array('success' => true));
     }
 }

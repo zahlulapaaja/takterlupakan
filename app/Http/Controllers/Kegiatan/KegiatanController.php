@@ -121,6 +121,6 @@ class KegiatanController extends Controller
         $data = Kegiatan::find($id);
         $data->delete();
 
-        return redirect()->route('kegiatan.index')->with('success', 'Kegiatan berhasil dihapus');
+        return response()->json(array('success' => true));
     }
 }

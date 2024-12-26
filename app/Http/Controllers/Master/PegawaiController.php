@@ -130,6 +130,6 @@ class PegawaiController extends Controller
         $data = Pegawai::find($id);
         if ($data) $data->delete(); // soft delete
 
-        return redirect()->route('master.pegawai.index');
+        return response()->json(array('success' => true));
     }
 }

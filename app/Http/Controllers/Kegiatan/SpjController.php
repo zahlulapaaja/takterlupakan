@@ -140,7 +140,8 @@ class SpjController extends Controller
         $data = Spj::find($id);
         $data->deleteSpj($data);
         $data->delete();
-        return redirect()->route('kegiatan.spj.index')->with('success', 'SPJ berhasil dihapus');
+
+        return response()->json(array('success' => true));
     }
 
     public function print($id)

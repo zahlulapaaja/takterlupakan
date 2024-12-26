@@ -165,6 +165,6 @@ class NoSuratMasukKeluarController extends Controller
         }
 
         $data->delete();
-        return redirect()->route('no-surat.masuk-keluar.index')->with('success', 'Nomor Surat berhasil dihapus');
+        return response()->json(array('success' => true));
     }
 }

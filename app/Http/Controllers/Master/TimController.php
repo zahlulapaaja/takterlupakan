@@ -97,9 +97,8 @@ class TimController extends Controller
     public function destroy($id)
     {
         $data = Tim::find($id);
-        $tahun = $data->tahun;
         $data->delete();
 
-        return redirect()->route('master.tim.list', $tahun)->with('success', 'Tim Kerja berhasil dihapus');
+        return response()->json(array('success' => true));
     }
 }

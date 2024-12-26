@@ -132,6 +132,15 @@ class SkController extends Controller
         return redirect()->route('kegiatan.sk.index');
     }
 
+    public function destroy($id)
+    {
+        $data = Sk::find($id);
+        $data->deleteSk($data->id);
+        $data->delete();
+
+        return response()->json(array('success' => true));
+    }
+
     public function print($id)
     {
         $data = Sk::find($id);

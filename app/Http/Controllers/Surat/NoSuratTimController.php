@@ -95,6 +95,7 @@ class NoSuratTimController extends Controller
     {
         $data = NoSuratTim::find($id);
         $data->delete();
-        return redirect()->route('no-surat.tim.index')->with('success', 'Nomor Surat berhasil dihapus');
+
+        return response()->json(array('success' => true));
     }
 }
