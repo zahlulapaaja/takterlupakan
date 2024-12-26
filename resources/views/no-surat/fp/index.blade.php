@@ -4,6 +4,10 @@
     Nomor Surat
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('no-surat.fp.index') }}
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->

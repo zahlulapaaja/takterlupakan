@@ -4,6 +4,10 @@
     Nomor Surat
     @endsection
 
+    @section('breadcrumbs')
+    {{ Breadcrumbs::render('no-surat.fp.edit', $data->id) }}
+    @endsection
+
     <!--begin::Tables Widget 9-->
     <div class="card mb-5 mb-xl-8">
         <!--begin::Header-->
@@ -17,7 +21,7 @@
         <!--begin::Body-->
         <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
             <!--begin::Form-->
-            <form class="form" action="{{ route('no-surat.fp.update', ['fp' => $data->id]) }}" method="post">
+            <form class="form" action="{{ route('no-surat.fp.update', $data->id) }}" method="post">
                 @csrf
                 @method('PUT')
                 <!--begin::Input group-->

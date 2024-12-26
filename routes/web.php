@@ -17,6 +17,7 @@ use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
 use App\Http\Controllers\Surat\NoSuratMasukKeluarController;
 use App\Http\Controllers\Surat\NoSuratTimController;
+use App\Http\Controllers\Surat\SuratController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('pok.prosesimpor');
 
     Route::name('no-surat.')->group(function () {
+        Route::get('/no-surat', [SuratController::class, 'index'])->name('index');
         Route::resource('/no-surat/fp', NoFpController::class);
         Route::resource('/no-surat/tim', NoSuratTimController::class);
         Route::resource('/no-surat/masuk-keluar', NoSuratMasukKeluarController::class);

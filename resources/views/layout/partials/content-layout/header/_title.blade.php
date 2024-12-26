@@ -3,7 +3,9 @@
 	<!--begin::Heading-->
 	<h1 class="d-flex flex-column text-gray-900 fw-bold my-0 fs-1">
 		@yield('title')
-		<small class="text-muted fs-6 fw-semibold ms-1 pt-1">You’ve got 24 New Sales</small>
+		<!--begin::Breadcrumb-->
+		@yield('breadcrumbs')
+		<!--end::Breadcrumb-->
 	</h1>
 	<!--end::Heading-->
 </div>
