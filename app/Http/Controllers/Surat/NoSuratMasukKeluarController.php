@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Surat;
 
+use App\Exports\Surat\NoSuratMasukKeluarExport;
 use App\Http\Controllers\Controller;
 use App\Models\Surat\NoSuratMasukKeluar;
 use Illuminate\Http\Request;
@@ -166,5 +167,10 @@ class NoSuratMasukKeluarController extends Controller
 
         $data->delete();
         return response()->json(array('success' => true));
+    }
+
+    public function export($tahun)
+    {
+        return (new NoSuratMasukKeluarExport($tahun))->download('no-surat-masuk-keluar-' . $tahun . '.xlsx');
     }
 }

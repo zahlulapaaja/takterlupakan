@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Surat;
 
+use App\Exports\Surat\NoSuratTimExport;
 use App\Http\Controllers\Controller;
 use App\Models\Master\Tim;
 use App\Models\Surat\NoSuratTim;
@@ -97,5 +98,10 @@ class NoSuratTimController extends Controller
         $data->delete();
 
         return response()->json(array('success' => true));
+    }
+
+    public function export($tahun)
+    {
+        return (new NoSuratTimExport($tahun))->download('no-surat-tim-' . $tahun . '.xlsx');
     }
 }

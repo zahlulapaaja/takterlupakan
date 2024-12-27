@@ -51,6 +51,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/no-surat/tim', NoSuratTimController::class);
         Route::resource('/no-surat/masuk-keluar', NoSuratMasukKeluarController::class);
         Route::get('/no-surat/export/fp/{tahun}', [NoFpController::class, 'export'])->name('fp.export');
+        Route::get('/no-surat/export/masuk-keluar/{tahun}', [NoSuratMasukKeluarController::class, 'export'])->name('masuk-keluar.export');
+        Route::get('/no-surat/export/tim/{tahun}', [NoSuratTimController::class, 'export'])->name('tim.export');
     });
 
     Route::resource('/kegiatan', KegiatanController::class)->except(['create', 'show']);
