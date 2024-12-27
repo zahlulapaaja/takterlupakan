@@ -49,7 +49,12 @@ class HomeController extends Controller
         $last_no['fp'] = NoFp::latest('no')->where('tahun', date("Y"))->first()->no;
         $last_no['masuk-keluar'] = NoSuratMasukKeluar::latest('no')->where('tahun', date("Y"))->first()->no;
         $last_no['tim'] = NoSuratTim::latest('no')->where('tahun', date("Y"))->first()->no;
-        // dd(date("Y"));
+
         return view('no-surat.index', compact('last_no'));
+    }
+
+    public function master()
+    {
+        return view('master.index');
     }
 }
