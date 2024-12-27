@@ -7,6 +7,7 @@ use App\Imports\PokImport;
 use App\Models\Pok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PokController extends Controller
@@ -96,5 +97,11 @@ class PokController extends Controller
         $data->delete();
 
         return response()->json(array('success' => true));
+    }
+
+    public function template()
+    {
+        $file = public_path() . "/templates/template_pok.xlsx";
+        return Response::download($file, 'template-pok.xlsx');
     }
 }

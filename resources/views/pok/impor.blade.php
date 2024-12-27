@@ -15,6 +15,11 @@
                     <span class="card-label fw-bold fs-3 mb-1">Form Import POK</span>
                     <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
                 </h3>
+
+                <div class="card-toolbar">
+                    <a href="{{route('pok.template')}}" class="btn btn-sm btn-light btn-active-primary me-2">
+                        <i class="ki-document ki-solid fs-2"></i>Template</a>
+                </div>
             </div>
             <div class="card-body py-3">
 

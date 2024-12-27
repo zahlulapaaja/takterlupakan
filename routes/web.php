@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/pok', [PokController::class, 'index'])->name('index');
         Route::get('/pok/impor', [PokController::class, 'impor'])->name('impor');
         Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('prosesimpor');
+        Route::get('/pok/impor/template', [PokController::class, 'template'])->name('template');
         Route::get('/pok/list', [PokController::class, 'list'])->name('list');
         Route::delete('/pok/destroy', [PokController::class, 'destroy'])->name('destroy');
     });
@@ -80,6 +81,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/master/tim/list/{tahun}', [TimController::class, 'list'])->name('tim.list');
         Route::get('/master/impor/mitra', [MitraController::class, 'impor'])->name('mitra.impor');
         Route::post('/master/impor/mitra', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
+        Route::get('/master/impor/mitra/template', [MitraController::class, 'template'])->name('mitra.template');
         Route::get('/master/mitra/list/{tahun}', [MitraController::class, 'list'])->name('mitra.list');
         Route::get('/master/mitra/delete/{tahun}', [MitraController::class, 'delete'])->name('mitra.delete');
     });

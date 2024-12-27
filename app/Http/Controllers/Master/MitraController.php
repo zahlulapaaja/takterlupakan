@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Imports\MitraImport;
 use App\Models\Master\Mitra;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -150,5 +152,11 @@ class MitraController extends Controller
         $data->delete();
 
         return response()->json(array('success' => true));
+    }
+
+    public function template()
+    {
+        $file = public_path() . "/templates/template_mitra.xlsx";
+        return Response::download($file, 'template-mitra.xlsx');
     }
 }
