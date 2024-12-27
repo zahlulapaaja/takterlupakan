@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::name('no-surat.')->group(function () {
-        Route::get('/no-surat', [HomeController::class, 'noSurat'])->name('index');
+        Route::get('/no-surat', [HomeController::class, 'no_surat'])->name('index');
         Route::resource('/no-surat/fp', NoFpController::class);
         Route::resource('/no-surat/tim', NoSuratTimController::class);
         Route::resource('/no-surat/masuk-keluar', NoSuratMasukKeluarController::class);

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Surat\NoFp;
+use App\Models\Surat\NoSuratMasukKeluar;
+use App\Models\Surat\NoSuratTim;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -39,5 +42,14 @@ class HomeController extends Controller
     public function soon()
     {
         return view('coming-soon');
+    }
+
+    public function no_surat()
+    {
+        $last_no['fp'] = NoFp::latest('no')->where('tahun', date("Y"))->first()->no;
+        $last_no['masuk-keluar'] = NoSuratMasukKeluar::latest('no')->where('tahun', date("Y"))->first()->no;
+        $last_no['tim'] = NoSuratTim::latest('no')->where('tahun', date("Y"))->first()->no;
+        // dd(date("Y"));
+        return view('no-surat.index', compact('last_no'));
     }
 }

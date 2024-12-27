@@ -35,6 +35,7 @@ class NoFpController extends Controller
         $data['no'] = $request->no;
         $data['rincian'] = $request->rincian;
         $data['tgl'] = $request->tgl;
+        $data['tahun'] = explode('-', $request->tgl)[0];
         $data['edited_by'] = session('user_id');
 
         $res = NoFp::create($data);
@@ -62,6 +63,7 @@ class NoFpController extends Controller
         $data['no'] = $request->no;
         $data['rincian'] = $request->rincian;
         $data['tgl'] = $request->tgl;
+        $data['tahun'] = explode('-', $request->tgl)[0];
         $data['edited_by'] = session('user_id');
 
         $find->update($data);

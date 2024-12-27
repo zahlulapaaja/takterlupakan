@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('no');
             $table->string('rincian');
             $table->date('tgl');
+            $table->integer('tahun');
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
