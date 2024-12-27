@@ -16,6 +16,10 @@
                 <span class="card-label fw-bold fs-3 mb-1">Daftar Tim Kerja Tahun {{$data->tahun}}</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
+            <div class="card-toolbar">
+                <a href="{{ route('master.tim.create') }}" class="btn btn-sm btn-light btn-active-primary">
+                    <i class="ki-duotone ki-plus fs-2"></i>Tambah</a>
+            </div>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
