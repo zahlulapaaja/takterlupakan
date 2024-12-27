@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/no-surat/fp', NoFpController::class);
         Route::resource('/no-surat/tim', NoSuratTimController::class);
         Route::resource('/no-surat/masuk-keluar', NoSuratMasukKeluarController::class);
+        Route::get('/no-surat/export/fp/{tahun}', [NoFpController::class, 'export'])->name('fp.export');
     });
 
     Route::resource('/kegiatan', KegiatanController::class)->except(['create', 'show']);

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Surat;
 
+use App\Exports\Surat\NoFpExport;
 use App\Http\Controllers\Controller;
 use App\Models\Surat\NoFp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NoFpController extends Controller
 {
@@ -72,5 +74,10 @@ class NoFpController extends Controller
         $data->delete();
 
         return response()->json(array('success' => true));
+    }
+
+    public function export($tahun)
+    {
+        return (new NoFpExport($tahun))->download('no-surat-fp-' . $tahun . '.xlsx');
     }
 }
