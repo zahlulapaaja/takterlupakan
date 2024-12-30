@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nip_lama')->nullable();
             $table->string('nip_baru');
             $table->string('avatar')->nullable();
-            // $table->string('nik')->nullable();
+            $table->string('nik')->nullable();
             $table->string('golongan');
             $table->string('pangkat');
             $table->string('jabatan');
