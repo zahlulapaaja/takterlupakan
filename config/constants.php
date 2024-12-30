@@ -30,4 +30,9 @@ return [
     'LIST_AKUN_INPUT' => ['524113', '521213', '524111'],
     'AKUN_HONOR' => '521213',
     'AKUN_TRANSLOK' => '524113',
+
+    // status pegawai organik dan non organik 
+    // ini masuk ke database, jadi perhatikan ketika ubah ini 
+    'MITRA' => 'N',
+    'PEGAWAI' => 'O',
 ];

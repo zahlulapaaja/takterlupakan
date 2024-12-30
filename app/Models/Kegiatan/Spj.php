@@ -78,7 +78,7 @@ class Spj extends Model
         }
 
         foreach ($result as $r) {
-            if ($r->status == 'O') {
+            if ($r->status == config('constants.PEGAWAI')) {
                 $pegawai = Pegawai::find($r->pegawai_id);
                 $r->nama = $pegawai->nama;
                 $r->gol = $pegawai->golongan;

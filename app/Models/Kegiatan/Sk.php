@@ -48,7 +48,7 @@ class Sk extends Model
             $data['sks_id'] = $sks_id;
             $status = explode('-', $petugas['petugas']);
             $data['status'] = $status[0];
-            if ($status[0] == 'O') {
+            if ($status[0] == config('constants.PEGAWAI')) {
                 $data['pegawai_id'] = $status[1];
                 $data['mitra_id'] = null;
             } else {
@@ -91,7 +91,7 @@ class Sk extends Model
             $data['sks_id'] = $sks_id;
             $status = explode('-', $petugas['petugas']);
             $data['status'] = $status[0];
-            if ($status[0] == 'O') {
+            if ($status[0] == config('constants.PEGAWAI')) {
                 $data['pegawai_id'] = $status[1];
                 $data['mitra_id'] = null;
             } else {
@@ -116,12 +116,12 @@ class Sk extends Model
         $list_petugas = [];
         foreach ($pegawai as $p) {
             $p->list = '[O] ' . $p->nama;
-            $p->status = 'O';
+            $p->status = config('constants.PEGAWAI');
             $list_petugas[] = $p;
         }
         foreach ($mitra as $m) {
             $m->list = '[N] ' . $m->nama;
-            $m->status = 'N';
+            $m->status = config('constants.MITRA');
             $list_petugas[] = $m;
         }
 
@@ -133,7 +133,7 @@ class Sk extends Model
         $result = DB::table('sks_petugas')->where('sks_id', $sks_id)->get();
 
         foreach ($result as $value) {
-            if ($value->status == 'O') {
+            if ($value->status == config('constants.PEGAWAI')) {
                 $pegawai = Pegawai::find($value->pegawai_id);
                 $value->nama = $pegawai->nama;
                 $value->gol = $pegawai->golongan;
