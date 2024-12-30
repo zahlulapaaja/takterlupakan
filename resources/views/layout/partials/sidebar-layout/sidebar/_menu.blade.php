@@ -5,7 +5,7 @@
 		<!--begin::Menu-->
 		<div class="menu menu-column menu-rounded menu-sub-indention fw-semibold" id="#kt_aside_menu" data-kt-menu="true">
 			<!--begin:Menu item-->
-			<div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('no-surat.*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
 				<span class="menu-link">
 					<span class="menu-icon">
@@ -23,7 +23,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('no-surat.fp.index') }}">
+						<a class="menu-link {{ request()->routeIs('no-surat.fp*') ? 'active' : '' }}" href="{{ route('no-surat.fp.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -35,7 +35,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('no-surat.masuk-keluar.index') }}">
+						<a class="menu-link {{ request()->routeIs('no-surat.masuk-keluar*') ? 'active' : '' }}" href="{{ route('no-surat.masuk-keluar.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -47,7 +47,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('no-surat.tim.index') }}">
+						<a class="menu-link {{ request()->routeIs('no-surat.tim*') ? 'active' : '' }}" href="{{ route('no-surat.tim.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -61,7 +61,7 @@
 			</div>
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
-			<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('pok*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
 				<span class="menu-link">
 					<span class="menu-icon">
@@ -81,7 +81,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('pok.index') }}">
+						<a class="menu-link {{ request()->routeIs('pok.index') ? 'active' : '' }}" href="{{ route('pok.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -93,7 +93,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('pok.impor') }}">
+						<a class="menu-link {{ request()->routeIs('pok.impor*') ? 'active' : '' }}" href="{{ route('pok.impor') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -105,7 +105,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('pok.list') }}">
+						<a class="menu-link {{ request()->routeIs('pok.list*') ? 'active' : '' }}" href="{{ route('pok.list') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -119,7 +119,7 @@
 			</div>
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
-			<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('kegiatan*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
 				<span class="menu-link">
 					<span class="menu-icon">
@@ -137,7 +137,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('kegiatan.index') }}">
+						<a class="menu-link {{ request()->routeIs('kegiatan.index') ? 'active' : '' }}" href="{{ route('kegiatan.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -161,7 +161,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('kegiatan.sk.index') }}">
+						<a class="menu-link {{ request()->routeIs('kegiatan.sk.*') ? 'active' : '' }}" href="{{ route('kegiatan.sk.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -173,7 +173,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('kegiatan.spj.index') }}">
+						<a class="menu-link {{ request()->routeIs('kegiatan.spj.*') ? 'active' : '' }}" href="{{ route('kegiatan.spj.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -187,7 +187,7 @@
 			</div>
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
-			<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('matriks.*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
 				<span class="menu-link">
 					<span class="menu-icon">
@@ -245,7 +245,7 @@
 			</div>
 			<!--end:Menu item-->
 			<!--begin:Menu item-->
-			<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('master.*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
 				<span class="menu-link">
 					<span class="menu-icon">
@@ -263,7 +263,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('master.referensi.index') }}">
+						<a class="menu-link {{ request()->routeIs('master.referensi.*') ? 'active' : '' }}" href="{{ route('master.referensi.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -275,7 +275,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('master.tim.index') }}">
+						<a class="menu-link {{ request()->routeIs('master.tim.*') ? 'active' : '' }}" href="{{ route('master.tim.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -287,7 +287,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('master.pegawai.index') }}">
+						<a class="menu-link {{ request()->routeIs('master.pegawai.*') ? 'active' : '' }}" href="{{ route('master.pegawai.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
@@ -299,7 +299,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('master.mitra.index') }}">
+						<a class="menu-link {{ request()->routeIs('master.mitra.*') ? 'active' : '' }}" href="{{ route('master.mitra.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
