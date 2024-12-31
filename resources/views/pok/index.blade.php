@@ -131,6 +131,11 @@
                 </div>
             </div>
             <!--end::Compact form-->
+            @if(session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+            @endif
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Table-->

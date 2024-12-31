@@ -29,7 +29,17 @@ class SkController extends Controller
 
     public function create(Request $request)
     {
+
+        // mengecek referensi tahun terakhir
         $pok = Pok::find($request->id_pok);
+        $ref = Referensi::where('tahun', $pok->tahun)->first();
+        $tim = Tim::where('tahun', $pok->tahun)->first();
+        $mitra = Mitra::where('tahun', $pok->tahun)->first();
+        if ($ref == null) return redirect()->back()->with('error', 'Belum ada master referensi tahun ' . $pok->tahun);
+        if ($tim == null) return redirect()->back()->with('error', 'Belum ada master tim tahun ' . $pok->tahun);
+        if ($mitra == null) return redirect()->back()->with('error', 'Belum ada master mitra tahun ' . $pok->tahun);
+
+        // mengambil data
         $sk = new Sk();
         $last_no = $sk->where('tahun', $pok->tahun)->max('no');
 
@@ -148,7 +158,7 @@ class SkController extends Controller
     public function print($id)
     {
         $data = Sk::find($id);
-        $data->no_sk = $data->no . '/SK/BPS-1107/' . explode('-', $data->tgl_ditetapkan)[0];
+        $data->no_sk = $data->no . '/SK/BPS-11070/' . explode('-', $data->tgl_ditetapkan)[0];
         $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
         $data->petugas = $data->getPetugas($id);
 

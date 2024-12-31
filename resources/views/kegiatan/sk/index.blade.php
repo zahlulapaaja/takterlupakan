@@ -52,7 +52,7 @@
                             </th>
                             <th class="min-w-200px">Nomor</th>
                             <th class="min-w-150px">Rincian</th>
-                            <th class="min-w-100px">Tanggal</th>
+                            <th class="min-w-100px">Tanggal Ditetapkan</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
