@@ -7,6 +7,7 @@ use App\Models\Kegiatan\Sk;
 use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\Tim;
 use App\Models\Pok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +30,7 @@ class SkController extends Controller
     public function create(Request $request)
     {
         $pok = Pok::find($request->id_pok);
+        $tim = Tim::where('tahun', $pok->tahun)->get();
         $sk = new Sk();
         $last_no = $sk->where('tahun', $pok->tahun)->max('no');
 
@@ -36,9 +38,9 @@ class SkController extends Controller
             $mitra = Mitra::orderBy('nama', 'ASC')->where('tahun', $pok->tahun)->get();
             $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
             $list_petugas = $sk->getListPetugas($pok->tahun);
-            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'last_no'));
+            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'last_no', 'tim'));
         } else {
-            return redirect()->route('pok');
+            return redirect()->route('pok.index');
         }
     }
 

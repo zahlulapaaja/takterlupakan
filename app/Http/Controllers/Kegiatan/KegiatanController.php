@@ -40,7 +40,7 @@ class KegiatanController extends Controller
             $tim = Tim::where('tahun', $pok->tahun)->get();
             return view('kegiatan.create', compact('pok', 'pegawai', 'tim'));
         } else {
-            return redirect()->route('pok');
+            return redirect()->route('pok.index');
         }
     }
 

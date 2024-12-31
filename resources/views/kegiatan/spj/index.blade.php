@@ -75,7 +75,7 @@
                                                     <span class="path2"></span>
                                                 </i>
                                             </a>
-                                            <a href="{{ route('kegiatan.spj.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
+                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 0]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
                                                 <i class="ki-duotone ki-printer fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
@@ -152,7 +152,21 @@
                                                     <span class="path2"></span>
                                                 </i>
                                             </a>
-                                            <a href="{{ route('kegiatan.spj.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
+                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 0]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="ST">
+                                                <i class="ki-duotone ki-printer fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 1]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Kwitansi">
+                                                <i class="ki-duotone ki-printer fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 2]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Nominatif">
                                                 <i class="ki-duotone ki-printer fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>

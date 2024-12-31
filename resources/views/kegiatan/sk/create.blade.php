@@ -85,9 +85,9 @@
                             <label class="required form-label">Tim Kerja</label>
                             <select class="form-select" name="tim" required>
                                 <option value="" hidden>Pilih Tim Kerja</option>
-                                @for($i = 0; $i < 5; $i++)
-                                    <option value="{{$i}}">Tim {{$i}}</option>
-                                    @endfor
+                                @foreach($tim as $t)
+                                <option value="{{$t->id}}">Tim {{$t->singkatan}}</option>
+                                @endforeach
                             </select>
                             <!-- <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" /> -->
                         </div>

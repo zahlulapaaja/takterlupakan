@@ -144,7 +144,7 @@ class SpjController extends Controller
         return response()->json(array('success' => true));
     }
 
-    public function print($id)
+    public function print($id, $jenis)
     {
         // mengambil data spj 
         $data = Spj::find($id);
@@ -176,7 +176,7 @@ class SpjController extends Controller
         if ($data->kode_akun == config('constants.AKUN_HONOR')) {
             return view('kegiatan.spj.print-honor', compact('data', 'keg', 'ref'));
         } else if ($data->kode_akun == config('constants.AKUN_TRANSLOK')) {
-            return view('kegiatan.spj.print-translok', compact('data', 'keg', 'ref'));
+            return view('kegiatan.spj.print-translok', compact('data', 'keg', 'ref', 'jenis'));
         }
     }
 }
