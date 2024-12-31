@@ -28,15 +28,6 @@ class MitraController extends Controller
         return view('master.mitra.list', compact('data'));
     }
 
-    public function delete($tahun)
-    {
-        // hapus data jika ada 
-        $data = Mitra::where('tahun', $tahun);
-        $data->delete();
-
-        return redirect()->route('master.mitra.index');
-    }
-
     public function impor()
     {
         // mengambil tahun terakhir
@@ -148,8 +139,16 @@ class MitraController extends Controller
     public function destroy($id, Request $request)
     {
         $data = Mitra::find($id);
-        $tahun = $data->tahun;
         $data->delete();
+
+        return response()->json(array('success' => true));
+    }
+
+    public function delete($tahun)
+    {
+        // hapus semua data per tahun
+        $data = Mitra::where('tahun', $tahun)
+            ->delete();
 
         return response()->json(array('success' => true));
     }

@@ -46,7 +46,7 @@
                     <!--begin::Table body-->
                     <tbody>
                         @foreach($data as $d)
-                        <tr>
+                        <tr id="{{$d->tahun}}">
                             <td>
                                 <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">Mitra Statistik Tahun {{ $d->tahun }}</span>
                             </td>
@@ -58,7 +58,8 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="{{route('master.mitra.delete', $d->tahun)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    @if($loop->last)
+                                    <a href="#" data-id="{{$d->tahun}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
@@ -67,12 +68,7 @@
                                             <span class="path5"></span>
                                         </i>
                                     </a>
-                                    <!-- <a href="{{route('master.referensi.edit', $d->tahun)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a> -->
+                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -94,8 +90,52 @@
                 "bDestroy": true,
             });
 
-            $('#searchFp').on('keyup', function() {
-                table.search(this.value).draw();
+            $(document.body).on('click', '.modal-delete', function(e) {
+                e.preventDefault();
+                var tahun = $(this).data('id');
+
+                // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                Swal.fire({
+                    text: "Anda yakin ingin menghapus data mitra tahun " + tahun + " ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yakin",
+                    cancelButtonText: "Batal",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function(result) {
+                    if (result.value) {
+                        var url = "{{route('master.mitra.delete', ':tahun')}}";
+                        url = url.replace(':tahun', tahun);
+                        $.ajax({
+                            type: "DELETE",
+                            url: url,
+                            data: {
+                                _token: '{{csrf_token()}}',
+                            },
+                            success: function(data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        text: "Data berhasil dihapus",
+                                        icon: "success",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-success",
+                                        }
+                                    });
+
+                                    table.rows("#" + tahun + "").remove().draw();
+                                }
+                            }
+                        });
+                    } else if (result.dismiss === 'cancel') {
+                        modal.hide(); // Hide modal				
+                    }
+                });
             });
         });
     </script>

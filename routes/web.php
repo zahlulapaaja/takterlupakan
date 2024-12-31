@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/master/impor/mitra', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
         Route::get('/master/impor/mitra/template', [MitraController::class, 'template'])->name('mitra.template');
         Route::get('/master/mitra/list/{tahun}', [MitraController::class, 'list'])->name('mitra.list');
-        Route::get('/master/mitra/delete/{tahun}', [MitraController::class, 'delete'])->name('mitra.delete');
+        Route::delete('/master/mitra/delete/{tahun}', [MitraController::class, 'delete'])->name('mitra.delete');
     });
 
 
