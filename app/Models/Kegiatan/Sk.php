@@ -27,16 +27,14 @@ class Sk extends Model
         'edited_by',
     ];
 
-    public function insertHonor($sks_id, $uraian_honor, $honor)
+    public function insertHonor($sks_id, $daftar_honor)
     {
-        for ($i = 0; $i < count($honor); $i++) {
-            if ($uraian_honor[$i] != null && $honor[$i] != null) {
-                $data['sks_id'] = $sks_id;
-                $data['uraian'] = $uraian_honor[$i];
-                $data['honor'] = $honor[$i];
+        foreach ($daftar_honor as $d) {
+            $data['sks_id'] = $sks_id;
+            $data['uraian'] = $d['uraian_honor'];
+            $data['honor'] = $d['honor'];
 
-                $res[] = DB::table('sks_honor')->insert($data);
-            }
+            $res[] = DB::table('sks_honor')->insert($data);
         }
 
         return $res;
@@ -65,18 +63,16 @@ class Sk extends Model
         return $res;
     }
 
-    public function updateHonor($sks_id, $uraian_honor, $honor)
+    public function updateHonor($sks_id, $daftar_honor)
     {
         DB::table('sks_honor')->where('sks_id', $sks_id)->delete();
 
-        for ($i = 0; $i < count($honor); $i++) {
-            if ($uraian_honor[$i] != null && $honor[$i] != null) {
-                $data['sks_id'] = $sks_id;
-                $data['uraian'] = $uraian_honor[$i];
-                $data['honor'] = $honor[$i];
+        foreach ($daftar_honor as $d) {
+            $data['sks_id'] = $sks_id;
+            $data['uraian'] = $d['uraian_honor'];
+            $data['honor'] = $d['honor'];
 
-                $res[] = DB::table('sks_honor')->insert($data);
-            }
+            $res[] = DB::table('sks_honor')->insert($data);
         }
 
         return $res;
@@ -84,7 +80,6 @@ class Sk extends Model
 
     public function updatePetugas($sks_id, $daftar_petugas)
     {
-        // dd($daftar_petugas);
         DB::table('sks_petugas')->where('sks_id', $sks_id)->delete();
 
         foreach ($daftar_petugas as $petugas) {
@@ -100,7 +95,6 @@ class Sk extends Model
             }
 
             $data['sebagai'] = $petugas['sebagai'];
-            // dd($data);
             // $data['keterangan'] = $petugas['keterangan']; // ga ada input keterangan
 
             DB::table('sks_petugas')->insert($data);

@@ -72,24 +72,18 @@
                             <label class="required form-label">No SK</label>
                             <input type="text" class="form-control" placeholder="001" name="no" value="{{$data->no}}" />
                             <div class="text-muted fs-7">Nomor terakhir tahun ini : {{$last_no}}</div>
+                            @error('no')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">SK Tentang</label>
                             <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" value="{{$data->tentang}}" />
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row">
-                            <label class="required form-label">Tim Kerja</label>
-                            <select class="form-select" name="tim" required>
-                                <option value="" hidden>Pilih Tim Kerja...</option>
-                                @for($i = 0; $i < 5; $i++)
-                                    <option value="{{$i}}">Tim {{$i}}</option>
-                                    @endfor
-                            </select>
-                            <!-- <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" /> -->
+                            @error('tentang')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -113,12 +107,18 @@
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Mulai</label>
                             <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_mulai}}" />
+                            @error('tgl_mulai')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Akhir</label>
                             <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_akhir}}" />
+                            @error('tgl_akhir')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -127,14 +127,18 @@
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Berlaku</label>
                             <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_berlaku}}" />
-                            <!-- <div class="text-muted fs-7">Set the date of the order to process.</div> -->
+                            @error('tgl_berlaku')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Ditetapkan</label>
                             <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_ditetapkan}}" />
-                            <!-- <div class="text-muted fs-7">Set the date of the order to process.</div> -->
+                            @error('tgl_ditetapkan')
+                            <small>{{ $message }}</small>
+                            @enderror
                         </div>
                         <!--end::Input group-->
                     </div>
@@ -158,7 +162,37 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <div class="d-flex flex-column gap-10">
-                        <table>
+                        <!--begin::Repeater-->
+                        <div id="daftar_honor">
+                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <div data-repeater-list="daftar_honor" class="d-flex flex-column gap-3">
+                                    @foreach($data->honor as $hnr)
+                                    <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
+                                        <!--begin::Input-->
+                                        <input type="text" class="form-control w-2/5" name="uraian_honor" placeholder="Uraian" value="{{$hnr->uraian}}" required />
+                                        <input type="number" class="form-control w-2/5" name="honor" placeholder="Honor" value="{{$hnr->honor}}" required />
+                                        <!--end::Input-->
+                                        <button type="button" data-repeater-delete="" class="w-1/5 btn btn-sm btn-icon btn-light-danger">
+                                            <i class="ki-duotone ki-cross fs-1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </button>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <!--end::Form group-->
+                            <!--begin::Form group-->
+                            <div class="form-group mt-5">
+                                <button type="button" data-repeater-create="" class="btn btn-sm btn-light-primary">
+                                    <i class="ki-duotone ki-plus fs-2"></i>Tambah</button>
+                            </div>
+                            <!--end::Form group-->
+                        </div>
+                        <!--end::Repeater-->
+                        <!-- <table>
                             <thead>
                                 <tr class="flex">
                                     <td class="w-3/5">Uraian</td>
@@ -181,7 +215,7 @@
                                     @endempty
                                     @endfor
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
                 <!--end::Card header-->
@@ -209,7 +243,7 @@
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <div data-repeater-list="daftar_petugas" class="d-flex flex-column gap-3">
-                                    @foreach($petugas as $ptg)
+                                    @foreach($data->petugas as $ptg)
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Select2-->
                                         <div class="w-2/5">
@@ -277,6 +311,7 @@
     <script>
         $(document).ready(function() {
             $('#daftar_petugas').repeater();
+            $('#daftar_honor').repeater();
         });
     </script>
     @endpush

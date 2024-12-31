@@ -30,7 +30,6 @@ class SkController extends Controller
     public function create(Request $request)
     {
         $pok = Pok::find($request->id_pok);
-        $tim = Tim::where('tahun', $pok->tahun)->get();
         $sk = new Sk();
         $last_no = $sk->where('tahun', $pok->tahun)->max('no');
 
@@ -38,7 +37,7 @@ class SkController extends Controller
             $mitra = Mitra::orderBy('nama', 'ASC')->where('tahun', $pok->tahun)->get();
             $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
             $list_petugas = $sk->getListPetugas($pok->tahun);
-            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'last_no', 'tim'));
+            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'last_no'));
         } else {
             return redirect()->route('pok.index');
         }
@@ -46,7 +45,7 @@ class SkController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'no'             => 'required',
             'tentang'        => 'required',
@@ -54,11 +53,11 @@ class SkController extends Controller
             'tgl_akhir'      => 'required',
             'tgl_berlaku'    => 'required',
             'tgl_ditetapkan' => 'required',
+            'daftar_honor'   => 'required',
             'daftar_petugas' => 'required',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
-
 
         $data['no'] = $request->no;
         $data['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
@@ -72,7 +71,7 @@ class SkController extends Controller
 
         // insert data
         $res = Sk::create($data);
-        $res->insertHonor($res->id, $request->uraian_honor, $request->honor);
+        $res->insertHonor($res->id, $request->daftar_honor);
         $res->insertPetugas($res->id, $request->daftar_petugas);
 
         return redirect()->route('kegiatan.sk.index');
@@ -95,10 +94,10 @@ class SkController extends Controller
         if ($pok->kode_output) {
             // mengambil data petugas dan honor
             $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
+            $data->petugas = $data->getPetugas($id);
             $list_petugas = $data->getListPetugas($pok->tahun);
-            $petugas = $data->getPetugas($id);
 
-            return view('kegiatan.sk.edit', compact('data', 'pok', 'petugas', 'list_petugas', 'last_no'));
+            return view('kegiatan.sk.edit', compact('data', 'pok', 'list_petugas', 'last_no'));
         } else {
             return redirect()->route('kegiatan.sk.index');
         }
@@ -114,6 +113,7 @@ class SkController extends Controller
             'tgl_akhir'      => 'required',
             'tgl_berlaku'    => 'required',
             'tgl_ditetapkan' => 'required',
+            'daftar_honor'   => 'required',
             'daftar_petugas' => 'required',
         ]);
 
@@ -131,7 +131,7 @@ class SkController extends Controller
 
         // update data
         $find->update($data);
-        $find->updateHonor($id, $request->uraian_honor, $request->honor);
+        $find->updateHonor($id, $request->daftar_honor);
         $find->updatePetugas($id, $request->daftar_petugas);
         return redirect()->route('kegiatan.sk.index');
     }

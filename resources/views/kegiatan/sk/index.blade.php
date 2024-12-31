@@ -77,12 +77,6 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-switch fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a>
                                     <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
                                         <i class="ki-duotone ki-printer fs-2">
                                             <span class="path1"></span>
