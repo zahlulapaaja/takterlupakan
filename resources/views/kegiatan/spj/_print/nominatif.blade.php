@@ -2,6 +2,11 @@
 
 use Riskihajar\Terbilang\Facades\Terbilang;
 ?>
+
+@section('title')
+Daftar Nominatif
+@endsection
+
 <div class="landscape-page">
     <!-- begin::Header -->
     <div class="flex flex-col place-items-center text-center font-bold uppercase">

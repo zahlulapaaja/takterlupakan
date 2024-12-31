@@ -2,6 +2,9 @@
 
 use Riskihajar\Terbilang\Facades\Terbilang;
 ?>
+@section('title')
+Kwitansi
+@endsection
 
 @foreach($data->petugas as $d)
 @if (!($loop->first))

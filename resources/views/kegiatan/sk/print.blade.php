@@ -1,5 +1,9 @@
 <x-print-layout>
 
+    @section('title')
+    SK
+    @endsection
+
     @section('head-print')
     @include('layout.partials.print-layout._kop')
     <div class="d-flex flex-column text-xl mb-8">

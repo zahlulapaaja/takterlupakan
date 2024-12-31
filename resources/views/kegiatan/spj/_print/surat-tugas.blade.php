@@ -1,3 +1,7 @@
+@section('title')
+Surat Tugas
+@endsection
+
 <!-- begin::Header -->
 <div class="flex flex-col place-items-center text-center font-bold uppercase">
     @include('layout.partials.print-layout._kop')

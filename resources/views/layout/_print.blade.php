@@ -26,7 +26,6 @@
         size: landscape;
         width: 29.7cm;
         height: 21cm;
-
     }
 
     .landscape-page {
