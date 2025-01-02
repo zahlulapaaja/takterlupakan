@@ -9,6 +9,7 @@ use App\Models\Kegiatan\Spj;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
 use App\Models\Pok;
+use App\Models\Surat\NoSuratTim;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -42,20 +43,29 @@ class SpjController extends Controller
             return redirect()->route('kegiatan.index');
         }
 
-        // mengambil data
+        // mengambil data kegiatan
         $keg = Kegiatan::find($request->kegiatans_id);
         $keg->pok = Pok::find($keg->poks_id);
         $keg->tgl_mulai = date_indo($keg->tgl_mulai);
         $keg->tgl_akhir = date_indo($keg->tgl_akhir);
 
+        // mengambil data mak dan pjk
         $keg->mak = $keg->pok->getMak($keg->pok);
         $keg->pjk = Pegawai::find($keg->pjk);
 
+        // mengambil data list petugas
         $sk = new Sk();
         $list_petugas = $sk->getListPetugas($keg->tahun);
         $sk = $sk->where('tahun', $keg->tahun)->get();
 
-        return view('kegiatan.spj.create', compact('keg', 'sk', 'list_petugas'));
+        // mengambil data nomor st
+        $nomor_st = NoSuratTim::where('tahun', $keg->tahun)
+            ->where('tim', $keg->tim)->get();
+        foreach ($nomor_st as $n) {
+            $n->no_surat = $n->getFormat($n, $n->tim);
+        }
+
+        return view('kegiatan.spj.create', compact('keg', 'sk', 'list_petugas', 'nomor_st'));
     }
 
     public function store(Request $request)
@@ -108,7 +118,14 @@ class SpjController extends Controller
         $list_petugas = $sk->getListPetugas($keg->tahun);
         $data->petugas = $data->getPetugas($data, $akun);
 
-        return view('kegiatan.spj.edit', compact('data', 'keg', 'akun', 'list_petugas'));
+        // mengambil data nomor st
+        $nomor_st = NoSuratTim::where('tahun', $keg->tahun)
+            ->where('tim', $keg->tim)->get();
+        foreach ($nomor_st as $n) {
+            $n->no_surat = $n->getFormat($n, $n->tim);
+        }
+
+        return view('kegiatan.spj.edit', compact('data', 'keg', 'akun', 'list_petugas', 'nomor_st'));
     }
 
     public function update($id, Request $request)

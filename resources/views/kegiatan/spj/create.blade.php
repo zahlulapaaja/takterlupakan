@@ -106,8 +106,13 @@
                             <!--begin::Input group-->
                             <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
                                 <label class="required form-label">Nomor Surat Tugas</label>
-                                <input type="text" name="no_st" class="form-control mb-2" placeholder="001/XX/XXXX/XXXX" required />
+                                <input name="no_st" type="text" list="nomot_st" class="form-control mb-2" placeholder="Masukkan Nomor Surat..." required />
                                 <div class="text-muted fs-7">Buat surat tugas di menu Nomor Surat - Tim Kerja</div>
+                                <datalist id="nomot_st">
+                                    @foreach($nomor_st as $n)
+                                    <option value="{{$n->no_surat}}">{{$n->no_surat}}</option>
+                                    @endforeach
+                                </datalist>
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->

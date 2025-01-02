@@ -15,9 +15,7 @@ class NoSuratTimController extends Controller
     {
         $data = NoSuratTim::all();
         foreach ($data as $d) {
-            $tim = Tim::find($d->tim);
-            $tgl = explode('-', $d->tgl);
-            $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
+            $d->no_surat = $d->getFormat($d, $d->tim);
         }
         $last_tahun = NoSuratTim::max('tahun');
         $list_tahun = Tim::distinct()->orderBy('tahun', 'DESC')->get('tahun');
