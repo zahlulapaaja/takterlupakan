@@ -177,7 +177,7 @@
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>
-							<span class="menu-title">SPJ</span>
+							<span class="menu-title">Bukti Dukung SPJ</span>
 						</a>
 						<!--end:Menu link-->
 					</div>
