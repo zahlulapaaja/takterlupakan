@@ -66,7 +66,7 @@ Surat Tugas
     <div class="flex flex-row text-center ml-12">
         <div class="w-2/5"></div>
         <div class="w-3/5 flex flex-col leading-normal">
-            <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl)}}</span>
+            <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl_st)}}</span>
             <span class="pb-20">Kepala</span>
             <span class="font-bold">{{$ref->kpa->nama}}</span>
             <span>NIP. {{$ref->kpa->nip_baru}}</span>
@@ -145,7 +145,7 @@ Surat Tugas
     <div class="flex flex-row text-center ml-12">
         <div class="w-2/5"></div>
         <div class="w-3/5 flex flex-col leading-normal">
-            <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl)}}</span>
+            <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl_st)}}</span>
             <span class="pb-20">Kepala</span>
             <span class="font-bold">{{$ref->kpa->nama}}</span>
             <span>NIP. {{$ref->kpa->nip_baru}}</span>
