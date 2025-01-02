@@ -36,7 +36,7 @@
                     <!--begin::Table container-->
                     <div class="table-responsive">
                         <!--begin::Table-->
-                        <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
+                        <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4 datatable">
                             <!--begin::Table head-->
                             <thead>
                                 <tr class="fw-bold text-muted">
@@ -64,17 +64,11 @@
                                         <span class="badge badge-light-success">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{$d->keg->nama}}</a>
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->keg->nama, 50)}}</a>
                                         <span class="text-muted fw-semibold d-block">{{$d->tgl}}</span>
                                     </td>
                                     <td class="text-end">
                                         <div class="d-flex justify-content-end flex-shrink-0">
-                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                                <i class="ki-duotone ki-switch fs-2">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </a>
                                             <a href="{{ route('kegiatan.spj.print', [$d->id, 0]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
                                                 <i class="ki-duotone ki-printer fs-2">
                                                     <span class="path1"></span>
@@ -113,7 +107,7 @@
                     <!--begin::Table container-->
                     <div class="table-responsive">
                         <!--begin::Table-->
-                        <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4">
+                        <table class="table table-row-dashed table-row-gray-200 align-middle gs-0 gy-4 datatable">
                             <!--begin::Table head-->
                             <thead>
                                 <tr class="fw-bold text-muted">
@@ -141,17 +135,11 @@
                                         <span class="badge badge-light-info">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{$d->keg->nama}}</a>
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->keg->nama, 50)}}</a>
                                         <span class="text-muted fw-semibold d-block">{{$d->tgl}}</span>
                                     </td>
                                     <td class="text-end">
                                         <div class="d-flex justify-content-end flex-shrink-0">
-                                            <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                                <i class="ki-duotone ki-switch fs-2">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </a>
                                             <a href="{{ route('kegiatan.spj.print', [$d->id, 0]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="ST">
                                                 <i class="ki-duotone ki-printer fs-2">
                                                     <span class="path1"></span>

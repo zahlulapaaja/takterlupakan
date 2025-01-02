@@ -34,6 +34,7 @@ return new class extends Migration
             $table->integer('mitra_id')->nullable();
             $table->integer('pegawai_id')->nullable();
             $table->integer('beban');
+            $table->boolean('checkbox');
         });
 
         Schema::create('spjs_translok', function (Blueprint $table) {

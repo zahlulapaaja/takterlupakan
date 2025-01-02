@@ -71,6 +71,8 @@
             <?php $jumlah = 0; ?>
             @foreach($data->petugas as $d)
             <!-- kalo lebih 10 nanti atur ttd nya kekmana biar rapi -->
+
+            @if($d->checkbox == 1)
             <?php $jumlah += $d->beban; ?>
             <tr>
                 <td class="border border-black">{{ $loop->index+1 }}</td>
@@ -81,6 +83,7 @@
                 <td class="border border-black">{{$d->an_rek}}</td>
                 <td class="border border-black">{{$d->no_rek}}</td>
             </tr>
+            @endif
             @endforeach
             <tr>
                 <td class="border border-black" colspan="2">Jumlah</td>

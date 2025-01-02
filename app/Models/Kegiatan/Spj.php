@@ -36,6 +36,8 @@ class Spj extends Model
                 $data['mitra_id'] = null;
                 $data['pegawai_id'] = $request['id_status'][$i];
             }
+            $data['checkbox'] = false;
+            if (in_array($i, $request['checkbox'])) $data['checkbox'] = true;
 
             $data['beban'] = $request['beban'][$i];
             $res[] = DB::table('spjs_honor')->insert($data);
@@ -107,6 +109,8 @@ class Spj extends Model
         if ($request['akun'] == config('constants.AKUN_HONOR')) {
             for ($i = 0; $i < count($request['id_honor']); $i++) {
                 $data['beban'] = $request['beban'][$i];
+                $data['checkbox'] = false;
+                if (in_array($i, $request['checkbox'])) $data['checkbox'] = true;
 
                 // update data 
                 $res[] = DB::table('spjs_honor')

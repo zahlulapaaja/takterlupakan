@@ -24,18 +24,14 @@ class SpjController extends Controller
         $data_honor = Spj::where('kode_akun', config('constants.AKUN_HONOR'))
             ->orderBy('tgl', 'DESC')->get();
         foreach ($data_honor as $d) {
-            $keg = Kegiatan::find($d->kegiatans_id);
-            $keg->nama = Str::limit($keg->nama, 25);
-            $d->keg = $keg;
+            $d->keg = Kegiatan::find($d->kegiatans_id);
             $d->tgl = date_indo($d->tgl);
         }
 
         $data_translok = Spj::where('kode_akun', config('constants.AKUN_TRANSLOK'))
             ->orderBy('tgl', 'DESC')->get();
         foreach ($data_translok as $d) {
-            $keg = Kegiatan::find($d->kegiatans_id);
-            $keg->nama = Str::limit($keg->nama, 25);
-            $d->keg = $keg;
+            $d->keg = Kegiatan::find($d->kegiatans_id);
             $d->tgl = date_indo($d->tgl);
         }
 
@@ -63,6 +59,7 @@ class SpjController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'kegiatans_id'   => 'required',
             'tgl'            => 'required',
