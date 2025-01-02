@@ -85,6 +85,7 @@ class Spj extends Model
                 $pegawai = Pegawai::find($r->pegawai_id);
                 $r->nama = $pegawai->nama;
                 $r->gol = $pegawai->golongan;
+                $r->jabatan = $pegawai->jabatan;
                 $r->id_status = $pegawai->id;
                 $r->nama_bank = $pegawai->nama_bank;
                 $r->no_rek = $pegawai->no_rek;
@@ -94,6 +95,7 @@ class Spj extends Model
                 $mitra = Mitra::find($r->mitra_id);
                 $r->nama = $mitra->nama;
                 $r->gol = '-';
+                $r->jabatan = 'Mitra Statistik';
                 $r->id_status = $mitra->id;
                 $r->nama_bank = $mitra->nama_bank;
                 $r->no_rek = $mitra->no_rek;

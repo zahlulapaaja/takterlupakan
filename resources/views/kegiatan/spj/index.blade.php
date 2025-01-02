@@ -154,7 +154,14 @@
                                                     <span class="path3"></span>
                                                 </i>
                                             </a>
-                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 2]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Nominatif">
+                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 2]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Pengeluaran Riil">
+                                                <i class="ki-duotone ki-printer fs-2">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                </i>
+                                            </a>
+                                            <a href="{{ route('kegiatan.spj.print', [$d->id, 3]) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Nominatif">
                                                 <i class="ki-duotone ki-printer fs-2">
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
