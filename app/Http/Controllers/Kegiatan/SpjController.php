@@ -11,10 +11,8 @@ use App\Models\Master\Referensi;
 use App\Models\Pok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Riskihajar\Terbilang\Facades\Terbilang;
 
 class SpjController extends Controller
@@ -52,14 +50,16 @@ class SpjController extends Controller
 
         $keg->mak = $keg->pok->getMak($keg->pok);
         $keg->pjk = Pegawai::find($keg->pjk);
-        $sk = Sk::where('tahun', $keg->tahun)->get();
 
-        return view('kegiatan.spj.create', compact('keg', 'sk'));
+        $sk = new Sk();
+        $list_petugas = $sk->getListPetugas($keg->tahun);
+        $sk = $sk->where('tahun', $keg->tahun)->get();
+
+        return view('kegiatan.spj.create', compact('keg', 'sk', 'list_petugas'));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'kegiatans_id'   => 'required',
             'tgl'            => 'required',
@@ -82,7 +82,7 @@ class SpjController extends Controller
         if ($request->akun == config('constants.AKUN_HONOR')) {
             $res->insertSpjHonor($res->id, $request->all());
         } else if ($request->akun == config('constants.AKUN_TRANSLOK')) {
-            $res->insertSpjTranslok($res->id, $request->all());
+            $res->insertSpjTranslok($res->id, $request->daftar_petugas_translok);
         }
 
         return redirect()->route('kegiatan.spj.index');
@@ -104,7 +104,9 @@ class SpjController extends Controller
 
         // mengambil data petugas
         $akun = $data->kode_akun;
-        $list_petugas = $data->getPetugas($data, $akun);
+        $sk = new Sk();
+        $list_petugas = $sk->getListPetugas($keg->tahun);
+        $data->petugas = $data->getPetugas($data, $akun);
 
         return view('kegiatan.spj.edit', compact('data', 'keg', 'akun', 'list_petugas'));
     }
@@ -123,11 +125,12 @@ class SpjController extends Controller
         $spj['tgl'] = $request->tgl;
         $spj['no_st'] = $request->no_st;
         $spj['tgl_st'] = $request->tgl_st;
+        $spj['tahun'] = $request->tahun;
         $spj['edited_by'] = session('user_id');
 
         // update data
         $data->update($spj);
-        $data->updateSpj($request->all());
+        $data->updateSpj($data->id, $request->all());
 
         return redirect()->route('kegiatan.spj.index');
     }

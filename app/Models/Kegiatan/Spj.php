@@ -46,24 +46,25 @@ class Spj extends Model
         return $res;
     }
 
-    public function insertSpjTranslok($spj_id, $request)
+    public function insertSpjTranslok($spj_id, $daftar_petugas)
     {
-        for ($i = 0; $i < count($request['status']); $i++) {
+        foreach ($daftar_petugas as $petugas) {
             $data['spjs_id'] = $spj_id;
-            $data['status'] = $request['status'][$i];
-            if ($request['status'][$i] == "N") {
-                $data['mitra_id'] = $request['id_status'][$i];
-                $data['pegawai_id'] = null;
-            } else {
+            $status = explode('-', $petugas['petugas']);
+            $data['status'] = $status[0];
+            if ($status[0] == config('constants.PEGAWAI')) {
+                $data['pegawai_id'] = $status[1];
                 $data['mitra_id'] = null;
-                $data['pegawai_id'] = $request['id_status'][$i];
+            } else {
+                $data['mitra_id'] = $status[1];
+                $data['pegawai_id'] = null;
             }
 
-            $data['byk_kunj'] = $request['byk_kunj'][$i];
-            $data['melakukan'] = $request['melakukan'][$i];
-            $data['lokasi'] = $request['lokasi'][$i];
-            $data['tgl_kunj'] = $request['tgl_kunj'][$i];
-            $data['nominal'] = $request['nominal'][$i];
+            $data['byk_kunj'] = $petugas['byk_kunj'];
+            $data['melakukan'] = $petugas['melakukan'];
+            $data['lokasi'] = $petugas['lokasi'];
+            $data['tgl_kunj'] = $petugas['tgl_kunj'];
+            $data['nominal'] = $petugas['nominal'];
 
             $res[] = DB::table('spjs_translok')->insert($data);
         }
@@ -104,7 +105,7 @@ class Spj extends Model
         return $result;
     }
 
-    public function updateSpj($request)
+    public function updateSpj($spj_id, $request)
     {
         if ($request['akun'] == config('constants.AKUN_HONOR')) {
             for ($i = 0; $i < count($request['id_honor']); $i++) {
@@ -117,22 +118,34 @@ class Spj extends Model
                     ->where('id', $request['id_honor'][$i])
                     ->update($data);
             }
-            return $res;
         } else if ($request['akun'] == config('constants.AKUN_TRANSLOK')) {
-            for ($i = 0; $i < count($request['id_translok']); $i++) {
-                $data['byk_kunj'] = $request['byk_kunj'][$i];
-                $data['melakukan'] = $request['melakukan'][$i];
-                $data['lokasi'] = $request['lokasi'][$i];
-                $data['tgl_kunj'] = $request['tgl_kunj'][$i];
-                $data['nominal'] = $request['nominal'][$i];
+            // hapus data yang ada 
+            DB::table('spjs_translok')->where('spjs_id', $spj_id)->delete();
 
-                // update data 
-                $res[] = DB::table('spjs_translok')
-                    ->where('id', $request['id_translok'][$i])
-                    ->update($data);
+            // nambah data baru
+            $daftar_petugas = $request['daftar_petugas_translok'];
+            foreach ($daftar_petugas as $petugas) {
+                $data['spjs_id'] = $spj_id;
+                $status = explode('-', $petugas['petugas']);
+                $data['status'] = $status[0];
+                if ($status[0] == config('constants.PEGAWAI')) {
+                    $data['pegawai_id'] = $status[1];
+                    $data['mitra_id'] = null;
+                } else {
+                    $data['mitra_id'] = $status[1];
+                    $data['pegawai_id'] = null;
+                }
+
+                $data['byk_kunj'] = $petugas['byk_kunj'];
+                $data['melakukan'] = $petugas['melakukan'];
+                $data['lokasi'] = $petugas['lokasi'];
+                $data['tgl_kunj'] = $petugas['tgl_kunj'];
+                $data['nominal'] = $petugas['nominal'];
+
+                $res[] = DB::table('spjs_translok')->insert($data);
             }
-            return $res;
         }
+        return $res;
     }
 
     public function deleteSpj($spj)

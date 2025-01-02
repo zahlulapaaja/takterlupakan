@@ -107,7 +107,7 @@
                             <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
                                 <label class="form-label">Nomor Surat Tugas</label>
                                 <input type="text" name="no_st" class="form-control mb-2" placeholder="001/XX/XXXX/XXXX" value="{{$data->no_st}}" />
-                                <div class="text-muted fs-7">Nomor surat tugas dari BOS</div>
+                                <div class="text-muted fs-7">Buat surat tugas di menu Nomor Surat - Tim Kerja</div>
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
@@ -136,11 +136,75 @@
                 <!--end::Card header-->
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
+
+                    @if($keg->pok->kode_akun == config('constants.AKUN_HONOR'))
                     <!--begin::Input group-->
-                    <div id="daftar-petugas" class="my-4">
+                    <div id="daftar-petugas-honor" class="my-4">
                         @include('kegiatan.spj._table-edit-alokasi-beban')
                     </div>
                     <!--end::Input group-->
+
+                    @elseif($keg->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
+                    <!--begin::Input group-->
+                    <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
+                        <!--begin::Label-->
+                        <label class="form-label">Petugas</label>
+                        <!--end::Label-->
+                        <!--begin::Repeater-->
+                        <div id="daftar_petugas_translok">
+                            <!--begin::Form group-->
+                            <div class="form-group">
+                                <div data-repeater-list="daftar_petugas_translok" class="d-flex flex-column gap-3">
+
+                                    @foreach($data->petugas as $ptg)
+                                    <div data-repeater-item="" class="form-group d-flex flex-column flex-lg-row gap-3">
+                                        <!--begin::Select2-->
+                                        <div class="w-full w-lg-1/6">
+                                            <select class="form-select" name="petugas" data-kt-ecommerce-catalog-add-product="product_option" required>
+                                                <option value="{{$ptg->status . '-' . $ptg->id_status}}" selected>{{'[' . $ptg->status . '] ' . $ptg->nama}}</option>
+                                                @foreach($list_petugas as $p)
+                                                <option value="{{$p->status . '-' . $p->id}}">{{$p->list}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <!--end::Select2-->
+                                        <!--begin::Input-->
+                                        <span class="d-flex flex-row w-full w-lg-1/6 gap-2">
+                                            <input type="number" class="form-control" name="byk_kunj" placeholder="Byk Kunj..." value="{{$ptg->byk_kunj}}" required />
+                                            <span class="text-left text-lg my-auto text-nowrap mx-1">{{$keg->pok->satuan}}</span>
+                                        </span>
+                                        <input type="text" class="form-control w-full w-lg-1/6" name="melakukan" placeholder="Melakukan" value="{{$ptg->melakukan}}" required />
+                                        <input type="text" class="form-control w-full w-lg-1/6" name="lokasi" placeholder="Lokasi" value="{{$ptg->lokasi}}" required />
+                                        <input type="text" class="form-control w-full w-lg-1/6" name="tgl_kunj" placeholder="Tgl Kunj" value="{{$ptg->tgl_kunj}}" required />
+                                        <span class="d-flex flex-row w-full w-lg-1/6 gap-2">
+                                            <input type="number" class="form-control" name="nominal" placeholder="Realisasi" value="{{$ptg->nominal}}" required />
+                                            <button type="button" data-repeater-delete="" class="btn btn-sm btn-icon btn-light-danger my-auto">
+                                                <i class="ki-duotone ki-cross fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </button>
+                                        </span>
+                                        <!--end::Input-->
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                            <!--end::Form group-->
+                            <!--begin::Form group-->
+                            <div class="form-group mt-5">
+                                <button type="button" data-repeater-create="" class="btn btn-sm btn-light-primary">
+                                    <i class="ki-duotone ki-plus fs-2"></i>Tambah petugas
+                                </button>
+                            </div>
+                            <!--end::Form group-->
+                        </div>
+                        <!--end::Repeater-->
+                    </div>
+                    <!--end::Input group-->
+                    @endif
+
                 </div>
                 <!--end::Card header-->
             </div>
@@ -166,11 +230,12 @@
     @push('scripts')
     <script>
         $(document).ready(function() {
+            $('#daftar_petugas_translok').repeater();
 
             // No SK Dropdown Change Event
             $('#no-sk-dropdown').on('change', function() {
                 var id_sk = this.value;
-                $("#daftar-petugas").html('');
+                $("#daftar-petugas-honor").html('');
 
                 $.ajax({
                     url: "{{url('api/fetch-beban')}}",
@@ -183,7 +248,7 @@
                     },
                     dataType: 'json',
                     success: function(result) {
-                        $('#daftar-petugas').html(result.view);
+                        $('#daftar-petugas-honor').html(result.view);
                     }
 
                 });
