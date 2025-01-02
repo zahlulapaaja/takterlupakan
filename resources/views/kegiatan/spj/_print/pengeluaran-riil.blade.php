@@ -1,7 +1,3 @@
-<?php
-
-use Riskihajar\Terbilang\Facades\Terbilang;
-?>
 @section('title')
 Daftar Pengeluaran Riil
 @endsection
@@ -58,7 +54,29 @@ Daftar Pengeluaran Riil
             <td class="align-top">
                 Biaya transport lokal petugas pendataan lapangan di bawah ini
                 yang tidak dapat diperoleh bukti-bukti pengeluaran, meliputi :
-                @include('kegiatan.spj._print._table-daftar-translok')
+                <table class="w-full border text-center font-medium mb-4">
+                    <thead>
+                        <tr>
+                            <th class="border border-black py-4 font-bold">No.</th>
+                            <th class="border border-black py-4 font-bold">Uraian</th>
+                            <th class="border border-black py-4 font-bold">Jumlah (Rp)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-black py-2">1.</td>
+                            <td class="border border-black py-2 text-left min-w-300px pl-2">
+                                Transport Lokal {{$d->byk_kunj}} {{$keg->pok->satuan}} x @ {{currency_IDR($d->nominal/$d->byk_kunj)}}
+                            </td>
+                            <td class="border border-black py-2">{{currency_IDR($d->nominal)}},-</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-black"></td>
+                            <td class="border border-black text-center min-w-300px pl-2 font-bold">Jumlah</td>
+                            <td class="border border-black font-bold">{{currency_IDR($d->nominal)}},-</td>
+                        </tr>
+                    </tbody>
+                </table>
             </td>
         </tr>
         <tr>
