@@ -14,7 +14,6 @@ class NoFpExport implements FromQuery, WithHeadings, WithMapping
     use Exportable;
 
     protected int $tahun;
-    private int $row = 1;
 
     public function __construct(int $tahun)
     {
@@ -23,22 +22,27 @@ class NoFpExport implements FromQuery, WithHeadings, WithMapping
 
     public function query()
     {
-        return NoFp::query()->whereYear('tgl', $this->tahun);
+        $query = NoFp::query()
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('no', 'ASC');
+        if ($this->tahun != 0) $query->whereYear('tgl', $this->tahun);
+        return $query;
     }
 
     public function map($data): array
     {
 
         return [
-            $this->row++,
+            $data->no,
             $data->rincian,
             date_indo($data->tgl),
+            $data->tahun,
             User::select('name')->where('id', $data->edited_by)->first()->name,
         ];
     }
 
     public function headings(): array
     {
-        return ["No", "Rincian", "Tanggal", "Diedit Oleh"];
+        return ["No", "Rincian", "Tanggal", "Tahun", "Diedit Oleh"];
     }
 }

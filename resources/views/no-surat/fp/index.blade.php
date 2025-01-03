@@ -17,7 +17,7 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
-                <a href="{{route('no-surat.fp.export', 2024)}}" class="btn btn-sm btn-light btn-active-primary me-2">
+                <a id="export" href="{{route('no-surat.fp.export', 0)}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>Export</a>
                 <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Klik untuk tambah nomor">
                     <a href="#" class="btn btn-sm btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#add_nofp">
@@ -43,7 +43,7 @@
                     <!--end::Input group-->
                     <div>
                         <select id="tahun" class="form-control">
-                            <option value="">-- Pilih Tahun --</option>
+                            <option value="0">-- Pilih Tahun --</option>
                             @foreach($tahun as $t)
                             <option value="{{$t->tahun}}">{{$t->tahun}}</option>
                             @endforeach
@@ -85,6 +85,7 @@
             var table = $('.datatable').DataTable({
                 processing: true,
                 // serverSide: true,
+                order: [],
                 ajax: {
                     url: "{{ route('no-surat.fp.index') }}",
                     data: function(d) {
@@ -174,6 +175,10 @@
             });
 
             $('#tahun').change(function() {
+                tahun = $('#tahun').val();
+                var url = "{{route('no-surat.fp.export',':tahun')}}";
+                url = url.replace(':tahun', tahun);
+                $("#export").attr("href", url);
                 table.ajax.reload();
                 // table.draw();
             });

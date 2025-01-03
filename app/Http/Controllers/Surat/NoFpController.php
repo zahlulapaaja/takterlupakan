@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Surat\NoFp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -16,7 +15,9 @@ class NoFpController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = NoFp::select();
+            $data = NoFp::select()
+                ->orderBy('tahun', 'DESC')
+                ->orderBy('no', 'DESC');
 
             return DataTables::of($data)
                 ->addIndexColumn()
