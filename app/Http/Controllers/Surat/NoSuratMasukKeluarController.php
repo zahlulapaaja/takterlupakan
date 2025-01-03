@@ -85,23 +85,8 @@ class NoSuratMasukKeluarController extends Controller
                 ->make(true);
         }
 
-
-        $last_tahun = NoSuratMasukKeluar::max('tahun');
-        $data = NoSuratMasukKeluar::all();
-
-        foreach ($data as $d) {
-            if ($d->jenis == 'masuk') {
-                $m = DB::table('no_surat_masuks')->find($d->no_surat_masuks_id);
-                $d->rincian = $m->rincian;
-            } else {
-                $k = DB::table('no_surat_keluars')->find($d->no_surat_keluars_id);
-                $d->rincian = $k->rincian;
-            }
-        }
-
         $tahun = NoSuratMasukKeluar::distinct()->orderBy('tahun', 'DESC')->get('tahun');
-
-        return view('no-surat.masuk-keluar.index', compact('data', 'tahun', 'last_tahun'));
+        return view('no-surat.masuk-keluar.index', compact('tahun'));
     }
 
     public function store(Request $request)
