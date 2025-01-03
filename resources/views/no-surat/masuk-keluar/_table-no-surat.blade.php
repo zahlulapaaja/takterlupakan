@@ -2,11 +2,6 @@
     <!--begin::Table head-->
     <thead>
         <tr class="fw-bold text-muted">
-            <th class="w-25px">
-                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                </div>
-            </th>
             <th class="min-w-100px">Nomor</th>
             <th class="min-w-50px">Jenis</th>
             <th class="min-w-150px">Rincian</th>
@@ -19,11 +14,6 @@
     <tbody>
         @foreach($data as $d)
         <tr id="{{$d->id}}">
-            <td>
-                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                </div>
-            </td>
             <td>
                 <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no }}</span>
             </td>
@@ -75,8 +65,48 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        let table = $('.datatable').DataTable({
-            "bDestroy": true,
+        var table = $('.datatable').DataTable({
+            processing: true,
+            // serverSide: true,
+            order: [],
+            ajax: {
+                url: "{{ route('no-surat.masuk-keluar.index') }}",
+                data: function(d) {
+                    d.tahun = $('#tahun').val(),
+                        d.jenis = $('#jenis').val(),
+                        d.search = $('#searchNoSurat').val();
+                }
+            },
+            columns: [{
+                    data: 'no',
+                    name: 'no',
+                    className: 'fw-bold text-hover-primary'
+                },
+                {
+                    data: 'jenis',
+                    name: 'jenis'
+                },
+                {
+                    data: 'rincian',
+                    name: 'rincian'
+                },
+                {
+                    data: 'tgl',
+                    name: 'tgl',
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    className: 'p-0',
+                    sortable: false
+                },
+            ],
+            createdRow: function(row, data, dataIndex) {
+                $(row).attr('id', data.id);
+            },
+            initComplete: function(settings, json) {
+                $('.sorting_disabled').removeClass('p-0');
+            }
         });
 
         $('#searchNoSurat').on('keyup', function() {
@@ -131,6 +161,18 @@
                 }
             });
         });
+
+
+        $('#tahun').change(function() {
+            tahun = $('#tahun').val();
+            alert(tahun);
+            var url = "{{route('no-surat.masuk-keluar.export',':tahun')}}";
+            url = url.replace(':tahun', tahun);
+            $("#export").attr("href", url);
+            table.ajax.reload();
+            // table.draw();
+        });
+
     });
 </script>
 @endpush

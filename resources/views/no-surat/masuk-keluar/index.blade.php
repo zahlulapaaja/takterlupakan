@@ -17,7 +17,7 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
-                <a href="{{route('no-surat.masuk-keluar.export', 2024)}}" class="btn btn-sm btn-light btn-active-primary me-2">
+                <a id="export" href="{{route('no-surat.masuk-keluar.export', 0)}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>Export</a>
                 <div data-bs-toggle="tooltip" data-bs-placement="top" title="Klik untuk tambah nomor">
                     <a href="#" class="btn btn-sm btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#add_no_surat_masuk_keluar">
@@ -38,7 +38,7 @@
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Compact form-->
-                <div class="d-flex flex-row sm:flex-col justify-between mb-4">
+                <div class="d-flex flex-row flex-lg-col justify-between mb-4">
                     <!--begin::Input group-->
                     <div class="position-relative w-md-400px me-md-2">
                         <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
@@ -48,29 +48,43 @@
                         <input id="searchNoSurat" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
-                    <div class="position-relative d-flex flex-row">
-                        <!--begin::Input group-->
-                        <div class="flex me-md-2">
-                            <select id="jenis-dropdown" name="jenis" class="form-control form-control-solid">
-                            </select>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="flex me-md-2">
-                            <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
-                                @foreach($list_tahun as $thn)
-                                <option value="{{ $thn->tahun }}">{{ $thn->tahun }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!--end::Input group-->
+                    <div class="flex flex-row gap-3">
+                        <select id="jenis" class="form-control text-center">
+                            <option value="0">-- Jenis Surat --</option>
+                            <option value="masuk">Masuk</option>
+                            <option value="keluar">Keluar</option>
+                        </select>
+                        <select id="tahun" class="form-control text-center">
+                            <option value="0">-- Tahun --</option>
+                            @foreach($tahun as $t)
+                            <option value="{{$t->tahun}}">{{$t->tahun}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
-                <div id="tabel-no-surat">
-                    @include('no-surat.masuk-keluar._table-no-surat')
-                </div>
+                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 datatable">
+                    <!--begin::Table head-->
+                    <thead>
+                        <tr class="fw-bold text-muted">
+                            <th class="min-w-100px">Nomor</th>
+                            <th class="min-w-50px">Jenis</th>
+                            <th class="min-w-150px">Rincian</th>
+                            <th class="min-w-100px">Tanggal</th>
+                            <th class="min-w-100px text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center">Tidak ada data yang tersedia</td>
+                        </tr>
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
+
                 <!--end::Table-->
             </div>
             <!--end::Table container-->
@@ -85,67 +99,114 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            // Tahun Dropdown Change Event
-            $('#tahun-dropdown').on('change', function() {
-                var tahun = this.value;
-                $("#tabel-no-surat").html('');
-                $("#jenis-dropdown").html('');
-
-                $.ajax({
-                    url: "{{url('api/get-no-surat-masuk-keluar')}}",
-                    type: "POST",
-                    data: {
-                        tahun: tahun,
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function(res) {
-                        $('#jenis-dropdown').html('<option value="" hidden>Pilih Jenis Surat...</option>');
-                        $("#jenis-dropdown").append('<option value="masuk">Masuk</option>');
-                        $("#jenis-dropdown").append('<option value="keluar">Keluar</option>');
-
-                        // langsung ngasih result
-                        $('#tabel-no-surat').html(res.view);
-                        let table = $('.datatable').DataTable({
-                            "bDestroy": true,
-                        });
-
-                        $('#searchNoSurat').on('keyup', function() {
-                            table.search(this.value).draw();
-                        });
+            var table = $('.datatable').DataTable({
+                processing: true,
+                // serverSide: true,
+                order: [],
+                ajax: {
+                    url: "{{ route('no-surat.masuk-keluar.index') }}",
+                    data: function(d) {
+                        d.tahun = $('#tahun').val(),
+                            d.jenis = $('#jenis').val(),
+                            d.search = $('#searchNoSurat').val();
                     }
-
-                });
-
+                },
+                columns: [{
+                        data: 'no',
+                        name: 'no',
+                        className: 'fw-bold text-hover-primary'
+                    },
+                    {
+                        data: 'jenis',
+                        name: 'jenis'
+                    },
+                    {
+                        data: 'rincian',
+                        name: 'rincian'
+                    },
+                    {
+                        data: 'tgl',
+                        name: 'tgl',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        className: 'p-0',
+                        sortable: false
+                    },
+                ],
+                createdRow: function(row, data, dataIndex) {
+                    $(row).attr('id', data.id);
+                },
+                initComplete: function(settings, json) {
+                    $('.sorting_disabled').removeClass('p-0');
+                }
             });
 
-            // Jenis Dropdown Change Event
-            $('#jenis-dropdown').on('change', function() {
-                var jenis = this.value;
-                var tahun = $('#tahun-dropdown').find(":selected").val();
-                $("#tabel-no-surat").html('');
+            $('#searchNoSurat').on('keyup', function() {
+                table.search(this.value).draw();
+            });
 
-                $.ajax({
-                    url: "{{url('api/get-no-surat-masuk-keluar')}}",
-                    type: "POST",
-                    data: {
-                        tahun: tahun,
-                        jenis: jenis,
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function(res) {
+            $(document.body).on('click', '.modal-delete', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
 
-                        // langsung ngasih result
-                        $('#tabel-no-surat').html(res.view);
-                        let table = $('.datatable').DataTable({
-                            "bDestroy": true,
+                // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                Swal.fire({
+                    text: "Anda yakin ingin menghapus data " + name + " ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yakin",
+                    cancelButtonText: "Batal",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function(result) {
+                    if (result.value) {
+                        var url = "{{route('no-surat.masuk-keluar.destroy',':id')}}";
+                        url = url.replace(':id', id);
+                        $.ajax({
+                            type: "DELETE",
+                            url: url,
+                            data: {
+                                _token: '{{csrf_token()}}',
+                            },
+                            success: function(data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        text: "Data berhasil dihapus",
+                                        icon: "success",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-success",
+                                        }
+                                    });
+
+                                    table.rows("#" + id + "").remove().draw();
+                                }
+                            }
                         });
-                        $('#searchNoSurat').on('keyup', function() {
-                            table.search(this.value).draw();
-                        });
+                    } else if (result.dismiss === 'cancel') {
+                        modal.hide(); // Hide modal				
                     }
                 });
+            });
+
+
+            $('#tahun').change(function() {
+                tahun = $('#tahun').val();
+                var url = "{{route('no-surat.masuk-keluar.export',':tahun')}}";
+                url = url.replace(':tahun', tahun);
+                $("#export").attr("href", url);
+                table.ajax.reload();
+            });
+
+            $('#jenis').change(function() {
+                table.ajax.reload();
             });
 
         });

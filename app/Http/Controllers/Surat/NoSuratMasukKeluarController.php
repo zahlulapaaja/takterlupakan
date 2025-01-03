@@ -8,13 +8,86 @@ use App\Models\Surat\NoSuratMasukKeluar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class NoSuratMasukKeluarController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
+        // cek data ajax
+        if ($request->ajax()) {
+            $data = NoSuratMasukKeluar::select()
+                ->orderBy('tahun', 'DESC')
+                ->orderBy('no', 'DESC');
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('rincian', function ($row) {
+                    if ($row->jenis == 'masuk') {
+                        $m = DB::table('no_surat_masuks')->find($row->no_surat_masuks_id);
+                        return Str::limit($m->rincian, 30);
+                    } else {
+                        $k = DB::table('no_surat_keluars')->find($row->no_surat_keluars_id);
+                        return Str::limit($k->rincian, 30);
+                    }
+                })
+                ->addColumn('tgl', function ($row) {
+                    return date_indo($row->tgl);
+                })
+                ->addColumn('action', function ($row) {
+                    $route_show = route('no-surat.masuk-keluar.show', $row->id);
+                    $route_edit = route('no-surat.masuk-keluar.edit', $row->id);
+                    $result = '<div class="d-flex justify-content-end flex-shrink-0">
+                                <a href="' . $route_show . '" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="ki-duotone ki-information fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                    </i>
+                                </a>
+                                <a href="' . $route_edit . '" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="ki-duotone ki-pencil fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </a>
+                                <a href="#" data-id="' . $row->id . '" data-name="' . $row->no . '" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
+                                    <i class="ki-duotone ki-trash fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                        <span class="path3"></span>
+                                        <span class="path4"></span>
+                                        <span class="path5"></span>
+                                    </i>
+                                </a>
+                            </div>';
+
+                    return $result;
+                })
+                ->filter(function ($instance) use ($request) {
+                    if ($request->get('tahun') != 0) {
+                        $instance->where('tahun', $request->get('tahun'));
+                    }
+                    if ($request->get('jenis') != 0) {
+                        $instance->where('jenis', $request->get('jenis'));
+                    }
+                    if (!empty($request->get('search'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $search = $request->get('search');
+                            $w->orWhere('jenis', 'LIKE', "%$search%")
+                                ->orWhere('no', 'LIKE', "%$search%");
+                        });
+                    }
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+
         $last_tahun = NoSuratMasukKeluar::max('tahun');
-        $data = NoSuratMasukKeluar::where('tahun', $last_tahun)->get();
+        $data = NoSuratMasukKeluar::all();
 
         foreach ($data as $d) {
             if ($d->jenis == 'masuk') {
@@ -26,9 +99,9 @@ class NoSuratMasukKeluarController extends Controller
             }
         }
 
-        $list_tahun = NoSuratMasukKeluar::distinct()->orderBy('tahun', 'DESC')->get('tahun');
+        $tahun = NoSuratMasukKeluar::distinct()->orderBy('tahun', 'DESC')->get('tahun');
 
-        return view('no-surat.masuk-keluar.index', compact('data', 'list_tahun', 'last_tahun'));
+        return view('no-surat.masuk-keluar.index', compact('data', 'tahun', 'last_tahun'));
     }
 
     public function store(Request $request)
@@ -72,7 +145,7 @@ class NoSuratMasukKeluarController extends Controller
         $data['tahun'] = explode('-', $request->tgl)[0];
         $data['edited_by'] = session('user_id');
 
-        NoSuratMasukKeluar::create($data);
+        $res = NoSuratMasukKeluar::create($data);
         return redirect()->route('no-surat.masuk-keluar.index')->with('success', 'Nomor Surat berhasil ditambah');
     }
 
