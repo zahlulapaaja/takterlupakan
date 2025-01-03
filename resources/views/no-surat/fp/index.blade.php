@@ -31,16 +31,24 @@
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Compact form-->
-                <div class="d-flex align-items-center mb-4">
+                <div class="d-flex justify-between align-items-center mb-4">
                     <!--begin::Input group-->
                     <div class="position-relative w-md-400px me-md-2">
                         <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <input id="searchFp" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                        <input id="searchFp" type="search" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
+                    <div>
+                        <select id="tahun" class="form-control">
+                            <option value="">-- Pilih Tahun --</option>
+                            @foreach($tahun as $t)
+                            <option value="{{$t->tahun}}">{{$t->tahun}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
@@ -48,11 +56,6 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="w-25px">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                </div>
-                            </th>
                             <th class="min-w-200px">Nomor</th>
                             <th class="min-w-150px">Rincian</th>
                             <th class="min-w-100px">Tanggal</th>
@@ -62,43 +65,9 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @foreach($data as $d)
-                        <tr id="{{$d->id}}">
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_surat }}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->rincian}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->tgl}}</span>
-                            </td>
-                            <td>
-                                <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{route('no-surat.fp.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a>
-                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->no_surat}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
-                                        <i class="ki-duotone ki-trash fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                            <span class="path4"></span>
-                                            <span class="path5"></span>
-                                        </i>
-                                    </a>
-                                </div>
-                            </td>
+                        <tr>
+                            <td colspan="4" class="text-center">Tidak ada data yang tersedia</td>
                         </tr>
-                        @endforeach
                     </tbody>
                     <!--end::Table body-->
                 </table>
@@ -109,11 +78,46 @@
         <!--begin::Body-->
     </div>
     <!--end::Tables Widget 9-->
+
     @push('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            let table = $('.datatable').DataTable({
-                "bDestroy": true,
+            var table = $('.datatable').DataTable({
+                processing: true,
+                // serverSide: true,
+                ajax: {
+                    url: "{{ route('no-surat.fp.index') }}",
+                    data: function(d) {
+                        d.tahun = $('#tahun').val(),
+                            d.search = $('#searchFp').val();
+                    }
+                },
+                columns: [{
+                        data: 'no_surat',
+                        name: 'no_surat',
+                        className: 'fw-bold text-hover-primary'
+                    },
+                    {
+                        data: 'rincian',
+                        name: 'rincian'
+                    },
+                    {
+                        data: 'tgl',
+                        name: 'tgl',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        className: 'p-0',
+                        sortable: false
+                    },
+                ],
+                createdRow: function(row, data, dataIndex) {
+                    $(row).attr('id', data.id);
+                },
+                initComplete: function(settings, json) {
+                    $('.sorting_disabled').removeClass('p-0');
+                }
             });
 
             $('#searchFp').on('keyup', function() {
@@ -168,6 +172,12 @@
                     }
                 });
             });
+
+            $('#tahun').change(function() {
+                table.ajax.reload();
+                // table.draw();
+            });
+
         });
     </script>
     @endpush
