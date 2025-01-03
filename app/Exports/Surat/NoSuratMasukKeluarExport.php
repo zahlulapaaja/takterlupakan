@@ -2,7 +2,6 @@
 
 namespace App\Exports\Surat;
 
-use App\Models\Surat\NoFp;
 use App\Models\Surat\NoSuratMasukKeluar;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +17,6 @@ class NoSuratMasukKeluarExport implements FromQuery, WithHeadings, WithMapping, 
     use Exportable;
 
     protected int $tahun;
-    private int $row = 1;
 
     public function __construct(int $tahun)
     {
@@ -27,16 +25,19 @@ class NoSuratMasukKeluarExport implements FromQuery, WithHeadings, WithMapping, 
 
     public function query()
     {
-        return NoSuratMasukKeluar::query()->whereYear('tgl', $this->tahun);
+        $query = NoSuratMasukKeluar::query()
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('no', 'ASC');
+        if ($this->tahun != 0) $query->whereYear('tgl', $this->tahun);
+        return $query;
     }
 
     public function map($data): array
     {
-
         if ($data->jenis == 'masuk') {
             $surat = DB::table('no_surat_masuks')->find($data->no_surat_masuks_id);
             return [
-                $this->row++,
+                $data->no,
                 $surat->pengirim,
                 $surat->no_masuk,
                 date_indo($surat->tgl_surat),
@@ -45,12 +46,13 @@ class NoSuratMasukKeluarExport implements FromQuery, WithHeadings, WithMapping, 
                 null,
                 null,
                 $surat->keterangan,
+                $data->tahun,
                 User::select('name')->where('id', $data->edited_by)->first()->name,
             ];
         } else if ($data->jenis == 'keluar') {
             $surat = DB::table('no_surat_keluars')->find($data->no_surat_keluars_id);
             return [
-                $this->row++,
+                $data->no,
                 null,
                 null,
                 null,
@@ -59,6 +61,7 @@ class NoSuratMasukKeluarExport implements FromQuery, WithHeadings, WithMapping, 
                 $surat->tujuan,
                 date_indo($data->tgl),
                 $surat->keterangan,
+                $data->tahun,
                 User::select('name')->where('id', $data->edited_by)->first()->name,
             ];
         }
@@ -73,6 +76,7 @@ class NoSuratMasukKeluarExport implements FromQuery, WithHeadings, WithMapping, 
                 $event->sheet->mergeCells('F1:H1');
                 $event->sheet->mergeCells('I1:I2');
                 $event->sheet->mergeCells('J1:J2');
+                $event->sheet->mergeCells('K1:K2');
             }
         ];
     }
@@ -80,7 +84,7 @@ class NoSuratMasukKeluarExport implements FromQuery, WithHeadings, WithMapping, 
     public function headings(): array
     {
         return [
-            ["Nomor", "Surat Masuk", "", "", "", "Surat Keluar", "", "", "Keterangan", "Diedit Oleh"],
+            ["Nomor", "Surat Masuk", "", "", "", "Surat Keluar", "", "", "Keterangan", "Tahun", "Diedit Oleh"],
             ["", "Pengirim", "Nomor", "Tanggal", "Ringkasan", "Ringkasan", "Alamat", "Tanggal", ""],
         ];
     }
