@@ -58,65 +58,14 @@ class DropdownController extends Controller
     public function fetchTim(Request $request)
     {
         $data['tim'] = Tim::where("tahun", $request->tahun)->get();
-
         return response()->json($data);
     }
 
-    public function getNoSuratByTim(Request $request)
+    public function fetchJenisSurat(Request $request)
     {
-        $data = NoSuratTim::where('tahun', $request->tahun)
-            ->where('tim', $request->tim)
-            ->orderBy('no', 'DESC')->get();
-        foreach ($data as $d) {
-            $tim = Tim::find($d->tim);
-            $tgl = explode('-', $d->tgl);
-            $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
-        }
-        $list_jenis = NoSuratTim::distinct()
-            ->where('tahun', $request->tahun)
-            ->where('tim', $request->tim)
-            ->get('jenis');
+        $data = NoSuratTim::distinct()->where('tahun', $request->tahun)
+            ->where('tim', $request->tim)->get('jenis');
 
-        $view = view('no-surat.tim._table-no-surat', compact('data'))->render();
-        return response()->json([
-            'view' => $view,
-            'list_jenis' => $list_jenis,
-        ], 200);
-    }
-
-    public function getNoSuratByJenis(Request $request)
-    {
-        $data = NoSuratTim::where('tahun', $request->tahun)
-            ->where('tim', $request->tim)
-            ->where('jenis', $request->jenis)
-            ->orderBy('no', 'DESC')->get();
-        foreach ($data as $d) {
-            $tim = Tim::find($d->tim);
-            $tgl = explode('-', $d->tgl);
-            $d->no_surat = $d->no . '/' . $d->jenis . '/' . $tim->kode . '/' . $tgl[1] . '/' . $d->tahun;
-        }
-
-        $view = view('no-surat.tim._table-no-surat', compact('data'))->render();
-        return response()->json(['view' => $view], 200);
-    }
-
-    public function getNoSuratByMasukKeluar(Request $request)
-    {
-        $data = NoSuratMasukKeluar::where('tahun', $request->tahun);
-        if ($request->jenis) $data->where('jenis', $request->jenis);
-        $data = $data->orderBy('no', 'DESC')->get();
-
-        foreach ($data as $d) {
-            if ($d->jenis == 'masuk') {
-                $m = DB::table('no_surat_masuks')->find($d->no_surat_masuks_id);
-                $d->rincian = $m->rincian;
-            } else {
-                $k = DB::table('no_surat_keluars')->find($d->no_surat_keluars_id);
-                $d->rincian = $k->rincian;
-            }
-        }
-
-        $view = view('no-surat.masuk-keluar._table-no-surat', compact('data'))->render();
-        return response()->json(['view' => $view], 200);
+        return response()->json($data);
     }
 }

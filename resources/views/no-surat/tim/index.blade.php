@@ -18,7 +18,7 @@
             </h3>
             <div class="card-toolbar">
 
-                <a href="{{route('no-surat.tim.export', 2024)}}" class="btn btn-sm btn-light btn-active-primary me-2">
+                <a id="export" href="{{route('no-surat.tim.export', 0)}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>Export</a>
                 <div data-bs-toggle="tooltip" data-bs-placement="top" title="Klik untuk tambah nomor">
                     <a href="#" class="btn btn-sm btn-light btn-active-primary" data-bs-toggle="modal" data-bs-target="#add_no_surat_tim">
@@ -49,38 +49,43 @@
                         <input id="searchNoSurat" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
-                    <div class="position-relative d-flex flex-row">
-                        <!--begin::Input group-->
-                        <div class="flex me-md-2">
-                            <select id="jenis-dropdown" name="jenis" class="form-control form-control-solid">
-                            </select>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="flex me-md-2">
-                            <select id="tim-dropdown" name="tim" class="form-control form-control-solid">
-                                @foreach($list_tim as $tim)
-                                <option value="{{ $tim->id }}">{{ $tim->singkatan }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="flex me-md-2">
-                            <select id="tahun-dropdown" name="tahun" class="form-control form-control-solid">
-                                @foreach($list_tahun as $thn)
-                                <option value="{{ $thn->tahun }}">{{ $thn->tahun }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!--end::Input group-->
+                    <div class="flex flex-row gap-3">
+                        <select id="jenis" class="form-control text-center">
+                            <option value="0">-- Jenis Surat --</option>
+                        </select>
+                        <select id="tim" class="form-control text-center">
+                            <option value="0">-- Tim --</option>
+                        </select>
+                        <select id="tahun" class="form-control text-center">
+                            <option value="0">-- Tahun --</option>
+                            @foreach($tahun as $t)
+                            <option value="{{$t->tahun}}">{{$t->tahun}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
-                <div id="tabel-no-surat">
-                    @include('no-surat.tim._table-no-surat')
-                </div>
+                <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 datatable">
+                    <!--begin::Table head-->
+                    <thead>
+                        <tr class="fw-bold text-muted">
+                            <th class="min-w-200px">Nomor</th>
+                            <th class="min-w-50px">Jenis</th>
+                            <th class="min-w-150px">Rincian</th>
+                            <th class="min-w-100px">Tanggal</th>
+                            <th class="min-w-100px text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center">Tidak ada data yang tersedia</td>
+                        </tr>
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
                 <!--end::Table-->
             </div>
             <!--end::Table container-->
@@ -95,11 +100,113 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            // Tahun Dropdown Change Event
-            $('#tahun-dropdown').on('change', function() {
-                var tahun = this.value;
-                $("#tim-dropdown").html('');
+            var table = $('.datatable').DataTable({
+                processing: true,
+                // serverSide: true,
+                order: [],
+                ajax: {
+                    url: "{{ route('no-surat.tim.index') }}",
+                    data: function(d) {
+                        d.tahun = $('#tahun').val(),
+                            d.tim = $('#tim').val(),
+                            d.jenis = $('#jenis').val(),
+                            d.search = $('#searchNoSurat').val();
+                    }
+                },
+                columns: [{
+                        data: 'no_surat',
+                        name: 'no_surat',
+                        className: 'fw-bold text-hover-primary'
+                    },
+                    {
+                        data: 'jenis',
+                        name: 'jenis'
+                    },
+                    {
+                        data: 'rincian',
+                        name: 'rincian'
+                    },
+                    {
+                        data: 'tgl',
+                        name: 'tgl',
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        className: 'p-0',
+                        sortable: false
+                    },
+                ],
+                createdRow: function(row, data, dataIndex) {
+                    $(row).attr('id', data.id);
+                },
+                initComplete: function(settings, json) {
+                    $('.sorting_disabled').removeClass('p-0');
+                }
+            });
 
+            $('#searchNoSurat').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+
+            $(document.body).on('click', '.modal-delete', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+
+                // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
+                Swal.fire({
+                    text: "Anda yakin ingin menghapus data " + name + " ?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    buttonsStyling: false,
+                    confirmButtonText: "Yakin",
+                    cancelButtonText: "Batal",
+                    customClass: {
+                        confirmButton: "btn btn-primary",
+                        cancelButton: "btn btn-active-light"
+                    }
+                }).then(function(result) {
+                    if (result.value) {
+                        var url = "{{route('no-surat.tim.destroy',':id')}}";
+                        url = url.replace(':id', id);
+                        $.ajax({
+                            type: "DELETE",
+                            url: url,
+                            data: {
+                                _token: '{{csrf_token()}}',
+                            },
+                            success: function(data) {
+                                if (data.success) {
+                                    Swal.fire({
+                                        text: "Data berhasil dihapus",
+                                        icon: "success",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: {
+                                            confirmButton: "btn btn-success",
+                                        }
+                                    });
+
+                                    table.rows("#" + id + "").remove().draw();
+                                }
+                            }
+                        });
+                    } else if (result.dismiss === 'cancel') {
+                        modal.hide(); // Hide modal				
+                    }
+                });
+            });
+
+
+            $('#tahun').change(function() {
+                tahun = $('#tahun').val();
+                var url = "{{route('no-surat.tim.export',':tahun')}}";
+                url = url.replace(':tahun', tahun);
+                $("#export").attr("href", url);
+
+                $('#tim').html('<option value="0">-- Tim --</option>');
+                $('#jenis').html('<option value="0">-- Jenis Surat --</option>');
                 $.ajax({
                     url: "{{url('api/fetch-tim')}}",
                     type: "POST",
@@ -109,27 +216,24 @@
                     },
                     dataType: 'json',
                     success: function(res) {
-                        $('#tim-dropdown').html('<option value="" hidden>Pilih Tim Kerja...</option>');
-
                         $.each(res.tim, function(key, value) {
-                            console.log(value);
-                            $("#tim-dropdown").append('<option value="' +
+                            $("#tim").append('<option value="' +
                                 value.id + '">' + value.singkatan + '</option>');
                         });
                     }
 
                 });
 
+                table.ajax.reload();
             });
 
-            // Tim Dropdown Change Event
-            $('#tim-dropdown').on('change', function() {
+            $('#tim').change(function() {
                 var tim = this.value;
-                var tahun = $('#tahun-dropdown').find(":selected").val();
-                $("#tabel-no-surat").html('');
+                var tahun = $('#tahun').find(":selected").val();
 
+                $('#jenis').html('<option value="0">-- Jenis Surat --</option>');
                 $.ajax({
-                    url: "{{url('api/get-no-surat-by-tim')}}",
+                    url: "{{url('api/fetch-jenis-surat')}}",
                     type: "POST",
                     data: {
                         tahun: tahun,
@@ -139,54 +243,20 @@
                     dataType: 'json',
                     success: function(res) {
                         // munculkan dropdown jenis
-                        $('#jenis-dropdown').html('<option value="" hidden>Pilih Jenis...</option>');
-
-                        $.each(res.list_jenis, function(key, value) {
-                            $("#jenis-dropdown").append('<option value="' +
+                        $.each(res, function(key, value) {
+                            $("#jenis").append('<option value="' +
                                 value.jenis + '">' + value.jenis + '</option>');
                         });
-
-                        // udah langsung ngasih result
-                        $('#tabel-no-surat').html(res.view);
-                        let table = $('.datatable').DataTable({
-                            "bDestroy": true,
-                        });
-                        $('#searchNoSurat').on('keyup', function() {
-                            table.search(this.value).draw();
-                        });
                     }
                 });
+
+                table.ajax.reload();
             });
 
-            // Jenis Dropdown Change Event
-            $('#jenis-dropdown').on('change', function() {
-                var jenis = this.value;
-                var tim = $('#tim-dropdown').find(":selected").val();
-                var tahun = $('#tahun-dropdown').find(":selected").val();
-                $("#tabel-no-surat").html('');
-
-                $.ajax({
-                    url: "{{url('api/get-no-surat-by-jenis')}}",
-                    type: "POST",
-                    data: {
-                        tahun: tahun,
-                        tim: tim,
-                        jenis: jenis,
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function(res) {
-                        // return resultnya 
-                        $('#tabel-no-surat').html(res.view);
-                        let table = $('.datatable').DataTable({
-                            "bDestroy": true,
-                        });
-                        $('#searchNoSurat').on('keyup', function() {
-                            table.search(this.value).draw();
-                        });
-                    }
-                });
+            $('#jenis').change(function() {
+                table.ajax.reload();
             });
+
 
         });
     </script>

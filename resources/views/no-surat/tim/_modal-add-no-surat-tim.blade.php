@@ -32,7 +32,7 @@
 						</label>
 						<select id="tahun-dropdown-modal" name="tahun" class="form-control form-control-solid">
 							<option value="" hidden>Pilih Tahun...</option>
-							@foreach($list_tahun as $thn)
+							@foreach($tahun as $thn)
 							<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
 							@endforeach
 						</select>

@@ -92,7 +92,5 @@ Route::middleware('auth')->group(function () {
     Route::post('api/get-pok', [DropdownController::class, 'getPok']);
     Route::post('api/fetch-beban', [DropdownController::class, 'fetchBeban']);
     Route::post('api/fetch-tim', [DropdownController::class, 'fetchTim']);
-    Route::post('api/get-no-surat-by-tim', [DropdownController::class, 'getNoSuratByTim']);
-    Route::post('api/get-no-surat-by-jenis', [DropdownController::class, 'getNoSuratByJenis']);
-    Route::post('api/get-no-surat-masuk-keluar', [DropdownController::class, 'getNoSuratByMasukKeluar']);
+    Route::post('api/fetch-jenis-surat', [DropdownController::class, 'fetchJenisSurat']);
 });
