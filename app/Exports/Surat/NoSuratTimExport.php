@@ -22,11 +22,12 @@ class NoSuratTimExport implements WithMultipleSheets
 
         $sheets = [];
 
-        $data = NoSuratTim::distinct()->where('tahun', $this->tahun)
-            ->get('jenis');
+        $data = NoSuratTim::distinct();
+        if ($this->tahun != 0) $data->where('tahun', $this->tahun);
+        $jenis = $data->get('jenis');
 
-        foreach ($data as $d) {
-            $sheets[] = new NoSuratTimPerJenis($this->tahun, $d->jenis);
+        foreach ($jenis as $j) {
+            $sheets[] = new NoSuratTimPerJenis($this->tahun, $j->jenis);
         }
 
         return $sheets;

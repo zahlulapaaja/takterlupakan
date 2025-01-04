@@ -2,10 +2,10 @@
 
 namespace App\Exports\Surat;
 
-use App\Models\Surat\NoSuratTim;
 use App\Models\User;
+use App\Models\Master\Tim;
+use App\Models\Surat\NoSuratTim;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -17,7 +17,6 @@ class NoSuratTimPerJenis implements FromQuery, WithHeadings, WithMapping, WithTi
 
     protected int $tahun;
     private string $jenis;
-    private int $row = 1;
 
     public function __construct(int $tahun, string $jenis)
     {
@@ -27,28 +26,32 @@ class NoSuratTimPerJenis implements FromQuery, WithHeadings, WithMapping, WithTi
 
     public function query()
     {
-        return NoSuratTim::query()
-            ->where('jenis', $this->jenis)
-            ->whereYear('tgl', $this->tahun);
+        $query = NoSuratTim::query()
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('tim', 'ASC')
+            ->orderBy('no', 'ASC')
+            ->where('jenis', $this->jenis);
+        if ($this->tahun != 0) $query->whereYear('tgl', $this->tahun);
+        return $query;
     }
 
     public function map($data): array
     {
         return [
-            $this->row++,
-            $data->jenis,
-            $data->tahun,
             $data->no,
+            $data->jenis,
             date_indo($data->tgl),
             $data->rincian,
             $data->keterangan,
+            $data->tahun,
+            Tim::find($data->tim)->singkatan,
             User::select('name')->where('id', $data->edited_by)->first()->name,
         ];
     }
 
     public function headings(): array
     {
-        return ["No", "Jenis", "Tahun", "Nomor Surat", "Tanggal", "Rincian", "Keterangan", "Diedit Oleh"];
+        return ["Nomor Surat", "Jenis", "Tanggal", "Rincian", "Keterangan", "Tahun", "Tim", "Diedit Oleh"];
     }
 
     public function title(): string
