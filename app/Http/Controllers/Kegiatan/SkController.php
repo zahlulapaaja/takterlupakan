@@ -12,17 +12,19 @@ use App\Models\Pok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class SkController extends Controller
 {
     public function index()
     {
-        $data = Sk::all();
+        $data = Sk::select('*')
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('tgl_ditetapkan', 'DESC')
+            ->get();
         foreach ($data as $d) {
             $tgl = explode('-', $d->tgl_ditetapkan);
             $d->no_sk = $d->no . '/SK/BPS-1107/' . $tgl[0];
-            $d->rincian = Str::limit($d->tentang, 25);
+            $d->rincian = $d->tentang;
         }
         return view('kegiatan.sk.index', compact('data'));
     }

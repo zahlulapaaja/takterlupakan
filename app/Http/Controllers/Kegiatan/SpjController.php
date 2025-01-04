@@ -12,7 +12,6 @@ use App\Models\Pok;
 use App\Models\Surat\NoSuratTim;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Riskihajar\Terbilang\Facades\Terbilang;
 
@@ -24,14 +23,12 @@ class SpjController extends Controller
             ->orderBy('tgl', 'DESC')->get();
         foreach ($data_honor as $d) {
             $d->keg = Kegiatan::find($d->kegiatans_id);
-            $d->tgl = date_indo($d->tgl);
         }
 
         $data_translok = Spj::where('kode_akun', config('constants.AKUN_TRANSLOK'))
             ->orderBy('tgl', 'DESC')->get();
         foreach ($data_translok as $d) {
             $d->keg = Kegiatan::find($d->kegiatans_id);
-            $d->tgl = date_indo($d->tgl);
         }
 
         return view('kegiatan.spj.index', compact('data_honor', 'data_translok'));

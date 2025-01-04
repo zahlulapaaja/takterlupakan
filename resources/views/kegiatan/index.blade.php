@@ -52,11 +52,6 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="w-25px">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                </div>
-                            </th>
                             <th class="min-w-200px">Kegiatan</th>
                             <th class="min-w-50px">Tim</th>
                             <th class="min-w-100px">MAK</th>
@@ -69,12 +64,7 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                </div>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->nama }}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{Str::limit($d->nama, 50)}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tim->singkatan}}</span>
@@ -82,9 +72,9 @@
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->mak}}</span>
                             </td>
-                            <td>
+                            <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <form action="{{route('kegiatan.spj.create')}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post">
+                                    <form action="{{route('kegiatan.spj.create')}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="SPJ">
                                         @csrf
                                         @method('POST')
                                         <input name="kegiatans_id" type="hidden" value="{{$d->id}}">
@@ -95,12 +85,6 @@
                                             </i>
                                         </button>
                                     </form>
-                                    <!-- <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-switch fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a> -->
                                     <a href="{{route('kegiatan.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
@@ -134,6 +118,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                processing: true,
+                order: [],
                 "bDestroy": true,
             });
 

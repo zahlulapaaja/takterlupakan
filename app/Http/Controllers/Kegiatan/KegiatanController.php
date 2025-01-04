@@ -9,13 +9,15 @@ use App\Models\Master\Tim;
 use App\Models\Pok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class KegiatanController extends Controller
 {
     public function index()
     {
-        $data = Kegiatan::all();
+        $data = Kegiatan::select('*')
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('created_at', 'DESC')
+            ->get();
         foreach ($data as $d) {
             $pok = Pok::find($d->poks_id);
             $d->mak = $pok->kode_kegiatan . '.' .
@@ -26,7 +28,6 @@ class KegiatanController extends Controller
                 $pok->kode_akun;
 
             $d->tim = Tim::find($d->tim);
-            $d->nama = Str::limit($d->nama, 25);
         }
         return view('kegiatan.index', compact('data'));
     }

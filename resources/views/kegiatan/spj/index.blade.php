@@ -40,11 +40,6 @@
                             <!--begin::Table head-->
                             <thead>
                                 <tr class="fw-bold text-muted">
-                                    <th class="w-25px">
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                        </div>
-                                    </th>
                                     <th class="w-50px">Akun</th>
                                     <th class="min-w-150px">Kegiatan</th>
                                     <th class="min-w-100px text-end">Actions</th>
@@ -56,16 +51,11 @@
                                 @foreach($data_honor as $d)
                                 <tr id="{{$d->id}}">
                                     <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                        </div>
-                                    </td>
-                                    <td>
                                         <span class="badge badge-light-success">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->keg->nama, 50)}}</a>
-                                        <span class="text-muted fw-semibold d-block">{{$d->tgl}}</span>
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->keg->nama, 100)}}</a>
+                                        <span class="text-muted fw-semibold d-block">{{date_indo($d->tgl)}}</span>
                                     </td>
                                     <td class="text-end">
                                         <div class="d-flex justify-content-end flex-shrink-0">
@@ -111,11 +101,6 @@
                             <!--begin::Table head-->
                             <thead>
                                 <tr class="fw-bold text-muted">
-                                    <th class="w-25px">
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                        </div>
-                                    </th>
                                     <th class="w-50px">Akun</th>
                                     <th class="min-w-150px">Kegiatan</th>
                                     <th class="min-w-100px text-end">Actions</th>
@@ -127,16 +112,11 @@
                                 @foreach($data_translok as $d)
                                 <tr id="{{$d->id}}">
                                     <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                        </div>
-                                    </td>
-                                    <td>
                                         <span class="badge badge-light-info">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->keg->nama, 50)}}</a>
-                                        <span class="text-muted fw-semibold d-block">{{$d->tgl}}</span>
+                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->keg->nama, 100)}}</a>
+                                        <span class="text-muted fw-semibold d-block">{{date_indo($d->tgl)}}</span>
                                     </td>
                                     <td class="text-end">
                                         <div class="d-flex justify-content-end flex-shrink-0">
@@ -203,6 +183,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                processing: true,
+                order: [],
                 "bDestroy": true,
             });
 

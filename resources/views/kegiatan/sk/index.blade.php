@@ -45,12 +45,7 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="w-25px">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                </div>
-                            </th>
-                            <th class="min-w-200px">Nomor</th>
+                            <th class="min-w-150px">Nomor</th>
                             <th class="min-w-150px">Rincian</th>
                             <th class="min-w-100px">Tanggal Ditetapkan</th>
                             <th class="min-w-100px text-end">Actions</th>
@@ -62,20 +57,15 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                </div>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{$d->no_sk}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_sk }}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->rincian}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->rincian,30)}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tgl_ditetapkan}}</span>
                             </td>
-                            <td>
+                            <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
                                     <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
                                         <i class="ki-duotone ki-printer fs-2">
@@ -117,6 +107,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                processing: true,
+                order: [],
                 "bDestroy": true,
             });
 
