@@ -28,6 +28,10 @@ class NoSuratTimController extends Controller
                     $tgl = explode('-', $row->tgl);
                     return 'B-' . $row->no . '/' . $row->jenis . '/' . $tgl[1] . '/' . $tgl[0];
                 })
+                ->addColumn('jenis', function ($row) {
+                    return '<div class="badge badge-light bg-green-300 fw-bold">' . $row->jenis . '</div>';
+                    // return Str::limit($row->jenis, 30);
+                })
                 ->addColumn('rincian', function ($row) {
                     return Str::limit($row->rincian, 30);
                 })
@@ -83,7 +87,7 @@ class NoSuratTimController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['jenis', 'action'])
                 ->make(true);
         }
 

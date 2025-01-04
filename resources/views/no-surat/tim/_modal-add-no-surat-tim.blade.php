@@ -36,6 +36,7 @@
 							<option value="{{$thn->tahun}}">{{$thn->tahun}}</option>
 							@endforeach
 						</select>
+						<small class="text-muted">Pastikan master tim tahun bersangkutan sudah ada</small>
 					</div>
 					<!--end::Input group-->
 					<!--begin::Input group-->
@@ -57,7 +58,6 @@
 							<option value="ST">ST</option>
 							<option value="SPJ">SPJ</option>
 							<option value="BAST">BAST</option>
-							<option value="SK">SK</option>
 						</datalist>
 					</div>
 					<!--end::Input group-->

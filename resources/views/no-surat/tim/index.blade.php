@@ -70,7 +70,7 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="min-w-200px">Nomor</th>
+                            <th class="min-w-150px">Nomor</th>
                             <th class="min-w-50px">Jenis</th>
                             <th class="min-w-150px">Rincian</th>
                             <th class="min-w-100px">Tanggal</th>

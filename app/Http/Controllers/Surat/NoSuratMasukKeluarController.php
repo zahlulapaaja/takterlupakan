@@ -24,6 +24,13 @@ class NoSuratMasukKeluarController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('jenis', function ($row) {
+                    if ($row->jenis == 'masuk') {
+                        return '<div class="badge badge-light bg-green-300 fw-bold">' . $row->jenis . '</div>';
+                    } else {
+                        return '<div class="badge badge-light bg-blue-300 fw-bold">' . $row->jenis . '</div>';
+                    }
+                })
                 ->addColumn('rincian', function ($row) {
                     if ($row->jenis == 'masuk') {
                         $m = DB::table('no_surat_masuks')->find($row->no_surat_masuks_id);
@@ -32,6 +39,9 @@ class NoSuratMasukKeluarController extends Controller
                         $k = DB::table('no_surat_keluars')->find($row->no_surat_keluars_id);
                         return Str::limit($k->rincian, 30);
                     }
+                })
+                ->addColumn('tgl', function ($row) {
+                    return date_indo($row->tgl);
                 })
                 ->addColumn('tgl', function ($row) {
                     return date_indo($row->tgl);
@@ -81,7 +91,7 @@ class NoSuratMasukKeluarController extends Controller
                         });
                     }
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['jenis', 'action'])
                 ->make(true);
         }
 
