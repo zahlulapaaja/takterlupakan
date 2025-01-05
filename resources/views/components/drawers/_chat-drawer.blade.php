@@ -45,14 +45,14 @@
 						<!--end::Menu item-->
 						<!--begin::Menu item-->
 						<div class="menu-item px-3">
-							<a href="#" class="menu-link flex-stack px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">Invite Contacts 
-							<span class="ms-2" data-bs-toggle="tooltip" title="Specify a contact email to send an invitation">
-								<i class="ki-duotone ki-information fs-7">
-									<span class="path1"></span>
-									<span class="path2"></span>
-									<span class="path3"></span>
-								</i>
-							</span></a>
+							<a href="#" class="menu-link flex-stack px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_invite_friends">Invite Contacts
+								<span class="ms-2" data-bs-toggle="tooltip" title="Specify a contact email to send an invitation">
+									<i class="ki-duotone ki-information fs-7">
+										<span class="path1"></span>
+										<span class="path2"></span>
+										<span class="path3"></span>
+									</i>
+								</span></a>
 						</div>
 						<!--end::Menu item-->
 						<!--begin::Menu item-->
@@ -115,7 +115,7 @@
 						<div class="d-flex align-items-center mb-2">
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-25.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 							<!--begin::Details-->
@@ -147,7 +147,7 @@
 							<!--end::Details-->
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-1.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 						</div>
@@ -167,7 +167,7 @@
 						<div class="d-flex align-items-center mb-2">
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-25.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 							<!--begin::Details-->
@@ -199,7 +199,7 @@
 							<!--end::Details-->
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-1.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 						</div>
@@ -219,7 +219,7 @@
 						<div class="d-flex align-items-center mb-2">
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-25.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 							<!--begin::Details-->
@@ -231,8 +231,9 @@
 						</div>
 						<!--end::User-->
 						<!--begin::Text-->
-						<div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start" data-kt-element="message-text">You can unwatch this repository immediately by clicking here: 
-						<a href="https://keenthemes.com">Keenthemes.com</a></div>
+						<div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start" data-kt-element="message-text">You can unwatch this repository immediately by clicking here:
+							<a href="https://keenthemes.com">Keenthemes.com</a>
+						</div>
 						<!--end::Text-->
 					</div>
 					<!--end::Wrapper-->
@@ -252,7 +253,7 @@
 							<!--end::Details-->
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-1.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 						</div>
@@ -272,7 +273,7 @@
 						<div class="d-flex align-items-center mb-2">
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-25.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 							<!--begin::Details-->
@@ -304,7 +305,7 @@
 							<!--end::Details-->
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-1.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 						</div>
@@ -324,7 +325,7 @@
 						<div class="d-flex align-items-center mb-2">
 							<!--begin::Avatar-->
 							<div class="symbol symbol-35px symbol-circle">
-								<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+								<img alt="Pic" src="{{image('avatars/300-25.jpg')}}" />
 							</div>
 							<!--end::Avatar-->
 							<!--begin::Details-->

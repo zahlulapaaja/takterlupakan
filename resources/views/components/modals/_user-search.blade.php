@@ -24,14 +24,16 @@
 					<h1 class="mb-3">Invite a Friend</h1>
 					<!--end::Title-->
 					<!--begin::Description-->
-					<div class="text-muted fw-semibold fs-5">If you need more info, please check out 
-					<a href="#" class="link-primary fw-bold">FAQ Page</a>.</div>
+					<div class="text-muted fw-semibold fs-5">If you need more info, please check out
+						<a href="#" class="link-primary fw-bold">FAQ Page</a>.
+					</div>
 					<!--end::Description-->
 				</div>
 				<!--end::Heading-->
 				<!--begin::Google Contacts Invite-->
 				<div class="btn btn-light-primary fw-bold w-100 mb-8">
-				<img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Invite Gmail Contacts</div>
+					<img alt="Logo" src="{{image('svg/brand-logos/google-icon.svg')}}" class="h-20px me-3" />Invite Gmail Contacts
+				</div>
 				<!--end::Google Contacts Invite-->
 				<!--begin::Separator-->
 				<div class="separator d-flex flex-center mb-8">
@@ -54,7 +56,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-6.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -110,7 +112,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-1.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -138,7 +140,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-5.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -166,7 +168,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-25.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -222,7 +224,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-9.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-9.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -306,7 +308,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-23.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-23.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -362,7 +364,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-12.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -418,7 +420,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-13.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-13.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -474,7 +476,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-21.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-21.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
@@ -502,7 +504,7 @@
 							<div class="d-flex align-items-center">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+									<img alt="Pic" src="{{image('avatars/300-6.jpg')}}" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Details-->
