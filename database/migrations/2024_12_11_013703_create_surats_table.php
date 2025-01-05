@@ -13,25 +13,15 @@ return new class extends Migration
     {
         Schema::create('no_fps', function (Blueprint $table) {
             $table->id();
-            $table->string('no');
+            $table->string('no')->length(10);
             $table->string('rincian');
             $table->date('tgl');
-            $table->integer('tahun');
+            $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        Schema::create('perjadin_fp', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('no_fps_id');
-            $table->foreignId('pegawais_id');
-            $table->string('no');
-            $table->string('rincian');
-            $table->date('tgl');
             $table->timestamps();
         });
 
@@ -53,12 +43,12 @@ return new class extends Migration
 
         Schema::create('no_surat_masuk_keluar', function (Blueprint $table) {
             $table->id();
-            $table->string('no');
-            $table->string('jenis');
+            $table->string('no')->length(10);
+            $table->string('jenis')->length(20);
             $table->foreignId('no_surat_masuks_id')->nullable();
             $table->foreignId('no_surat_keluars_id')->nullable();
             $table->date('tgl');
-            $table->integer('tahun');
+            $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
@@ -69,13 +59,17 @@ return new class extends Migration
 
         Schema::create('no_surat_tims', function (Blueprint $table) {
             $table->id();
-            $table->string('no');
+            $table->string('no')->length(10);
             $table->date('tgl');
             $table->string('rincian');
             $table->string('keterangan')->nullable();
-            $table->integer('tahun');
-            $table->string('tim');
-            $table->string('jenis');
+            $table->string('jenis')->length(10);
+            $table->integer('tahun')->length(4);
+            $table->unsignedBigInteger('tim');
+            $table->foreign('tim')
+                ->references('id')
+                ->on('tims')
+                ->onDelete('cascade');
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
@@ -91,7 +85,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('no_fps');
-        Schema::dropIfExists('perjadin_fp');
         Schema::dropIfExists('no_surat_masuks');
         Schema::dropIfExists('no_surat_keluars');
         Schema::dropIfExists('no_surat_masuk_keluar');

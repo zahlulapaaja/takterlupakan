@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('sks', function (Blueprint $table) {
             $table->id();
-            $table->string('no');
-            $table->string('mak');
+            $table->string('no')->length(10);
+            $table->string('mak')->length(30);
             $table->string('tentang');
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
             $table->date('tgl_berlaku');
             $table->date('tgl_ditetapkan');
-            $table->integer('tahun');
+            $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
@@ -33,15 +33,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sks_id');
             $table->string('uraian');
-            $table->integer('honor');
+            $table->integer('honor')->length(8);
         });
 
         Schema::create('sks_petugas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sks_id');
-            $table->string('status');
-            $table->string('mitra_id')->nullable();
-            $table->string('pegawai_id')->nullable();
+            $table->string('status')->length(2);
+            $table->string('mitra_id')->length(5)->nullable();
+            $table->string('pegawai_id')->length(5)->nullable();
             $table->string('sebagai');
             $table->string('keterangan')->nullable();
         });

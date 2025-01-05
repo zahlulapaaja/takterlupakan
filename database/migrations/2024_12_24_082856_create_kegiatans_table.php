@@ -31,7 +31,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('pegawais')
                 ->onDelete('cascade');
-            $table->integer('tahun');
+            $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')

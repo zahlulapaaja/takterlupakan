@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('kegiatans_id');
             $table->date('tgl');
             $table->string('no_st')->nullable();
-            $table->string('tgl_st')->nullable();
-            $table->string('kode_akun');
-            $table->integer('tahun');
+            $table->date('tgl_st')->nullable();
+            $table->string('kode_akun')->length(6);
+            $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
                 ->references('id')
@@ -30,24 +30,24 @@ return new class extends Migration
         Schema::create('spjs_honor', function (Blueprint $table) {
             $table->id();
             $table->foreignId('spjs_id');
-            $table->string('status');
-            $table->integer('mitra_id')->nullable();
-            $table->integer('pegawai_id')->nullable();
-            $table->integer('beban');
+            $table->string('status')->length(2);
+            $table->integer('mitra_id')->length(5)->nullable();
+            $table->integer('pegawai_id')->length(5)->nullable();
+            $table->integer('beban')->length(3);
             $table->boolean('checkbox');
         });
 
         Schema::create('spjs_translok', function (Blueprint $table) {
             $table->id();
             $table->foreignId('spjs_id');
-            $table->string('status');
-            $table->integer('mitra_id')->nullable();
-            $table->integer('pegawai_id')->nullable();
-            $table->integer('byk_kunj');
+            $table->string('status')->length(2);
+            $table->integer('mitra_id')->length(5)->nullable();
+            $table->integer('pegawai_id')->length(5)->nullable();
+            $table->integer('byk_kunj')->length(3);
             $table->string('melakukan');
             $table->string('lokasi');
             $table->integer('nominal');
-            $table->string('tgl_kunj');
+            $table->date('tgl_kunj');
         });
     }
 
