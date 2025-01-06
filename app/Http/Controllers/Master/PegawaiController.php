@@ -37,7 +37,6 @@ class PegawaiController extends Controller
             'golongan'  => 'required',
             'pangkat'   => 'required',
             'email'     => 'required|email',
-            'no_hp'     => 'required',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);

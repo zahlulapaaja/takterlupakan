@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/kegiatan/sk', SkController::class)->except(['create']);
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
-        Route::resource('/kegiatan/spj', SpjController::class);
+        Route::resource('/kegiatan/spj', SpjController::class)->except(['create']);
         Route::get('/kegiatan/spj/{spj}/print/{jenis}', [SpjController::class, 'print'])->name('spj.print');
 
         // masih coba-coba 

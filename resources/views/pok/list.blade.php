@@ -52,11 +52,6 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="w-25px">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                </div>
-                            </th>
                             <th class="min-w-100px">Tahun</th>
                             <th class="min-w-100px text-center">Revisi</th>
                             <th class="min-w-100px text-center">Tanggal Upload</th>
@@ -68,11 +63,6 @@
                     <tbody>
                         @foreach($data as $d)
                         <tr class="hover:bg-blue-200">
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                </div>
-                            </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
                             </td>
@@ -111,6 +101,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                processing: true,
+                order: [],
                 "bDestroy": true,
             });
 
