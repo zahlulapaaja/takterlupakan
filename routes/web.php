@@ -27,7 +27,9 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-    Route::name('user-management.')->group(function () {
+
+    // User Management
+    Route::middleware(['role:administrator'])->name('user-management.')->group(function () {
         Route::resource('/user-management/users', UserController::class);
         Route::get('/user-management/users/view', [HomeController::class, 'users_view'])->name('users_view');
         Route::get('/user-management/roles', [HomeController::class, 'roles'])->name('roles');
@@ -37,8 +39,10 @@ Route::middleware('auth')->group(function () {
         // Route::resource('/user-management/roles', HomeController::class);
         // Route::resource('/user-management/permissions', HomeController::class);
     });
-    Route::name('pok.')->group(function () {
-        Route::get('/pok', [PokController::class, 'index'])->name('index');
+
+    // Anggaran
+    Route::get('/pok', [PokController::class, 'index'])->name('pok.index');
+    Route::middleware(['role:administrator|ppk'])->name('pok.')->group(function () {
         Route::get('/pok/impor', [PokController::class, 'impor'])->name('impor');
         Route::post('/pok/impor', [PokController::class, 'proses_impor'])->name('prosesimpor');
         Route::get('/pok/impor/template', [PokController::class, 'template'])->name('template');
@@ -46,6 +50,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/pok/destroy', [PokController::class, 'destroy'])->name('destroy');
     });
 
+    // Nomor Surat
     Route::name('no-surat.')->group(function () {
         Route::get('/no-surat', [HomeController::class, 'no_surat'])->name('index');
         Route::resource('/no-surat/fp', NoFpController::class);
@@ -56,6 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/no-surat/export/tim/{tahun}', [NoSuratTimController::class, 'export'])->name('tim.export');
     });
 
+    // Kegiatan 
     Route::resource('/kegiatan', KegiatanController::class)->except(['create', 'show']);
     Route::post('/kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
     Route::name('kegiatan.')->group(function () {
@@ -72,7 +78,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
     });
 
-    Route::name('master.')->group(function () {
+    // Master 
+    Route::middleware(['role:administrator|kepala|ppk'])->name('master.')->group(function () {
         Route::get('/master', [HomeController::class, 'master'])->name('index');
         Route::resource('/master/referensi', ReferensiController::class);
         Route::resource('/master/tim', TimController::class);
@@ -87,6 +94,7 @@ Route::middleware('auth')->group(function () {
     });
 
 
+    // Api 
     Route::get('api/search-pok', [DropdownController::class, 'searchPok']);
     Route::post('api/fetch-revisi', [DropdownController::class, 'fetchRevisi']);
     Route::post('api/get-pok', [DropdownController::class, 'getPok']);

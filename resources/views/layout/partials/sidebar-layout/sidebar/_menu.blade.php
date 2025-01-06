@@ -90,6 +90,7 @@
 						<!--end:Menu link-->
 					</div>
 					<!--end:Menu item-->
+					@if((session('role')->contains('name', 'administrator')) || (session('role')->contains('name', 'ppk')))
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
@@ -114,6 +115,7 @@
 						<!--end:Menu link-->
 					</div>
 					<!--end:Menu item-->
+					@endif
 				</div>
 				<!--end:Menu sub-->
 			</div>
@@ -244,6 +246,7 @@
 				<!--end:Menu sub-->
 			</div>
 			<!--end:Menu item-->
+			@if((session('role')->contains('name', 'administrator')) || (session('role')->contains('name', 'kepala')) || (session('role')->contains('name', 'ppk')))
 			<!--begin:Menu item-->
 			<div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ request()->routeIs('master.*') ? 'here show' : '' }}">
 				<!--begin:Menu link-->
@@ -308,6 +311,7 @@
 						<!--end:Menu link-->
 					</div>
 					<!--end:Menu item-->
+					@if((session('role')->contains('name', 'administrator')))
 					<!--begin:Menu item-->
 					<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
 						<!--begin:Menu link-->
@@ -419,10 +423,12 @@
 						<!--end:Menu sub-->
 					</div>
 					<!--end:Menu item-->
+					@endif
 				</div>
 				<!--end:Menu sub-->
 			</div>
 			<!--end:Menu item-->
+			@endif
 		</div>
 		<!--end::Menu-->
 	</div>

@@ -14,7 +14,12 @@
 								<a href="pages/user-profile/overview.html" class="text-gray-800 text-hover-primary fs-4 fw-bolder">{{ session('name') }}</a>
 								<!--end::Username-->
 								<!--begin::Description-->
-								<span class="capitalize text-gray-600 fw-semibold d-block fs-7 mb-1">{{ session('role') }}</span>
+								<span class="capitalize text-gray-600 fw-semibold d-block fs-7 mb-1">
+									@foreach(session('role') as $r)
+									@if (!($loop->first)) | @endif
+									{{ $r->name }}
+									@endforeach
+								</span>
 								<!--end::Description-->
 							</div>
 							<!--end::Info-->
