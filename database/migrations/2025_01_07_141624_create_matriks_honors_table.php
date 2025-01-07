@@ -13,11 +13,7 @@ return new class extends Migration
     {
         Schema::create('matriks_honors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kegiatans_id');
-            $table->foreign('kegiatans_id')
-                ->references('id')
-                ->on('kegiatans')
-                ->onDelete('cascade');
+            $table->foreignId('kegiatans_id');
             $table->integer('bulan')->length(2);
             $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
@@ -28,31 +24,21 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('spks', function (Blueprint $table) {
+        Schema::create('matriks_honors_bast', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('matriks_honors_id');
-            $table->foreign('matriks_honors_id')
-                ->references('id')
-                ->on('matriks_honors')
-                ->onDelete('cascade');
-            $table->string('no_spk')->length(10);
-            $table->unsignedBigInteger('mitras_id');
-            $table->foreign('mitras_id')
-                ->references('id')
-                ->on('mitras')
-                ->onDelete('cascade');
+            $table->foreignId('matriks_honors_id');
+            $table->foreignId('mitras_id');
+            $table->string('no')->length(10);
+            $table->date('tgl');
+            $table->integer('volume')->length(4);
+            $table->integer('harga')->length(10);
         });
 
-        Schema::create('spks_alokasi', function (Blueprint $table) {
+        Schema::create('matriks_honors_spk', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('spks_id');
-            $table->foreign('spks_id')
-                ->references('id')
-                ->on('spks')
-                ->onDelete('cascade');
-            $table->string('no_bast')->length(10);
-            $table->integer('volume')->length(4);
-            $table->string('satuan')->length(20);
+            $table->foreignId('matriks_honors_id');
+            $table->string('no')->length(10);
+            $table->foreignId('mitras_id');
         });
     }
 
@@ -62,7 +48,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('matriks_honors');
-        Schema::dropIfExists('spks');
-        Schema::dropIfExists('spks_alokasi');
+        Schema::dropIfExists('matriks_honors_bast');
+        Schema::dropIfExists('matriks_honors_spk');
     }
 };

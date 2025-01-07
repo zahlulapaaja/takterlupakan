@@ -233,7 +233,7 @@
 					<!--begin:Menu item-->
 					<div class="menu-item">
 						<!--begin:Menu link-->
-						<a class="menu-link" href="{{ route('soon') }}">
+						<a class="menu-link {{ request()->routeIs('matriks.honor.*') ? 'active' : '' }}" href="{{ route('matriks.honor.index') }}">
 							<span class="menu-bullet">
 								<span class="bullet bullet-dot"></span>
 							</span>

@@ -60,10 +60,16 @@ Breadcrumbs::for('no-surat.index', function (BreadcrumbTrail $trail) {
     $trail->push('No Surat', route('no-surat.index'));
 });
 
-// Home > No Surat
+// Home > Master
 Breadcrumbs::for('master.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
     $trail->push('Master', route('master.index'));
+});
+
+// Home > Matriks
+Breadcrumbs::for('matriks.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Matriks', route('matriks.index'));
 });
 
 // Home > Kegiatan
@@ -77,6 +83,9 @@ Breadcrumbs::resource('no-surat.index', 'no-surat.tim', 'Tim Kerja');
 // Home > Kegiatan > XXX
 Breadcrumbs::resource('kegiatan.index', 'kegiatan.sk', 'SK');
 Breadcrumbs::resource('kegiatan.index', 'kegiatan.spj', 'Bukti Dukung SPJ');
+
+// Home > Matriks > XXX
+Breadcrumbs::resource('matriks.index', 'matriks.honor', 'Matriks');
 
 // Home > Master > XXX
 Breadcrumbs::resource('master.index', 'master.referensi', 'Referensi');

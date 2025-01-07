@@ -12,6 +12,7 @@ use App\Http\Controllers\Master\MitraController;
 use App\Http\Controllers\Master\PegawaiController;
 use App\Http\Controllers\Master\ReferensiController;
 use App\Http\Controllers\Master\TimController;
+use App\Http\Controllers\Matriks\MatriksHonorController;
 use App\Http\Controllers\Pok\DropdownController;
 use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
@@ -76,6 +77,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
         Route::get('/kegiatan/bast/{bast}/print', [SpkController::class, 'bast_print'])->name('bast.print');
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
+    });
+
+    // Matriks 
+    Route::name('matriks.')->group(function () {
+        Route::get('/matriks', [HomeController::class, 'matriks'])->name('index');
+        Route::resource('/matriks/honor', MatriksHonorController::class);
     });
 
     // Master 

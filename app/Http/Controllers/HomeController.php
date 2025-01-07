@@ -46,9 +46,16 @@ class HomeController extends Controller
 
     public function no_surat()
     {
-        $last_no['fp'] = NoFp::latest('no')->where('tahun', date("Y"))->first()->no;
-        $last_no['masuk-keluar'] = NoSuratMasukKeluar::latest('no')->where('tahun', date("Y"))->first()->no;
-        $last_no['tim'] = NoSuratTim::latest('no')->where('tahun', date("Y"))->first()->no;
+
+        $no['fp'] = NoFp::latest('no')->where('tahun', date("Y"))->first();
+        $no['masuk-keluar'] = NoSuratMasukKeluar::latest('no')->where('tahun', date("Y"))->first();
+        $no['tim'] = NoSuratTim::latest('no')->where('tahun', date("Y"))->first();
+
+        // kondisi jika data kosong
+        $last_no['fp'] = $last_no['masuk-keluar'] = $last_no['tim'] = '000';
+        if ($no['fp']) $last_no['fp'] = $no['fp']->no;
+        if ($no['masuk-keluar']) $last_no['masuk-keluar'] = $no['masuk-keluar']->no;
+        if ($no['tim']) $last_no['tim'] = $no['tim']->no;
 
         return view('no-surat.index', compact('last_no'));
     }
@@ -56,5 +63,10 @@ class HomeController extends Controller
     public function master()
     {
         return view('master.index');
+    }
+
+    public function matriks()
+    {
+        return 'matriks.index';
     }
 }
