@@ -74,6 +74,21 @@
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
+                                    @if($d->kode_akun == config('constants.AKUN_HONOR'))
+                                    <form action="{{route('matriks.honor.create')}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Matriks Honor">
+                                        @csrf
+                                        @method('POST')
+                                        <input name="kegiatans_id" type="hidden" value="{{$d->id}}">
+                                        <button type="submit">
+                                            <i class="ki-duotone ki-menu fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                                <span class="path3"></span>
+                                                <span class="path4"></span>
+                                            </i>
+                                        </button>
+                                    </form>
+                                    @endif
                                     <form action="{{route('kegiatan.spj.create')}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="SPJ">
                                         @csrf
                                         @method('POST')

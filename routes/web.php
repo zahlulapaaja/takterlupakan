@@ -82,7 +82,8 @@ Route::middleware('auth')->group(function () {
     // Matriks 
     Route::name('matriks.')->group(function () {
         Route::get('/matriks', [HomeController::class, 'matriks'])->name('index');
-        Route::resource('/matriks/honor', MatriksHonorController::class);
+        Route::post('/matriks/honor/create', [MatriksHonorController::class, 'create'])->name('honor.create');
+        Route::resource('/matriks/honor', MatriksHonorController::class)->except(['create']);
     });
 
     // Master 
@@ -105,7 +106,8 @@ Route::middleware('auth')->group(function () {
     Route::get('api/search-pok', [DropdownController::class, 'searchPok']);
     Route::post('api/fetch-revisi', [DropdownController::class, 'fetchRevisi']);
     Route::post('api/get-pok', [DropdownController::class, 'getPok']);
-    Route::post('api/fetch-beban', [DropdownController::class, 'fetchBeban']);
+    Route::post('api/fetch-beban-spj', [DropdownController::class, 'fetchBebanSpj']);
+    Route::post('api/fetch-beban-honor', [DropdownController::class, 'fetchBebanHonor']);
     Route::post('api/fetch-tim', [DropdownController::class, 'fetchTim']);
     Route::post('api/fetch-jenis-surat', [DropdownController::class, 'fetchJenisSurat']);
 });

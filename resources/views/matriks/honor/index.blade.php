@@ -64,25 +64,25 @@
                     <!--end::Table head-->
                     <!--begin::Table body-->
                     <tbody>
-                        @for($i = 0; $i < 11; $i++)
-                            <tr id="$d->id" class="hover:bg-blue-200">
+                        @foreach($data as $d)
+                        <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{'00' . ($i+1)}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->no_bast}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">Kegiatan apa ya namanyas;dlfj asldf sdfkja;slkdfj aslkd fj</span>
+                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->keg->nama}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">Zahlul Fuadi</span>
+                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->nama}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">Petugas</span>
+                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->sebagai}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">17.000</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->harga}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">2</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -114,8 +114,8 @@
                                     </a>
                                 </div>
                             </td>
-                            </tr>
-                            @endfor
+                        </tr>
+                        @endforeach
                     </tbody>
                     <!--end::Table body-->
                 </table>

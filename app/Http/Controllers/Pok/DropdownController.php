@@ -44,14 +44,23 @@ class DropdownController extends Controller
         return response()->json(['view' => $view], 200);
     }
 
-    public function fetchBeban(Request $request)
+    public function fetchBebanSpj(Request $request)
     {
         $sk = Sk::find($request->id_sk);
         $list_petugas = $sk->getPetugas($sk->id);
         $satuan = $request->satuan;
-        $akun = $request->akun;
 
-        $view = view('kegiatan.spj._table-alokasi-beban', compact('list_petugas', 'akun', 'satuan'))->render();
+        $view = view('kegiatan.spj._table-alokasi-beban', compact('list_petugas', 'satuan'))->render();
+        return response()->json(['view' => $view], 200);
+    }
+
+    public function fetchBebanHonor(Request $request)
+    {
+        $sk = Sk::find($request->id_sk);
+        $list_petugas = $sk->getPetugas($sk->id);
+        $pok = Pok::find($request->pok_id);
+
+        $view = view('matriks.honor._table-alokasi-beban', compact('list_petugas', 'pok'))->render();
         return response()->json(['view' => $view], 200);
     }
 

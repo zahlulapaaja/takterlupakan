@@ -248,7 +248,7 @@
                 $("#daftar-petugas-honor").html('');
 
                 $.ajax({
-                    url: "{{url('api/fetch-beban')}}",
+                    url: "{{url('api/fetch-beban-spj')}}",
                     type: "POST",
                     data: {
                         id_sk: id_sk,

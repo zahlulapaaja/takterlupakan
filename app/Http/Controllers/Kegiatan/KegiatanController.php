@@ -20,12 +20,8 @@ class KegiatanController extends Controller
             ->get();
         foreach ($data as $d) {
             $pok = Pok::find($d->poks_id);
-            $d->mak = $pok->kode_kegiatan . '.' .
-                $pok->kode_output . '.' .
-                $pok->kode_suboutput . '.' .
-                $pok->kode_komponen . '.' .
-                $pok->kode_subkomponen . '.' .
-                $pok->kode_akun;
+            $d->mak = $pok->getMak($pok);
+            $d->kode_akun = $pok->kode_akun;
 
             $d->tim = Tim::find($d->tim);
         }

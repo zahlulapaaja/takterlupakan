@@ -27,18 +27,23 @@ return new class extends Migration
         Schema::create('matriks_honors_bast', function (Blueprint $table) {
             $table->id();
             $table->foreignId('matriks_honors_id');
-            $table->foreignId('mitras_id');
+            $table->string('status')->length(2);
+            $table->integer('mitra_id')->length(5)->nullable();
+            $table->integer('pegawai_id')->length(5)->nullable();
             $table->string('no')->length(10);
-            $table->date('tgl');
+            $table->string('sebagai')->length(50);
             $table->integer('volume')->length(4);
             $table->integer('harga')->length(10);
+            $table->integer('tahun')->length(4);
         });
 
         Schema::create('matriks_honors_spk', function (Blueprint $table) {
             $table->id();
             $table->foreignId('matriks_honors_id');
             $table->string('no')->length(10);
-            $table->foreignId('mitras_id');
+            $table->string('status')->length(2);
+            $table->integer('mitra_id')->length(5)->nullable();
+            $table->integer('pegawai_id')->length(5)->nullable();
         });
     }
 
