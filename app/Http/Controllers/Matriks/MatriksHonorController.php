@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Kegiatan;
 use App\Models\Kegiatan\Sk;
 use App\Models\Master\Pegawai;
+use App\Models\Master\Referensi;
 use App\Models\Master\Tim;
 use App\Models\Matriks\MatriksHonor;
 use App\Models\Pok;
@@ -14,6 +15,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Riskihajar\Terbilang\Facades\Terbilang;
 
 class MatriksHonorController extends Controller
 {
@@ -112,5 +114,44 @@ class MatriksHonorController extends Controller
         $data->delete();
 
         return response()->json(array('success' => true));
+    }
+
+
+    public function bast_print($id)
+    {
+        // mengambil data 
+        $data = MatriksHonor::find($id);
+        $data->keg = Kegiatan::find($data->kegiatans_id);
+        $data->satuan = Pok::find($data->keg->poks_id)->first()->satuan;
+        $ref = Referensi::where('tahun', $data->tahun)->first();
+        $data->keg->pjk = Pegawai::find($data->keg->pjk);
+
+        // mengambil data petugas 
+        $data->nama = $data->getNamaPetugas($data);
+        $data->nip = $data->getNipPetugas($data);
+
+        // generate nomor surat
+        $data->no_bast = $data->getNoBast($data);
+
+        // mengambil tanggal surat 
+        $tgl = Carbon::create($data->tahun, $data->bulan, 1)->endOfMonth();
+        $data->tgl = $tgl->toDateString();
+        $data->terbilang_tgl =
+            $tgl->isoFormat('dddd', $tgl)
+            . ' Tanggal ' . Terbilang::make(explode('-', $data->tgl)[2])
+            . ', Bulan ' . Terbilang::make(explode('-', $data->tgl)[1])
+            . ', Tahun ' . Terbilang::make(explode('-', $data->tgl)[0]);
+
+
+        // format tanggal data referensi
+        // $ref->tgl_dipa = date_indo($ref->tgl_dipa);
+        // $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
+
+        // $views =
+        //     view('kegiatan.spj._print.daftar-honor', compact('data', 'ref'))->render() .
+        //     view('kegiatan.spj._print.bast', compact('data', 'ref'))->render() .
+        //     view('kegiatan.spj._print.pernyataan', compact('data', 'ref'))->render();
+        return view('matriks.honor.bast_print', compact('data', 'ref'));
+        // return $views;
     }
 }

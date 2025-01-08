@@ -18,6 +18,7 @@ use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
 use App\Http\Controllers\Surat\NoSuratMasukKeluarController;
 use App\Http\Controllers\Surat\NoSuratTimController;
+use App\Models\Matriks\MatriksHonor;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
@@ -75,7 +76,6 @@ Route::middleware('auth')->group(function () {
 
         // masih coba-coba 
         Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
-        Route::get('/kegiatan/bast/{bast}/print', [SpkController::class, 'bast_print'])->name('bast.print');
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
     });
 
@@ -85,6 +85,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/matriks/honor/create', [MatriksHonorController::class, 'create'])->name('honor.create');
         Route::get('/matriks/honor/{tahun}/{bulan}', [MatriksHonorController::class, 'list'])->name('honor.list');
         Route::resource('/matriks/honor', MatriksHonorController::class)->except(['create']);
+
+        // print 
+        Route::get('/matriks/honor/bast/{id}/print', [MatriksHonorController::class, 'bast_print'])->name('honor.bast');
     });
 
     // Master 

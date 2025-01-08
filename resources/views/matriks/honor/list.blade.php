@@ -25,13 +25,6 @@
         <!--end::Header-->
         <!--begin::Body-->
         <div class="card-body py-3">
-
-            @if(session('success'))
-            <div class="alert alert-success" role="alert">
-                {{ session('success') }}
-            </div>
-            @endif
-
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Compact form-->
@@ -47,6 +40,14 @@
                     <!--end::Input group-->
                 </div>
                 <!--end::Compact form-->
+
+                <!-- begin::alert -->
+                <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                    <p class="font-bold">Perhatian</p>
+                    <p>Edit data dengan cara klik data di tabel.</p>
+                </div>
+                <!-- end::alert -->
+
                 <!--begin::Table-->
                 <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4 datatable">
                     <!--begin::Table head-->
@@ -86,7 +87,7 @@
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
+                                    <a href="{{ route('matriks.honor.bast', $d->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
                                         <button type="submit">
                                             <i class="ki-duotone ki-printer fs-2">
                                                 <span class="path1"></span>
@@ -181,7 +182,7 @@
                 });
             });
 
-            $('span[contenteditable=true]').on('blur', function() {
+            $('span[contenteditable=true]').on('focusout', function() {
                 let id = $(this).data('id');
                 let column = $(this).data('column');
                 let value = $(this).text();

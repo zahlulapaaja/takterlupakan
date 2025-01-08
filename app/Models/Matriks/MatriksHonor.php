@@ -26,6 +26,17 @@ class MatriksHonor extends Model
         }
     }
 
+    public function getNipPetugas($data)
+    {
+        if ($data->status == config('constants.PEGAWAI')) {
+            $pegawai = Pegawai::find($data->pegawai_id);
+            return $pegawai->nip;
+        } else {
+            $mitra = Mitra::find($data->mitra_id);
+            return $mitra->id_sobat;
+        }
+    }
+
     public function getLastNo($tahun)
     {
         $no = MatriksHonor::where('tahun', $tahun)
@@ -69,5 +80,11 @@ class MatriksHonor extends Model
         }
 
         return $res;
+    }
+
+    public function getNoBast($matriks)
+    {
+        $result = $matriks->no_bast . "/BAST/BPS/1107/" . sprintf("%02d", $matriks->bulan) .  "/" . $matriks->tahun;
+        return $result;
     }
 }
