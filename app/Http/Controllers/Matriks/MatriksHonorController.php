@@ -9,6 +9,8 @@ use App\Models\Master\Pegawai;
 use App\Models\Master\Tim;
 use App\Models\Matriks\MatriksHonor;
 use App\Models\Pok;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -17,26 +19,37 @@ class MatriksHonorController extends Controller
 {
     public function index()
     {
-        // $data = MatriksHonor::select('*')
-        //     ->orderBy('tahun', 'DESC') // nanti revisi ini
-        //     ->orderBy('bulan', 'DESC') // nanti revisi ini
-        //     ->get();
+        $data = MatriksHonor::select('tahun', 'bulan')
+            ->groupBy('tahun')->groupBy('bulan')
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('bulan', 'DESC')
+            ->get();
 
-        $data = DB::table('matriks_honors_bast')->get();
-        // dd(is_numeric('5.6') && strpos('5.6', '.') !== false);
-        // dd(is_numeric(5.6) && strpos(5.6, '.') !== false);
+        return view('matriks.honor.index', compact('data'));
+    }
+
+    public function list($tahun, $bulan)
+    {
+        $data = DB::table('matriks_honors_bast')
+            ->join('matriks_honors', 'matriks_honors.id', '=', 'matriks_honors_bast.matriks_honors_id')
+            ->select('matriks_honors_bast.*', 'matriks_honors.kegiatans_id')
+            ->where('matriks_honors.tahun', $tahun)
+            ->where('matriks_honors.bulan', $bulan)
+            ->get();
+
+        $terbilang_bulan = DateTime::createFromFormat('!m', $bulan)->format('F');
+        $matriks = new MatriksHonor();
+
         foreach ($data as $d) {
             if (is_numeric($d->no) && strpos($d->no, '.') !== false) {
                 $d->no_bast = sprintf('%04d', $d->no) . '.' . explode('.', $d->no)[1];
             } else {
                 $d->no_bast = sprintf('%04d', $d->no);
             }
-            $matriks = MatriksHonor::find($d->matriks_honors_id);
-            $d->keg = Kegiatan::find($matriks->kegiatans_id);
+            $d->keg = Kegiatan::find($d->kegiatans_id);
             $d->nama = $matriks->getNamaPetugas($d);
         }
-        return view('matriks.honor.index', compact('data'));
-        // yang diatas jangan lupa rapiin ges 
+        return view('matriks.honor.list', compact('data', 'tahun', 'bulan'));
     }
 
     public function create(Request $request)
@@ -84,5 +97,14 @@ class MatriksHonorController extends Controller
         $res->insertBast($res->id, $request->all());
 
         return redirect()->route('matriks.honor.index');
+    }
+
+    public function destroy($id)
+    {
+        $data = DB::table('matriks_honors_bast')->where('id', $id);
+        // $data->deleteSpj($data);
+        $data->delete();
+
+        return response()->json(array('success' => true));
     }
 }

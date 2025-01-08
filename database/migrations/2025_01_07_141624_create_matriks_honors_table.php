@@ -34,17 +34,16 @@ return new class extends Migration
             $table->string('sebagai')->length(50);
             $table->integer('volume')->length(4);
             $table->integer('harga')->length(10);
-            $table->integer('tahun')->length(4);
         });
 
-        Schema::create('matriks_honors_spk', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('matriks_honors_id');
-            $table->string('no')->length(10);
-            $table->string('status')->length(2);
-            $table->integer('mitra_id')->length(5)->nullable();
-            $table->integer('pegawai_id')->length(5)->nullable();
-        });
+        // Schema::create('matriks_honors_spk', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('matriks_honors_id');
+        //     $table->string('no')->length(10);
+        //     $table->string('status')->length(2);
+        //     $table->integer('mitra_id')->length(5)->nullable();
+        //     $table->integer('pegawai_id')->length(5)->nullable();
+        // });
     }
 
     /**
@@ -54,6 +53,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('matriks_honors');
         Schema::dropIfExists('matriks_honors_bast');
-        Schema::dropIfExists('matriks_honors_spk');
+        // Schema::dropIfExists('matriks_honors_spk');
     }
 };

@@ -85,7 +85,7 @@ Breadcrumbs::resource('kegiatan.index', 'kegiatan.sk', 'SK');
 Breadcrumbs::resource('kegiatan.index', 'kegiatan.spj', 'Bukti Dukung SPJ');
 
 // Home > Matriks > XXX
-Breadcrumbs::resource('matriks.index', 'matriks.honor', 'Matriks');
+Breadcrumbs::resource('matriks.index', 'matriks.honor', 'Honor');
 
 // Home > Master > XXX
 Breadcrumbs::resource('master.index', 'master.referensi', 'Referensi');
@@ -110,3 +110,9 @@ Breadcrumbs::for("master.mitra.impor", function (BreadcrumbTrail $trail) {
     $trail->parent("master.mitra.index");
     $trail->push('Impor', route("master.mitra.impor"));
 });
+
+// Home > Matriks > Honor > 202X:XX
+// Breadcrumbs::for("matriks.honor.list", function (BreadcrumbTrail $trail, $name) {
+//     $trail->parent("matriks.honor.index");
+//     $trail->push($name, route("matriks.honor.list", 'tahun', 'bulan'));
+// });

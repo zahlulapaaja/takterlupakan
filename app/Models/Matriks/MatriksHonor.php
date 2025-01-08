@@ -29,7 +29,9 @@ class MatriksHonor extends Model
     public function insertBast($matriks_honors_id, $request)
     {
         // mengambil data nomor terakhir
-        $no = DB::table('matriks_honors_bast')->where('tahun', $request['tahun'])->max('no');
+        $no = DB::table('matriks_honors_bast')->where('tahun', $request['tahun'])
+            ->orderByRaw('CAST(no AS UNSIGNED) DESC')
+            ->first()->no;
         $no ? $no = (int)$no + 1 : $no = 1; // kalo dapat yang ada titik akan roundup
 
         // looping setiap petugas

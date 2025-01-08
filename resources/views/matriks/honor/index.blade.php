@@ -13,11 +13,11 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Matriks Honor Bulan JANUARI</span>
+                <span class="card-label fw-bold fs-3 mb-1">Matriks Honor</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
-            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Input Honor">
-                <a href="{{ route('matriks.honor.create') }}" class="btn btn-sm btn-light btn-active-primary">
+            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Input Honor Dari Kegiatan">
+                <a href="{{ route('kegiatan.index') }}" class="btn btn-sm btn-light btn-active-primary">
                     <i class="ki-duotone ki-plus fs-2"></i>Tambah
                 </a>
             </div>
@@ -52,12 +52,8 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted ">
-                            <th class="min-25px">BAST</th>
-                            <th class="min-w-200px">Kegiatan</th>
-                            <th class="min-w-50px">Nama</th>
-                            <th class="min-w-50px">Sebagai</th>
-                            <th class="min-w-50px">Harga<br>Satuan</th>
-                            <th class="min-w-50px">Vol</th>
+                            <th class="min-w-100px">Tahun</th>
+                            <th class="min-w-100px">Bulan</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -67,49 +63,19 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->no_bast}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->keg->nama}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->nama}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->sebagai}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->harga}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->bulan}}</span>
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <form action="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
-                                        @csrf
-                                        @method('POST')
-                                        <input name="kegiatans_id" type="hidden" value="$d->id">
-                                        <button type="submit">
-                                            <i class="ki-duotone ki-exit-right-corner fs-2">
-                                                <span class="path1"></span>
-                                                <span class="path2"></span>
-                                            </i>
-                                        </button>
-                                    </form>
-                                    <a href="{{route('matriks.honor.edit', '$d->id')}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
-                                    </a>
-                                    <a href="#" data-id="$d->id" data-name="$d->nama" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
-                                        <i class="ki-duotone ki-trash fs-2">
+                                    <a href="{{route('matriks.honor.list', [$d->tahun, $d->bulan])}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                        <i class="ki-duotone ki-menu fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
                                             <span class="path4"></span>
-                                            <span class="path5"></span>
                                         </i>
                                     </a>
                                 </div>
@@ -137,56 +103,6 @@
 
             $('#searchData').on('keyup', function() {
                 table.search(this.value).draw();
-            });
-
-
-            $(document.body).on('click', '.modal-delete', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                var name = $(this).data('name');
-
-                // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-                Swal.fire({
-                    text: "Anda yakin ingin menghapus data " + name + " ?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    buttonsStyling: false,
-                    confirmButtonText: "Yakin",
-                    cancelButtonText: "Batal",
-                    customClass: {
-                        confirmButton: "btn btn-primary",
-                        cancelButton: "btn btn-active-light"
-                    }
-                }).then(function(result) {
-                    if (result.value) {
-                        var url = "{{route('matriks.honor.destroy',':id')}}";
-                        url = url.replace(':id', id);
-                        $.ajax({
-                            type: "DELETE",
-                            url: url,
-                            data: {
-                                _token: '{{csrf_token()}}',
-                            },
-                            success: function(data) {
-                                if (data.success) {
-                                    Swal.fire({
-                                        text: "Data berhasil dihapus",
-                                        icon: "success",
-                                        buttonsStyling: false,
-                                        confirmButtonText: "Ok, got it!",
-                                        customClass: {
-                                            confirmButton: "btn btn-success",
-                                        }
-                                    });
-
-                                    table.rows("#" + id + "").remove().draw();
-                                }
-                            }
-                        });
-                    } else if (result.dismiss === 'cancel') {
-                        modal.hide(); // Hide modal				
-                    }
-                });
             });
         });
     </script>

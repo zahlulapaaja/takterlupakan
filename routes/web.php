@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::name('matriks.')->group(function () {
         Route::get('/matriks', [HomeController::class, 'matriks'])->name('index');
         Route::post('/matriks/honor/create', [MatriksHonorController::class, 'create'])->name('honor.create');
+        Route::get('/matriks/honor/{tahun}/{bulan}', [MatriksHonorController::class, 'list'])->name('honor.list');
         Route::resource('/matriks/honor', MatriksHonorController::class)->except(['create']);
     });
 
