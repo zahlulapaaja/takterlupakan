@@ -67,7 +67,7 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->no_bast}}</span>
+                                <span contenteditable="true" data-id="{{$d->id}}" data-column="no_bast" class="text-gray-900 d-block fs-6">{{$d->no_bast}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->keg->nama}}</span>
@@ -76,32 +76,24 @@
                                 <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->nama}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->sebagai}}</span>
+                                <span contenteditable="true" data-id="{{$d->id}}" data-column="sebagai" class="text-gray-900 d-block fs-6 text-nowrap">{{$d->sebagai}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->harga}}</span>
+                                <span contenteditable="true" data-id="{{$d->id}}" data-column="harga" class="text-gray-900 d-block fs-6">{{$d->harga}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
+                                <span contenteditable="true" data-id="{{$d->id}}" data-column="volume" class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <form action="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
-                                        @csrf
-                                        @method('POST')
-                                        <input name="kegiatans_id" type="hidden" value="$d->id">
+                                    <a href="{{ route('kegiatan.sk.print', $d->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
                                         <button type="submit">
-                                            <i class="ki-duotone ki-exit-right-corner fs-2">
+                                            <i class="ki-duotone ki-printer fs-2">
                                                 <span class="path1"></span>
                                                 <span class="path2"></span>
+                                                <span class="path3"></span>
                                             </i>
                                         </button>
-                                    </form>
-                                    <a href="{{route('matriks.honor.edit', '$d->id')}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                        </i>
                                     </a>
                                     <a href="#" data-id="{{$d->id}}" data-name="{{$d->nama}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
@@ -188,6 +180,32 @@
                     }
                 });
             });
+
+            $('span[contenteditable=true]').on('blur', function() {
+                let id = $(this).data('id');
+                let column = $(this).data('column');
+                let value = $(this).text();
+
+                var url = "{{route('matriks.honor.update',':id')}}";
+                url = url.replace(':id', id);
+                $.ajax({
+                    url: url,
+                    method: 'PUT',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        column: column,
+                        value: value
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+                        } else {
+                            alert('Update failed.');
+                        }
+                    }
+                });
+            });
+
         });
     </script>
     @endpush

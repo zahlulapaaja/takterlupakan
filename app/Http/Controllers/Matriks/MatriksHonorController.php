@@ -89,6 +89,23 @@ class MatriksHonorController extends Controller
         return redirect()->route('matriks.honor.index');
     }
 
+    public function update($id, Request $request)
+    {
+        if ($request->column == 'no_bast') {
+            $data['no_bast'] = $request->value;
+        } else if ($request->column == 'sebagai') {
+            $data['sebagai'] = $request->value;
+        } else if ($request->column == 'volume') {
+            $data['volume'] = $request->value;
+        } else if ($request->column == 'harga') {
+            $data['harga'] = $request->value;
+        }
+
+        $find = MatriksHonor::find($id);
+        $find->update($data);
+        return response()->json(['success' => true, 'message' => 'Data updated successfully.']);
+    }
+
     public function destroy($id)
     {
         $data = MatriksHonor::find($id);
