@@ -26,19 +26,24 @@ class MatriksHonor extends Model
         }
     }
 
-    public function insertBast($matriks_honors_id, $request)
+    public function getLastNo($tahun)
+    {
+        $no = MatriksHonor::where('tahun', $tahun)
+            ->orderByRaw('CAST(no_bast AS UNSIGNED) DESC')
+            ->first();
+        $no ? $no = (int)$no->no_bast + 1 : $no = 1; // kalo dapat yang ada titik akan roundup
+        return $no;
+    }
+
+    public function insertData($request)
     {
         // mengambil data nomor terakhir
-        $no = DB::table('matriks_honors_bast')->where('tahun', $request['tahun'])
-            ->orderByRaw('CAST(no AS UNSIGNED) DESC')
-            ->first()->no;
-        $no ? $no = (int)$no + 1 : $no = 1; // kalo dapat yang ada titik akan roundup
+        $no = $this->getLastNo($request['tahun']);
 
         // looping setiap petugas
         for ($i = 0; $i < count($request['status']); $i++) {
             // cek apakah ada di ceklis
             if (in_array($i, $request['checkbox'])) {
-                $data['matriks_honors_id'] = $matriks_honors_id;
                 $data['status'] = $request['status'][$i];
                 if ($request['status'][$i] == config('constants.MITRA')) {
                     $data['mitra_id'] = $request['id_status'][$i];
@@ -48,12 +53,18 @@ class MatriksHonor extends Model
                     $data['pegawai_id'] = $request['id_status'][$i];
                 }
 
-                $data['no'] = $no++;
+                // assign data 
+                $data['no_bast'] = $no++;
+                $data['kegiatans_id'] = $request['kegiatans_id'];
                 $data['sebagai'] = $request['sebagai'][$i];
                 $data['volume'] = $request['volume'][$i];
                 $data['harga'] = $request['harga'][$i];
+                $data['bulan'] = $request['bulan'];
                 $data['tahun'] = $request['tahun'];
-                $res[] = DB::table('matriks_honors_bast')->insert($data);
+                $data['edited_by'] = session('user_id');
+
+                // create data 
+                $res[] = $this->create($data);
             }
         }
 

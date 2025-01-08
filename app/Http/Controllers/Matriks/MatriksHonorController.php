@@ -30,24 +30,20 @@ class MatriksHonorController extends Controller
 
     public function list($tahun, $bulan)
     {
-        $data = DB::table('matriks_honors_bast')
-            ->join('matriks_honors', 'matriks_honors.id', '=', 'matriks_honors_bast.matriks_honors_id')
-            ->select('matriks_honors_bast.*', 'matriks_honors.kegiatans_id')
-            ->where('matriks_honors.tahun', $tahun)
-            ->where('matriks_honors.bulan', $bulan)
+        $data = MatriksHonor::where('tahun', $tahun)
+            ->where('bulan', $bulan)
             ->get();
 
-        $terbilang_bulan = DateTime::createFromFormat('!m', $bulan)->format('F');
-        $matriks = new MatriksHonor();
+        // $terbilang_bulan = DateTime::createFromFormat('!m', $bulan)->format('F');
 
         foreach ($data as $d) {
-            if (is_numeric($d->no) && strpos($d->no, '.') !== false) {
-                $d->no_bast = sprintf('%04d', $d->no) . '.' . explode('.', $d->no)[1];
+            if (is_numeric($d->no_bast) && strpos($d->no_bast, '.') !== false) {
+                $d->no_bast = sprintf('%04d', $d->no_bast) . '.' . explode('.', $d->no_bast)[1];
             } else {
-                $d->no_bast = sprintf('%04d', $d->no);
+                $d->no_bast = sprintf('%04d', $d->no_bast);
             }
             $d->keg = Kegiatan::find($d->kegiatans_id);
-            $d->nama = $matriks->getNamaPetugas($d);
+            $d->nama = $d->getNamaPetugas($d);
         }
         return view('matriks.honor.list', compact('data', 'tahun', 'bulan'));
     }
@@ -76,7 +72,6 @@ class MatriksHonorController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'kegiatans_id'   => 'required',
             'bulan'          => 'required',
@@ -87,22 +82,16 @@ class MatriksHonorController extends Controller
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
-        $data['kegiatans_id'] = $request->kegiatans_id;
-        $data['bulan'] = $request->bulan;
-        $data['tahun'] = $request->tahun;
-        $data['edited_by'] = session('user_id');
-
         // insert data
-        $res =  MatriksHonor::create($data);
-        $res->insertBast($res->id, $request->all());
+        $matriks = new MatriksHonor();
+        $matriks->insertData($request->all());
 
         return redirect()->route('matriks.honor.index');
     }
 
     public function destroy($id)
     {
-        $data = DB::table('matriks_honors_bast')->where('id', $id);
-        // $data->deleteSpj($data);
+        $data = MatriksHonor::find($id);
         $data->delete();
 
         return response()->json(array('success' => true));
