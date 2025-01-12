@@ -36,8 +36,6 @@ class MatriksHonorController extends Controller
             ->where('bulan', $bulan)
             ->get();
 
-        // $terbilang_bulan = DateTime::createFromFormat('!m', $bulan)->format('F');
-
         foreach ($data as $d) {
             if (is_numeric($d->no_bast) && strpos($d->no_bast, '.') !== false) {
                 $d->no_bast = sprintf('%04d', $d->no_bast) . '.' . explode('.', $d->no_bast)[1];
@@ -116,7 +114,6 @@ class MatriksHonorController extends Controller
         return response()->json(array('success' => true));
     }
 
-
     public function bast_print($id)
     {
         // mengambil data 
@@ -133,25 +130,41 @@ class MatriksHonorController extends Controller
         // generate nomor surat
         $data->no_bast = $data->getNoBast($data);
 
-        // mengambil tanggal surat 
+        // mengambil tanggal surat (masuk ke referensi)
         $tgl = Carbon::create($data->tahun, $data->bulan, 1)->endOfMonth();
-        $data->tgl = $tgl->toDateString();
-        $data->terbilang_tgl =
-            $tgl->isoFormat('dddd', $tgl)
-            . ' Tanggal ' . Terbilang::make(explode('-', $data->tgl)[2])
-            . ', Bulan ' . Terbilang::make(explode('-', $data->tgl)[1])
-            . ', Tahun ' . Terbilang::make(explode('-', $data->tgl)[0]);
+        $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
 
+        return view('matriks.honor._print.bast', compact('data', 'ref'));
+    }
 
-        // format tanggal data referensi
-        // $ref->tgl_dipa = date_indo($ref->tgl_dipa);
-        // $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
+    public function bast_list_print($tahun, $bulan)
+    {
+        // mengambil data
+        $data = MatriksHonor::where('tahun', $tahun)
+            ->where('bulan', $bulan)
+            ->orderByRaw('CAST(no_bast AS UNSIGNED) ASC')
+            ->get();
 
-        // $views =
-        //     view('kegiatan.spj._print.daftar-honor', compact('data', 'ref'))->render() .
-        //     view('kegiatan.spj._print.bast', compact('data', 'ref'))->render() .
-        //     view('kegiatan.spj._print.pernyataan', compact('data', 'ref'))->render();
-        return view('matriks.honor.bast_print', compact('data', 'ref'));
-        // return $views;
+        foreach ($data as $d) {
+            $d->keg = Kegiatan::find($d->kegiatans_id);
+            $d->satuan = Pok::find($d->keg->poks_id)->first()->satuan;
+            $d->keg->pjk = Pegawai::find($d->keg->pjk);
+
+            // mengambil data petugas 
+            $d->nama = $d->getNamaPetugas($d);
+            $d->nip = $d->getNipPetugas($d);
+
+            // generate nomor surat
+            $d->no_bast = $d->getNoBast($d);
+        }
+
+        // mengambil data referensi
+        $ref = Referensi::where('tahun', $tahun)->first();
+
+        // mengambil tanggal surat (masuk ke referensi)
+        $tgl = Carbon::create($tahun, $bulan, 1)->endOfMonth();
+        $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
+
+        return view('matriks.honor._print.bast_list', compact('data', 'ref'));
     }
 }

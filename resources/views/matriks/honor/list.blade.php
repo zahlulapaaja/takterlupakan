@@ -16,10 +16,14 @@
                 <span class="card-label fw-bold fs-3 mb-1">Matriks Honor [{{sprintf('%02d', $bulan)}} : {{$tahun}}]</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
-            <div class="card-toolbar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Input Honor Dari Kegiatan">
-                <a href="{{ route('kegiatan.index') }}" class="btn btn-sm btn-light btn-active-primary">
-                    <i class="ki-duotone ki-plus fs-2"></i>Tambah
-                </a>
+            <div class="card-toolbar">
+                <a href="{{route('matriks.honor.bast.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
+                    <i class="ki-document ki-solid fs-2"></i>BAST</a>
+                <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Input Honor Dari Kegiatan">
+                    <a href="{{ route('kegiatan.index') }}" class="btn btn-sm btn-light btn-active-primary">
+                        <i class="ki-duotone ki-plus fs-2"></i>Tambah
+                    </a>
+                </div>
             </div>
         </div>
         <!--end::Header-->

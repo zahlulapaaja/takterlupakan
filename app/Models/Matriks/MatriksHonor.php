@@ -84,7 +84,13 @@ class MatriksHonor extends Model
 
     public function getNoBast($matriks)
     {
-        $result = $matriks->no_bast . "/BAST/BPS/1107/" . sprintf("%02d", $matriks->bulan) .  "/" . $matriks->tahun;
+        if (is_numeric($matriks->no_bast) && strpos($matriks->no_bast, '.') !== false) {
+            $no_bast = sprintf('%04d', $matriks->no_bast) . '.' . explode('.', $matriks->no_bast)[1];
+        } else {
+            $no_bast = sprintf('%04d', $matriks->no_bast);
+        }
+
+        $result = $no_bast . "/BAST/BPS/1107/" . sprintf("%02d", $matriks->bulan) .  "/" . $matriks->tahun;
         return $result;
     }
 }
