@@ -37,4 +37,11 @@ class Referensi extends Model
 
         return $result;
     }
+
+    public function terbilang_bulan($tgl)
+    {
+        $crb = new Carbon();
+        $result =  $crb->isoFormat('MMMM', $tgl);
+        return $result;
+    }
 }

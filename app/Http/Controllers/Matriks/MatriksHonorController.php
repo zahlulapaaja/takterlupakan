@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Matriks;
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Kegiatan;
 use App\Models\Kegiatan\Sk;
+use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
 use App\Models\Master\Tim;
@@ -166,5 +167,45 @@ class MatriksHonorController extends Controller
         $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
 
         return view('matriks.honor._print.bast_list', compact('data', 'ref'));
+    }
+
+    public function spk_print($tahun, $bulan)
+    {
+        // Anggapannya semua ini adalah mitra (untuk saat ini)
+        // mengambil data
+        $data = MatriksHonor::select('*')
+            ->where('tahun', $tahun)
+            ->where('bulan', $bulan)
+            ->orderBy('mitra_id', 'ASC')
+            ->groupBy('mitra_id')
+            ->get();
+
+        foreach ($data as $d) {
+            // mengambil data petugas 
+            if ($d->status == config('constants.MITRA')) {
+                $d->petugas = Mitra::find($d->mitra_id);
+                $d->petugas->kecamatan = $d->petugas->getKecDesc($d->petugas->alamat_kec);
+            }
+
+            // generate nomor surat
+            $d->no_spk = $d->getNoSpk($d);
+
+            // mengambil data kegiatan setiap mitra
+            $d->honor = $d->getDataHonor($d->mitra_id, $tahun, $bulan);
+            $d->honor_akumulasi = $d->getHonorAkumulasi($d->mitra_id, $tahun, $bulan);
+        }
+
+        // mengambil data referensi
+        $ref = Referensi::where('tahun', $tahun)->first();
+        $ref->ppk = Pegawai::find($ref->ppk);
+
+        // format tanggal data spk
+        $tgl = Carbon::create($tahun, $bulan, 1)->endOfMonth();
+        $ref->terbilang_bulan = $ref->terbilang_bulan($tgl);
+        $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
+        $ref->awal_bulan = Carbon::create($tahun, $bulan, 1);
+        $ref->akhir_bulan = Carbon::create($tahun, $bulan, 1)->endOfMonth();
+
+        return view('matriks.honor._print.spk', compact('data', 'ref'));
     }
 }

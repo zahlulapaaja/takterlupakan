@@ -17,6 +17,8 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
+                <a href="{{route('matriks.honor.spk.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
+                    <i class="ki-document ki-solid fs-2"></i>SPK</a>
                 <a href="{{route('matriks.honor.bast.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
                     <i class="ki-document ki-solid fs-2"></i>BAST</a>
                 <div data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Input Honor Dari Kegiatan">

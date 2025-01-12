@@ -1,7 +1,7 @@
 <x-print-layout>
 
     @section('title')
-    Kwitansi
+    BAST
     @endsection
 
     @foreach($data as $d)

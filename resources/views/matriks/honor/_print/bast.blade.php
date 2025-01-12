@@ -1,5 +1,9 @@
 <x-print-layout>
 
+    @section('title')
+    BAST
+    @endsection
+
     @section('head-print')
     <div class="w-full d-flex flex-column text-xl mb-8">
         <img class="w-24 mx-auto my-4" src="{{ image('logos/logo-bps.png') }}">

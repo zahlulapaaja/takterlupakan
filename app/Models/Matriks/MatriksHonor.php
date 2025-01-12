@@ -2,8 +2,10 @@
 
 namespace App\Models\Matriks;
 
+use App\Models\Kegiatan\Kegiatan;
 use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
+use App\Models\Pok;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -92,5 +94,52 @@ class MatriksHonor extends Model
 
         $result = $no_bast . "/BAST/BPS/1107/" . sprintf("%02d", $matriks->bulan) .  "/" . $matriks->tahun;
         return $result;
+    }
+
+    public function getNoSpk($matriks)
+    {
+        // if (is_numeric($matriks->no_bast) && strpos($matriks->no_bast, '.') !== false) {
+        //     $no_bast = sprintf('%04d', $matriks->no_bast) . '.' . explode('.', $matriks->no_bast)[1];
+        // } else {
+        //     $no_bast = sprintf('%04d', $matriks->no_bast);
+        // }
+
+        // $result = $no_bast . "/BAST/BPS/1107/" . sprintf("%02d", $matriks->bulan) .  "/" . $matriks->tahun;
+        $result = 'NOSPK';
+        return $result;
+    }
+
+    public function getDataHonor($mitra_id, $tahun, $bulan)
+    {
+        $result = MatriksHonor::select('*')
+            ->where('mitra_id', $mitra_id)
+            ->where('tahun', $tahun)
+            ->where('bulan', $bulan)
+            ->get();
+
+        foreach ($result as $r) {
+            $r->keg = Kegiatan::find($r->kegiatans_id);
+            $pok = Pok::find($r->keg->poks_id)->first();
+            $r->satuan = $pok->satuan;
+            $r->mak = $pok->getMak($pok);
+        }
+
+        return $result;
+    }
+
+    public function getHonorAkumulasi($mitra_id, $tahun, $bulan)
+    {
+        $result = MatriksHonor::select('*')
+            ->where('mitra_id', $mitra_id)
+            ->where('tahun', $tahun)
+            ->where('bulan', $bulan)
+            ->get();
+
+        $total = 0;
+        foreach ($result as $r) {
+            $total += $r->volume * $r->harga;
+        }
+
+        return $total;
     }
 }
