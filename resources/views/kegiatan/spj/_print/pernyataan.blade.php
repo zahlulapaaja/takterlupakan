@@ -9,7 +9,7 @@
 <!-- end::Header -->
 
 <div class="leading-normal text-justify text-lg">
-    Pada hari ini, <span class="capitalize">{{$data->terbilang_tgl}}</span>,
+    Pada hari ini, <span class="capitalize">{{$ref->terbilang_tgl}}</span>,
     Saya :
 </div>
 

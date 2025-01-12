@@ -34,14 +34,7 @@ class KakController extends Controller
             $data->pok->kode_akun;
 
         // format tanggal data sk
-        $tgl = new Carbon();
-        // Config::set('terbilang.locale', 'id');
-        // dd($data->tgl_spj);
-        $data->terbilang_tgl =
-            $tgl->isoFormat('dddd', $data->tgl_spj)
-            . ' Tanggal ' . Terbilang::make(explode('-', $data->tgl_spj)[2])
-            . ', Bulan ' . Terbilang::make(explode('-', $data->tgl_spj)[1])
-            . ', Tahun ' . Terbilang::make(explode('-', $data->tgl_spj)[0]);
+        $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl_spj);
         $data->tgl_spj = date_indo($data->tgl_spj);
 
         // $data->tgl_mulai = date_indo($data->tgl_mulai);

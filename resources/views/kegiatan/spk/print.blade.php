@@ -11,7 +11,7 @@
 
     <div class="leading-normal text-justify text-lg potrait-page">
         <div>
-            Pada hari ini, <span class="capitalize">{{$data->terbilang_tgl}}</span>,
+            Pada hari ini, <span class="capitalize">{{$ref->terbilang_tgl}}</span>,
             bertempat di {{config('constants.SATKER')}},
             yang bertanda tangan di bawah ini:
         </div>

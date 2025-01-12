@@ -179,12 +179,7 @@ class SpjController extends Controller
         $keg->pjk = Pegawai::find($keg->pjk);
 
         // format tanggal data spj
-        $tgl = new Carbon;
-        $data->terbilang_tgl =
-            $tgl->isoFormat('dddd', $data->tgl)
-            . ' Tanggal ' . Terbilang::make(explode('-', $data->tgl)[2])
-            . ' Bulan ' . Terbilang::make(explode('-', $data->tgl)[1])
-            . ' Tahun ' . Terbilang::make(explode('-', $data->tgl)[0]);
+        $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl);
 
         // mengambil view berbeda tergantung akun
         if ($data->kode_akun == config('constants.AKUN_HONOR')) {
