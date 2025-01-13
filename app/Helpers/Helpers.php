@@ -450,3 +450,11 @@ if (!function_exists('date_indo')) {
         return $result;
     }
 }
+
+if (!function_exists('date_indo_bulan')) {
+    function date_indo_bulan($bulan)
+    {
+        $result = Carbon::create(2025, $bulan, 1)->locale('id')->isoFormat('MMMM');
+        return $result;
+    }
+}

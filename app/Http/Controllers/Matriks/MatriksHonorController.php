@@ -8,15 +8,11 @@ use App\Models\Kegiatan\Sk;
 use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
-use App\Models\Master\Tim;
 use App\Models\Matriks\MatriksHonor;
 use App\Models\Pok;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Riskihajar\Terbilang\Facades\Terbilang;
 
 class MatriksHonorController extends Controller
 {
@@ -27,6 +23,13 @@ class MatriksHonorController extends Controller
             ->orderBy('tahun', 'DESC')
             ->orderBy('bulan', 'DESC')
             ->get();
+
+        foreach ($data as $d) {
+            $d->jumlah = MatriksHonor::distinct()
+                ->where('tahun', $d->tahun)
+                ->where('bulan', $d->bulan)
+                ->get('mitra_id')->count();
+        }
 
         return view('matriks.honor.index', compact('data'));
     }
@@ -58,6 +61,11 @@ class MatriksHonorController extends Controller
         // mengambil data kegiatan
         $keg = Kegiatan::find($request->kegiatans_id);
         $keg->pok = Pok::find($keg->poks_id);
+
+        // membuat data list bulan
+        $start = explode('-', $keg->tgl_mulai)[1];
+        $end = explode('-', $keg->tgl_akhir)[1];
+        $keg->bulan = range($start, $end);
 
         // mengambil data mak dan pjk
         $keg->mak = $keg->pok->getMak($keg->pok);

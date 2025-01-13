@@ -16,7 +16,7 @@
         <div class="d-flex flex-column flex-lg-row-fluid gap-7 gap-lg-10">
             <div class="d-flex flex-column flex-lg-row gap-7 gap-lg-10">
                 <!--begin::Order details-->
-                <div class="card card-flush py-4">
+                <div class="card card-flush py-4 w-full">
                     <!--begin::Card header-->
                     <div class="card-header">
                         <div class="card-title">
@@ -79,7 +79,7 @@
                 </div>
                 <!--end::Order details-->
                 <!--begin::Order details-->
-                <div class="card card-flush py-4">
+                <div class="card card-flush py-4 w-full">
                     <!--begin::Card header-->
                     <div class="card-header">
                         <div class="card-title">
@@ -92,8 +92,12 @@
                         <div class="d-flex flex-column gap-5">
                             <!--begin::Input group-->
                             <div class="fv-row">
-                                <label class="required form-label">Bulan (dalam angka)</label>
-                                <input type="number" class="form-control" name="bulan" required />
+                                <label class="required form-label">Bulan</label>
+                                <select name="bulan" aria-label="Select a Month" class="form-select form-select-sm form-select-solid">
+                                    @foreach($keg->bulan as $b)
+                                    <option value="{{$b}}">{{date_indo_bulan($b)}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <!--end::Input group-->
                         </div>

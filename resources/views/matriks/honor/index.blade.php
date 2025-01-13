@@ -54,6 +54,7 @@
                         <tr class="fw-bold text-muted ">
                             <th class="min-w-100px">Tahun</th>
                             <th class="min-w-100px">Bulan</th>
+                            <th class="min-w-100px">Jumlah Orang</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -67,6 +68,9 @@
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->bulan}}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6">{{$d->jumlah}} Orang</span>
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
