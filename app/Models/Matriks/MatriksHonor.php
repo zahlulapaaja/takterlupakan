@@ -96,16 +96,9 @@ class MatriksHonor extends Model
         return $result;
     }
 
-    public function getNoSpk($matriks)
+    public function getNoSpk($no, $tahun, $bulan)
     {
-        // if (is_numeric($matriks->no_bast) && strpos($matriks->no_bast, '.') !== false) {
-        //     $no_bast = sprintf('%04d', $matriks->no_bast) . '.' . explode('.', $matriks->no_bast)[1];
-        // } else {
-        //     $no_bast = sprintf('%04d', $matriks->no_bast);
-        // }
-
-        // $result = $no_bast . "/BAST/BPS/1107/" . sprintf("%02d", $matriks->bulan) .  "/" . $matriks->tahun;
-        $result = 'NOSPK';
+        $result = sprintf('%04d', $no) . "/SPK/BPS/1107/" . sprintf("%02d", $bulan) .  "/" . $tahun;
         return $result;
     }
 

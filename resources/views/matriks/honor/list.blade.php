@@ -17,7 +17,7 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
-                <a href="{{route('matriks.honor.spk.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
+                <a id="modal-no-spk" href="#" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>SPK</a>
                 <a href="{{route('matriks.honor.bast.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
                     <i class="ki-document ki-solid fs-2"></i>BAST</a>
@@ -136,6 +136,36 @@
 
             $('#searchData').on('keyup', function() {
                 table.search(this.value).draw();
+            });
+
+
+            // modal untuk input angka no spk
+            $(document.body).on('click', '#modal-no-spk', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+
+                Swal.fire({
+                    title: "Cetak SPK!",
+                    text: "Masukkan nomor awal SPK:",
+                    input: "number",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "1"
+                }).then(function(input) {
+                    if (input.value === null) return false;
+
+                    if (input.value === "") {
+                        Swal.fire("You need to write something!");
+                        return false
+                    }
+                    var url = "{{route('matriks.honor.spk.print', [$tahun, $bulan, ':no'])}}";
+                    url = url.replace(':no', input.value);
+
+                    window.open(url, "_blank");
+                });
+
             });
 
 

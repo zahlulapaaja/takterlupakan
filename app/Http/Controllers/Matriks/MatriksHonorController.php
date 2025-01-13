@@ -169,14 +169,17 @@ class MatriksHonorController extends Controller
         return view('matriks.honor._print.bast_list', compact('data', 'ref'));
     }
 
-    public function spk_print($tahun, $bulan)
+    public function spk_print($tahun, $bulan, $no)
     {
-        // Anggapannya semua ini adalah mitra (untuk saat ini)
-        // mengambil data
+        // mengambil data (asumsi datanya cuma mitra), urut by nama mitra
         $data = MatriksHonor::select('*')
             ->where('tahun', $tahun)
             ->where('bulan', $bulan)
-            ->orderBy('mitra_id', 'ASC')
+            ->orderBy(
+                Mitra::select('nama')
+                    ->whereColumn('mitras.id', 'matriks_honors.mitra_id'),
+                'ASC'
+            )
             ->groupBy('mitra_id')
             ->get();
 
@@ -188,7 +191,7 @@ class MatriksHonorController extends Controller
             }
 
             // generate nomor surat
-            $d->no_spk = $d->getNoSpk($d);
+            $d->no_spk = $d->getNoSpk($no++, $tahun, $bulan);
 
             // mengambil data kegiatan setiap mitra
             $d->honor = $d->getDataHonor($d->mitra_id, $tahun, $bulan);

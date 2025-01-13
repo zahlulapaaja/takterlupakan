@@ -89,7 +89,7 @@ Route::middleware('auth')->group(function () {
         // print 
         Route::get('/matriks/honor/bast/{id}/print', [MatriksHonorController::class, 'bast_print'])->name('honor.bast');
         Route::get('/matriks/honor/{tahun}/{bulan}/bast', [MatriksHonorController::class, 'bast_list_print'])->name('honor.bast.print');
-        Route::get('/matriks/honor/{tahun}/{bulan}/spk', [MatriksHonorController::class, 'spk_print'])->name('honor.spk.print');
+        Route::get('/matriks/honor/{tahun}/{bulan}/spk/{no}', [MatriksHonorController::class, 'spk_print'])->name('honor.spk.print');
     });
 
     // Master 
