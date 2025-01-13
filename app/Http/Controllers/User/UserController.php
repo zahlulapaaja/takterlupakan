@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Roles;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -19,13 +20,13 @@ class UserController extends Controller
             $user['roles'] = $user->roles;
         }
         $roles = Roles::all();
-        return view('user-management.users', compact('users', 'roles'));
+        return view('user-management.index', compact('users', 'roles'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            // 'avatar'    => 'mimes:png,jpg,jpeg|max:2048',
+            'avatar'    => 'mimes:png,jpg,jpeg|max:2048',
             'email'     => 'required|email',
             'name'      => 'required',
             'password'  => 'required'
@@ -33,20 +34,19 @@ class UserController extends Controller
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
-        // $avatar     = $request->file('avatar');
-        // $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
-        // $path       = 'avatar-user/' . $filename;
-
-        // Storage::disk('public')->put($path, file_get_contents($avatar));
-
+        // setor gambar avatar 
+        if ($request->avatar) {
+            $avatar     = $request->file('avatar');
+            $filename   = date('Ymd') . '_' . $avatar->getClientOriginalName();
+            $path       = 'avatar-user/' . $filename;
+            Storage::disk('public')->put($path, file_get_contents($avatar));
+            $data['image'] = $filename;
+        }
 
         $data['email'] = $request->email;
         $data['name'] = $request->name;
         $data['password'] = Hash::make($request->password);
-        // $data['email_verified_at'] = date('Y-m-d H:i:s');
-        // $data['image'] = $filename;
-
-
+        $data['email_verified_at'] = date('Y-m-d H:i:s');
 
         $res = User::create($data);
         $res->assignRole([$request->role]);
@@ -56,9 +56,7 @@ class UserController extends Controller
     public function show($id)
     {
         $data = User::find($id);
-        $data['roles'] = $data->roles;
-        // dd($data);
-
+        // $data['roles'] = $data->roles;
 
         return view('user-management.user_detail', compact('data'));
     }
@@ -112,6 +110,6 @@ class UserController extends Controller
             DB::table('model_has_roles')->where('model_id', '=', $user->id)->delete();
         }
 
-        return redirect()->route('user-management.users.index');
+        return response()->json(array('success' => true));
     }
 }

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\Kegiatan\KakController;
 use App\Http\Controllers\Kegiatan\KegiatanController;
 use App\Http\Controllers\Kegiatan\SkController;
@@ -18,7 +17,7 @@ use App\Http\Controllers\Pok\PokController;
 use App\Http\Controllers\Surat\NoFpController;
 use App\Http\Controllers\Surat\NoSuratMasukKeluarController;
 use App\Http\Controllers\Surat\NoSuratTimController;
-use App\Models\Matriks\MatriksHonor;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
@@ -33,13 +32,7 @@ Route::middleware('auth')->group(function () {
     // User Management
     Route::middleware(['role:administrator'])->name('user-management.')->group(function () {
         Route::resource('/user-management/users', UserController::class);
-        Route::get('/user-management/users/view', [HomeController::class, 'users_view'])->name('users_view');
-        Route::get('/user-management/roles', [HomeController::class, 'roles'])->name('roles');
-        Route::get('/user-management/roles/view', [HomeController::class, 'roles_view'])->name('roles_view');
-        Route::get('/user-management/permissions', [HomeController::class, 'permissions'])->name('permissions');
-        // Route::resource('/user-management/users', HomeController::class);
-        // Route::resource('/user-management/roles', HomeController::class);
-        // Route::resource('/user-management/permissions', HomeController::class);
+        Route::resource('/user-management/roles', HomeController::class);
     });
 
     // Anggaran

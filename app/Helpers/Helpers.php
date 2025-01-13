@@ -458,3 +458,17 @@ if (!function_exists('date_indo_bulan')) {
         return $result;
     }
 }
+
+if (!function_exists('avatar')) {
+    /**
+     * Get avatar url by path
+     *
+     * @param $path
+     *
+     * @return string
+     */
+    function avatar($path)
+    {
+        return asset('storage/avatar-user/' . $path);
+    }
+}

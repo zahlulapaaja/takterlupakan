@@ -92,6 +92,8 @@ Breadcrumbs::resource('master.index', 'master.referensi', 'Referensi');
 Breadcrumbs::resource('master.index', 'master.tim', 'Tim Kerja');
 Breadcrumbs::resource('master.index', 'master.pegawai', 'Pegawai');
 Breadcrumbs::resource('master.index', 'master.mitra', 'Mitra');
+Breadcrumbs::resource('master.index', 'user-management.users', 'Users');
+Breadcrumbs::resource('master.index', 'user-management.roles', 'Roles');
 
 // Home > Master > Tim > 202X
 Breadcrumbs::for("master.tim.list", function (BreadcrumbTrail $trail, $tahun) {
