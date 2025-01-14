@@ -46,6 +46,7 @@ class AuthController extends Controller
             Session::put('name', $user->name);
             Session::put('role', User::find($user->id)->roles);
             Session::put('email', User::find($user->id)->email);
+            Session::put('avatar', User::find($user->id)->image);
             return redirect()->route('dashboard');
         } else {
             return redirect()->route('login')->with('failed', 'Email atau Password Salah');

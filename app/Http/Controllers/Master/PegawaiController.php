@@ -15,7 +15,7 @@ class PegawaiController extends Controller
     {
         $data = Pegawai::all();
         foreach ($data as $p) {
-            $p->avatar = 'media/avatars/' . $p->avatar;
+            $p->avatar = 'pegawai/' . $p->avatar;
         }
 
         return view('master.pegawai.index', compact('data'));
@@ -46,7 +46,7 @@ class PegawaiController extends Controller
         $avatar     = $request->file('avatar');
         if ($avatar) {
             $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
-            $path       = 'media/avatars/' . $filename;
+            $path       = 'pegawai/' . $filename;
 
             Storage::disk('public')->put($path, file_get_contents($avatar));
             $data['avatar'] = $filename;
@@ -72,7 +72,7 @@ class PegawaiController extends Controller
     public function edit($id)
     {
         $data = Pegawai::find($id);
-        $data->avatar = 'media/avatars/' . $data->avatar;
+        $data->avatar = 'pegawai/' . $data->avatar;
 
         return view('master.pegawai.edit', compact('data'));
     }
@@ -99,9 +99,9 @@ class PegawaiController extends Controller
         $avatar     = $request->file('avatar');
         if ($avatar) {
             $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
-            $path       = 'media/avatars/' . $filename;
+            $path       = 'pegawai/' . $filename;
 
-            if ($find->avatar) Storage::disk('public')->delete('media/avatars/' . $find->avatar);
+            if ($find->avatar) Storage::disk('public')->delete('pegawai/' . $find->avatar);
             Storage::disk('public')->put($path, file_get_contents($avatar));
 
             $data['avatar'] = $filename;
