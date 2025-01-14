@@ -31,8 +31,8 @@ Route::middleware('auth')->group(function () {
 
     // User Management
     Route::middleware(['role:administrator'])->name('user-management.')->group(function () {
-        Route::resource('/user-management/users', UserController::class);
-        Route::resource('/user-management/roles', HomeController::class);
+        Route::resource('/user-management/users', UserController::class)->except(['create', 'show', 'edit']);
+        Route::put('/user-management/users/{user}/update-password', [UserController::class, 'update_password'])->name('users.update-password');
     });
 
     // Anggaran
@@ -62,13 +62,14 @@ Route::middleware('auth')->group(function () {
     Route::name('kegiatan.')->group(function () {
         Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
         Route::resource('/kegiatan/sk', SkController::class)->except(['create']);
-        Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');
         Route::resource('/kegiatan/spj', SpjController::class)->except(['create']);
+
+        // print 
+        Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::get('/kegiatan/spj/{spj}/print/{jenis}', [SpjController::class, 'print'])->name('spj.print');
 
         // masih coba-coba 
-        Route::get('/kegiatan/spk/{spk}/print', [SpkController::class, 'print'])->name('spk.print');
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
     });
 

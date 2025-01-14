@@ -64,7 +64,7 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $find = User::find($id);
-        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'avatar'    => 'nullable|mimes:png,jpg,jpeg|max:2048',
             'email'     => 'required|email',
@@ -102,12 +102,26 @@ class UserController extends Controller
         return redirect()->route('user-management.users.index');
     }
 
+    public function update_password($id, Request $request)
+    {
+        $find = User::find($id);
+
+        $validator = Validator::make($request->all(), ['password'  => 'required',]);
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        // update data
+        $data['password'] = Hash::make($request->password);
+        $find->update($data);
+
+        return redirect()->route('user-management.users.index');
+    }
+
     public function destroy($id)
     {
         $user = User::find($id);
         if ($user) {
             $user->delete();
-            DB::table('model_has_roles')->where('model_id', '=', $user->id)->delete();
+            DB::table('model_has_roles')->where('model_id', '=', $user->id)->delete(); // soft delete
         }
 
         return response()->json(array('success' => true));

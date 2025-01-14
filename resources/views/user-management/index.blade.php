@@ -29,13 +29,6 @@
             <div class="card-toolbar">
                 <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end">
-                    <!--begin::Export-->
-                    <a href="#" class="btn btn-light-primary me-3">
-                        <i class="ki-duotone ki-exit-up fs-2">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>Export</a>
-                    <!--end::Export-->
                     <!--begin::Add user-->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
                         <i class="ki-duotone ki-plus fs-2"></i>Add User</button>
@@ -65,16 +58,14 @@
                         <td class="d-flex align-items-center h-full">
                             <!--begin:: Avatar -->
                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                <a href="{{ route('user-management.users.show', $user->id) }}">
-                                    <div class="symbol-label">
-                                        <img src="{{avatar($user->image)}}" alt="{{$user->name}}" class="w-100" />
-                                    </div>
-                                </a>
+                                <div class="symbol-label">
+                                    <img src="{{avatar($user->image)}}" alt="{{$user->name}}" class="w-100" />
+                                </div>
                             </div>
                             <!--end::Avatar-->
                             <!--begin::User details-->
                             <div class="d-flex flex-column">
-                                <a href="{{ route('user-management.users.show', $user->id) }}" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                <span class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</span>
                                 <span>{{ $user->email }}</span>
                             </div>
                             <!--begin::User details-->
@@ -90,14 +81,16 @@
                         <td>
                             <span class="text-nowrap">{{date_indo($user->created_at)}}</span>
                         </td>
-                        <td class="d-flex align-items-center">
+                        <td class="d-flex align-items-center justify-end">
                             <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_user_{{$user->id}}">Edit</a>
+                            <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password_{{$user->id}}">Change Password</a>
                             <a href="#" data-id="{{$user->id}}" data-name="{{$user->name}}" class="btn btn-danger btn-active-danger-primary btn-flex btn-center btn-sm mx-1 my-2 modal-delete">
                                 Delete
                             </a>
                         </td>
                     </tr>
                     @include('user-management.partials._modal-edit-user')
+                    @include('user-management.partials._modal-update-password')
                     @empty
                     <tr>
                         <td colspan="4">No Data Found!</td>
