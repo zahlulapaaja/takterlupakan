@@ -94,6 +94,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('/master/pegawai', PegawaiController::class);
         Route::resource('/master/mitra', MitraController::class);
         Route::get('/master/tim/list/{tahun}', [TimController::class, 'list'])->name('tim.list');
+        Route::get('/master/export/pegawai', [PegawaiController::class, 'export'])->name('pegawai.export');
         Route::get('/master/impor/mitra', [MitraController::class, 'impor'])->name('mitra.impor');
         Route::post('/master/impor/mitra', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
         Route::get('/master/impor/mitra/template', [MitraController::class, 'template'])->name('mitra.template');

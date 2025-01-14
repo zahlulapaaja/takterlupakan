@@ -35,6 +35,13 @@
             <div class="card-toolbar">
                 <!--begin::Toolbar-->
                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                    <!--begin::Export-->
+                    <a id="export" href="{{route('master.pegawai.export')}}" class="btn btn-light-primary me-3">
+                        <i class="ki-duotone ki-exit-up fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>Export</a>
+                    <!--end::Export-->
                     <!--begin::Add Pegawai-->
                     <a href="{{route('master.pegawai.create')}}" class="btn btn-primary">
                         <i class="ki-duotone ki-plus fs-2"></i>

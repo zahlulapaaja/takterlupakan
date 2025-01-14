@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Master;
 
+use App\Exports\PegawaiExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Master\Pegawai;
@@ -130,5 +131,10 @@ class PegawaiController extends Controller
         if ($data) $data->delete(); // soft delete
 
         return response()->json(array('success' => true));
+    }
+
+    public function export()
+    {
+        return (new PegawaiExport())->download('pegawai-1107.xlsx');
     }
 }
