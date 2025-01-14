@@ -52,7 +52,8 @@ class RolesPermissionsSeeder extends Seeder
                 'kegiatan',
                 'perjadin',
             ],
-            'trial' => [],
+            'ppk' => [],
+            // 'trial' => [],
         ];
 
         // membuat semua permission
@@ -75,7 +76,7 @@ class RolesPermissionsSeeder extends Seeder
 
         User::find(1)->assignRole('administrator');
         User::find(2)->assignRole('ketua tim');
-        User::find(4)->assignRole('trial');
+        // User::find(4)->assignRole('trial');
         $users = User::all();
         foreach ($users as $user) {
             $user->assignRole('pegawai');
