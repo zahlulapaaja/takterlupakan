@@ -16,10 +16,17 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::all();
+
+        // membuat array nama roles 
         foreach ($users as $user) {
-            $user['roles'] = $user->roles;
+            $roles_name = [];
+            foreach ($user->roles as $role) {
+                array_push($roles_name, $role->name);
+            }
+            $user->roles_name = $roles_name;
         }
         $roles = Roles::all();
+
         return view('user-management.index', compact('users', 'roles'));
     }
 
@@ -37,7 +44,7 @@ class UserController extends Controller
         // setor gambar avatar 
         if ($request->avatar) {
             $avatar     = $request->file('avatar');
-            $filename   = date('Ymd') . '_' . $avatar->getClientOriginalName();
+            $filename   = date('YmdHis') . '_' . $avatar->getClientOriginalName();
             $path       = 'avatar-user/' . $filename;
             Storage::disk('public')->put($path, file_get_contents($avatar));
             $data['image'] = $filename;
@@ -48,17 +55,10 @@ class UserController extends Controller
         $data['password'] = Hash::make($request->password);
         $data['email_verified_at'] = date('Y-m-d H:i:s');
 
+        // store data 
         $res = User::create($data);
         $res->assignRole([$request->role]);
         return redirect()->route('user-management.users.index');
-    }
-
-    public function show($id)
-    {
-        $data = User::find($id);
-        // $data['roles'] = $data->roles;
-
-        return view('user-management.user_detail', compact('data'));
     }
 
     public function update($id, Request $request)
@@ -66,45 +66,45 @@ class UserController extends Controller
         $find = User::find($id);
         // dd($request->all());
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'name'  => 'required',
-            // 'password'  => 'nullable',
-            // 'avatar'    => 'nullable|mimes:png,jpg,jpeg|max:2048',
+            'avatar'    => 'nullable|mimes:png,jpg,jpeg|max:2048',
+            'email'     => 'required|email',
+            'name'      => 'required',
         ]);
-
-        // $avatar     = $request->file('avatar');
-
-        // if ($avatar) {
-        //     $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
-        //     $path       = 'avatar-user/' . $filename;
-
-        //     if ($find->image) {
-        //         Storage::disk('public')->delete('avatar-user/' . $find->image);
-        //     }
-        //     Storage::disk('public')->put($path, file_get_contents($avatar));
-
-        //     $data['image'] = $filename;
-        // }
-
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        // setor gambar avatar 
+        if ($request->avatar) {
+            $avatar     = $request->file('avatar');
+            $filename   = date('YmdHis') . '_' . $avatar->getClientOriginalName();
+            $path       = 'avatar-user/' . $filename;
+
+            // hapus file yang udah ada 
+            if ($find->image != 'blank.png') {
+                Storage::disk('public')->delete('avatar-user/' . $find->image);
+            }
+            Storage::disk('public')->put($path, file_get_contents($avatar));
+            $data['image'] = $filename;
+        } elseif ($request->avatar_remove) {
+            if ($find->image != 'blank.png') {
+                Storage::disk('public')->delete('avatar-user/' . $find->image);
+            }
+            $data['image'] = 'blank.png';
+        }
 
         $data['name'] = $request->name;
         $data['email'] = $request->email;
 
-        // if ($request->password) {
-        //     $data['password'] = Hash::make($request->password);
-        // }
-
-        // dd($data);
-
+        // update data
         $find->update($data);
-        return redirect()->route('user-management.users.show', ['user' => $find->id]);
+        DB::table('model_has_roles')->where('model_id', $find->id)->delete();
+        $find->assignRole([$request->role]);
+
+        return redirect()->route('user-management.users.index');
     }
 
     public function destroy($id)
     {
         $user = User::find($id);
-
         if ($user) {
             $user->delete();
             DB::table('model_has_roles')->where('model_id', '=', $user->id)->delete();

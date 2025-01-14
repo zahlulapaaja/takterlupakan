@@ -62,7 +62,7 @@
                 <tbody class="text-gray-600 fw-semibold">
                     @forelse($users as $user)
                     <tr id="{{$user->id}}">
-                        <td class="d-flex align-items-center">
+                        <td class="d-flex align-items-center h-full">
                             <!--begin:: Avatar -->
                             <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                 <a href="{{ route('user-management.users.show', $user->id) }}">
@@ -81,21 +81,23 @@
                         </td>
                         <td>
                             @foreach($user->roles as $role)
-                            <div class="badge badge-light-primary fw-bold">{{$role->name}}</div>
+                            @if(!($loop->first))
                             <br>
+                            @endif
+                            <div class="badge badge-light-primary fw-bold">{{$role->name}}</div>
                             @endforeach
                         </td>
                         <td>
                             <span class="text-nowrap">{{date_indo($user->created_at)}}</span>
                         </td>
                         <td class="d-flex align-items-center">
-                            <a href="{{ route('user-management.users.show', $user->id) }}" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2">Edit</a>
+                            <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_user_{{$user->id}}">Edit</a>
                             <a href="#" data-id="{{$user->id}}" data-name="{{$user->name}}" class="btn btn-danger btn-active-danger-primary btn-flex btn-center btn-sm mx-1 my-2 modal-delete">
                                 Delete
-                                <!-- <input style="all: unset" type="submit" value="Delete" /> -->
                             </a>
                         </td>
                     </tr>
+                    @include('user-management.partials._modal-edit-user')
                     @empty
                     <tr>
                         <td colspan="4">No Data Found!</td>
