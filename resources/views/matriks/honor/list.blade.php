@@ -5,7 +5,7 @@
     @endsection
 
     @section('breadcrumbs')
-    <!-- Breadcrumbs::render('matriks.honor.list', $tahun . ':' . $bulan) -->
+    {{Breadcrumbs::render('matriks.honor.list', [$tahun,$bulan])}}
     @endsection
 
     <!--begin::Tables Widget 9-->

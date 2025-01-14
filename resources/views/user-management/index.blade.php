@@ -55,20 +55,22 @@
                 <tbody class="text-gray-600 fw-semibold">
                     @forelse($users as $user)
                     <tr id="{{$user->id}}">
-                        <td class="d-flex align-items-center h-full">
-                            <!--begin:: Avatar -->
-                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                <div class="symbol-label">
-                                    <img src="{{avatar($user->image)}}" alt="{{$user->name}}" class="w-100" />
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <!--begin:: Avatar -->
+                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                    <div class="symbol-label">
+                                        <img src="{{avatar($user->image)}}" alt="{{$user->name}}" class="w-100" />
+                                    </div>
                                 </div>
+                                <!--end::Avatar-->
+                                <!--begin::User details-->
+                                <div class="d-flex flex-column">
+                                    <span class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</span>
+                                    <span>{{ $user->email }}</span>
+                                </div>
+                                <!--begin::User details-->
                             </div>
-                            <!--end::Avatar-->
-                            <!--begin::User details-->
-                            <div class="d-flex flex-column">
-                                <span class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</span>
-                                <span>{{ $user->email }}</span>
-                            </div>
-                            <!--begin::User details-->
                         </td>
                         <td>
                             @foreach($user->roles as $role)

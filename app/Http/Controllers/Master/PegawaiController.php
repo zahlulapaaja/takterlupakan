@@ -66,7 +66,7 @@ class PegawaiController extends Controller
         $data['catatan'] = $request->catatan;
 
         Pegawai::create($data);
-        return redirect()->route('master.pegawai.index');
+        return redirect()->route('master.pegawai.index')->with('success', 'Data pegawai berhasil ditambah');
     }
 
     public function edit($id)
@@ -121,7 +121,7 @@ class PegawaiController extends Controller
         $data['catatan'] = $request->catatan;
 
         $find->update($data);
-        return redirect()->route('master.pegawai.index');
+        return redirect()->route('master.pegawai.index')->with('success', 'Data pegawai berhasil diperbarui');
     }
 
     public function destroy($id)
