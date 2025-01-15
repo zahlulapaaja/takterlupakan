@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Kegiatan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kegiatan\Kegiatan;
 use App\Models\Kegiatan\Spj;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
@@ -18,23 +19,25 @@ class KakController extends Controller
     {
         $data = Spj::find($id);
         $ref = Referensi::where('tahun', $data->tahun)->first();
-        $data->alokasi_beban = DB::table('spjs_alokasi_beban')->where('spjs_id', $id)->get();
+        // $data->alokasi_beban = DB::table('spjs_alokasi_beban')->where('spjs_id', $id)->get();
         // $data->petugas = $data->getPetugas($id);
 
         // generate nomor surat
         $data->no_spj = $data->no . '/SPJ/BPS-1107/' . explode('-', $data->tgl_spj)[0];
-        $data->pok = Pok::find($data->poks_id);
-        $data->mak = '054.01.' . // bikin constants
-            $data->pok->kode_program . '.' .
-            $data->pok->kode_kegiatan . '.' .
-            $data->pok->kode_output . '.' .
-            $data->pok->kode_suboutput . '.' .
-            $data->pok->kode_komponen . '.' .
-            $data->pok->kode_subkomponen . '.' .
-            $data->pok->kode_akun;
+        $data->keg = Kegiatan::find($data->kegiatans_id);
+        // $data->keg->pok = Pok::find($data->keg->poks_id);
+        $data->pok = Pok::find($data->keg->poks_id);
+        $data->mak = '054.01.'; // bikin constants
+        // $data->pok->kode_program . '.' .
+        // $data->pok->kode_kegiatan . '.' .
+        // $data->pok->kode_output . '.' .
+        // $data->pok->kode_suboutput . '.' .
+        // $data->pok->kode_komponen . '.' .
+        // $data->pok->kode_subkomponen . '.' .
+        // $data->pok->kode_akun;
 
         // format tanggal data sk
-        $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl_spj);
+        $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl);
         $data->tgl_spj = date_indo($data->tgl_spj);
 
         // $data->tgl_mulai = date_indo($data->tgl_mulai);

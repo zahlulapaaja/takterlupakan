@@ -8,10 +8,6 @@
     {{ Breadcrumbs::render('kegiatan.spj.create') }}
     @endsection
 
-    @push('css')
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-    @endpush
-
     <!--begin::Form-->
     <form id="form_create_spj" method="post" action="{{ route('kegiatan.spj.store') }}" class="form d-flex flex-column flex-lg-row">
         @csrf
@@ -149,7 +145,7 @@
                         <select id="no-sk-dropdown" class="form-select" name="tim" required>
                             <option value="" hidden>Pilih No SK...</option>
                             @foreach($sk as $s)
-                            <option value="{{$s->id}}">{{$s->no . '/SK/BPS-1107/' . $s->tahun}} - {{$s->tentang}}</option>
+                            <option value="{{$s->id}}">{{$s->no_sk}} - {{$s->tentang}}</option>
                             @endforeach
                         </select>
                     </div>

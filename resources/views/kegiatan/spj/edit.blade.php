@@ -8,10 +8,6 @@
     {{ Breadcrumbs::render('kegiatan.spj.edit', $data->id) }}
     @endsection
 
-    @push('css')
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-    @endpush
-
     <!--begin::Form-->
     <form id="form_update_spj" method="post" action="{{ route('kegiatan.spj.update', $data->id) }}" class="form d-flex flex-column flex-lg-row">
         @csrf

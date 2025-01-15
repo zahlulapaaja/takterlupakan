@@ -16,7 +16,7 @@
         <tr>
             <td class="border border-black">{{ $key+1 }}.</td>
             <td class="border border-black text-left min-w-300px pl-2">{{$h->uraian}}</td>
-            <td class="border border-black">{{$h->honor}}</td>
+            <td class="border border-black">{{currency_IDR($h->honor)}}</td>
         </tr>
         @endforeach
     </tbody>

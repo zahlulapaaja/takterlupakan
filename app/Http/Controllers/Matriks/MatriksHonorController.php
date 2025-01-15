@@ -75,6 +75,10 @@ class MatriksHonorController extends Controller
         $sk = new Sk();
         $list_petugas = $sk->getListPetugas($keg->tahun);
         $sk = $sk->where('tahun', $keg->tahun)->get();
+        foreach ($sk as $s) {
+            $s->no_sk = $s->getNoSk($s);
+        }
+
 
         return view('matriks.honor.create', compact('keg', 'sk', 'list_petugas'));
     }
