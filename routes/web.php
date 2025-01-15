@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
 
         // masih coba-coba 
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
+        Route::get('/kegiatan/kak/{kak}/print2', [KakController::class, 'print2'])->name('kak.print2');
     });
 
     // Matriks 

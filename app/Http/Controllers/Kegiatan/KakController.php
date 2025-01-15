@@ -15,6 +15,8 @@ use Riskihajar\Terbilang\Facades\Terbilang;
 
 class KakController extends Controller
 {
+
+    // hapus aja yang gaperlu 
     public function print($id)
     {
         $data = Spj::find($id);
@@ -54,6 +56,50 @@ class KakController extends Controller
         //     view('kegiatan.spj._print.bast', compact('data', 'ref'))->render() .
         //     view('kegiatan.spj._print.pernyataan', compact('data', 'ref'))->render();
         return view('kegiatan.kak.print', compact('data', 'ref'));
+        // return $views;
+    }
+
+    public function print2($id)
+    {
+        $data = Spj::find($id);
+        $ref = Referensi::where('tahun', $data->tahun)->first();
+        $ref->kpa = Pegawai::find($ref->kpa);
+        $ref->ppk = Pegawai::find($ref->ppk);
+        // $data->alokasi_beban = DB::table('spjs_alokasi_beban')->where('spjs_id', $id)->get();
+        // $data->petugas = $data->getPetugas($id);
+
+        // generate nomor surat
+        $data->no_spj = $data->no . '/SPJ/BPS-1107/' . explode('-', $data->tgl_spj)[0];
+        $data->keg = Kegiatan::find($data->kegiatans_id);
+        // $data->keg->pok = Pok::find($data->keg->poks_id);
+        $data->pok = Pok::find($data->keg->poks_id);
+        $data->mak = '054.01.'; // bikin constants
+        // $data->pok->kode_program . '.' .
+        // $data->pok->kode_kegiatan . '.' .
+        // $data->pok->kode_output . '.' .
+        // $data->pok->kode_suboutput . '.' .
+        // $data->pok->kode_komponen . '.' .
+        // $data->pok->kode_subkomponen . '.' .
+        // $data->pok->kode_akun;
+
+        // format tanggal data sk
+        $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl);
+        $data->tgl_spj = date_indo($data->tgl_spj);
+
+        // $data->tgl_mulai = date_indo($data->tgl_mulai);
+        // mengambil data pjk
+        $data->pjk = Pegawai::find($data->pjk);
+        // dd($data->pjk);
+
+        // format tanggal data referensi
+        $ref->tgl_dipa = date_indo($ref->tgl_dipa);
+        $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
+
+        // $views =
+        //     view('kegiatan.spj._print.daftar-honor', compact('data', 'ref'))->render() .
+        //     view('kegiatan.spj._print.bast', compact('data', 'ref'))->render() .
+        //     view('kegiatan.spj._print.pernyataan', compact('data', 'ref'))->render();
+        return view('kegiatan.kak.print2', compact('data', 'ref'));
         // return $views;
     }
 }
