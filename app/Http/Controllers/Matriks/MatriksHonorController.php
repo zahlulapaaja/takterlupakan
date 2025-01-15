@@ -200,6 +200,9 @@ class MatriksHonorController extends Controller
             if ($d->status == config('constants.MITRA')) {
                 $d->petugas = Mitra::find($d->mitra_id);
                 $d->petugas->kecamatan = $d->petugas->getKecDesc($d->petugas->alamat_kec);
+            } elseif ($d->status == config('constants.PEGAWAI')) {
+                $d->petugas = Pegawai::find($d->pegawai_id);
+                $d->petugas->kecamatan = "Johan Pahlawan";
             }
 
             // generate nomor surat

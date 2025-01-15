@@ -107,7 +107,7 @@
                     confirmButtonText: "Yakin",
                     cancelButtonText: "Batal",
                     customClass: {
-                        confirmButton: "btn btn-primary",
+                        confirmButton: "btn btn-danger",
                         cancelButton: "btn btn-active-light"
                     }
                 }).then(function(result) {

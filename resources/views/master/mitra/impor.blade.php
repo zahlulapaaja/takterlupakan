@@ -21,6 +21,16 @@
                 </div>
             </div>
             <div class="card-body py-3">
+
+                <!-- begin::alert -->
+                <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                    <p class="font-bold">Perhatian</p>
+                    <p>Download template mitra di Aplikasi Manajemen Mitra.</p>
+                    <p>Manajemen Mitra >> Mitra >> Mitra Kepka >> Download</p>
+                    <p>Pastikan menambah tiga kolom tambahan (nomor rekening, nama bank, nama pemilik rekening).</p>
+                </div>
+                <!-- end::alert -->
+
                 <form action="{{ route('master.mitra.prosesimpor') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('POST')

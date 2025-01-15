@@ -28,8 +28,7 @@ class Referensi extends Model
     {
         // menyesuaikan format 
         $crb = new Carbon();
-        // dd(gettype($tgl) != "string");
-        // if (gettype($tgl) == "string") $tgl = $tgl->toDateString();
+        if (gettype($tgl) != "string") $tgl = $tgl->toDateString();
 
         $result = $crb->isoFormat('dddd', $tgl)
             . ' Tanggal ' . Terbilang::make(explode('-', $tgl)[2])

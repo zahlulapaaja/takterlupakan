@@ -89,7 +89,7 @@
                                         </button>
                                     </form>
                                     @endif
-                                    <form action="{{route('kegiatan.spj.create')}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="SPJ">
+                                    <form action="{{route('kegiatan.spj.create')}}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" method="post" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Butki Dukung SPJ">
                                         @csrf
                                         @method('POST')
                                         <input name="kegiatans_id" type="hidden" value="{{$d->id}}">
@@ -150,47 +150,58 @@
 
                 // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Anda yakin ingin menghapus kegiatan " + name + " ?",
+                    title: "Hapus Kegiatan!",
+                    text: "Menghapus kegiatan berdampak pada seluruh dokumen yang telah dibuat! PAHAM!?!?",
                     icon: "warning",
-                    showCancelButton: true,
-                    buttonsStyling: false,
-                    confirmButtonText: "Yakin",
-                    cancelButtonText: "Batal",
+                    confirmButtonText: "Paham",
                     customClass: {
                         confirmButton: "btn btn-primary",
-                        cancelButton: "btn btn-active-light"
                     }
                 }).then(function(result) {
-                    if (result.value) {
-                        var url = "{{route('kegiatan.destroy',':id')}}";
-                        url = url.replace(':id', id);
-                        $.ajax({
-                            type: "DELETE",
-                            url: url,
-                            data: {
-                                _token: '{{csrf_token()}}',
-                            },
-                            success: function(data) {
-                                if (data.success) {
-                                    Swal.fire({
-                                        text: "Data berhasil dihapus",
-                                        icon: "success",
-                                        buttonsStyling: false,
-                                        confirmButtonText: "Ok, got it!",
-                                        customClass: {
-                                            confirmButton: "btn btn-success",
-                                        }
-                                    });
+                    Swal.fire({
+                        text: "Anda yakin ingin menghapus kegiatan " + name + " ?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        buttonsStyling: false,
+                        confirmButtonText: "Yakin",
+                        cancelButtonText: "Batal",
+                        customClass: {
+                            confirmButton: "btn btn-danger",
+                            cancelButton: "btn btn-active-light"
+                        }
+                    }).then(function(result) {
+                        if (result.value) {
+                            var url = "{{route('kegiatan.destroy',':id')}}";
+                            url = url.replace(':id', id);
+                            $.ajax({
+                                type: "DELETE",
+                                url: url,
+                                data: {
+                                    _token: '{{csrf_token()}}',
+                                },
+                                success: function(data) {
+                                    if (data.success) {
+                                        Swal.fire({
+                                            text: "Data berhasil dihapus",
+                                            icon: "success",
+                                            buttonsStyling: false,
+                                            confirmButtonText: "Ok, got it!",
+                                            customClass: {
+                                                confirmButton: "btn btn-success",
+                                            }
+                                        });
 
-                                    table.rows("#" + id + "").remove().draw();
+                                        table.rows("#" + id + "").remove().draw();
+                                    }
                                 }
-                            }
-                        });
-                    } else if (result.dismiss === 'cancel') {
-                        modal.hide(); // Hide modal				
-                    }
+                            });
+                        } else if (result.dismiss === 'cancel') {
+                            modal.hide(); // Hide modal				
+                        }
+                    });
                 });
             });
+
         });
     </script>
     @endpush

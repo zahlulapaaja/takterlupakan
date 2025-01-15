@@ -74,6 +74,20 @@
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
+                                    <a id="modal-no-spk" data-tahun="{{$d->tahun}}" data-bulan="{{$d->bulan}}" href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="SPK">
+                                        <i class="ki-duotone ki-printer fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </a>
+                                    <a href="{{route('matriks.honor.bast.print', [$d->tahun, $d->bulan])}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
+                                        <i class="ki-duotone ki-printer fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                        </i>
+                                    </a>
                                     <a href="{{route('matriks.honor.list', [$d->tahun, $d->bulan])}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-menu fs-2">
                                             <span class="path1"></span>
@@ -107,6 +121,39 @@
 
             $('#searchData').on('keyup', function() {
                 table.search(this.value).draw();
+            });
+
+            // modal untuk input angka no spk
+            $(document.body).on('click', '#modal-no-spk', function(e) {
+                e.preventDefault();
+                var tahun = $(this).data('tahun');
+                var bulan = $(this).data('bulan');
+
+                Swal.fire({
+                    title: "Cetak SPK!",
+                    text: "Masukkan nomor awal SPK:",
+                    input: "number",
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    animation: "slide-from-top",
+                    inputPlaceholder: "1"
+                }).then(function(input) {
+                    if (input.value == undefined) { // jika cancel
+                        return false;
+                    } else if (input.value == "") { // jika kosong
+                        Swal.fire("You need to write something!");
+                        return false;
+                    } else {
+                        var url = "{{route('matriks.honor.spk.print', [':tahun', ':bulan', ':no'])}}";
+                        url = url.replace(':tahun', tahun);
+                        url = url.replace(':bulan', bulan);
+                        url = url.replace(':no', input.value);
+                        window.open(url, "_blank");
+                        return false;
+                    }
+
+                });
+
             });
         });
     </script>

@@ -47,7 +47,7 @@ return new class extends Migration
             $table->string('melakukan');
             $table->string('lokasi');
             $table->integer('nominal');
-            $table->date('tgl_kunj');
+            $table->string('tgl_kunj');
         });
     }
 

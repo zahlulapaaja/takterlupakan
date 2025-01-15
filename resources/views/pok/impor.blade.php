@@ -29,6 +29,14 @@
                 </div>
                 @endif
 
+                <!-- begin::alert -->
+                <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+                    <p class="font-bold">Perhatian</p>
+                    <p>Download template POK di Aplikasi Back Office.</p>
+                    <p>BackOffice >> Anggaran >> Report POK >> Download Excel</p>
+                </div>
+                <!-- end::alert -->
+
                 <form action="{{ route('pok.prosesimpor') }}" method="POST" enctype="multipart/form-data" class="text-right">
                     @csrf
                     @method('POST')
