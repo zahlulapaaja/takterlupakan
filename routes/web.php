@@ -59,6 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/kegiatan', KegiatanController::class)->except(['create', 'show']);
     Route::post('/kegiatan/create', [KegiatanController::class, 'create'])->name('kegiatan.create');
     Route::name('kegiatan.')->group(function () {
+        Route::post('/kegiatan/kak/create', [KakController::class, 'create'])->name('kak.create');
+        Route::resource('/kegiatan/kak', KakController::class)->except(['create']);
         Route::post('/kegiatan/sk/create', [SkController::class, 'create'])->name('sk.create');
         Route::resource('/kegiatan/sk', SkController::class)->except(['create']);
         Route::post('/kegiatan/spj/create', [SpjController::class, 'create'])->name('spj.create');

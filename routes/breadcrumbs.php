@@ -81,6 +81,7 @@ Breadcrumbs::resource('no-surat.index', 'no-surat.masuk-keluar', 'Masuk Keluar')
 Breadcrumbs::resource('no-surat.index', 'no-surat.tim', 'Tim Kerja');
 
 // Home > Kegiatan > XXX
+Breadcrumbs::resource('kegiatan.index', 'kegiatan.kak', 'KAK');
 Breadcrumbs::resource('kegiatan.index', 'kegiatan.sk', 'SK');
 Breadcrumbs::resource('kegiatan.index', 'kegiatan.spj', 'Bukti Dukung SPJ');
 

@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Kegiatan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Kegiatan;
+use App\Models\Kegiatan\Sk;
 use App\Models\Kegiatan\Spj;
+use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\Tim;
 use App\Models\Pok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,6 +18,20 @@ use Riskihajar\Terbilang\Facades\Terbilang;
 
 class KakController extends Controller
 {
+
+    // public function index()
+    // {
+    //     $data = Sk::select('*')
+    //         ->orderBy('tahun', 'DESC')
+    //         ->orderBy('tgl_ditetapkan', 'DESC')
+    //         ->get();
+    //     foreach ($data as $d) {
+    //         $d->no_sk = $d->getNoSk($d);
+    //         $d->rincian = $d->tentang;
+    //     }
+    //     return view('kegiatan.sk.index', compact('data'));
+    // }
+
 
     // hapus aja yang gaperlu 
     public function print($id)

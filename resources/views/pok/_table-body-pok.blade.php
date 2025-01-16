@@ -96,7 +96,7 @@
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['komponen'][$n]) }}</span>
         </td>
         <td class="bg-white">
-            <form method="post" action="{{ route('kegiatan.sk.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+            <form method="post" action="{{ route('kegiatan.kak.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
                 <input type="hidden" name="kode_kegiatan" value="{{$data[$i]->kode_kegiatan}}" />
@@ -107,7 +107,7 @@
                 <input type="hidden" name="kode_komponen" value="{{$data[$i]->kode_komponen}}" />
                 <input type="hidden" name="komponen" value="{{$data[$i]->komponen}}" />
                 <input type="hidden" name="id_pok" value="{{$data[$i]->id}}" />
-                <button type="submit"> SK </button>
+                <button type="submit" class="bg-sky-500 hover:bg-sky-700 rounded-md text-white px-4"> KAK </button>
             </form>
         </td>
     </tr>
@@ -122,8 +122,23 @@
         <td colspan="4">
             <span class="pl-8 text-gray-900 fw-bold text-hover-black mb-1 fs-6">{{ $data->pokk['subkomponen'][$o] }}</span>
         </td>
-        <td>
+        <td class="p-0">
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['subkomponen'][$o]) }}</span>
+        </td>
+        <td class="bg-white">
+            <form method="post" action="{{ route('kegiatan.sk.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
+                @csrf
+                @method('POST')
+                <input type="hidden" name="kode_kegiatan" value="{{$data[$i]->kode_kegiatan}}" />
+                <input type="hidden" name="kode_output" value="{{$data[$i]->kode_output}}" />
+                <input type="hidden" name="output" value="{{$data[$i]->output}}" />
+                <input type="hidden" name="kode_suboutput" value="{{$data[$i]->kode_suboutput}}" />
+                <input type="hidden" name="suboutput" value="{{$data[$i]->suboutput}}" />
+                <input type="hidden" name="kode_komponen" value="{{$data[$i]->kode_komponen}}" />
+                <input type="hidden" name="komponen" value="{{$data[$i]->komponen}}" />
+                <input type="hidden" name="id_pok" value="{{$data[$i]->id}}" />
+                <button type="submit" class="bg-sky-500 hover:bg-sky-700 rounded-md text-white px-4"> SK </button>
+            </form>
         </td>
     </tr>
     <?php $o++; ?>
@@ -140,27 +155,6 @@
         <td>
             <span class="text-gray-900 fw-semibold text-right text-hover-black d-block fs-6">{{ currency_IDR($data->jlh_pokk['akun'][$p]) }}</span>
         </td>
-        @if(in_array($data[$i]->kode_akun, config('constants.LIST_AKUN_INPUT')))
-        <!-- <td class="bg-white">
-            <form method="post" action="{{ route('kegiatan.spj.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
-                @csrf
-                @method('POST')
-                <select name="pj">
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">4</option>
-                </select>
-                <input type="hidden" name="kode_kegiatan" value="{{$data[$i]->kode_kegiatan}}" />
-                <input type="hidden" name="kode_output" value="{{$data[$i]->kode_output}}" />
-                <input type="hidden" name="output" value="{{$data[$i]->output}}" />
-                <input type="hidden" name="kode_suboutput" value="{{$data[$i]->kode_suboutput}}" />
-                <input type="hidden" name="suboutput" value="{{$data[$i]->suboutput}}" />
-                <input type="hidden" name="kode_komponen" value="{{$data[$i]->kode_komponen}}" />
-                <input type="hidden" name="komponen" value="{{$data[$i]->komponen}}" />
-                <button type="submit"> PJ </button>
-            </form>
-        </td> -->
-        @endif
     </tr>
     <?php $p++; ?>
     @endif
@@ -190,7 +184,7 @@
                 @csrf
                 @method('POST')
                 <input type="hidden" name="poks_id" value="{{$data[$i]->id}}" />
-                <button type="submit"> Input </button>
+                <button type="submit" class="bg-violet-500 hover:bg-violet-700 rounded-md text-white px-4"> Input </button>
             </form>
         </td>
         @endif
