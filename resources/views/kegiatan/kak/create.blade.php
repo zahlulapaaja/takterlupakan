@@ -88,6 +88,20 @@
             <div class="card-body pt-0">
                 <div class="d-flex flex-column gap-y-5">
                     <!--begin::Input group-->
+                    <div class="fv-row d-flex flex-column">
+                        <label class="required form-label">Jenis KAK</label>
+                        <div class="d-flex flex-column gap-y-2">
+                            <div class="d-flex flex-row">
+                                <input id="{{$p->id}}" class="form-check-input me-3" name="jenis" type="radio" value="{{$p->id}}" />
+                                <label for="{{$p->id}}">Pendataan</label>
+                            </div>
+                        </div>
+                        @error('detil')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
                     <div class="fv-row">
                         <label class="required form-label">Judul KAK</label>
                         <input type="text" class="form-control" placeholder="Masukkah Judul KAK..." name="judul" required />

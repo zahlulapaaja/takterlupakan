@@ -339,7 +339,7 @@
                                     <td class="border border-black px-2">{{$d->volume}}</td>
                                     <td class="border border-black px-2">{{$d->satuan}}</td>
                                     <td class="border border-black px-2">{{currency_IDR($d->harga)}}</td>
-                                    <td class="border border-black px-2">{{currency_IDR($d->jumlah)}}</td>
+                                    <td class="border border-black px-2 text-right">{{currency_IDR($d->jumlah)}}</td>
                                 </tr>
                                 <?php $akun = $d->kode_akun; ?>
                                 @endforeach

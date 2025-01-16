@@ -21,18 +21,15 @@ use Riskihajar\Terbilang\Facades\Terbilang;
 class KakController extends Controller
 {
 
-    // public function index()
-    // {
-    //     $data = Sk::select('*')
-    //         ->orderBy('tahun', 'DESC')
-    //         ->orderBy('tgl_ditetapkan', 'DESC')
-    //         ->get();
-    //     foreach ($data as $d) {
-    //         $d->no_sk = $d->getNoSk($d);
-    //         $d->rincian = $d->tentang;
-    //     }
-    //     return view('kegiatan.sk.index', compact('data'));
-    // }
+    public function index()
+    {
+        $data = Kak::select('*')
+            ->orderBy('tahun', 'DESC')
+            ->orderBy('tgl', 'DESC')
+            ->get();
+
+        return view('kegiatan.kak.index', compact('data'));
+    }
 
     public function create(Request $request)
     {
