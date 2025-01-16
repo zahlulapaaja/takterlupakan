@@ -100,7 +100,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid w-full">
                             <label class="required form-label">Penanggung Jawab</label>
-                            <select class="form-select" name="pjk" required>
+                            <select class="form-select" name="tim" required>
                                 <option value="" hidden>Pilih PJ...</option>
                                 <option value="0">Kepala {{config('constants.SATKER')}}</option>
                                 @foreach($tim as $t)

@@ -79,8 +79,8 @@ class KakController extends Controller
         $data['tempat'] = $request->tempat;
         $data['spesifikasi'] = $request->spesifikasi;
         $data['tgl'] = $request->tgl;
-        // $data['tahun'] = $request->tahun;
-        $data['tahun'] = '2025';
+        $data['tim'] = $request->tim;
+        $data['tahun'] = $request->tahun;
         $data['edited_by'] = session('user_id');
 
         // insert data
@@ -96,48 +96,22 @@ class KakController extends Controller
     {
         // mengambil data kak 
         $data = Kak::find($id);
-        $data->pok = DB::table('kaks_poks')->where('kaks_id', $data->id)->get();
+        $data->detil = $data->getDetilPok($data->id);
+        $data->peserta = $data->getPesertaPerjadin($data->id);
 
+        // mengambil data penanggung jawab 
+        if ($data->tim == 0) {
+            $data->pj = 'Kepala ' . config('constants.SATKER');
+        } else {
+            $data->pj = 'Tim ' . Tim::find($data->tim)->nama;
+        }
 
         // mengambil data referensi 
         $ref = Referensi::where('tahun', $data->tahun)->first();
-        dd($data);
-        // $data->alokasi_beban = DB::table('spjs_alokasi_beban')->where('spjs_id', $id)->get();
-        // $data->petugas = $data->getPetugas($id);
+        $ref->kpa = Pegawai::find($ref->kpa);
+        $ref->ppk = Pegawai::find($ref->ppk);
 
-        // generate nomor surat
-        // $data->no_spj = $data->no . '/SPJ/BPS-1107/' . explode('-', $data->tgl_spj)[0];
-        // $data->keg = Kegiatan::find($data->kegiatans_id);
-        // $data->keg->pok = Pok::find($data->keg->poks_id);
-        // $data->pok = Pok::find($data->keg->poks_id);
-        // $data->mak = '054.01.'; // bikin constants
-        // $data->pok->kode_program . '.' .
-        // $data->pok->kode_kegiatan . '.' .
-        // $data->pok->kode_output . '.' .
-        // $data->pok->kode_suboutput . '.' .
-        // $data->pok->kode_komponen . '.' .
-        // $data->pok->kode_subkomponen . '.' .
-        // $data->pok->kode_akun;
-
-        // format tanggal data sk
-        // $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl);
-        // $data->tgl_spj = date_indo($data->tgl_spj);
-
-        // $data->tgl_mulai = date_indo($data->tgl_mulai);
-        // mengambil data pjk
-        // $data->pjk = Pegawai::find($data->pjk);
-        // dd($data->pjk);
-
-        // format tanggal data referensi
-        // $ref->tgl_dipa = date_indo($ref->tgl_dipa);
-        // $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
-
-        // $views =
-        //     view('kegiatan.spj._print.daftar-honor', compact('data', 'ref'))->render() .
-        //     view('kegiatan.spj._print.bast', compact('data', 'ref'))->render() .
-        //     view('kegiatan.spj._print.pernyataan', compact('data', 'ref'))->render();
         return view('kegiatan.kak.print', compact('data', 'ref'));
-        // return $views;
     }
 
     public function print2($id)

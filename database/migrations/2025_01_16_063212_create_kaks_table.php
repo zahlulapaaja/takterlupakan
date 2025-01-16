@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('tempat');
             $table->string('spesifikasi');
             $table->date('tgl'); // tanggal disahkan
+            $table->integer('tim');
             $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
