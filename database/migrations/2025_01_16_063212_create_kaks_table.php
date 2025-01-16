@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Kegiatan\Kegiatan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,26 +13,18 @@ return new class extends Migration
     {
         Schema::create('kaks', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('kegiatans_id');
             // perlu jenis ga ya ?
-            $table->string('jenis');
-
+            $table->string('jenis'); // bikin jenis di constants aja yaa
+            $table->string('judul');
             $table->string('latar_belakang');
             $table->string('tujuan');
             $table->string('manfaat');
-            $table->string('manfaat');
             $table->string('metode');
-            // apakah ini dari kegiatan ?
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
-
+            $table->string('tempat');
             $table->string('spesifikasi');
             $table->date('tgl'); // tanggal disahkan
-
-
-
-
-
             $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
@@ -43,11 +34,36 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('kaks_poks', function (Blueprint $table) {
+            $table->unsignedBigInteger('kaks_id');
+            $table->foreign('kaks_id')
+                ->references('id')
+                ->on('kaks')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('poks_id');
+            $table->foreign('poks_id')
+                ->references('id')
+                ->on('poks')
+                ->onDelete('cascade');
+        });
+
+        Schema::create('kaks_perjadin', function (Blueprint $table) {
+            $table->unsignedBigInteger('kaks_id');
+            $table->foreign('kaks_id')
+                ->references('id')
+                ->on('kaks')
+                ->onDelete('cascade');
+            $table->unsignedBigInteger('pegawais_id');
+            $table->foreign('pegawais_id')
+                ->references('id')
+                ->on('pegawais')
+                ->onDelete('cascade');
+        });
+
 
         // bikin tabel peserta (mgkn perjadin bisa jadi banyak orang)
         // klo umum kan bisa jadi penanggung jawab kepala -> di kegiatan bisa ga klo pjk ada pilihan kepala
         // dasar hukum kak apakah semuanya sama ?
-        // kalo satu kak lebih dari satu akun gimana ? apakah bisa dengan bikin tabel baru, 1 kak banyak kegiatan
         // dasar hukum masukin constants kali yaa 
         // eh iya, untuk matriks honor belom ada warning klo mencapai limit (selip ttg yg lain satu wkwk)
 
@@ -56,13 +72,6 @@ return new class extends Migration
         // - format kayak mana yang akan dipake ?
         // - apakah tujuan harus dalam bentuk poin-poin ?
         // - apakah kalo beda jenis (misal perjadin dan pengadaan), ada bab yang perlu dihilangkan
-        // - apakah setiap kak itu cuma satu akun saja 
-
-        // solusi 
-        // bikin tabel one to many (kak-pok)
-        // bikin kak bukan di menu kegiatan, tapi di pok, di baris komponen ada tombol bikin kak
-        // ketika bikin nanti ada checklist untuk menentukan detil dan akun mana aja yang bakal dipake 
-
 
         // saran nama sistem :
         // - sianida, sidang, sidomukti, sidratulmuntaha, sigaret, sigma, silinder, siluman, simalakama, sinergi, 
@@ -76,5 +85,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('kaks');
+        Schema::dropIfExists('kaks_poks');
+        Schema::dropIfExists('kaks_perjadin');
     }
 };

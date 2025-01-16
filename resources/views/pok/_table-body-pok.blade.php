@@ -99,13 +99,6 @@
             <form method="post" action="{{ route('kegiatan.kak.create') }}" class="text-gray-900 fw-semibold text-center text-hover-black d-block">
                 @csrf
                 @method('POST')
-                <input type="hidden" name="kode_kegiatan" value="{{$data[$i]->kode_kegiatan}}" />
-                <input type="hidden" name="kode_output" value="{{$data[$i]->kode_output}}" />
-                <input type="hidden" name="output" value="{{$data[$i]->output}}" />
-                <input type="hidden" name="kode_suboutput" value="{{$data[$i]->kode_suboutput}}" />
-                <input type="hidden" name="suboutput" value="{{$data[$i]->suboutput}}" />
-                <input type="hidden" name="kode_komponen" value="{{$data[$i]->kode_komponen}}" />
-                <input type="hidden" name="komponen" value="{{$data[$i]->komponen}}" />
                 <input type="hidden" name="id_pok" value="{{$data[$i]->id}}" />
                 <button type="submit" class="bg-sky-500 hover:bg-sky-700 rounded-md text-white px-4"> KAK </button>
             </form>
