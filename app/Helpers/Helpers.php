@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('theme')) {
     function theme()
@@ -469,6 +470,6 @@ if (!function_exists('avatar')) {
      */
     function avatar($path)
     {
-        return asset('storage/avatar-user/' . $path);
+        return Storage::url('avatar-user/' . $path);
     }
 }

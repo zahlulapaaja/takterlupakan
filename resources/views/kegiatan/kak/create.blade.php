@@ -90,10 +90,22 @@
                     <!--begin::Input group-->
                     <div class="fv-row d-flex flex-column">
                         <label class="required form-label">Jenis KAK</label>
-                        <div class="d-flex flex-column gap-y-2">
-                            <div class="d-flex flex-row">
-                                <input id="{{$p->id}}" class="form-check-input me-3" name="jenis" type="radio" value="{{$p->id}}" />
-                                <label for="{{$p->id}}">Pendataan</label>
+                        <div class="d-flex flex-column flex-lg-row gap-4">
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="kegiatan" class="form-check-input" name="jenis" type="radio" value="kegiatan" />
+                                <label for="kegiatan">Kegiatan</label>
+                            </div>
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="pelatihan" class="form-check-input" name="jenis" type="radio" value="pelatihan" />
+                                <label for="pelatihan">Pelatihan</label>
+                            </div>
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="perjadin" class="form-check-input" name="jenis" type="radio" value="perjadin" />
+                                <label for="perjadin">Perjadin</label>
+                            </div>
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="pengadaan" class="form-check-input" name="jenis" type="radio" value="pengadaan" />
+                                <label for="pengadaan">Pengadaan</label>
                             </div>
                         </div>
                         @error('detil')
@@ -142,7 +154,7 @@
         </div>
         <!--end::Detail KAK-->
         <!--begin::Peserta Perjadin-->
-        <div class="card card-flush py-4">
+        <div class="card card-flush py-4 perjadin hidden">
             <!--begin::Card header-->
             <div class="card-header">
                 <div class="card-title">
@@ -240,7 +252,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row flex flex-column w-full">
+                    <div class="fv-row flex flex-column w-full pengadaan hidden">
                         <label for="metode" class="required form-label">Metode</label>
                         <textarea id="metode" name="metode" rows="4" placeholder="Masukkan metode..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                         @error('metode')
@@ -279,7 +291,7 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row flex flex-column w-full">
+                    <div class="fv-row flex flex-column w-full pengadaan hidden">
                         <label for="spesifikasi" class="required form-label">Spesifikasi</label>
                         <textarea id="spesifikasi" name="spesifikasi" rows="4" placeholder="Masukkan spesifikasi..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                         @error('spesifikasi')
@@ -292,6 +304,33 @@
             <!--end::Card header-->
         </div>
         <!--end::Badan KAK-->
+        <!--begin::Upload Lampiran-->
+        <div class="card card-flush py-4">
+            <!--begin::Card header-->
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Upload Lampiran</h2>
+                </div>
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body pt-0">
+                <div class="d-flex flex-column gap-y-5">
+                    <!--begin::Input group-->
+                    <div class="fv-row d-flex flex-column">
+                        <label for="lampiran" class="required form-label">Lampiran</label>
+                        <input class="form-control" type="file" id="lampiran" name="lampiran" required>
+                        <div class="text-muted fs-7">Jenis file yang diperbolehkan hanya .pdf</div>
+                        @error('detil')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group-->
+                </div>
+            </div>
+            <!--end::Card header-->
+        </div>
+        <!--end::Upload Lampiran-->
 
         <div class="d-flex justify-content-end">
             <!--begin::Button-->
@@ -314,6 +353,16 @@
     <script>
         $(document).ready(function() {
             $('#daftar_peserta_perjadin').repeater();
+
+
+            $('#form_create_kak input:radio').on('change', function() {
+                $('.perjadin').addClass('hidden');
+                $('.pengadaan').addClass('hidden');
+
+                if ($(this).val() == 'perjadin') $('.perjadin').removeClass('hidden');
+                if ($(this).val() == 'pengadaan') $('.pengadaan').removeClass('hidden');
+
+            });
         });
     </script>
     @endpush

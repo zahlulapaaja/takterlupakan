@@ -30,7 +30,7 @@ class PegawaiController extends Controller
     {
         // validasi input
         $validator = Validator::make($request->all(), [
-            'avatar'    => 'nullable|mimes:png,jpg  ,jpeg|max:2048',
+            'avatar'    => 'nullable|mimes:png,jpg,jpeg',
             'nama'      => 'required',
             'jabatan'   => 'required',
             'nip_baru'  => 'required',
@@ -45,14 +45,14 @@ class PegawaiController extends Controller
         // store data gambar dan ambil nama filenya 
         $avatar     = $request->file('avatar');
         if ($avatar) {
-            $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
+            $filename   = date('YmdHis') . '_' . $avatar->getClientOriginalName();
             $path       = 'pegawai/' . $filename;
 
             Storage::disk('public')->put($path, file_get_contents($avatar));
             $data['avatar'] = $filename;
         }
 
-        $data['nama'] = $request->nama;
+        // $data['nama'] = $request->nama;
         $data['jabatan'] = $request->jabatan;
         $data['nip_baru'] = $request->nip_baru;
         $data['nip_lama'] = $request->nip_lama;
@@ -82,7 +82,7 @@ class PegawaiController extends Controller
         $find = Pegawai::find($id);
         // dd($find);
         $validator = Validator::make($request->all(), [
-            'avatar'    => 'nullable|mimes:png,jpg  ,jpeg|max:2048',
+            'avatar'    => 'nullable|mimes:png,jpg,jpeg',
             'nama'      => 'required',
             'jabatan'   => 'required',
             'nip_baru'  => 'required',
@@ -92,19 +92,22 @@ class PegawaiController extends Controller
             'email'     => 'required|email',
             'no_hp'     => 'required',
         ]);
+        // dd($validator);
+        // dd($request->all());
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         // setor file dan hapus file yang ada 
         $avatar     = $request->file('avatar');
         if ($avatar) {
-            $filename   = date('Y-m-d') . $avatar->getClientOriginalName();
+            $filename   = date('YmdHis') . '_' . $avatar->getClientOriginalName();
             $path       = 'pegawai/' . $filename;
 
             if ($find->avatar) Storage::disk('public')->delete('pegawai/' . $find->avatar);
             Storage::disk('public')->put($path, file_get_contents($avatar));
 
             $data['avatar'] = $filename;
+            // dd($data);
         }
 
         $data['nama'] = $request->nama;

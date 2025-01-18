@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('tempat');
             $table->string('spesifikasi');
             $table->date('tgl'); // tanggal disahkan
+            $table->string('lampiran');
             $table->integer('tim');
             $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
@@ -62,8 +63,6 @@ return new class extends Migration
         });
 
 
-        // bikin tabel peserta (mgkn perjadin bisa jadi banyak orang)
-        // klo umum kan bisa jadi penanggung jawab kepala -> di kegiatan bisa ga klo pjk ada pilihan kepala
         // dasar hukum kak apakah semuanya sama ?
         // dasar hukum masukin constants kali yaa 
         // eh iya, untuk matriks honor belom ada warning klo mencapai limit (selip ttg yg lain satu wkwk)

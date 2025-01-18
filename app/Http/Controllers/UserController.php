@@ -66,7 +66,7 @@ class UserController extends Controller
         $find = User::find($id);
 
         $validator = Validator::make($request->all(), [
-            'avatar'    => 'nullable|mimes:png,jpg,jpeg|max:2048',
+            'avatar'    => 'nullable|mimes:png,jpg,jpeg',
             'email'     => 'required|email',
             'name'      => 'required',
         ]);
