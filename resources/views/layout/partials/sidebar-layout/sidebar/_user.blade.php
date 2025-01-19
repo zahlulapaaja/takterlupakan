@@ -5,7 +5,7 @@
 	<div class="d-flex align-items-center flex-column">
 		<!--begin::Symbol-->
 		<div class="symbol symbol-75px mb-4">
-			<img src="{{ avatar(session('avatar')) }}" alt="Avatar" />
+			<img src="{{ avatar(session('avatar')) }}" alt="Avatar" class="object-cover object-top bg-red-400" />
 		</div>
 		<!--end::Symbol-->
 		<!--begin::Info-->

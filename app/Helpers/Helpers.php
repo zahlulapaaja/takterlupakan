@@ -470,6 +470,6 @@ if (!function_exists('avatar')) {
      */
     function avatar($path)
     {
-        return Storage::url('avatar-user/' . $path);
+        return asset('uploads/avatar-user/' . $path);
     }
 }

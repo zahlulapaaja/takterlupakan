@@ -60,7 +60,7 @@
                                 <!--begin:: Avatar -->
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                     <div class="symbol-label">
-                                        <img src="{{avatar($user->image)}}" alt="{{$user->name}}" class="w-100" />
+                                        <img src="{{avatar($user->image)}}" alt="{{$user->name}}" class="w-100 object-cover object-top" />
                                     </div>
                                 </div>
                                 <!--end::Avatar-->

@@ -81,7 +81,7 @@
                                 <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                     <a href="{{ route('master.pegawai.show', $p->id) }}">
                                         <div class="symbol-label">
-                                            <img src="{{Storage::url($p->avatar)}}" alt="{{$p->nama}}" class="w-100" />
+                                            <img src="{{asset('uploads/' . $p->avatar)}}" alt="{{$p->nama}}" class="w-100 object-cover object-top" />
                                         </div>
                                     </a>
                                 </div>
