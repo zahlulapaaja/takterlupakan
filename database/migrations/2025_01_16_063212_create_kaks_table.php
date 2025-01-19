@@ -16,16 +16,18 @@ return new class extends Migration
             // perlu jenis ga ya ?
             $table->string('jenis'); // bikin jenis di constants aja yaa
             $table->string('judul');
-            $table->string('latar_belakang');
-            $table->string('tujuan');
-            $table->string('manfaat');
-            $table->string('metode');
+            $table->longText('latar_belakang');
+            $table->longText('tujuan');
+            $table->longText('manfaat');
+            $table->longText('metode')->nullable();
             $table->date('tgl_awal');
-            $table->date('tgl_akhir');
+            $table->date('tgl_akhir')->nullable();
             $table->string('tempat');
-            $table->string('spesifikasi');
+            $table->longText('spesifikasi')->nullable();
+            $table->longText('penutup')->nullable();
             $table->date('tgl'); // tanggal disahkan
-            $table->string('lampiran');
+            $table->longText('lampiran')->nullable();
+            $table->string('file_lampiran')->nullable();
             $table->integer('tim');
             $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');

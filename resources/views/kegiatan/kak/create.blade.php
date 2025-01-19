@@ -177,7 +177,7 @@
                                 <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                     <!--begin::Select2-->
                                     <div class="w-4/5">
-                                        <select class="form-select" name="peserta" data-kt-ecommerce-catalog-add-product="product_option" required>
+                                        <select class="form-select" name="peserta" data-kt-ecommerce-catalog-add-product="product_option">
                                             <option value="" hidden>Pilih Pegawai...</option>
                                             @foreach($pegawai as $p)
                                             <option value="{{$p->id}}">{{$p->nama}}</option>
@@ -254,7 +254,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row flex flex-column w-full pengadaan hidden">
                         <label for="metode" class="required form-label">Metode</label>
-                        <textarea id="metode" name="metode" rows="4" placeholder="Masukkan metode..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        <textarea id="metode" name="metode" rows="4" placeholder="Masukkan metode..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                         @error('metode')
                         <small>{{ $message }}</small>
                         @enderror
@@ -293,7 +293,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row flex flex-column w-full pengadaan hidden">
                         <label for="spesifikasi" class="required form-label">Spesifikasi</label>
-                        <textarea id="spesifikasi" name="spesifikasi" rows="4" placeholder="Masukkan spesifikasi..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        <textarea id="spesifikasi" name="spesifikasi" rows="4" placeholder="Masukkan spesifikasi..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                         @error('spesifikasi')
                         <small>{{ $message }}</small>
                         @enderror
@@ -309,7 +309,7 @@
             <!--begin::Card header-->
             <div class="card-header">
                 <div class="card-title">
-                    <h2>Upload Lampiran</h2>
+                    <h2>Lampiran</h2>
                 </div>
             </div>
             <!--end::Card header-->
@@ -317,11 +317,20 @@
             <div class="card-body pt-0">
                 <div class="d-flex flex-column gap-y-5">
                     <!--begin::Input group-->
+                    <div class="fv-row flex flex-column w-full">
+                        <label for="lampiran" class="form-label">Lampiran</label>
+                        <textarea id="lampiran" name="lampiran" rows="4" placeholder="Harusnya text editor..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                        @error('lampiran')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group-->
+                    <!--begin::Input group-->
                     <div class="fv-row d-flex flex-column">
-                        <label for="lampiran" class="required form-label">Lampiran</label>
-                        <input class="form-control" type="file" id="lampiran" name="lampiran" required>
+                        <label for="file_lampiran" class="form-label">File Lampiran</label>
+                        <input class="form-control" type="file" id="file_lampiran" name="file_lampiran">
                         <div class="text-muted fs-7">Jenis file yang diperbolehkan hanya .pdf</div>
-                        @error('detil')
+                        @error('file_lampiran')
                         <small>{{ $message }}</small>
                         @enderror
                     </div>
@@ -353,7 +362,6 @@
     <script>
         $(document).ready(function() {
             $('#daftar_peserta_perjadin').repeater();
-
 
             $('#form_create_kak input:radio').on('change', function() {
                 $('.perjadin').addClass('hidden');

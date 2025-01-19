@@ -136,19 +136,19 @@
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-nowrap">PENDAHULUAN</td>
                     <td class="align-top py-2 pl-20">:</td>
-                    <td class="align-top p-2">{{$data->latar_belakang}}</td>
+                    <td class="align-top p-2">{!! nl2br($data->latar_belakang) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">MAKSUD DAN TUJUAN</td>
                     <td class="align-top py-2 pl-20">:</td>
-                    <td class="align-top p-2">{{$data->tujuan}}</td>
+                    <td class="align-top p-2">{!! nl2br($data->tujuan) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-nowrap">MANFAAT</td>
                     <td class="align-top py-2 pl-20">:</td>
-                    <td class="align-top p-2">{{$data->manfaat}}</td>
+                    <td class="align-top p-2">{!! nl2br($data->manfaat) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
