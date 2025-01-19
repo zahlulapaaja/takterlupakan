@@ -167,14 +167,6 @@ class SkController extends Controller
         $ref = Referensi::where('tahun', $data->tahun)->first();
         $ref->kpa = Pegawai::find($ref->kpa);
 
-        // format tanggal data sk
-        $data->tgl_ditetapkan = date_indo($data->tgl_ditetapkan);
-        $data->tgl_berlaku = date_indo($data->tgl_berlaku);
-
-        // format tanggal data referensi
-        $ref->tgl_dipa = date_indo($ref->tgl_dipa);
-        $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
-
         return view('kegiatan.sk.print', compact('data', 'ref'));
     }
 }

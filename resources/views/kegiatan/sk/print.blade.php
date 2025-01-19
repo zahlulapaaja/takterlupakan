@@ -86,7 +86,7 @@
                 <td class="align-top">9.</td>
                 <td class="align-top">
                     Keputusan Kepala Badan Pusat Statistik Nomor {{ $ref->no_sk_kpa }}
-                    Tanggal {{ $ref->tgl_sk_kpa }} tentang Kuasa Pengguna Anggaran Badan Pusat Statistik
+                    Tanggal {{ date_indo($ref->tgl_sk_kpa) }} tentang Kuasa Pengguna Anggaran Badan Pusat Statistik
                     Tahun {{ $ref->tahun }} di Wilayah Provinsi Aceh.
                 </td>
             </tr>
@@ -99,7 +99,7 @@
                 <td class="align-top" width="3%"></td>
                 <td class="align-top" width="86%">
                     Pengesahan DIPA Tahun Anggaran {{ $ref->tahun }}
-                    Nomor {{ $ref->no_dipa }} tanggal {{ $ref->tgl_dipa }}
+                    Nomor {{ $ref->no_dipa }} tanggal {{ date_indo($ref->tgl_dipa) }}
                     {{ config('constants.INSTANSI') }} {{ config('constants.KABUPATEN') }}
                 </td>
             </tr>
@@ -155,7 +155,7 @@
                 <td class="align-top">
                     Pembiayaan untuk pelaksanaan Keputusan ini dibebankan pada DIPA Tahun Anggaran
                     {{ $ref->tahun }} Nomor {{ $ref->no_dipa }}
-                    tanggal {{ $ref->tgl_dipa }} {{ config('constants.INSTANSI') }}
+                    tanggal {{ date_indo($ref->tgl_dipa) }} {{ config('constants.INSTANSI') }}
                     {{ config('constants.KABUPATEN') }}
                 </td>
             </tr>
@@ -165,7 +165,7 @@
                 <td class="align-top"></td>
                 <td class="align-top">:</td>
                 <td class="align-top">
-                    Keputusan ini mulai berlaku tanggal {{ $data->tgl_berlaku }}, dengan ketentuan apabila
+                    Keputusan ini mulai berlaku tanggal {{ date_indo($data->tgl_berlaku) }}, dengan ketentuan apabila
                     dikemudian hari terdapat kekeliruan akan diadakan perbaikan sebagaimana mestinya.
                 </td>
             </tr>
@@ -175,7 +175,7 @@
             <div class="w-2/5"></div>
             <div class="w-3/5 flex flex-col leading-normal">
                 <span>Ditetapkan di : {{ config('constants.MEULABOH') }}</span>
-                <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
+                <span>Pada tanggal : {{ date_indo($data->tgl_ditetapkan) }} </span>
                 <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
                 <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
                 <span class="font-bold">{{ $ref->kpa->nama }}</span>
@@ -197,7 +197,7 @@
         </div>
         <div class="flex flex-row">
             <span class="w-20">Tanggal</span>
-            <span>: {{ $data->tgl_ditetapkan }}</span>
+            <span>: {{ date_indo($data->tgl_ditetapkan) }}</span>
         </div>
     </div>
 
@@ -241,7 +241,7 @@
         <div class="w-2/5"></div>
         <div class="w-3/5 flex flex-col leading-normal">
             <span>Ditetapkan di : {{ config('constants.MEULABOH') }}</span>
-            <span>Pada tanggal : {{ $data->tgl_ditetapkan }} </span>
+            <span>Pada tanggal : {{ date_indo($data->tgl_ditetapkan) }} </span>
             <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
             <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
             <span class="font-bold">{{ $ref->kpa->nama }}</span>

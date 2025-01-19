@@ -48,7 +48,7 @@
                                 <!--begin::Jadwal Kegiatan-->
                                 <div class="d-flex flex-column flex-lg-row py-auto gap-x-5">
                                     <label class="text-nowrap w-32 font-semibold fs-6 text-nowrap">Jadwal Kegiatan</label>
-                                    <div class="fw-semibold fs-6 pl-4">{{$keg->tgl_mulai}} s.d. {{$keg->tgl_akhir}}</div>
+                                    <div class="fw-semibold fs-6 pl-4">{{date_indo($keg->tgl_mulai)}} s.d. {{date_indo($keg->tgl_akhir)}}</div>
                                 </div>
                                 <!--end::Jadwal Kegiatan-->
                                 <!--begin::PJK-->

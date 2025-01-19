@@ -136,16 +136,16 @@ class KakController extends Controller
 
         // format tanggal data sk
         $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl);
-        $data->tgl_spj = date_indo($data->tgl_spj);
+        $data->tgl_spj = $data->tgl_spj;
 
-        // $data->tgl_mulai = date_indo($data->tgl_mulai);
+        // $data->tgl_mulai = $data->tgl_mulai;
         // mengambil data pjk
         $data->pjk = Pegawai::find($data->pjk);
         // dd($data->pjk);
 
         // format tanggal data referensi
-        $ref->tgl_dipa = date_indo($ref->tgl_dipa);
-        $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
+        $ref->tgl_dipa = $ref->tgl_dipa;
+        $ref->tgl_sk_kpa = $ref->tgl_sk_kpa;
 
         // $views =
         //     view('kegiatan.spj._print.daftar-honor', compact('data', 'ref'))->render() .

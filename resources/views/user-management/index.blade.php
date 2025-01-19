@@ -81,7 +81,7 @@
                             @endforeach
                         </td>
                         <td>
-                            <span class="text-nowrap">{{date_indo($user->created_at)}}</span>
+                            <span class="text-nowrap">{{$user->created_at}}</span>
                         </td>
                         <td class="d-flex align-items-center justify-end">
                             <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_user_{{$user->id}}">Edit</a>

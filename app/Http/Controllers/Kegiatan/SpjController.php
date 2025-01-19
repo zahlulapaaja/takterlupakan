@@ -43,8 +43,6 @@ class SpjController extends Controller
         // mengambil data kegiatan
         $keg = Kegiatan::find($request->kegiatans_id);
         $keg->pok = Pok::find($keg->poks_id);
-        $keg->tgl_mulai = date_indo($keg->tgl_mulai);
-        $keg->tgl_akhir = date_indo($keg->tgl_akhir);
 
         // mengambil data mak dan pjk
         $keg->mak = $keg->pok->getMak($keg->pok);
@@ -106,8 +104,6 @@ class SpjController extends Controller
         // mengambil data detail kegiatan
         $keg = Kegiatan::find($data->kegiatans_id);
         $keg->pok = Pok::find($keg->poks_id);
-        $keg->tgl_mulai = date_indo($keg->tgl_mulai);
-        $keg->tgl_akhir = date_indo($keg->tgl_akhir);
 
         $keg->mak = $keg->pok->getMak($keg->pok);
         $keg->pjk = Pegawai::find($keg->pjk);
@@ -172,8 +168,6 @@ class SpjController extends Controller
         $ref->kpa = Pegawai::find($ref->kpa);
         $ref->ppk = Pegawai::find($ref->ppk);
         $ref->bend = Pegawai::find($ref->bend);
-        $ref->tgl_dipa = date_indo($ref->tgl_dipa);
-        $ref->tgl_sk_kpa = date_indo($ref->tgl_sk_kpa);
 
         // mengambil data kegiatan
         $keg = Kegiatan::find($data->kegiatans_id);
