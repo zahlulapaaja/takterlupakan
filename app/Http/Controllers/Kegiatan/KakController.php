@@ -69,7 +69,7 @@ class KakController extends Controller
         $data['judul'] = $request->judul;
         $data['latar_belakang'] = $request->latar_belakang;
         $data['tujuan'] = $request->tujuan;
-        $data['manfaat'] = $request->manfaat;
+        // $data['manfaat'] = $request->manfaat;
         $data['metode'] = $request->metode;
         $data['tgl_awal'] = $request->tgl_awal;
         $data['tgl_akhir'] = $request->tgl_akhir;

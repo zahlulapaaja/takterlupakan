@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('judul');
             $table->longText('latar_belakang');
             $table->longText('tujuan');
-            $table->longText('manfaat');
+            $table->longText('target');
             $table->longText('metode')->nullable();
             $table->date('tgl_awal');
             $table->date('tgl_akhir')->nullable();
@@ -64,6 +64,17 @@ return new class extends Migration
                 ->onDelete('cascade');
         });
 
+        Schema::create('kaks_spesifikasi', function (Blueprint $table) {
+            $table->unsignedBigInteger('kaks_id');
+            $table->foreign('kaks_id')
+                ->references('id')
+                ->on('kaks')
+                ->onDelete('cascade');
+            $table->integer('jumlah');
+            $table->string('satuan')->length(20);
+            $table->string('spesifikasi');
+        });
+
 
         // dasar hukum kak apakah semuanya sama ?
         // dasar hukum masukin constants kali yaa 
@@ -89,5 +100,6 @@ return new class extends Migration
         Schema::dropIfExists('kaks');
         Schema::dropIfExists('kaks_poks');
         Schema::dropIfExists('kaks_perjadin');
+        Schema::dropIfExists('kaks_spesifikasi');
     }
 };

@@ -60,7 +60,7 @@
 
         <div class="d-flex flex-row leading-normal justify-center align-items-center mt-48">
             <img class="w-24 mr-4" src="{{ image('logos/logo-bps.png') }}">
-            <div class="d-flex flex-column fs-1 text-sky-500 uppercase font-bold">
+            <div class="d-flex flex-column fs-1 text-sky-500 uppercase italic font-bold">
                 <span>{{config('constants.INSTANSI')}}</span>
                 <span>{{config('constants.KABUPATEN')}}</span>
             </div>
@@ -87,48 +87,19 @@
 
         <?php $no = 1; ?>
         <div class="leading-normal text-justify text-lg potrait-page">
-            <table class="mt-8">
+            <table class="mt-4">
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-wrap">DASAR HUKUM</td>
                     <td class="align-top py-2 pl-20">:</td>
                     <td class="align-top p-2">
                         <table class="text-left">
+                            @foreach(config('constants.DASAR_HUKUM') as $key => $value)
                             <tr>
-                                <td class="pr-4 align-top">a.</td>
-                                <td>Undang-Undang Nomor 16 Tahun 1997 tentang Statistik.</td>
+                                <td class="pr-4 align-top">{{$key}}.</td>
+                                <td>{{$value}}</td>
                             </tr>
-                            <tr>
-                                <td class="pr-4 align-top">b.</td>
-                                <td>Undang-Undang Nomor 17 Tahun 2003 tentang Keuangan Negara.</td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4 align-top">c.</td>
-                                <td>Peraturan Presiden Nomor 86 Tahun 2007 tentang Badan Pusat Statistik.</td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4 align-top">d.</td>
-                                <td>Peraturan Presiden Nomor 90 Tahun 2010 tentang Penyusunan RKA-KL.</td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4 align-top">e.</td>
-                                <td>Peraturan Menteri Keuangan RI Nomor 51/PMK.02/2014 Perubahan atas Peraturan
-                                    Menteri Keuangan Nomor Nomor 71/PMK.02/2013 tentang Pedoman Standar Biaya,
-                                    Standar Struktur Biaya dan Indeksasi dalam Penyusunan Rencana Kerja dan Anggaran
-                                    Kementerian Negara/Lembaga.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4 align-top">f.</td>
-                                <td>Peraturan Menteri Keuangan RI Nomor 208/PMK.02/2019 tentng Petunjuk Penyusunan
-                                    dan Penelaahan Rencana Kerja dan Anggaran Kementerian Negara/Lembaga dan Pengesahan
-                                    Daftar Isian Pelaksanaan Anggaran.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pr-4 align-top">g.</td>
-                                <td>Peraturan Menteri Keuangan RI Nomor 49 Tahun 2023 tentang Standar Biaya Masukan Tahun Anggaran 2024.</td>
-                            </tr>
+                            @endforeach
                         </table>
                     </td>
                 </tr>
@@ -146,17 +117,21 @@
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
-                    <td class="align-top font-bold p-2 text-left text-nowrap">MANFAAT</td>
+                    <td class="align-top font-bold p-2 text-left text-nowrap">TARGET/SASARAN</td>
                     <td class="align-top py-2 pl-20">:</td>
-                    <td class="align-top p-2">{!! nl2br($data->manfaat) !!}</td>
+                    <td class="align-top p-2">{!! nl2br($data->target) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">WAKTU DAN TEMPAT PELAKSANAAN</td>
                     <td class="align-top py-2 pl-20">:</td>
                     <td class="align-top p-2">
-                        Waktu penyelenggaraan {{$data->judul}} dari tanggal
-                        {{date_indo($data->tgl_awal)}} s.d. {{date_indo($data->tgl_akhir)}}.
+                        Waktu penyelenggaraan {{$data->judul}}
+                        @if($data->tgl_akhir == null)
+                        pada tanggal {{date_indo($data->tgl_awal)}}.
+                        @else
+                        dari tanggal {{date_indo($data->tgl_awal)}} s.d. {{date_indo($data->tgl_akhir)}}.
+                        @endif
                         <br>
                         Tempat pelaksanaan kegiatan diselenggarakan di {{$data->tempat}}.
                     </td>
@@ -174,6 +149,43 @@
                             <span>b.</span>
                             <span> Perkiraan biaya maksimal disesuaikan dengan DIPA yang ada. </span>
                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-top font-bold p-2">{{$no++}}.</td>
+                    <td class="align-top font-bold p-2 text-left text-wrap">PESERTA</td>
+                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top p-2">
+                        <span class="block mb-1">Pegawai yang melaksanakan kegiatan adalah sebagai berikut:</span>
+                        <table class="w-full border text-center font-medium">
+                            <thead>
+                                <tr class="fs-6">
+                                    <th class="border border-black p-2 font-bold">No</th>
+                                    <th class="border border-black p-2 font-bold">Pelaksana</th>
+                                    <th class="border border-black p-2 font-bold">Tanggal</th>
+                                    <th class="border border-black p-2 font-bold">Tujuan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data->peserta as $p)
+                                <tr class="fs-7">
+                                    <td class="border border-black align-top px-2">{{$loop->index+1}}.</td>
+                                    <td class="border border-black align-top text-left px-2">
+                                        <p>{{$p->nama}}</p>
+                                        <p class="text-nowrap">NIP. {{$p->nip_baru}}</p>
+                                    </td>
+                                    <td class="border border-black px-2">
+                                        @if($data->tgl_akhir == null)
+                                        {{date_indo($data->tgl_awal)}}
+                                        @else
+                                        {{date_indo($data->tgl_awal)}} s.d. {{date_indo($data->tgl_akhir)}}
+                                        @endif
+                                    </td>
+                                    <td class="border border-black px-2">{{$data->tempat}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
                 <!-- Skip dulu  -->
@@ -273,82 +285,90 @@
                         @endforeach
                     </td>
                 </tr>
+                <tr>
+                    <td class="align-top font-bold p-2"></td>
+                    <td colspan="3" class="mb-4">
+                        <!-- begin::RAB -->
+                        <div class="leading-tight text-lg my-4">
+                            <table class="text-left">
+                                <tr>
+                                    <td class="pr-12">Program</td>
+                                    <td class="px-4">:</td>
+                                    <td>{{$data->detil[0]->program}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pr-12">Kegiatan</td>
+                                    <td class="px-4">:</td>
+                                    <td>{{$data->detil[0]->kegiatan}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pr-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
+                                    <td class="px-4">:</td>
+                                    <td>{{$data->detil[0]->output}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pr-12 text-nowrap align-top">Rincian Output (RO)</td>
+                                    <td class="px-4 align-top">:</td>
+                                    <td class="capitalize">{{$data->detil[0]->suboutput}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pr-12">Komponen</td>
+                                    <td class="px-4">:</td>
+                                    <td class="capitalize">{{$data->detil[0]->komponen}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="pr-12">Sub Komponen</td>
+                                    <td class="px-4">:</td>
+                                    <td class="capitalize">{{$data->detil[0]->subkomponen}}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="leading-normal text-justify text-lg mx-2">
+                            <table class="w-full border text-center font-medium">
+                                <thead>
+                                    <tr style="background:#DDD9C3;">
+                                        <th class="border border-black p-2 font-bold">Akun</th>
+                                        <th class="border border-black p-2 font-bold">Rincian</th>
+                                        <th class="border border-black p-2 font-bold">Vol</th>
+                                        <th class="border border-black p-2 font-bold">Satuan</th>
+                                        <th class="border border-black p-2 font-bold">Harga Satuan</th>
+                                        <th class="border border-black p-2 font-bold">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data->detil as $d)
+                                    @if($loop->first || ($d->kode_akun != $akun))
+                                    <tr class="font-bold">
+                                        <td class="border border-black p-2">{{$d->kode_akun}}</td>
+                                        <td colspan="5" class="border border-black text-left p-2">{{$d->akun}}</td>
+                                    </tr>
+                                    @endif
+                                    <tr class="fs-7">
+                                        <td class="border border-black px-2"></td>
+                                        <td class="border border-black text-left px-2">{{$d->item_kegiatan}}</td>
+                                        <td class="border border-black px-2">{{$d->volume}}</td>
+                                        <td class="border border-black px-2">{{$d->satuan}}</td>
+                                        <td class="border border-black px-2">{{currency_IDR($d->harga)}}</td>
+                                        <td class="border border-black px-2 text-right">{{currency_IDR($d->jumlah)}}</td>
+                                    </tr>
+                                    <?php $akun = $d->kode_akun; ?>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end::RAB -->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-top font-bold p-2">{{$no++}}.</td>
+                    <td class="align-top font-bold p-2 text-left text-wrap">PENUTUP</td>
+                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top p-2">{!! nl2br($data->penutup) !!}</td>
+                </tr>
             </table>
 
-            <!-- begin::RAB -->
-            <div>
-                <div class="leading-tight text-lg my-8">
-                    <table class="text-left">
-                        <tr>
-                            <td class="px-12">Program</td>
-                            <td class="px-4">:</td>
-                            <td>{{$data->detil[0]->program}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-12">Kegiatan</td>
-                            <td class="px-4">:</td>
-                            <td>{{$data->detil[0]->kegiatan}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
-                            <td class="px-4">:</td>
-                            <td>{{$data->detil[0]->output}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-12 text-nowrap align-top">Rincian Output (RO)</td>
-                            <td class="px-4 align-top">:</td>
-                            <td class="capitalize">{{$data->detil[0]->suboutput}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-12">Komponen</td>
-                            <td class="px-4">:</td>
-                            <td class="capitalize">{{$data->detil[0]->komponen}}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-12">Sub Komponen</td>
-                            <td class="px-4">:</td>
-                            <td class="capitalize">{{$data->detil[0]->subkomponen}}</td>
-                        </tr>
-                    </table>
-                </div>
 
-                <div class="leading-normal text-justify text-lg">
-                    <div class="mx-12">
-                        <table class="w-full border text-center font-medium">
-                            <thead>
-                                <tr style="background:#DDD9C3;">
-                                    <th class="border border-black p-2 font-bold">Akun</th>
-                                    <th class="border border-black p-2 font-bold">Rincian</th>
-                                    <th class="border border-black p-2 font-bold">Vol</th>
-                                    <th class="border border-black p-2 font-bold">Satuan</th>
-                                    <th class="border border-black p-2 font-bold">Harga Satuan</th>
-                                    <th class="border border-black p-2 font-bold">Jumlah</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($data->detil as $d)
-                                @if($loop->first || ($d->kode_akun != $akun))
-                                <tr class="font-bold">
-                                    <td class="border border-black p-2">{{$d->kode_akun}}</td>
-                                    <td colspan="5" class="border border-black text-left p-2">{{$d->akun}}</td>
-                                </tr>
-                                @endif
-                                <tr class="fs-7">
-                                    <td class="border border-black px-2"></td>
-                                    <td class="border border-black text-left px-2">{{$d->item_kegiatan}}</td>
-                                    <td class="border border-black px-2">{{$d->volume}}</td>
-                                    <td class="border border-black px-2">{{$d->satuan}}</td>
-                                    <td class="border border-black px-2">{{currency_IDR($d->harga)}}</td>
-                                    <td class="border border-black px-2 text-right">{{currency_IDR($d->jumlah)}}</td>
-                                </tr>
-                                <?php $akun = $d->kode_akun; ?>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- end::RAB -->
 
             <!-- begin::Pengesahan -->
             <table class="table-auto w-full text-center text-lg mt-8">

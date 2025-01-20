@@ -35,4 +35,18 @@ return [
     // ini masuk ke database, jadi perhatikan ketika ubah ini 
     'MITRA' => 'N',
     'PEGAWAI' => 'O',
+
+    // dasar hukum kak 
+    'DASAR_HUKUM' => [
+        'a' => 'Undang-Undang Nomor 16 Tahun 1997 tentang Statistik (Lembaran Negara Republik Indonesia Tahun 1997 Nomor 39. Tambahan Lembaran Negara Republik Indonesia Nomor 3683);',
+        'b' => 'Undang-Undang Nomor 17 Tahun 2003 tentang Keuangan Negara;',
+        'c' => 'Peraturan Pemerintah Nomor 51 Tahun 1999 tentang Penyelenggaraan Statistik (Lembaran Negara Republik Indonesia Tahun 1999 Nomor 96. Tambahan Lembaran Negara Republik Indonesia Nomor 3854);',
+        'd' => 'Peraturan Presiden Nomor 39 Tahun 2019 tentang Satu Data Indonesia (Lembaran Negara Republik Indonesia Tahun 2019 Nomor 112);',
+        'e' => 'Peraturan Menteri Keuangan Republik Indonesia Nomor 51/ PMK. 02/ 2014 tentang Perubahan Atas Peraturan Menteri Keuangan Nomor 71/ PMK. 02/ 2013 tentang Pedoman Standar Biaya. Standar Struktur Biaya. dan Indeksasi dalam Penyusunan Rencana Kerja dan Anggaran Kementerian Negara/Lembaga (Berita Negara Republik Indonesia Tahun 2014 Nomor 342);',
+        'f' => 'Peraturan Menteri Keuangan RI Nomor 49 Tahun 2023 tentang Standar Biaya Masukan Tahun Anggaran 2024;',
+        'g' => 'Surat Direktur Jenderal Perbendaharaan Kementerian Keuangan Republik Indonesia Nomor S-6478/PB.6/2015 tanggal 3 Agustus 2015 tentang Penggunaan Akun Belanja yang Menghasilkan Persediaan;',
+        'h' => 'Keputusan Direktur Jenderal Perbendaharaan Nomor KEP-311/PB/2021 tentang Kodefikasi Segmen Akun pada Bagan Akun Standar;',
+        'i' => 'Peraturan Kepala Badan Pusat Statistik Nomor 31 Tahun 2013 tentang Pedoman Penyelenggaraan Rapat. Konsinyasi. dan Kegiatan Sejenis di Lingkungan Badan Pusat Statistik;',
+        'j' => 'Undang-Undang Nomor 16 Tahun 1997 tentang Statistik (Lembaran Negara Republik Indonesia Tahun 1997 Nomor 39. Tambahan Lembaran Negara Republik Indonesia Nomor 3683);',
+    ],
 ];
