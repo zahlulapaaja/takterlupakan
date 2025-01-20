@@ -91,7 +91,7 @@
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-wrap">DASAR HUKUM</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         <table class="text-left">
                             @foreach(config('constants.DASAR_HUKUM') as $key => $value)
@@ -106,25 +106,33 @@
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-nowrap">PENDAHULUAN</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">{!! nl2br($data->latar_belakang) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">MAKSUD DAN TUJUAN</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">{!! nl2br($data->tujuan) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-nowrap">TARGET/SASARAN</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">{!! nl2br($data->target) !!}</td>
                 </tr>
+                @if($data->jenis == 'pengadaan')
+                <tr>
+                    <td class="align-top font-bold p-2">{{$no++}}.</td>
+                    <td class="align-top font-bold p-2 text-left text-wrap">METODE PENGADAAN BARANG/JASA</td>
+                    <td class="align-top py-2 pl-10">:</td>
+                    <td class="align-top p-2">{!! nl2br($data->metode) !!}</td>
+                </tr>
+                @endif
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">WAKTU DAN TEMPAT PELAKSANAAN</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         Waktu penyelenggaraan {{$data->judul}}
                         @if($data->tgl_akhir == null)
@@ -139,7 +147,7 @@
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">SUMBER DANA DAN PERKIRAAN BIAYA</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         <div class="d-flex flex-row gap-3">
                             <span>a.</span>
@@ -151,10 +159,11 @@
                         </div>
                     </td>
                 </tr>
+                @if($data->jenis == 'perjadin')
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PESERTA</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         <span class="block mb-1">Pegawai yang melaksanakan kegiatan adalah sebagai berikut:</span>
                         <table class="w-full border text-center font-medium">
@@ -188,12 +197,13 @@
                         </table>
                     </td>
                 </tr>
+                @endif
                 <!-- Skip dulu  -->
                 @if(false)
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PESERTA</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         <div>
                             Pelatihan Petugas Sakernas Agustus 2024 terdiri dari 1 kelas, diikuti oleh peserta sebagai berikut:
@@ -219,7 +229,7 @@
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PERSIAPAN</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         <div>
                             Persiapan administrasi :
@@ -261,7 +271,7 @@
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">AKOMODASI, KONSUMSI, DAN LAINNYA</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         Konsumsi dan akomodasi selama pelaksanaan ditanggung oleh Panitia Penyelenggara.
                     </td>
@@ -271,7 +281,7 @@
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PEMBIAYAAN</td>
-                    <td class="align-top py-2 pl-20">:</td>
+                    <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         Pembiayaan kegiatan dibebankan pada DIPA {{config('constants.SATKER')}} Tahun Anggaran {{$data->tahun}},
                         Program : (054.01.{{$data->detil[0]->kode_program}}) {{$data->detil[0]->program}},
@@ -287,10 +297,10 @@
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2"></td>
-                    <td colspan="3" class="mb-4">
+                    <td colspan="3">
                         <!-- begin::RAB -->
-                        <div class="leading-tight text-lg my-4">
-                            <table class="text-left">
+                        <div class="leading-tight text-lg mx-2 my-4">
+                            <table class="text-left fs-6">
                                 <tr>
                                     <td class="pr-12">Program</td>
                                     <td class="px-4">:</td>
@@ -324,10 +334,10 @@
                             </table>
                         </div>
 
-                        <div class="leading-normal text-justify text-lg mx-2">
+                        <div class="leading-normal text-justify text-lg mx-2 mb-8">
                             <table class="w-full border text-center font-medium">
                                 <thead>
-                                    <tr style="background:#DDD9C3;">
+                                    <tr class="fs-6" style="background:#DDD9C3;">
                                         <th class="border border-black p-2 font-bold">Akun</th>
                                         <th class="border border-black p-2 font-bold">Rincian</th>
                                         <th class="border border-black p-2 font-bold">Vol</th>
@@ -339,9 +349,9 @@
                                 <tbody>
                                     @foreach($data->detil as $d)
                                     @if($loop->first || ($d->kode_akun != $akun))
-                                    <tr class="font-bold">
-                                        <td class="border border-black p-2">{{$d->kode_akun}}</td>
-                                        <td colspan="5" class="border border-black text-left p-2">{{$d->akun}}</td>
+                                    <tr class="font-bold fs-6">
+                                        <td class="border border-black px-2">{{$d->kode_akun}}</td>
+                                        <td colspan="5" class="border border-black text-left px-2">{{$d->akun}}</td>
                                     </tr>
                                     @endif
                                     <tr class="fs-7">
@@ -360,18 +370,62 @@
                         <!-- end::RAB -->
                     </td>
                 </tr>
+                @if($data->jenis == 'pengadaan')
+                <tr>
+                    <td class="align-top font-bold p-2">{{$no++}}.</td>
+                    <td class="align-top font-bold p-2 text-left text-wrap">SPESIFIKASI TEKNIS</td>
+                    <td class="align-top py-2 pl-10">:</td>
+                    <td class="align-top p-2">
+                        Spesifikasi teknis yang diperlukan untuk pengadaan adalah sebagai berikut:
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-top font-bold p-2"></td>
+                    <td colspan="3" class="mb-4">
+                        <div class="leading-tight text-lg mx-2 mb-8">
+                            <table class="w-full border text-center font-medium">
+                                <thead>
+                                    <tr class="fs-6">
+                                        <th class="border border-black p-2 font-bold">No</th>
+                                        <th class="border border-black p-2 font-bold">Rincian</th>
+                                        <th class="border border-black p-2 font-bold">Volume</th>
+                                        <th class="border border-black p-2 font-bold">Satuan</th>
+                                        <th class="border border-black p-2 font-bold">Spesifikasi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($data->spesifikasi as $s)
+                                    <tr class="fs-7">
+                                        <td class="border border-black align-top px-2">{{$loop->index+1}}.</td>
+                                        <td class="border border-black align-top text-left px-2">{{$s->rincian}}</td>
+                                        <td class="border border-black px-2">{{$s->volume}}</td>
+                                        <td class="border border-black px-2">{{$s->satuan}}</td>
+                                        <td class="border border-black px-2">{{$s->spesifikasi}}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                @endif
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PENUTUP</td>
-                    <td class="align-top py-2 pl-20">:</td>
-                    <td class="align-top p-2">{!! nl2br($data->penutup) !!}</td>
+                    <td class="align-top py-2 pl-10">:</td>
+                    <td class="align-top p-2">
+                        Apabila terdapat hal-hal yang bertentangan dengan ketentuan, peraturan, pedoman, dan kebijaksanaan
+                        pemerintah yang berlaku, maka segala yang termaktub di dalam Kerangka Acuan Kegiatan (KAK) akan
+                        diteliti kembali. Hal-hal yang belum diatur dalam KAK akan ditetapkan lebih lanjut. Demikian KAK
+                        ini dibuat untuk dipergunakan semestinya.
+                    </td>
                 </tr>
             </table>
 
 
 
             <!-- begin::Pengesahan -->
-            <table class="table-auto w-full text-center text-lg mt-8">
+            <table class="table-auto w-full text-center text-lg mt-20">
                 <tr>
                     <td>Mengetahui,</td>
                     <td>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl)}}</td>

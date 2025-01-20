@@ -44,6 +44,7 @@ class Kak extends Model
         $res = false;
         foreach ($daftar_spesifikasi as $s) {
             $data['kaks_id'] = $kaks_id;
+            $data['rincian'] = $s['rincian'];
             $data['volume'] = $s['volume'];
             $data['satuan'] = $s['satuan'];
             $data['spesifikasi'] = $s['spesifikasi'];

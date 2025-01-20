@@ -68,7 +68,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('kaks')
                 ->onDelete('cascade');
-            $table->integer('rincian');
+            $table->string('rincian');
             $table->integer('volume');
             $table->string('satuan')->length(20);
             $table->string('spesifikasi');

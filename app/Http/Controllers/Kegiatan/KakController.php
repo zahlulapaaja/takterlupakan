@@ -102,6 +102,7 @@ class KakController extends Controller
         $data = Kak::find($id);
         $data->detil = $data->getDetilPok($data->id);
         $data->peserta = $data->getPesertaPerjadin($data->id);
+        $data->spesifikasi = DB::table('kaks_spesifikasi')->where('kaks_id', $data->id)->get();
 
         // mengambil data penanggung jawab 
         if ($data->tim == 0) {
