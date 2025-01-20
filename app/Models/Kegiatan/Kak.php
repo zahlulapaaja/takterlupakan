@@ -55,6 +55,18 @@ class Kak extends Model
         return $res;
     }
 
+    public function insertPelatihan($kaks_id, $pelatihan)
+    {
+        $data['kaks_id'] = $kaks_id;
+        $data['peserta'] = $pelatihan['peserta_pelatihan'];
+        $data['konsumsi'] = ($pelatihan['konsumsi_pelatihan'] == "on");
+        $data['akomodasi'] = ($pelatihan['akomodasi_pelatihan'] == "on");
+        $data['translok'] = ($pelatihan['translok_pelatihan'] == "on");
+
+        $res = DB::table('kaks_pelatihan')->insert($data);
+        return $res;
+    }
+
     public function getDetilPok($kaks_id)
     {
         $result = [];

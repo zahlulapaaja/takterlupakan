@@ -153,7 +153,7 @@
             <!--end::Card header-->
         </div>
         <!--end::Detail KAK-->
-        <!--begin::Peserta Perjadin-->
+        <!--begin::Peserta Perjadin [Perjadin]-->
         <div class="card card-flush py-4 perjadin hidden">
             <!--begin::Card header-->
             <div class="card-header">
@@ -211,7 +211,7 @@
             </div>
             <!--end::Card header-->
         </div>
-        <!--end::Peserta Perjadin-->
+        <!--end::Peserta Perjadin [Perjadin]-->
         <!--begin::Badan KAK-->
         <div class="card card-flush py-4">
             <!--begin::Card header-->
@@ -251,15 +251,15 @@
                         @enderror
                     </div>
                     <!--end::Input group-->
-                    <!--begin::Input group-->
+                    <!--begin::Input group [Pengadaan]-->
                     <div class="fv-row flex flex-column w-full pengadaan hidden">
-                        <label for="metode" class="required form-label">Metode</label>
-                        <textarea id="metode" name="metode" rows="4" placeholder="Masukkan metode..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                        <label for="metode" class="required form-label">Metode Pengadaan Barang/Jasa</label>
+                        <textarea id="metode" name="metode" rows="4" placeholder="Masukkan metode pengadaan barang/jasa..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                         @error('metode')
                         <small>{{ $message }}</small>
                         @enderror
                     </div>
-                    <!--end::Input group-->
+                    <!--end::Input group [Pengadaan]-->
                     <div class="fv-row d-flex flex-column flex-md-row gap-5">
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid w-full">
@@ -290,7 +290,41 @@
                         @enderror
                     </div>
                     <!--end::Input group-->
-                    <!--begin::Input group-->
+                    <!--begin::Input group [Pelatihan]-->
+                    <div class="fv-row flex flex-column pelatihan hidden">
+                        <div class="leading-tight mb-2">
+                            <label class="required form-label m-0">Komponen Pelatihan</label>
+                            <div class="text-muted fs-8">Centang komponen yang ditanggung oleh panitia penyelenggaran</div>
+                        </div>
+                        <div class="d-flex flex-column flex-lg-row gap-4">
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="konsumsi_pelatihan" class="form-check-input" name="konsumsi_pelatihan" type="checkbox" checked />
+                                <label for="konsumsi_pelatihan">Konsumsi</label>
+                            </div>
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="akomodasi_pelatihan" class="form-check-input" name="akomodasi_pelatihan" type="checkbox" />
+                                <label for="akomodasi_pelatihan">Akomodasi</label>
+                            </div>
+                            <div class="d-flex flex-row gap-x-2">
+                                <input id="translok_pelatihan" class="form-check-input" name="translok_pelatihan" type="checkbox" />
+                                <label for="translok_pelatihan">Tranport Lokal</label>
+                            </div>
+                        </div>
+                        @error('konsumsi_pelatihan')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group [Pelatihan]-->
+                    <!--begin::Input group [Pelatihan]-->
+                    <div class="fv-row flex flex-column w-full pelatihan hidden">
+                        <label for="peserta_pelatihan" class="required form-label">Peserta Pelatihan</label>
+                        <textarea id="peserta_pelatihan" name="peserta_pelatihan" rows="4" placeholder="Masukkan penjelasan peserta pelatihan..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                        @error('peserta_pelatihan')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group [Pelatihan]-->
+                    <!--begin::Input group [Pengadaan]-->
                     <div class="pengadaan hidden" data-kt-ecommerce-catalog-add-product="auto-options">
                         <!--begin::Label-->
                         <label class="required form-label">Input Spesifikasi</label>
@@ -326,7 +360,7 @@
                         </div>
                         <!--end::Repeater-->
                     </div>
-                    <!--end::Input group-->
+                    <!--end::Input group [Pengadaan]-->
                 </div>
             </div>
             <!--end::Card header-->
@@ -393,9 +427,11 @@
             $('#daftar_spesifikasi').repeater();
 
             $('#form_create_kak input:radio').on('change', function() {
+                $('.pelatihan').addClass('hidden');
                 $('.perjadin').addClass('hidden');
                 $('.pengadaan').addClass('hidden');
 
+                if ($(this).val() == 'pelatihan') $('.pelatihan').removeClass('hidden');
                 if ($(this).val() == 'perjadin') $('.perjadin').removeClass('hidden');
                 if ($(this).val() == 'pengadaan') $('.pengadaan').removeClass('hidden');
 

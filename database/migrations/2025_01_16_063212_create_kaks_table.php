@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('kaks', function (Blueprint $table) {
             $table->id();
-            // perlu jenis ga ya ?
             $table->string('jenis'); // bikin jenis di constants aja yaa
             $table->string('judul');
             $table->longText('latar_belakang');
@@ -74,21 +73,17 @@ return new class extends Migration
             $table->string('spesifikasi');
         });
 
-
-        // dasar hukum kak apakah semuanya sama ?
-        // dasar hukum masukin constants kali yaa 
-        // eh iya, untuk matriks honor belom ada warning klo mencapai limit (selip ttg yg lain satu wkwk)
-
-
-        // pertanyaan ke forum :
-        // - format kayak mana yang akan dipake ?
-        // - apakah tujuan harus dalam bentuk poin-poin ?
-        // - apakah kalo beda jenis (misal perjadin dan pengadaan), ada bab yang perlu dihilangkan
-
-        // saran nama sistem :
-        // - sianida, sidang, sidomukti, sidratulmuntaha, sigaret, sigma, silinder, siluman, simalakama, sinergi, 
-        // sipongang, siratalmustakim, siuman, 
-
+        Schema::create('kaks_pelatihan', function (Blueprint $table) {
+            $table->unsignedBigInteger('kaks_id');
+            $table->foreign('kaks_id')
+                ->references('id')
+                ->on('kaks')
+                ->onDelete('cascade');
+            $table->longText('peserta')->nullable();
+            $table->boolean('konsumsi')->nullable();
+            $table->boolean('akomodasi')->nullable();
+            $table->boolean('translok')->nullable();
+        });
     }
 
     /**
@@ -100,5 +95,6 @@ return new class extends Migration
         Schema::dropIfExists('kaks_poks');
         Schema::dropIfExists('kaks_perjadin');
         Schema::dropIfExists('kaks_spesifikasi');
+        Schema::dropIfExists('kaks_pelatihan');
     }
 };

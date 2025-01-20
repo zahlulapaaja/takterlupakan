@@ -4,19 +4,13 @@ namespace App\Http\Controllers\Kegiatan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Kak;
-use App\Models\Kegiatan\Kegiatan;
-use App\Models\Kegiatan\Sk;
-use App\Models\Kegiatan\Spj;
-use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
 use App\Models\Master\Tim;
 use App\Models\Pok;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Riskihajar\Terbilang\Facades\Terbilang;
 
 class KakController extends Controller
 {
@@ -55,7 +49,6 @@ class KakController extends Controller
         }
     }
 
-
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -86,11 +79,18 @@ class KakController extends Controller
         $data['tahun'] = $request->tahun;
         $data['edited_by'] = session('user_id');
 
+        // data pelatihan
+        $pelatihan['peserta_pelatihan'] = $request->peserta_pelatihan;
+        $pelatihan['konsumsi_pelatihan'] = $request->konsumsi_pelatihan;
+        $pelatihan['akomodasi_pelatihan'] = $request->akomodasi_pelatihan;
+        $pelatihan['translok_pelatihan'] = $request->translok_pelatihan;
+
         // insert data
         $res = Kak::create($data);
         $res->insertPoks($res->id, $request->detil);
-        if ($request->jenis == 'pengadaan') $res->insertSpesifikasi($res->id, $request->daftar_spesifikasi);
+        if ($request->jenis == 'pelatihan') $res->insertPelatihan($res->id, $pelatihan);
         if ($request->jenis == 'perjadin') $res->insertPeserta($res->id, $request->daftar_peserta_perjadin);
+        if ($request->jenis == 'pengadaan') $res->insertSpesifikasi($res->id, $request->daftar_spesifikasi);
         dd($request->all());
 
         return redirect()->route('kegiatan.kak.index');
@@ -103,6 +103,7 @@ class KakController extends Controller
         $data->detil = $data->getDetilPok($data->id);
         $data->peserta = $data->getPesertaPerjadin($data->id);
         $data->spesifikasi = DB::table('kaks_spesifikasi')->where('kaks_id', $data->id)->get();
+        $data->pelatihan = DB::table('kaks_pelatihan')->where('kaks_id', $data->id)->first();
 
         // mengambil data penanggung jawab 
         if ($data->tim == 0) {
@@ -117,49 +118,5 @@ class KakController extends Controller
         $ref->ppk = Pegawai::find($ref->ppk);
 
         return view('kegiatan.kak.print', compact('data', 'ref'));
-    }
-
-    public function print2($id)
-    {
-        $data = Spj::find($id);
-        $ref = Referensi::where('tahun', $data->tahun)->first();
-        $ref->kpa = Pegawai::find($ref->kpa);
-        $ref->ppk = Pegawai::find($ref->ppk);
-        // $data->alokasi_beban = DB::table('spjs_alokasi_beban')->where('spjs_id', $id)->get();
-        // $data->petugas = $data->getPetugas($id);
-
-        // generate nomor surat
-        $data->no_spj = $data->no . '/SPJ/BPS-1107/' . explode('-', $data->tgl_spj)[0];
-        $data->keg = Kegiatan::find($data->kegiatans_id);
-        // $data->keg->pok = Pok::find($data->keg->poks_id);
-        $data->pok = Pok::find($data->keg->poks_id);
-        $data->mak = '054.01.'; // bikin constants
-        // $data->pok->kode_program . '.' .
-        // $data->pok->kode_kegiatan . '.' .
-        // $data->pok->kode_output . '.' .
-        // $data->pok->kode_suboutput . '.' .
-        // $data->pok->kode_komponen . '.' .
-        // $data->pok->kode_subkomponen . '.' .
-        // $data->pok->kode_akun;
-
-        // format tanggal data sk
-        $ref->terbilang_tgl = $ref->terbilang_tgl($data->tgl);
-        $data->tgl_spj = $data->tgl_spj;
-
-        // $data->tgl_mulai = $data->tgl_mulai;
-        // mengambil data pjk
-        $data->pjk = Pegawai::find($data->pjk);
-        // dd($data->pjk);
-
-        // format tanggal data referensi
-        $ref->tgl_dipa = $ref->tgl_dipa;
-        $ref->tgl_sk_kpa = $ref->tgl_sk_kpa;
-
-        // $views =
-        //     view('kegiatan.spj._print.daftar-honor', compact('data', 'ref'))->render() .
-        //     view('kegiatan.spj._print.bast', compact('data', 'ref'))->render() .
-        //     view('kegiatan.spj._print.pernyataan', compact('data', 'ref'))->render();
-        return view('kegiatan.kak.print2', compact('data', 'ref'));
-        // return $views;
     }
 }

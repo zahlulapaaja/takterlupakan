@@ -138,7 +138,7 @@
                         @if($data->tgl_akhir == null)
                         pada tanggal {{date_indo($data->tgl_awal)}}.
                         @else
-                        dari tanggal {{date_indo($data->tgl_awal)}} s.d. {{date_indo($data->tgl_akhir)}}.
+                        dari tanggal {{date_indo($data->tgl_awal)}} sampai dengan {{date_indo($data->tgl_akhir)}}.
                         @endif
                         <br>
                         Tempat pelaksanaan kegiatan diselenggarakan di {{$data->tempat}}.
@@ -198,33 +198,12 @@
                     </td>
                 </tr>
                 @endif
-                <!-- Skip dulu  -->
-                @if(false)
+                @if($data->jenis == 'pelatihan')
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PESERTA</td>
                     <td class="align-top py-2 pl-10">:</td>
-                    <td class="align-top p-2">
-                        <div>
-                            Pelatihan Petugas Sakernas Agustus 2024 terdiri dari 1 kelas, diikuti oleh peserta sebagai berikut:
-                        </div>
-                        <div class="d-flex flex-row gap-3">
-                            <span>a.</span>
-                            <span> Petugas Sakerns Agustus 2024 dari Kabupaten Aceh Barat sebanyak 25 orang. </span>
-                        </div>
-                        <div class="d-flex flex-row gap-3">
-                            <span>b</span>
-                            <span> Panitia sebanyak 2 orang. </span>
-                        </div>
-                        <div class="d-flex flex-row gap-3">
-                            <span>c.</span>
-                            <span> Inda sebanyak 2 orang. </span>
-                        </div>
-                        <div class="d-flex flex-row gap-3">
-                            <span>d.</span>
-                            <span> Total Seluruhnya sebanyak 29 Orang. </span>
-                        </div>
-                    </td>
+                    <td class="align-top p-2">{!! nl2br($data->pelatihan->peserta) !!}</td>
                 </tr>
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
@@ -254,17 +233,21 @@
                             <span>c.</span>
                             <span> Transport dan Akomodasi Peserta </span>
                         </div>
+                        @if($data->pelatihan->translok)
                         <div class="d-flex flex-row gap-3 ms-8">
                             <span>i.</span>
                             <span> Panitia menyediakan transport lokal sesuai aturan yang berlaku. </span>
                         </div>
+                        @endif
+                        @if($data->pelatihan->akomodasi)
                         <div class="d-flex flex-row gap-3 ms-8">
                             <span>ii.</span>
                             <span> Panitia menyediakan penginapan karena pelatihan diadakan fullboard </span>
                         </div>
+                        @endif
                         <div class="d-flex flex-row gap-3">
                             <span>d.</span>
-                            <span> Seluruh peserta pelatihan akan memperoleh materi yang akan disampaikan oleh Instruktur Daerah. </span>
+                            <span> Seluruh peserta pelatihan akan memperoleh materi yang akan disampaikan oleh Instruktur Daerah/Nasional. </span>
                         </div>
                     </td>
                 </tr>
@@ -273,11 +256,14 @@
                     <td class="align-top font-bold p-2 text-left text-wrap">AKOMODASI, KONSUMSI, DAN LAINNYA</td>
                     <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
-                        Konsumsi dan akomodasi selama pelaksanaan ditanggung oleh Panitia Penyelenggara.
+                        Konsumsi
+                        @if($data->pelatihan->akomodasi)
+                        dan akomodasi
+                        @endif
+                        selama pelaksanaan ditanggung oleh Panitia Penyelenggara.
                     </td>
                 </tr>
                 @endif
-                <!-- Skip dulu  -->
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">PEMBIAYAAN</td>
@@ -349,7 +335,7 @@
                                 <tbody>
                                     @foreach($data->detil as $d)
                                     @if($loop->first || ($d->kode_akun != $akun))
-                                    <tr class="font-bold fs-6">
+                                    <tr class="font-semibold fs-6">
                                         <td class="border border-black px-2">{{$d->kode_akun}}</td>
                                         <td colspan="5" class="border border-black text-left px-2">{{$d->akun}}</td>
                                     </tr>
