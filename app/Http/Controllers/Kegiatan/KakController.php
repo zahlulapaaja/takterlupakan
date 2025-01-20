@@ -101,6 +101,15 @@ class KakController extends Controller
         return redirect()->route('kegiatan.kak.index');
     }
 
+    public function destroy($id)
+    {
+        $data = Kak::find($id);
+        $data->deleteKak($id);
+        $data->delete();
+
+        return response()->json(array('success' => true));
+    }
+
     public function print($id)
     {
         // mengambil data kak 

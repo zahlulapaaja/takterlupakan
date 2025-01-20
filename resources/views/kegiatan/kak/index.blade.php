@@ -45,7 +45,6 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th>Nomor</th>
                             <th class="min-w-50px">Jenis</th>
                             <th class="min-w-150px">Judul</th>
                             <th class="min-w-100px">Tanggal Ditetapkan</th>
@@ -57,7 +56,6 @@
                     <tbody>
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
-                            <td>{{$loop->index+1}}</td>
                             <td>
                                 <span class="badge badge-light-info">{{$d->jenis}}</span>
                             </td>
@@ -82,7 +80,7 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->no_judul}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
+                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->judul}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>

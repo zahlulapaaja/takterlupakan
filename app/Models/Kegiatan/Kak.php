@@ -88,4 +88,13 @@ class Kak extends Model
 
         return $result;
     }
+
+    public function deleteKak($kaks_id)
+    {
+        DB::table('kaks_poks')->where('kaks_id', $kaks_id)->delete();
+        DB::table('kaks_perjadin')->where('kaks_id', $kaks_id)->delete();
+        DB::table('kaks_spesifikasi')->where('kaks_id', $kaks_id)->delete();
+        DB::table('kaks_pelatihan')->where('kaks_id', $kaks_id)->delete();
+        return true;
+    }
 }
