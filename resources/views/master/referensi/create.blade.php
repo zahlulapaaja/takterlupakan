@@ -25,16 +25,29 @@
                 @method('POST')
                 <input name="tahun" type="hidden" value="{{$last_tahun}}" />
                 <!--begin::Input group-->
-                <div class="d-flex flex-column mb-7">
-                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                        <span class="required">KPA (Kuasa Pengguna Anggaran)</span>
-                    </label>
-                    <select name="kpa" type="text" class="form-control form-control-solid" required>
-                        <option value="" hidden>Pilih KPA...</option>
-                        @foreach($pegawai as $p)
-                        <option value="{{$p->id}}">{{$p->nama}}</option>
-                        @endforeach
-                    </select>
+                <div class="d-flex flex-row mb-7 fv-row">
+                    <div class="d-flex flex-column w-1/2 mr-7">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span class="required">KPA (Kuasa Pengguna Anggaran)</span>
+                        </label>
+                        <select name="kpa" type="text" class="form-control form-control-solid" required>
+                            <option value="" hidden>Pilih KPA...</option>
+                            @foreach($pegawai as $p)
+                            <option value="{{$p->id}}">{{$p->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column w-1/2 fv-row">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span class="required">Bendahara</span>
+                        </label>
+                        <select name="bend" type="text" class="form-control form-control-solid" required>
+                            <option value="" hidden>Pilih Bendahara...</option>
+                            @foreach($pegawai as $p)
+                            <option value="{{$p->id}}">{{$p->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Input group-->
@@ -51,11 +64,18 @@
                         </select>
                     </div>
                     <div class="d-flex flex-column w-1/2 fv-row">
-                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required">Bendahara</span>
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label">
+                            <span class="required">PPK 2</span>
+                            <span class="ms-1" data-bs-toggle="tooltip" title="PPK 2 hanya muncul pilihan saat membuat KAK.">
+                                <i class="ki-duotone ki-information fs-7">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>
+                            </span>
                         </label>
-                        <select name="bend" type="text" class="form-control form-control-solid" required>
-                            <option value="" hidden>Pilih Bendahara...</option>
+                        <select name="ppk2" type="text" class="form-control form-control-solid" required>
+                            <option value="" hidden>Pilih PPK 2...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>
                             @endforeach
@@ -92,6 +112,16 @@
                             <span class="required">Tanggal SK KPA</span>
                         </label>
                         <input name="tgl_sk_kpa" type="date" class="form-control form-control-solid" placeholder="00/00/0000" required />
+                    </div>
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="d-flex flex-row mb-7 fv-row">
+                    <div class="d-flex flex-column w-full">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span class="required">Nomor PMK {{$last_tahun}}</span>
+                        </label>
+                        <textarea name="pmk" class="form-control form-control-solid" rows="3" placeholder="Peraturan Menteri Keuangan tentang Standar Biaya Masukan Tahun Anggaran {{$last_tahun}}..." required></textarea>
                     </div>
                 </div>
                 <!--end::Input group-->

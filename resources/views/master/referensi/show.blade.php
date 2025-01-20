@@ -25,13 +25,23 @@
                 @csrf
                 @method('PUT')
                 <!--begin::Input group-->
-                <div class="d-flex flex-column mb-7">
-                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                        <span>KPA (Kuasa Pengguna Anggaran)</span>
-                    </label>
-                    <select name="kpa" type="text" class="form-control form-control-solid" disabled>
-                        <option value="{{$data->kpa->id}}" hidden selected>{{$data->kpa->nama}}</option>
-                    </select>
+                <div class="d-flex flex-row mb-7 fv-row">
+                    <div class="d-flex flex-column w-1/2 mr-7">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span>KPA (Kuasa Pengguna Anggaran)</span>
+                        </label>
+                        <select name="kpa" type="text" class="form-control form-control-solid" disabled>
+                            <option value="{{$data->kpa->id}}" hidden selected>{{$data->kpa->nama}}</option>
+                        </select>
+                    </div>
+                    <div class="d-flex flex-column w-1/2 fv-row">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span>Bendahara</span>
+                        </label>
+                        <select name="bend" type="text" class="form-control form-control-solid" disabled>
+                            <option value="{{$data->bend->id}}" hidden selected>{{$data->bend->nama}}</option>
+                        </select>
+                    </div>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Input group-->
@@ -45,11 +55,18 @@
                         </select>
                     </div>
                     <div class="d-flex flex-column w-1/2 fv-row">
-                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span>Bendahara</span>
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label">
+                            <span>PPK 2</span>
+                            <span class="ms-1" data-bs-toggle="tooltip" title="PPK 2 hanya muncul pilihan saat membuat KAK.">
+                                <i class="ki-duotone ki-information fs-7">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>
+                            </span>
                         </label>
-                        <select name="bend" type="text" class="form-control form-control-solid" disabled>
-                            <option value="{{$data->bend->id}}" hidden selected>{{$data->bend->nama}}</option>
+                        <select name="ppk2" type="text" class="form-control form-control-solid" disabled>
+                            <option value="{{$data->ppk2->id}}" hidden selected>{{$data->ppk2->nama}}</option>
                         </select>
                     </div>
                 </div>
@@ -83,6 +100,16 @@
                             <span>Tanggal SK KPA</span>
                         </label>
                         <input name="tgl_sk_kpa" type="date" class="form-control form-control-solid" placeholder="00/00/0000" value="{{$data->tgl_sk_kpa}}" disabled />
+                    </div>
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="d-flex flex-row mb-7 fv-row">
+                    <div class="d-flex flex-column w-full">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span>Nomor PMK {{$data->tahun}}</span>
+                        </label>
+                        <textarea name="pmk" class="form-control form-control-solid" rows="3" disabled>{{$data->pmk}}</textarea>
                     </div>
                 </div>
                 <!--end::Input group-->

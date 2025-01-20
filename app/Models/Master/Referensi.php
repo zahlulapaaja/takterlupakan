@@ -16,11 +16,13 @@ class Referensi extends Model
     protected $fillable = [
         'kpa',
         'ppk',
+        'ppk2',
         'bend',
         'no_dipa',
         'tgl_dipa',
         'no_sk_kpa',
         'tgl_sk_kpa',
+        'pmk',
         'tahun',
     ];
 
