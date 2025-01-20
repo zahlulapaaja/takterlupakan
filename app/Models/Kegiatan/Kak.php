@@ -39,6 +39,21 @@ class Kak extends Model
         return $res;
     }
 
+    public function insertSpesifikasi($kaks_id, $daftar_spesifikasi)
+    {
+        $res = false;
+        foreach ($daftar_spesifikasi as $s) {
+            $data['kaks_id'] = $kaks_id;
+            $data['volume'] = $s['volume'];
+            $data['satuan'] = $s['satuan'];
+            $data['spesifikasi'] = $s['spesifikasi'];
+
+            $res[] = DB::table('kaks_spesifikasi')->insert($data);
+        }
+
+        return $res;
+    }
+
     public function getDetilPok($kaks_id)
     {
         $result = [];

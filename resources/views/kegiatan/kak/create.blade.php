@@ -244,9 +244,9 @@
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row flex flex-column w-full">
-                        <label for="manfaat" class="required form-label">Manfaat</label>
-                        <textarea id="manfaat" name="manfaat" rows="4" placeholder="Masukkan manfaat..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
-                        @error('manfaat')
+                        <label for="target" class="required form-label">Target/Sasaran</label>
+                        <textarea id="target" name="target" rows="4" placeholder="Masukkan target/sasaran..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        @error('target')
                         <small>{{ $message }}</small>
                         @enderror
                     </div>
@@ -291,12 +291,40 @@
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row flex flex-column w-full pengadaan hidden">
-                        <label for="spesifikasi" class="required form-label">Spesifikasi</label>
-                        <textarea id="spesifikasi" name="spesifikasi" rows="4" placeholder="Masukkan spesifikasi..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
-                        @error('spesifikasi')
-                        <small>{{ $message }}</small>
-                        @enderror
+                    <div class="pengadaan hidden" data-kt-ecommerce-catalog-add-product="auto-options">
+                        <!--begin::Label-->
+                        <label class="required form-label">Input Spesifikasi</label>
+                        <!--end::Label-->
+                        <!--begin::Repeater-->
+                        <div id="daftar_spesifikasi">
+                            <!--begin::Form group-->
+                            <div class="form-group fs-7">
+                                <div data-repeater-list="daftar_spesifikasi" class="d-flex flex-column gap-3">
+                                    <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
+                                        <input type="text" class="form-control fs-7 p-2 w-2/5" name="rincian" placeholder="Rincian..." />
+                                        <div class="d-flex flex-row gap-x-3 w-1/5">
+                                            <input type="number" class="form-control fs-7 p-2" name="volume" placeholder="Vol..." />
+                                            <input type="text" class="form-control fs-7 p-2" name="satuan" placeholder="Satuan..." />
+                                        </div>
+                                        <input type="text" class="form-control fs-7 p-2 w-1/5" name="spesifikasi" placeholder="Spesifikasi..." />
+                                        <button type="button" data-repeater-delete="" class="w-1/5 btn btn-sm btn-icon btn-light-danger p-2">
+                                            <i class="ki-duotone ki-cross fs-1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Form group-->
+                            <!--begin::Form group-->
+                            <div class="form-group mt-5">
+                                <button type="button" data-repeater-create="" class="btn btn-sm btn-light-primary">
+                                    <i class="ki-duotone ki-plus fs-2"></i>Tambah</button>
+                            </div>
+                            <!--end::Form group-->
+                        </div>
+                        <!--end::Repeater-->
                     </div>
                     <!--end::Input group-->
                 </div>
@@ -362,6 +390,7 @@
     <script>
         $(document).ready(function() {
             $('#daftar_peserta_perjadin').repeater();
+            $('#daftar_spesifikasi').repeater();
 
             $('#form_create_kak input:radio').on('change', function() {
                 $('.perjadin').addClass('hidden');

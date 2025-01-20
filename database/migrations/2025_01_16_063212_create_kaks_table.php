@@ -23,8 +23,6 @@ return new class extends Migration
             $table->date('tgl_awal');
             $table->date('tgl_akhir')->nullable();
             $table->string('tempat');
-            $table->longText('spesifikasi')->nullable();
-            $table->longText('penutup')->nullable();
             $table->date('tgl'); // tanggal disahkan
             $table->longText('lampiran')->nullable();
             $table->string('file_lampiran')->nullable();
@@ -70,7 +68,8 @@ return new class extends Migration
                 ->references('id')
                 ->on('kaks')
                 ->onDelete('cascade');
-            $table->integer('jumlah');
+            $table->integer('rincian');
+            $table->integer('volume');
             $table->string('satuan')->length(20);
             $table->string('spesifikasi');
         });

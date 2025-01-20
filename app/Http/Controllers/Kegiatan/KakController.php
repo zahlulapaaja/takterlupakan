@@ -59,22 +59,28 @@ class KakController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'detil'    => 'required',
-            'judul'    => 'required',
-            // lengkapi lagi 
+            'jenis'             => 'required',
+            'judul'             => 'required',
+            'latar_belakang'    => 'required',
+            'tujuan'            => 'required',
+            'target'            => 'required',
+            'tgl_awal'          => 'required',
+            'tempat'            => 'required',
+            'tgl'               => 'required',
+            'tim'               => 'required',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
+        $data['jenis'] = $request->jenis;
         $data['judul'] = $request->judul;
         $data['latar_belakang'] = $request->latar_belakang;
         $data['tujuan'] = $request->tujuan;
-        // $data['manfaat'] = $request->manfaat;
+        $data['target'] = $request->target;
         $data['metode'] = $request->metode;
         $data['tgl_awal'] = $request->tgl_awal;
         $data['tgl_akhir'] = $request->tgl_akhir;
         $data['tempat'] = $request->tempat;
-        $data['spesifikasi'] = $request->spesifikasi;
         $data['tgl'] = $request->tgl;
         $data['tim'] = $request->tim;
         $data['tahun'] = $request->tahun;
@@ -83,7 +89,8 @@ class KakController extends Controller
         // insert data
         $res = Kak::create($data);
         $res->insertPoks($res->id, $request->detil);
-        $res->insertPeserta($res->id, $request->daftar_peserta_perjadin);
+        if ($request->jenis == 'pengadaan') $res->insertSpesifikasi($res->id, $request->daftar_spesifikasi);
+        if ($request->jenis == 'perjadin') $res->insertPeserta($res->id, $request->daftar_peserta_perjadin);
         dd($request->all());
 
         return redirect()->route('kegiatan.kak.index');
