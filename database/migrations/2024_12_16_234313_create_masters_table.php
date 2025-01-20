@@ -62,11 +62,13 @@ return new class extends Migration
             $table->id();
             $table->integer('kpa')->length(3);
             $table->integer('ppk')->length(3);
+            $table->integer('ppk2')->length(3);
             $table->integer('bend')->length(3);
             $table->string('no_dipa');
             $table->date('tgl_dipa');
             $table->string('no_sk_kpa');
             $table->date('tgl_sk_kpa');
+            $table->string('pmk');
             $table->integer('tahun')->length(4);
             $table->timestamps();
         });

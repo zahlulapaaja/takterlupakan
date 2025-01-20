@@ -100,6 +100,10 @@
                                 <td>{{$value}}</td>
                             </tr>
                             @endforeach
+                            <tr>
+                                <td class="pr-4 align-top">j.</td>
+                                <td>{{$ref->pmk}};</td>
+                            </tr>
                         </table>
                     </td>
                 </tr>

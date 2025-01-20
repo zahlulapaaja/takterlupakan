@@ -41,9 +41,12 @@ class KakController extends Controller
         // mengambil data pegawai
         $tim = Tim::where('tahun', $pok->tahun)->get();
         $pegawai = Pegawai::all();
+        $ref = Referensi::where('tahun', $pok->tahun)->first();
+        $ref->ppk = Pegawai::find($ref->ppk);
+        $ref->ppk2 = Pegawai::find($ref->ppk2);
 
         if ($request->has('id_pok')) {
-            return view('kegiatan.kak.create', compact('pok', 'tim', 'pegawai'));
+            return view('kegiatan.kak.create', compact('pok', 'tim', 'pegawai', 'ref'));
         } else {
             return redirect()->route('pok.index');
         }
@@ -61,6 +64,7 @@ class KakController extends Controller
             'tempat'            => 'required',
             'tgl'               => 'required',
             'tim'               => 'required',
+            'ppk'               => 'required',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -76,6 +80,7 @@ class KakController extends Controller
         $data['tempat'] = $request->tempat;
         $data['tgl'] = $request->tgl;
         $data['tim'] = $request->tim;
+        $data['ppk'] = $request->ppk;
         $data['tahun'] = $request->tahun;
         $data['edited_by'] = session('user_id');
 
@@ -115,7 +120,7 @@ class KakController extends Controller
         // mengambil data referensi 
         $ref = Referensi::where('tahun', $data->tahun)->first();
         $ref->kpa = Pegawai::find($ref->kpa);
-        $ref->ppk = Pegawai::find($ref->ppk);
+        $ref->ppk = Pegawai::find($data->ppk);
 
         return view('kegiatan.kak.print', compact('data', 'ref'));
     }

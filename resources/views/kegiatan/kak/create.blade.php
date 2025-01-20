@@ -140,14 +140,27 @@
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid w-full">
-                            <label class="required form-label">Tanggal Disahkan</label>
-                            <input type="date" name="tgl" placeholder="Select a date" class="form-control mb-2" required />
+                            <label class="required form-label">Pilih PPK</label>
+                            <select class="form-select" name="ppk" required>
+                                <option value="" hidden>Pilih PPK...</option>
+                                <option value="{{$ref->ppk->id}}">{{$ref->ppk->nama}}</option>
+                                <option value="{{$ref->ppk2->id}}">{{$ref->ppk2->nama}}</option>
+                            </select>
                             @error('tgl')
                             <small>{{ $message }}</small>
                             @enderror
                         </div>
                         <!--end::Input group-->
                     </div>
+                    <!--begin::Input group-->
+                    <div class="fv-row">
+                        <label class="required form-label">Tanggal Disahkan</label>
+                        <input type="date" name="tgl" class="form-control mb-2" placeholder="Select a date" required />
+                        @error('tgl')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group-->
                 </div>
             </div>
             <!--end::Card header-->

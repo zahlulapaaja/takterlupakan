@@ -26,6 +26,7 @@ return new class extends Migration
             $table->longText('lampiran')->nullable();
             $table->string('file_lampiran')->nullable();
             $table->integer('tim');
+            $table->integer('ppk')->length(3);
             $table->integer('tahun')->length(4);
             $table->unsignedBigInteger('edited_by');
             $table->foreign('edited_by')
