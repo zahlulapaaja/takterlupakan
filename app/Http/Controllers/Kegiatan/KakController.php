@@ -114,6 +114,57 @@ class KakController extends Controller
         return redirect()->route('kegiatan.kak.index');
     }
 
+    public function edit($id)
+    {
+        // mengambil data 
+        $data = Kak::find($id);
+        $poks = DB::table('kaks_poks')->where('kaks_id', $data->id)->get();
+        $list_pok = [];
+        foreach ($poks as $p) {
+            array_push($list_pok, $p->poks_id);
+        }
+        $data->list_pok = $list_pok;
+
+        // mengambil data penanggung jawab 
+        if ($data->tim == 0) {
+            $data->pj = 'Kepala ' . config('constants.SATKER');
+        } else {
+            $data->pj = 'Tim ' . Tim::find($data->tim)->nama;
+        }
+
+        // mengambil pok dan detil kegiatannya
+        $pok = Pok::find($data->list_pok[0]);
+        $pok->list_detil = Pok::where('kode_program', $pok->kode_program)
+            ->where('kode_kegiatan', $pok->kode_kegiatan)
+            ->where('kode_output', $pok->kode_output)
+            ->where('kode_suboutput', $pok->kode_suboutput)
+            ->where('kode_komponen', $pok->kode_komponen)
+            ->where('kode_subkomponen', $pok->kode_subkomponen)
+            ->orderBy('kode_akun', 'ASC')
+            ->get();
+
+        // mengambil data peserta perjadin
+        $data->peserta_perjadin = DB::table('kaks_perjadin')->where('kaks_id', $id)->get();
+        foreach ($data->peserta_perjadin as $pp) {
+            $pp->pegawai = Pegawai::find($pp->pegawais_id);
+        }
+
+        // mengambil data pelatihan
+        $data->pelatihan = DB::table('kaks_pelatihan')->where('kaks_id', $id)->first();
+
+        // mengambil data spesifikasi
+        $data->spesifikasi = DB::table('kaks_spesifikasi')->where('kaks_id', $id)->get();
+
+        // mengambil data pegawai
+        $tim = Tim::where('tahun', $data->tahun)->get();
+        $pegawai = Pegawai::all();
+        $ref = Referensi::where('tahun', $data->tahun)->first();
+        $ref->ppk = Pegawai::find($ref->ppk);
+        $ref->ppk2 = Pegawai::find($ref->ppk2);
+
+        return view('kegiatan.kak.edit', compact('data', 'pok', 'tim', 'pegawai', 'ref'));
+    }
+
     public function destroy($id)
     {
         $data = Kak::find($id);
