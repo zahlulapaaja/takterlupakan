@@ -473,3 +473,17 @@ if (!function_exists('avatar')) {
         return asset('uploads/avatar-user/' . $path);
     }
 }
+
+if (!function_exists('lampiran')) {
+    /**
+     * Get lampiran url by path
+     *
+     * @param $path
+     *
+     * @return string
+     */
+    function lampiran($path)
+    {
+        return asset('uploads/lampiran-kak/' . $path);
+    }
+}

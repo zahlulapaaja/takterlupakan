@@ -9,7 +9,7 @@
     @endsection
 
     <!--begin::Form-->
-    <form id="form_create_kak" method="post" action="{{ route('kegiatan.kak.store') }}" class="form d-flex flex-column gap-7 gap-lg-10">
+    <form id="form_create_kak" method="post" action="{{ route('kegiatan.kak.store') }}" class="form d-flex flex-column gap-7 gap-lg-10" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <input type="hidden" name="tahun" value="{{$pok->tahun}}" />

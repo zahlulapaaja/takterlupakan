@@ -10,6 +10,7 @@ use App\Models\Master\Tim;
 use App\Models\Pok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class KakController extends Controller
@@ -65,6 +66,7 @@ class KakController extends Controller
             'tgl'               => 'required',
             'tim'               => 'required',
             'ppk'               => 'required',
+            'file_lampiran'     => 'mimes:pdf',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -83,6 +85,17 @@ class KakController extends Controller
         $data['ppk'] = $request->ppk;
         $data['tahun'] = $request->tahun;
         $data['edited_by'] = session('user_id');
+
+        // setor file lampiran 
+        if ($request->file_lampiran) {
+            $file     = $request->file('file_lampiran');
+            $filename   = date('YmdHis') . '_' . $file->getClientOriginalName();
+            $path       = 'lampiran-kak/' . $filename;
+
+            // setor 
+            Storage::disk('public')->put($path, file_get_contents($file));
+            $data['file_lampiran'] = $filename;
+        }
 
         // data pelatihan
         $pelatihan['peserta_pelatihan'] = $request->peserta_pelatihan;

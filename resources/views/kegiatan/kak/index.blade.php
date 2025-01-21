@@ -67,13 +67,21 @@
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{ route('kegiatan.kak.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank">
+                                    <a href="{{ route('kegiatan.kak.print', $d->id) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="KAK">
                                         <i class="ki-duotone ki-printer fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                             <span class="path3"></span>
                                         </i>
                                     </a>
+                                    @if($d->file_lampiran)
+                                    <a href="{{ lampiran($d->file_lampiran) }}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Lampiran">
+                                        <i class="ki-duotone ki-document fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                    </a>
+                                    @endif
                                     <a href="{{route('kegiatan.kak.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
