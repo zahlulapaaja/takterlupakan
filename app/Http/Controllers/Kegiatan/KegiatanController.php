@@ -14,10 +14,11 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        $data = Kegiatan::select('*')
+        $data = Kegiatan::select('id', 'poks_id', 'nama', 'tim', 'tahun')
             ->orderBy('tahun', 'DESC')
             ->orderBy('created_at', 'DESC')
             ->get();
+
         foreach ($data as $d) {
             $pok = Pok::find($d->poks_id);
             $d->mak = $pok->getMak($pok);
@@ -25,7 +26,9 @@ class KegiatanController extends Controller
 
             $d->tim = Tim::find($d->tim);
         }
-        return view('kegiatan.index', compact('data'));
+        $list_tahun = Kegiatan::distinct()->get('tahun');
+
+        return view('kegiatan.index', compact('data', 'list_tahun'));
     }
 
     public function create(Request $request)
