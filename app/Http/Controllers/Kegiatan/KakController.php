@@ -61,8 +61,6 @@ class KakController extends Controller
             'latar_belakang'    => 'required',
             'tujuan'            => 'required',
             'target'            => 'required',
-            'tgl_awal'          => 'required',
-            'tempat'            => 'required',
             'tgl'               => 'required',
             'tim'               => 'required',
             'ppk'               => 'required',
@@ -97,19 +95,12 @@ class KakController extends Controller
             $data['file_lampiran'] = $filename;
         }
 
-        // data pelatihan
-        $pelatihan['peserta_pelatihan'] = $request->peserta_pelatihan;
-        $pelatihan['konsumsi_pelatihan'] = $request->konsumsi_pelatihan;
-        $pelatihan['akomodasi_pelatihan'] = $request->akomodasi_pelatihan;
-        $pelatihan['translok_pelatihan'] = $request->translok_pelatihan;
-
         // insert data
         $res = Kak::create($data);
         $res->insertPoks($res->id, $request->detil);
-        if ($request->jenis == 'pelatihan') $res->insertPelatihan($res->id, $pelatihan);
+        if ($request->jenis == 'pelatihan') $res->insertPelatihan($res->id, $request->all());
         if ($request->jenis == 'perjadin') $res->insertPeserta($res->id, $request->daftar_peserta_perjadin);
         if ($request->jenis == 'pengadaan') $res->insertSpesifikasi($res->id, $request->daftar_spesifikasi);
-        dd($request->all());
 
         return redirect()->route('kegiatan.kak.index');
     }
@@ -163,6 +154,63 @@ class KakController extends Controller
         $ref->ppk2 = Pegawai::find($ref->ppk2);
 
         return view('kegiatan.kak.edit', compact('data', 'pok', 'tim', 'pegawai', 'ref'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $find = Kak::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'judul'             => 'required',
+            'latar_belakang'    => 'required',
+            'tujuan'            => 'required',
+            'target'            => 'required',
+            'tgl'               => 'required',
+            'tim'               => 'required',
+            'ppk'               => 'required',
+            'file_lampiran'     => 'mimes:pdf',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $data['judul'] = $request->judul;
+        $data['latar_belakang'] = $request->latar_belakang;
+        $data['tujuan'] = $request->tujuan;
+        $data['target'] = $request->target;
+        $data['metode'] = $request->metode;
+        $data['tgl_awal'] = $request->tgl_awal;
+        $data['tgl_akhir'] = $request->tgl_akhir;
+        $data['tempat'] = $request->tempat;
+        $data['tgl'] = $request->tgl;
+        $data['tim'] = $request->tim;
+        $data['ppk'] = $request->ppk;
+        $data['tahun'] = $request->tahun;
+        $data['edited_by'] = session('user_id');
+
+        // setor file lampiran 
+        if ($request->file_lampiran) {
+            $file     = $request->file('file_lampiran');
+            $filename   = date('YmdHis') . '_' . $file->getClientOriginalName();
+            $path       = 'lampiran-kak/' . $filename;
+
+            // hapus file yang udah ada 
+            if ($find->file_lampiran != null) {
+                Storage::disk('public')->delete('lampiran-kak/' . $find->file_lampiran);
+            }
+
+            // setor 
+            Storage::disk('public')->put($path, file_get_contents($file));
+            $data['file_lampiran'] = $filename;
+        }
+
+        // update data
+        $find->update($data);
+        $find->updatePoks($id, $request->detil);
+        if ($find->jenis == 'pelatihan') $find->updatePelatihan($id, $request->all());
+        if ($find->jenis == 'perjadin') $find->updatePeserta($id, $request->daftar_peserta_perjadin);
+        if ($find->jenis == 'pengadaan') $find->updateSpesifikasi($id, $request->daftar_spesifikasi);
+
+        return redirect()->route('kegiatan.kak.index');
     }
 
     public function destroy($id)

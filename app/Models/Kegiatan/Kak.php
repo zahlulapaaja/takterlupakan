@@ -59,6 +59,7 @@ class Kak extends Model
     {
         $data['kaks_id'] = $kaks_id;
         $data['peserta'] = $pelatihan['peserta_pelatihan'];
+        $data['waktu_tempat'] = $pelatihan['waktu_tempat_pelatihan'];
         $data['konsumsi'] = ($pelatihan['konsumsi_pelatihan'] == "on");
         $data['akomodasi'] = ($pelatihan['akomodasi_pelatihan'] == "on");
         $data['translok'] = ($pelatihan['translok_pelatihan'] == "on");
@@ -87,6 +88,44 @@ class Kak extends Model
         }
 
         return $result;
+    }
+
+    public function updatePoks($kaks_id, $detil)
+    {
+        DB::table('kaks_poks')->where('kaks_id', $kaks_id)->delete();
+        $this->insertPoks($kaks_id, $detil);
+
+        return true;
+    }
+
+    public function updatePelatihan($kaks_id, $pelatihan)
+    {
+        $data['kaks_id'] = $kaks_id;
+        $data['peserta'] = $pelatihan['peserta_pelatihan'];
+        $data['waktu_tempat'] = $pelatihan['waktu_tempat_pelatihan'];
+        $data['konsumsi'] = ($pelatihan['konsumsi_pelatihan'] == "on");
+        $data['akomodasi'] = ($pelatihan['akomodasi_pelatihan'] == "on");
+        $data['translok'] = ($pelatihan['translok_pelatihan'] == "on");
+
+        $res = DB::table('kaks_pelatihan')->where('kaks_id', $kaks_id)->update($data);
+        return $res;
+        // return true;
+    }
+
+    public function updatePeserta($kaks_id, $daftar_peserta_perjadin)
+    {
+        DB::table('kaks_perjadin')->where('kaks_id', $kaks_id)->delete();
+        $this->insertPeserta($kaks_id, $daftar_peserta_perjadin);
+
+        return true;
+    }
+
+    public function updateSpesifikasi($kaks_id, $daftar_spesifikasi)
+    {
+        DB::table('kaks_spesifikasi')->where('kaks_id', $kaks_id)->delete();
+        $this->insertSpesifikasi($kaks_id, $daftar_spesifikasi);
+
+        return true;
     }
 
     public function deleteKak($kaks_id)

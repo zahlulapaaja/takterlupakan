@@ -146,7 +146,7 @@
                                 <option value="{{$ref->ppk->id}}">{{$ref->ppk->nama}}</option>
                                 <option value="{{$ref->ppk2->id}}">{{$ref->ppk2->nama}}</option>
                             </select>
-                            @error('tgl')
+                            @error('ppk')
                             <small>{{ $message }}</small>
                             @enderror
                         </div>
@@ -275,7 +275,7 @@
                     <!--end::Input group [Pengadaan]-->
                     <div class="fv-row d-flex flex-column flex-md-row gap-5">
                         <!--begin::Input group-->
-                        <div class="fv-row flex-row-fluid w-full">
+                        <div class="fv-row flex-row-fluid w-full tanggal">
                             <label class="required form-label">Tanggal Mulai</label>
                             <input type="date" name="tgl_awal" placeholder="Select a date" class="form-control mb-2" />
                             @error('tgl_awal')
@@ -284,7 +284,7 @@
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
-                        <div class="fv-row flex-row-fluid w-full">
+                        <div class="fv-row flex-row-fluid w-full tanggal">
                             <label class="form-label">Tanggal Akhir (jika ada)</label>
                             <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" />
                             @error('tgl_akhir')
@@ -294,7 +294,7 @@
                         <!--end::Input group-->
                     </div>
                     <!--begin::Input group-->
-                    <div class="fv-row">
+                    <div class="fv-row tempat">
                         <label class="required form-label">Tempat</label>
                         <input type="text" class="form-control" placeholder="Masukkah Tempat Kegiatan..." name="tempat" />
                         <div class="text-muted fs-7">Jika perjadin maksudnya adalah tujuan perjalanan</div>
@@ -303,6 +303,15 @@
                         @enderror
                     </div>
                     <!--end::Input group-->
+                    <!--begin::Input group [Pelatihan]-->
+                    <div class="fv-row flex flex-column w-full pelatihan hidden">
+                        <label for="waktu_tempat_pelatihan" class="required form-label">Waktu dan Tempat Pelaksanaan</label>
+                        <textarea id="waktu_tempat_pelatihan" name="waktu_tempat_pelatihan" rows="4" placeholder="Masukkan penjelasan waktu dan tempat pelatihan..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                        @error('waktu_tempat_pelatihan')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group [Pelatihan]-->
                     <!--begin::Input group [Pelatihan]-->
                     <div class="fv-row flex flex-column pelatihan hidden">
                         <div class="leading-tight mb-2">
@@ -435,7 +444,12 @@
                 $('.perjadin').addClass('hidden');
                 $('.pengadaan').addClass('hidden');
 
-                if ($(this).val() == 'pelatihan') $('.pelatihan').removeClass('hidden');
+                if ($(this).val() == 'pelatihan') {
+                    $('.pelatihan').removeClass('hidden');
+                    $('.tanggal').addClass('hidden');
+                    $('.tempat').addClass('hidden');
+                }
+
                 if ($(this).val() == 'perjadin') $('.perjadin').removeClass('hidden');
                 if ($(this).val() == 'pengadaan') $('.pengadaan').removeClass('hidden');
 

@@ -19,9 +19,9 @@ return new class extends Migration
             $table->longText('tujuan');
             $table->longText('target');
             $table->longText('metode')->nullable();
-            $table->date('tgl_awal');
+            $table->date('tgl_awal')->nullable();
             $table->date('tgl_akhir')->nullable();
-            $table->string('tempat');
+            $table->string('tempat')->nullable();
             $table->date('tgl'); // tanggal disahkan
             $table->longText('lampiran')->nullable();
             $table->string('file_lampiran')->nullable();
@@ -80,10 +80,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('kaks')
                 ->onDelete('cascade');
-            $table->longText('peserta')->nullable();
-            $table->boolean('konsumsi')->nullable();
-            $table->boolean('akomodasi')->nullable();
-            $table->boolean('translok')->nullable();
+            $table->longText('peserta');
+            $table->longText('waktu_tempat');
+            $table->boolean('konsumsi');
+            $table->boolean('akomodasi');
+            $table->boolean('translok');
         });
     }
 

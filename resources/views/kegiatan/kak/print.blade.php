@@ -133,6 +133,14 @@
                     <td class="align-top p-2">{!! nl2br($data->metode) !!}</td>
                 </tr>
                 @endif
+                @if($data->jenis == 'pelatihan')
+                <tr>
+                    <td class="align-top font-bold p-2">{{$no++}}.</td>
+                    <td class="align-top font-bold p-2 text-left text-wrap">WAKTU DAN TEMPAT PELAKSANAAN</td>
+                    <td class="align-top py-2 pl-10">:</td>
+                    <td class="align-top p-2">{{$data->pelatihan->waktu_tempat}}</td>
+                </tr>
+                @else
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">WAKTU DAN TEMPAT PELAKSANAAN</td>
@@ -148,6 +156,7 @@
                         Tempat pelaksanaan kegiatan diselenggarakan di {{$data->tempat}}.
                     </td>
                 </tr>
+                @endif
                 <tr>
                     <td class="align-top font-bold p-2">{{$no++}}.</td>
                     <td class="align-top font-bold p-2 text-left text-wrap">SUMBER DANA DAN PERKIRAAN BIAYA</td>

@@ -301,6 +301,7 @@
                     </div>
                     <!--end::Input group [Pengadaan]-->
                     @endif
+                    @if($data->jenis != 'pelatihan')
                     <div class="fv-row d-flex flex-column flex-md-row gap-5">
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid w-full">
@@ -331,7 +332,17 @@
                         @enderror
                     </div>
                     <!--end::Input group-->
+                    @endif
                     @if($data->jenis == 'pelatihan')
+                    <!--begin::Input group [Pelatihan]-->
+                    <div class="fv-row flex flex-column w-full pelatihan hidden">
+                        <label for="waktu_tempat_pelatihan" class="required form-label">Waktu dan Tempat Pelaksanaan</label>
+                        <textarea id="waktu_tempat_pelatihan" name="waktu_tempat_pelatihan" rows="4" placeholder="Masukkan penjelasan waktu dan tempat pelatihan..." class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{$data->pelatihan->waktu_tempat}}</textarea>
+                        @error('waktu_tempat_pelatihan')
+                        <small>{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <!--end::Input group [Pelatihan]-->
                     <!--begin::Input group [Pelatihan]-->
                     <div class="fv-row flex flex-column pelatihan">
                         <div class="leading-tight mb-2">
