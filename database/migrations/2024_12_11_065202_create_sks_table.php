@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sks', function (Blueprint $table) {
             $table->id();
-            $table->string('no')->length(10);
+            $table->string('no')->length(50);
             $table->string('mak')->length(30);
             $table->string('tentang');
             $table->date('tgl_mulai');

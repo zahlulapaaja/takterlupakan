@@ -9,7 +9,7 @@
     <div class="d-flex flex-column text-xl mb-8">
         <span>KEPUTUSAN KUASA PENGGUNA ANGGARAN BADAN PUSAT STATISTIK</span>
         <span>{{ config('constants.KABUPATEN') }}</span>
-        <span>NOMOR: {{$data->no_sk}}</span>
+        <span>NOMOR: {{$data->no}}</span>
     </div>
     <div class="text-xl mb-8">TENTANG</div>
     <div class="text-xl mb-8">{{ $data->tentang . ' ' . config('constants.SATKER') }}</div>
@@ -193,7 +193,7 @@
         </span>
         <div class="flex flex-row">
             <span class="w-20">Nomor</span>
-            <span>: {{ $data->no_sk }}</span>
+            <span>: {{ $data->no }}</span>
         </div>
         <div class="flex flex-row">
             <span class="w-20">Tanggal</span>

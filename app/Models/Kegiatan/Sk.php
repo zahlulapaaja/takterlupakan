@@ -14,7 +14,7 @@ class Sk extends Model
     use HasFactory;
 
     protected $table = "sks";
-    public string $no_sk;
+    // public string $no_sk;
 
     protected $fillable = [
         'no',
@@ -28,11 +28,11 @@ class Sk extends Model
         'edited_by',
     ];
 
-    public function getNoSk($sk)
-    {
-        $this->no_sk = 'B-' . $sk->no . '/11070/KP.311/' . $sk->tahun;
-        return $this->no_sk;
-    }
+    // public function getNoSk($sk)
+    // {
+    //     $this->no_sk = 'B-' . $sk->no . '/11070/KP.311/' . $sk->tahun;
+    //     return $this->no_sk;
+    // }
 
     public function insertHonor($sks_id, $daftar_honor)
     {

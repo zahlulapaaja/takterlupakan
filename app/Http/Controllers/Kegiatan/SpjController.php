@@ -52,9 +52,6 @@ class SpjController extends Controller
         $sk = new Sk();
         $list_petugas = $sk->getListPetugas($keg->tahun);
         $sk = $sk->where('tahun', $keg->tahun)->get();
-        foreach ($sk as $s) {
-            $s->no_sk = $s->getNoSk($s);
-        }
 
         // mengambil data nomor st
         $nomor_st = NoSuratTim::where('tahun', $keg->tahun)

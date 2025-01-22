@@ -57,10 +57,10 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{$d->no_sk}}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{$d->no}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->rincian,30)}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->tentang,30)}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tgl_ditetapkan}}</span>
@@ -80,7 +80,7 @@
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->no_sk}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
+                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->no}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>

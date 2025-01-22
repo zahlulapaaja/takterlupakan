@@ -21,10 +21,7 @@ class SkController extends Controller
             ->orderBy('tahun', 'DESC')
             ->orderBy('tgl_ditetapkan', 'DESC')
             ->get();
-        foreach ($data as $d) {
-            $d->no_sk = $d->getNoSk($d);
-            $d->rincian = $d->tentang;
-        }
+
         return view('kegiatan.sk.index', compact('data'));
     }
 
@@ -159,7 +156,6 @@ class SkController extends Controller
     public function print($id)
     {
         $data = Sk::find($id);
-        $data->no_sk = $data->getNoSk($data);
         $data->honor = DB::table('sks_honor')->where('sks_id', $id)->get();
         $data->petugas = $data->getPetugas($id);
 

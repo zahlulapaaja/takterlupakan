@@ -67,7 +67,6 @@
                             <td class="d-flex flex-column">
                                 <a href="{{ route('master.tim.show', $d->id) }}" class="text-gray-900 fw-bold text-hover-primary d-block fs-6 mb-1">{{ $d->nama }}</a>
                                 <span>{{ $d->singkatan }} - {{ $d->kode }}</span>
-                                <!-- <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->no_sk }}</span> -->
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->ketua->nama}}</span>

@@ -149,7 +149,7 @@
                         <select id="no-sk-dropdown" class="form-select" name="tim" required>
                             <option value="" hidden>Pilih No SK...</option>
                             @foreach($sk as $s)
-                            <option value="{{$s->id}}">{{$s->no_sk}} - {{$s->tentang}}</option>
+                            <option value="{{$s->id}}">{{$s->no}} - {{$s->tentang}}</option>
                             @endforeach
                         </select>
                     </div>
