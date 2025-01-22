@@ -28,7 +28,7 @@
                     <div class="menu-content d-flex align-items-center px-3">
                         <!--begin::Avatar-->
                         <div class="symbol symbol-50px me-5">
-                            <img alt="Avatar" src="{{ avatar(session('avatar')) }}" />
+                            <img alt="Avatar" src="{{ avatar(session('avatar')) }}" class="object-cover object-top bg-amber-200" />
                         </div>
                         <!--end::Avatar-->
                         <!--begin::Username-->
@@ -48,13 +48,13 @@
                 <!--end::Menu separator-->
                 <!--begin::Menu item-->
                 <div class="menu-item px-5">
-                    <a href="account/overview.html" class="menu-link px-5">My Profile</a>
+                    <a href="#" class="menu-link px-5">My Profile</a>
                 </div>
                 <!--end::Menu item-->
                 <!--begin::Menu item-->
-                <div class="menu-item px-5 my-1">
-                    <a href="account/settings.html" class="menu-link px-5">Account Settings</a>
-                </div>
+                <!-- <div class="menu-item px-5 my-1">
+                    <a href="#" class="menu-link px-5">Account Settings</a>
+                </div> -->
                 <!--end::Menu item-->
                 <!--begin::Menu item-->
                 <div class="menu-item px-5">
