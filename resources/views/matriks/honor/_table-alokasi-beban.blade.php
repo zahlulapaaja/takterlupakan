@@ -14,7 +14,7 @@
                 <input type="checkbox" class="form-check-input items-start mt-3" name="checkbox[]" value="{{$loop->index}}">
                 <div class="w-full flex flex-column flex-lg-row gap-5">
                     <input type="text" class="form-control" name="petugas[]" value="{{$p->nama}}" readonly />
-                    <input type="text" class="form-control" name="sebagai[]" placeholder="Sebagai" />
+                    <input type="text" class="form-control" name="sebagai[]" value="{{$p->sebagai}}" placeholder="Sebagai" />
                     <div class="w-full flex flex-row gap-5">
                         <input type="number" class="form-control" name="harga[]" placeholder="Harga @" value="{{$pok->harga}}" required />
                         <input type="number" class="form-control" name="volume[]" placeholder="Volume" />
