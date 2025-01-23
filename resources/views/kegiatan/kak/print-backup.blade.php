@@ -1,388 +1,399 @@
 <x-print-layout>
 
-    @section('head-print')
-    <div class="d-flex flex-column text-xl mb-8">
-        <img class="w-24 mx-auto my-4" src="{{ image('logos/logo-bps.png') }}">
-        <div class="d-flex flex-column text-xl mb-8">
-            <span>KERANGKA ACUAN KERJA (KAK)</span>
-            <span>$PEMUTAKHIRAN MASTER FILE DESA (MFD) DAN MASTER BLOK SENSUS (MBS)</span>
-            <span>{{ config('constants.SATKER') }} TAHUN 2024</span>
-        </div>
-    </div>
-    @endsection
-
-    <div class="leading-normal text-justify text-lg potrait-page">
-        <table class="mt-8">
-            <tr>
-                <td class="align-top font-bold p-2">1.</td>
-                <td class="align-top font-bold p-2 text-nowrap">PENDAHULUAN</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    Pada tahun 2024, Badan Pusat Statistik (BPS) Kabupaten Aceh Barat kembali melaksanakan kegiatan Pemutakhiran Master File Desa (MFD) dan Master Blok Sensus (MBS) sebagai upaya untuk memastikan keakuratan dan kelengkapan data wilayah administrasi serta blok sensus di seluruh kabupaten ini. Kegiatan ini merupakan bagian dari persiapan strategis BPS untuk mendukung pelaksanaan kegiatan Sensus dan berbagai survei lainnya di masa mendatang.
-                    Kabupaten Aceh Barat, yang terdiri dari 12 kecamatan dan 321 desa/kelurahan, terus mengalami perkembangan dalam berbagai aspek, seperti jumlah penduduk, perubahan batas wilayah, dan pemekaran desa. Oleh karena itu, pemutakhiran data MFD dan MBS pada tahun 2024 ini menjadi sangat penting untuk memperbarui informasi terkait batas wilayah administrasi, kode wilayah, serta perubahan fungsi wilayah dan nama kepala desa.
-                    Proses pemutakhiran ini juga mencakup pembaruan informasi tentang blok sensus, termasuk jumlah bangunan, jenis penggunaan lahan, dan karakteristik wilayah di setiap blok sensus. Data ini akan digunakan sebagai dasar untuk menyusun kerangka sampel yang lebih akurat dan representatif, sehingga mampu menghasilkan data statistik yang berkualitas tinggi untuk perencanaan pembangunan yang lebih baik di Kabupaten Aceh Barat.
-                    Pemutakhiran Master File Desa (MFD) Dan Master Blok Sensus (MBS) BPS Kabupaten Aceh Barat Tahun 2024 dilakukan sebanyak 3 Desa dengan Jumlah Petugas Pemutakhiran sebanyak 1 petugas.
-                    Kerangka Acuan Kegiatan ini disusun untuk memberikan ketentuan dan aturan yang harus dipedomani dalam pelaksanaan Pemutakhiran Master File Desa (MFD) Dan Master Blok Sensus (MBS) BPS Kabupaten Aceh Barat Tahun 2024.
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">2.</td>
-                <td class="align-top font-bold p-2 text-nowrap">TUJUAN</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    Tujuan dari Pemutakhiran Master File Desa (MFD) Dan Master Blok Sensus (MBS) ini yaitu menghasilkan MFD dan MBS Tahun 2024 yang akurat.
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">3.</td>
-                <td class="align-top font-bold p-2 text-nowrap">OUTPUT</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    Adanya Master File Desa (MFD) Dan Master Blok Sensus (MBS) Tahun 2024 yang mutakhir.
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">4.</td>
-                <td class="align-top font-bold p-2 text-wrap">WAKTU DAN TEMPAT PELAKSANAAN</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    Waktu penyelenggaraan kegiatan Pemutakhiran Master File Desa (MFD) Dan Master Blok Sensus (MBS) dari tanggal 1 – 23 September 2024.
-                    <br>
-                    Tempat pelaksanaan kegiatan diselenggarakan di Kecamatan Johan Pahlawan dan Kecamatan Kaway XVI Kabupaten Aceh Barat.
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">5.</td>
-                <td class="align-top font-bold p-2 text-wrap">SUMBER DANA DAN PERKIRAAN BIAYA</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    <div class="d-flex flex-row gap-3">
-                        <span>a.</span>
-                        <span> Sumber dana: DIPA BPS Kabupaten Aceh Barat Nomor: SP DIPA-054.01.2.019738/2024 Tanggal 28 November 2024.</span>
+    <div class="potrait-page">
+        <!-- begin::Header -->
+        <div class="flex flex-col place-items-center text-center font-bold uppercase">
+            <div class="d-flex flex-column mb-8">
+                <div class="d-flex flex-column my-20">
+                    <span class="fs-1 mb-20">KERANGKA ACUAN KERJA</span>
+                    <div class="d-flex flex-column fs-2 mt-20">
+                        <span>PERJALANAN DINAS DALAM RANGKA</span>
+                        <span>WORKSHOP EVALUASI DATA STATISTIK NASIONAL</span>
+                        <span>{{ config('constants.SATKER') }} TAHUN 2024</span>
                     </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>b.</span>
-                        <span> Perkiraan biaya maksimal disesuaikan dengan DIPA yang ada. </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">6.</td>
-                <td class="align-top font-bold p-2 text-wrap">PESERTA</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    <div>
-                        Pelatihan Petugas Sakernas Agustus 2024 terdiri dari 1 kelas, diikuti oleh peserta sebagai berikut:
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>a.</span>
-                        <span> Petugas Sakerns Agustus 2024 dari Kabupaten Aceh Barat sebanyak 25 orang. </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>b</span>
-                        <span> Panitia sebanyak 2 orang. </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>c.</span>
-                        <span> Inda sebanyak 2 orang. </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>d.</span>
-                        <span> Total Seluruhnya sebanyak 29 Orang. </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">7.</td>
-                <td class="align-top font-bold p-2 text-wrap">PERSIAPAN</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    <div>
-                        Persiapan administrasi :
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>a.</span>
-                        <span>Setiap peserta membawa kelengkapan Surat Tugas dari BPS Kabupaten Aceh Barat; </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>b</span>
-                        <span> Persiapan Pribadi : </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3 ms-8">
-                        <span>i.</span>
-                        <span> Pakaian pada waktu pembukaan menggunakan batik lengan panjang dan selama pelaksanaan kegiatan bebas rapi; </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3 ms-8">
-                        <span>ii.</span>
-                        <span> Selama dalam acara pertemuan diwajibkan mengenakan sepatu, mengubah handphone dalam nada diam, tidak bertelepon dalam ruang kegiatan, dan berperilaku sesuai dengan etika kesopanan. </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>c.</span>
-                        <span> Transport dan Akomodasi Peserta </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3 ms-8">
-                        <span>i.</span>
-                        <span> Panitia menyediakan transport lokal sesuai aturan yang berlaku. </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3 ms-8">
-                        <span>ii.</span>
-                        <span> Panitia menyediakan penginapan karena pelatihan diadakan fullboard </span>
-                    </div>
-                    <div class="d-flex flex-row gap-3">
-                        <span>d.</span>
-                        <span> Seluruh peserta pelatihan akan memperoleh materi yang akan disampaikan oleh Instruktur Daerah. </span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">8.</td>
-                <td class="align-top font-bold p-2 text-wrap">AKOMODASI, KONSUMSI, DAN LAINNYA</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    Konsumsi dan akomodasi selama pelaksanaan ditanggung oleh Panitia Penyelenggara.
-                </td>
-            </tr>
-            <tr>
-                <td class="align-top font-bold p-2">9.</td>
-                <td class="align-top font-bold p-2 text-wrap">PEMBIAYAAN</td>
-                <td class="align-top py-2 pl-20">:</td>
-                <td class="align-top p-2">
-                    Pembiayaan kegiatan dibebankan pada DIPA BPS Kabupaten Aceh Barat Tahun Anggaran 2024, Program : (054.01.GG) Program Penyediaan dan Pelayanan Informasi Statistik, (2900.BMA.005) Dokumen, Laporan, Dan Publikasi Pengembangan Metodologi Sensus Dan Survei, Akun 524113.
-                </td>
-            </tr>
-        </table>
-
-        <table class="table-auto w-full text-center text-lg mt-8">
-            <tr>
-                <td>Mengetahui,</td>
-                <td>{{config('constants.MEULABOH')}}, {{$data->tgl_spj}}</td>
-            </tr>
-            <tr>
-                <td class="pb-20">Kuasa Pengguna Anggaran</td>
-                <td class="pb-20">Pejabat Pembuat Komitmen</td>
-            </tr>
-            <tr>
-                <td>{{$ref->nama_kpa}}</td>
-                <td>{{$ref->nama_ppk}}</td>
-            </tr>
-            <tr>
-                <td>NIP. {{$ref->nip_kpa}}</td>
-                <td>NIP. {{$ref->nip_ppk}}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="page-break"></div>
-
-    <!-- begin::Lampiran 1 -->
-    <div class="flex flex-col place-items-center text-center font-bold uppercase">
-        <div class="d-flex flex-column text-xl">
-            <div class="text-left">LAMPIRAN 1</div>
-            <div class="d-flex flex-column text-xl my-8">
-                <span>RENCANA ANGGARAN DAN BIAYA (RAB)</span>
-                <span>$PEMUTAKHIRAN MASTER FILE DESA (MFD) DAN MASTER BLOK SENSUS (MBS)</span>
-                <span>{{ config('constants.SATKER') }} TAHUN 2024</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="leading-tight text-lg my-8">
-        <table class="text-left">
-            <tr>
-                <td class="px-12">Program</td>
-                <td class="px-4">:</td>
-                <td>{{$data->pok->program}}</td>
-            </tr>
-            <tr>
-                <td class="px-12">Kegiatan</td>
-                <td class="px-4">:</td>
-                <td>{{$data->pok->kegiatan}}</td>
-            </tr>
-            <tr>
-                <td class="px-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
-                <td class="px-4">:</td>
-                <td>{{$data->pok->output}}</td>
-            </tr>
-            <tr>
-                <td class="px-12 text-nowrap align-top">Rincian Output (RO)</td>
-                <td class="px-4 align-top">:</td>
-                <td class="capitalize">{{$data->pok->suboutput}}</td>
-            </tr>
-            <tr>
-                <td class="px-12">Komponen</td>
-                <td class="px-4">:</td>
-                <td class="capitalize">{{$data->pok->komponen}}</td>
-            </tr>
-            <tr>
-                <td class="px-12">Sub Komponen</td>
-                <td class="px-4">:</td>
-                <td class="capitalize">{{$data->pok->subkomponen}}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="leading-normal text-justify text-lg">
-        <div class="mx-12">
-            <table class="w-full border text-center font-medium">
-                <thead>
-                    <tr style="background:#DDD9C3;">
-                        <th class="border border-black p-2 font-bold">Akun</th>
-                        <th class="border border-black p-2 font-bold">Rincian</th>
-                        <th class="border border-black p-2 font-bold">Vol</th>
-                        <th class="border border-black p-2 font-bold">Satuan</th>
-                        <th class="border border-black p-2 font-bold">Harga Satuan</th>
-                        <th class="border border-black p-2 font-bold">Jumlah</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="font-bold">
-                        <td class="border border-black p-2">524113</td>
-                        <td colspan="5" class="border border-black text-left p-2">Belanja Perjalanan Dinas Dalam Kota</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-black p-2"></td>
-                        <td class="border border-black text-left p-2">Pengawasan pemutakhiran MFD dan MBS (kabupaten/kota ke kecamatan)</td>
-                        <td class="border border-black p-2">3</td>
-                        <td class="border border-black p-2">O-K</td>
-                        <td class="border border-black p-2">80.000</td>
-                        <td class="border border-black p-2">240.000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="leading-loose text-lg mt-12 mx-4">
-            <div class="flex flex-row text-center ml-12">
-                <div class="w-2/5"></div>
-                <div class="w-3/5 flex flex-col leading-normal">
-                    <span>{{config('constants.MEULABOH')}}, {{$data->tgl_spj}}</span>
-                    <span class="pb-20">Pejabat Pembuat Komitmen</span>
-                    <span>{{$ref->nama_ppk}}</span>
-                    <span>NIP. {{$ref->nip_ppk}}</span>
                 </div>
             </div>
         </div>
+        <!-- end::Header -->
 
-    </div>
-    <!-- end::Lampiran 1 -->
-
-    <div class="page-break"></div>
-
-    <!-- begin::Lampiran 2 -->
-    <div class="flex flex-col place-items-center text-center font-bold uppercase">
-        <div class="d-flex flex-column text-xl">
-            <div class="text-left">LAMPIRAN 2</div>
-            <div class="d-flex flex-column text-xl my-8">
-                <span>JADWAL PAKET MEETING HALFDAY JASA AKOMODASI DAN KONSUMSI</span>
-                <span>$FOCUS GROUP DISCUSSIN (FGD) STANDAR PELAYANAN PST</span>
-                <span>{{ config('constants.SATKER') }} TAHUN 2024</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="leading-normal text-justify text-lg">
-        <div class="mx-12">
-            <table class="w-full border text-center font-medium">
-                <thead>
+        <div class="leading-normal text-justify text-lg">
+            <div class="leading-loose text-lg mt-8 mx-8">
+                <table class="text-left">
                     <tr>
-                        <th class="border border-black p-2 font-bold">Hari/Tanggal</th>
-                        <th class="border border-black p-2 font-bold">Materi/Kegiatan</th>
-                        <th class="border border-black p-2 font-bold">Jam</th>
+                        <td class="pr-12 text-nowrap">Kementerian Negara/Lembaga</td>
+                        <td class="px-4">:</td>
+                        <td class="uppercase">{{ config('constants.INSTANSI') }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @for($i = 0; $i < 10; $i++)
-                        <tr>
-                        @if($i == 0)
-                        <td rowspan="10" class="border border-black p-2">Kamis, 3 Oktober 2024</td>
-                        @endif
-                        <td class="border border-black text-left p-2">Registrasi Peserta</td>
-                        <td class="border border-black p-2">08.00-08.30</td>
-                        </tr>
-                        @endfor
-                </tbody>
-            </table>
+                    <tr>
+                        <td class="pr-12 text-nowrap">Satuan Kerja</td>
+                        <td class="px-4">:</td>
+                        <td class="uppercase">{{ config('constants.SATKER') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="pr-12 text-nowrap">Pembebanan</td>
+                        <td class="px-4">:</td>
+                        <td class="uppercase">DIPA NOMOR: {{$ref->no_dipa}}</td>
+                    </tr>
+                    <tr>
+                        <td class="align-top pr-12">Program</td>
+                        <td class="align-top px-4">:</td>
+                        <td class="capitalize">Program Penyediaan dan Pelayanan Informasi Statistik</td>
+                    </tr>
+                    <tr>
+                        <td class="align-top pr-12">Kegiatan</td>
+                        <td class="align-top px-4">:</td>
+                        <td class="capitalize">Penyediaan dan Pengembangan Statistik Kesejahteraan Rakyat</td>
+                    </tr>
+                    <tr>
+                        <td class="text-nowrap pr-12">Penanggung Jawab</td>
+                        <td class="px-4">:</td>
+                        <td>Tim Statistik Sosial</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
-    </div>
-    <!-- end::Lampiran 2 -->
-
-    <div class="page-break"></div>
-
-    <!-- begin::Lampiran 3 -->
-    <div class="flex flex-col place-items-center text-center font-bold uppercase">
-        <div class="w-full d-flex flex-column text-xl">
-            <div class="text-left">LAMPIRAN 3</div>
-            <div class="d-flex flex-column text-xl my-8">
-                <span>SUSUNAN PANITIA</span>
-                <span>PAKET MEETING HALFDAY JASA AKOMODASI DAN KONSUMSI</span>
-                <span>$FOCUS GROUP DISCUSSIN (FGD) STANDAR PELAYANAN PST</span>
-                <span>{{ config('constants.SATKER') }} TAHUN 2024</span>
+        <div class="d-flex flex-row leading-normal justify-center align-items-center mt-48">
+            <img class="w-24 mr-4" src="{{ image('logos/logo-bps.png') }}">
+            <div class="d-flex flex-column fs-1 text-sky-500 uppercase font-bold">
+                <span>{{config('constants.INSTANSI')}}</span>
+                <span>{{config('constants.KABUPATEN')}}</span>
             </div>
         </div>
     </div>
 
-    <div class="leading-loose text-lg my-8">
-        <table class="text-left">
+    <div class="page-break"></div>
+
+    <div class="potrait-page leading-normal text-xl">
+        <!-- begin::Dasar Hukum -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> A. Dasar Hukum </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <table class="text-left ms-8">
+                <tr>
+                    <td class="pr-4 align-top">1.</td>
+                    <td>Undang-Undang Nomor 16 Tahun 1997 tentang Statistik.</td>
+                </tr>
+                <tr>
+                    <td class="pr-4 align-top">2.</td>
+                    <td>Undang-Undang Nomor 17 Tahun 2003 tentang Keuangan Negara.</td>
+                </tr>
+                <tr>
+                    <td class="pr-4 align-top">3.</td>
+                    <td>Peraturan Presiden Nomor 86 Tahun 2007 tentang Badan Pusat Statistik.</td>
+                </tr>
+                <tr>
+                    <td class="pr-4 align-top">4.</td>
+                    <td>Peraturan Presiden Nomor 90 Tahun 2010 tentang Penyusunan RKA-KL.</td>
+                </tr>
+                <tr>
+                    <td class="pr-4 align-top">5.</td>
+                    <td>Peraturan Menteri Keuangan RI Nomor 51/PMK.02/2014 Perubahan atas Peraturan
+                        Menteri Keuangan Nomor Nomor 71/PMK.02/2013 tentang Pedoman Standar Biaya,
+                        Standar Struktur Biaya dan Indeksasi dalam Penyusunan Rencana Kerja dan Anggaran
+                        Kementerian Negara/Lembaga.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pr-4 align-top">6.</td>
+                    <td>Peraturan Menteri Keuangan RI Nomor 208/PMK.02/2019 tentng Petunjuk Penyusunan
+                        dan Penelaahan Rencana Kerja dan Anggaran Kementerian Negara/Lembaga dan Pengesahan
+                        Daftar Isian Pelaksanaan Anggaran.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="pr-4 align-top">7.</td>
+                    <td>Peraturan Menteri Keuangan RI Nomor 49 Tahun 2023 tentang Standar Biaya Masukan Tahun Anggaran 2024.</td>
+                </tr>
+            </table>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Dasar Hukum -->
+
+        <!-- begin::Latar Belakang -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> B. Latar Belakang </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8">
+                <span class="indent-16">
+                    Salah satu arahan presiden dalam Peraturan Presiden Nomor 18 Tahun 2020 tentang
+                    Rencana Pembangunan Jangka Menengah Nasional (RPJMN) Tahun 2020-2024 adalah
+                    pembangunan sumber daya manusia (SDM) dan infrastruktur. Pembangunan SDM unggul
+                    disertai dengan infrastruktur perlu direncanakan dan dilaksanakan secara tepat
+                    supaya pembangunan dapat berjalan lancar dan memberikan manfaat yang dapat dinikmati
+                    oleh seluruh bangsa Indonesia.
+                </span>
+                <span class="indent-16">
+                    BPS sebagai penyedia statistik yang berkualitas, memiliki tantangan untuk menghasilkan
+                    data indikator statistik sosial yang akurat. Workshop Evaluasi Data Statistik Sosial
+                    menjadi penting sebagai media untuk melakukan evaluasi terhadap data yang dihasilkan
+                    dari kegiatan statistik sosial khususnya indikator ketenagakerjaan Agustus 2024.
+                    Diperlukan koordinasi dan pemecahan masalah-masalah teknis yang dijumpai pada saat
+                    pelaksanaan kegiatan statistik sosial dan evaluasi hasil secara intens dan terfokus
+                    antara tim BPS Provinsi dan tim BPS Kabupaten/Kota untuk perbaikan pelaksanaan kegiatan
+                    selanjutnya.
+                </span>
+                <span class="indent-16">
+                    Di samping itu, dalam kegiatan ini akan dilakukan sharing knowledge terkait
+                    penghitungan angka kemiskinan dan indikator statistik sosial lainnya.
+                </span>
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Latar Belakang -->
+
+        <!-- begin::Maksud dan Tujuan -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> C. Maksud dan Tujuan </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8">
+                <span class="indent-16">
+                    Tujuan diselenggarakannya Workshop Evaluasi Data Statistik Sosial adalah untuk
+                    melakukan evaluasi terhadap data yang dihasilkan dari kegiatan statistik sosial
+                    dan memberikan penjelasan dan pemahaman yang sama tentang penghitungan angka
+                    kemiskinan dan indikator-indikator yang dihasilkan dari kegiatan statistik sosial.
+                </span>
+                <span class="indent-16">
+                    Sasaran yang ingin dicapai dari Workshop Evaluasi Data Statistik Sosial adalah:
+                </span>
+                <ul class="list-disc pl-16">
+                    <li>
+                        Perkiraan indikator ketenagakerjaan dari Sakernas Agustus 2024 dan fenomena pendukung indikator tersebut.
+                    </li>
+                    <li>
+                        Peserta memahami tentang penghitungan angka kemiskinan dan indikator-indikator yang dihasilkan dari kegiatan statistik sosial.
+                    </li>
+                    <li>
+                        Meningkatnya koordinasi dan komunikasi antara tim statistik sosial provinsi dan kabupaten/kota terkait dengan kegiatan statistik sosial.
+                    </li>
+                </ul>
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Maksud dan Tujuan -->
+
+        <!-- begin::Manfaat -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> D. Manfaat </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8">
+                <ul class="list-disc pl-16">
+                    <li>
+                        Perkiraan Indikator Ketenagakerjaan Agustus 2024.
+                    </li>
+                    <li>
+                        Peserta Workshop Evaluasi Data Statistik Sosial memahami tentang penghitungan angka kemiskinan dan indikator-indikator yang dihasilkan dari kegiatan statistik sosial.
+                    </li>
+                    <li>
+                        Koordinasi dan komunikasi yang baik antara tim statistik sosial provinsi dan kabupaten/kota dalam pelaksanaan kegiatan statistik sosial.
+                    </li>
+                </ul>
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Manfaat -->
+
+        <!-- begin::Metode Pengadaan Barang/Jasa dan Ruang Lingkup -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> E. Metode Pengadaan Barang/Jasa dan Ruang Lingkup </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8">
+                -
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Metode Pengadaan Barang/Jasa dan Ruang Lingkup -->
+
+        <!-- begin::Waktu dan Tempat Pelaksanaan -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> F. Waktu dan Tempat Pelaksanaan </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <table class="text-left ms-8">
+                <tr>
+                    <td class="pr-16 align-top">Tanggal</td>
+                    <td>: 30 September - 3 Oktober 2024</td>
+                </tr>
+                <tr>
+                    <td class="pr-16 align-top">Tempat</td>
+                    <td>: Kota Sabang</td>
+                </tr>
+            </table>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Waktu dan Tempat Pelaksanaan -->
+
+        <!-- begin::Biaya -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> G. Biaya </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8">
+                <span>
+                    Pembiayaan akan dibebankan dalam DIPA Satuan Kerja BPS Propinsi Aceh Nomor:
+                    SP DIPA-054.01.2.019738/2024 yang meliputi :
+                </span>
+                <span>
+                    1. Biaya Perjalanan Dinas Biasa
+                </span>
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Biaya -->
+
+        <!-- begin::Peserta -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> H. Peserta </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8 me-1">
+                <span>
+                    Pegawai yang melaksanakan kegiatan :
+                </span>
+                <table class="w-full border text-center font-medium">
+                    <tr>
+                        <th class="border border-black py-2 font-bold">No.</th>
+                        <th class="border border-black py-2 font-bold">Nama</th>
+                        <th class="border border-black py-2 font-bold">NIP</th>
+                        <th class="border border-black py-2 font-bold">Tanggal</th>
+                        <th class="border border-black py-2 font-bold">Asal</th>
+                        <th class="border border-black py-2 font-bold">Tujuan</th>
+                    </tr>
+                    <tr class="text-lg">
+                        <td class="border border-black p-1">1.</td>
+                        <td class="border border-black p-1">Muhammad Apriesya Wastu Nirbhaya</td>
+                        <td class="border border-black p-1">199904022023101001</td>
+                        <td class="border border-black p-1">30 September - 3 Oktober 2024</td>
+                        <td class="border border-black p-1">Aceh Barat</td>
+                        <td class="border border-black p-1">Kota Sabang</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Peserta -->
+
+        <!-- begin::Rencana Anggaran Biaya (RAB) -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> I. Rencana Anggaran Biaya (RAB) </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <table class="leading-tight text-left">
+                <tr>
+                    <td class="align-top px-12">Program</td>
+                    <td class="align-top px-4">:</td>
+                    <td>{{$data->pok->program}}</td>
+                </tr>
+                <tr>
+                    <td class="align-top px-12">Kegiatan</td>
+                    <td class="align-top px-4">:</td>
+                    <td>{{$data->pok->kegiatan}}</td>
+                </tr>
+                <tr>
+                    <td class="align-top px-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
+                    <td class="align-top px-4">:</td>
+                    <td>{{$data->pok->output}}</td>
+                </tr>
+                <tr>
+                    <td class="align-top px-12 text-nowrap">Rincian Output (RO)</td>
+                    <td class="align-top px-4">:</td>
+                    <td class="capitalize">{{$data->pok->suboutput}}</td>
+                </tr>
+                <tr>
+                    <td class="align-top px-12">Komponen</td>
+                    <td class="align-top px-4">:</td>
+                    <td class="capitalize">{{$data->pok->komponen}}</td>
+                </tr>
+                <tr>
+                    <td class="align-top px-12">Sub Komponen</td>
+                    <td class="align-top px-4">:</td>
+                    <td class="capitalize">{{$data->pok->subkomponen}}</td>
+                </tr>
+            </table>
+            <div class="mx-4">
+                <table class="w-full border text-center font-medium">
+                    <thead>
+                        <tr style="background:#DDD9C3;">
+                            <th class="border border-black p-2 font-bold text-nowrap">Akun</th>
+                            <th class="border border-black p-2 font-bold text-nowrap">Rincian</th>
+                            <th class="border border-black p-2 font-bold text-nowrap">Vol</th>
+                            <th class="border border-black p-2 font-bold text-nowrap">Satuan</th>
+                            <th class="border border-black p-2 font-bold text-nowrap">Harga Satuan</th>
+                            <th class="border border-black p-2 font-bold text-nowrap">Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border border-black align-top font-bold p-2">524111</td>
+                            <td class="border border-black text-left p-2">
+                                <div class="flex flex-column">
+                                    <span class="font-bold">Belanja Perjalanan Dinas Biasa</span>
+                                    <span class="text-normal">Pengawasan pemutakhiran MFD dan MBS (kabupaten/kota ke kecamatan)</span>
+                                </div>
+                            </td>
+                            <td class="border border-black p-2">3</td>
+                            <td class="border border-black p-2">O-K</td>
+                            <td class="border border-black p-2">80.000</td>
+                            <td class="border border-black p-2">240.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Rencana Anggaran Biaya (RAB) -->
+
+        <!-- begin::Spesifikasi Teknis yang Diperlukan untuk Pengadaan -->
+        <div class="mb-8">
+            <!-- begin::Header -->
+            <div class="mb-2 fs-2 font-bold"> I. Spesifikasi Teknis yang Diperlukan untuk Pengadaan </div>
+            <!-- end::Header -->
+            <!-- begin::Konten -->
+            <div class="flex flex-column gap-3 text-justify ms-8">
+                -
+            </div>
+            <!-- end::Konten -->
+        </div>
+        <!-- end::Spesifikasi Teknis yang Diperlukan untuk Pengadaan -->
+
+        <!-- begin::TTD -->
+        <table class="table-auto w-full text-center text-lg mt-8">
             <tr>
-                <td class="pr-4">Pengarah</td>
-                <td class="px-4">:</td>
-                <td>{{$ref->nama_kpa}}</td>
+                <td></td>
+                <td>{{config('constants.MEULABOH')}}, {{$data->tgl_spj}}</td>
             </tr>
             <tr>
-                <td class="pr-4">Ketua Umum</td>
-                <td class="px-4">:</td>
-                <td>Firmansyah, SE</td>
+                <td>Mengetahui,</td>
+                <td>Menyetujui,</td>
             </tr>
             <tr>
-                <td class="pr-4">Administrasi Keuangan</td>
-                <td class="leading-tight px-4">:</td>
-                <td>
-                    Haris Yusuf, A.Md <br>
-                    Lisnadiani, SE
-                </td>
+                <td class="pb-20">Kepala {{config('constants.SATKER')}}</td>
+                <td class="pb-20">Pejabat Pembuat Komitmen</td>
             </tr>
             <tr>
-                <td class="pr-4 align-top">Acara dan Penyiapan Materi/Teknis</td>
-                <td class="leading-tight px-4 align-top">:</td>
-                <td class="capitalize">
-                    Zahlul Fuadi, S.Tr.Stat. <br>
-                    Ayu Aina Nurkhaliza, S.Tr.Stat
-                </td>
+                <td>{{$ref->kpa->nama}}</td>
+                <td>{{$ref->ppk->nama}}</td>
             </tr>
             <tr>
-                <td class="pr-4 align-top">Hubungan Masyarakat, Publikasi dan Dokumentasi</td>
-                <td class="leading-tight px-4 align-top">:</td>
-                <td class="capitalize">
-                    Dhia Ulfakhirah, S. Tr.Stat <br>
-                    Muhammad Khumaidi, A.Md
-                </td>
-            </tr>
-            <tr>
-                <td class="pr-4 align-top">Perlengkapan dan Penggandaan</td>
-                <td class="leading-tight px-4 align-top">:</td>
-                <td class="capitalize">
-                    Muhammad Apriesya Wastu Nirbhaya, S.Tr.Stat <br>
-                    Salsabila Ainaya Fani, S.Tr.Stat <br>
-                    Safriadi, A. Md <br>
-                    T. Hamdani, SE
-                </td>
+                <td>NIP. {{$ref->kpa->nip_baru}}</td>
+                <td>NIP. {{$ref->ppk->nip_baru}}</td>
             </tr>
         </table>
+        <!-- end::TTD -->
     </div>
-
-    <div class="leading-loose text-lg mt-12 mx-4">
-        <div class="flex flex-row text-center ml-12">
-            <div class="w-2/5"></div>
-            <div class="w-3/5 flex flex-col leading-normal">
-                <span>Ditetapkan di : {{config('constants.MEULABOH')}}</span>
-                <span>Pada Tanggal : {{$data->tgl_spj}}</span>
-                <span class="pt-4">Kuasa Pengguna Anggaran</span>
-                <span class="pb-20">{{config('constants.INSTANSI')}} {{config('constants.KABUPATEN')}}</span>
-                <span class="uppercase font-bold">{{$ref->nama_kpa}}</span>
-            </div>
-        </div>
-    </div>
-    <!-- end::Lampiran 3 -->
 
 </x-print-layout>

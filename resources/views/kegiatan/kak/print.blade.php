@@ -298,37 +298,37 @@
                     <td class="align-top font-bold p-2"></td>
                     <td colspan="3">
                         <!-- begin::RAB -->
-                        <div class="leading-tight text-lg mx-2 my-4">
+                        <div class="leading-tight text-lg my-4">
                             <table class="text-left fs-6">
                                 <tr>
-                                    <td class="pr-12">Program</td>
-                                    <td class="px-4">:</td>
-                                    <td>{{$data->detil[0]->program}}</td>
+                                    <td class="align-top pr-12">Program</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td>(054.01.{{$data->detil[0]->kode_program}}) {{$data->detil[0]->program}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="pr-12">Kegiatan</td>
-                                    <td class="px-4">:</td>
-                                    <td>{{$data->detil[0]->kegiatan}}</td>
+                                    <td class="align-top pr-12">Kegiatan</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td>({{$data->detil[0]->kode_kegiatan}}) {{$data->detil[0]->kegiatan}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="pr-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
-                                    <td class="px-4">:</td>
-                                    <td>{{$data->detil[0]->output}}</td>
+                                    <td class="align-top pr-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td>({{$data->detil[0]->kode_kegiatan}}.{{$data->detil[0]->kode_output}}) {{$data->detil[0]->output}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="pr-12 text-nowrap align-top">Rincian Output (RO)</td>
-                                    <td class="px-4 align-top">:</td>
-                                    <td class="capitalize">{{$data->detil[0]->suboutput}}</td>
+                                    <td class="align-top pr-12 text-nowrap">Rincian Output (RO)</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td class="capitalize">({{$data->detil[0]->kode_kegiatan}}.{{$data->detil[0]->kode_output}}.{{$data->detil[0]->kode_suboutput}}) {{$data->detil[0]->suboutput}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="pr-12">Komponen</td>
-                                    <td class="px-4">:</td>
-                                    <td class="capitalize">{{$data->detil[0]->komponen}}</td>
+                                    <td class="align-top pr-12">Komponen</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td class="capitalize">({{$data->detil[0]->kode_komponen}}) {{$data->detil[0]->komponen}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="pr-12">Sub Komponen</td>
-                                    <td class="px-4">:</td>
-                                    <td class="capitalize">{{$data->detil[0]->subkomponen}}</td>
+                                    <td class="align-top pr-12">Sub Komponen</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td class="capitalize">({{$data->detil[0]->kode_subkomponen}}) {{$data->detil[0]->subkomponen}}</td>
                                 </tr>
                             </table>
                         </div>
