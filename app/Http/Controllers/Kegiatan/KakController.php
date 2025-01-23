@@ -218,6 +218,10 @@ class KakController extends Controller
     public function destroy($id)
     {
         $data = Kak::find($id);
+        // hapus file yang udah ada 
+        if ($data->file_lampiran) {
+            Storage::disk('public')->delete('lampiran-kak/' . $data->file_lampiran);
+        }
         $data->deleteKak($id);
         $data->delete();
 
