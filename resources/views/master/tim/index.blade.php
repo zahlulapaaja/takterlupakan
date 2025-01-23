@@ -76,11 +76,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 1
+                }],
                 "bDestroy": true,
-            });
-
-            $('#searchFp').on('keyup', function() {
-                table.search(this.value).draw();
             });
         });
     </script>

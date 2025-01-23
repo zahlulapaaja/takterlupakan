@@ -85,7 +85,7 @@
                         </td>
                         <td class="d-flex align-items-center justify-end">
                             <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_user_{{$user->id}}">Edit</a>
-                            <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password_{{$user->id}}">Change Password</a>
+                            <a href="#" class="btn btn-primary btn-active-primary btn-flex btn-center btn-sm mx-1 my-2 text-nowrap" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password_{{$user->id}}">Change Password</a>
                             <a href="#" data-id="{{$user->id}}" data-name="{{$user->name}}" class="btn btn-danger btn-active-danger-primary btn-flex btn-center btn-sm mx-1 my-2 modal-delete">
                                 Delete
                             </a>
@@ -111,6 +111,11 @@
         $(document).ready(function() {
             let table = $('#kt_table_users').DataTable({
                 processing: true,
+                order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 3
+                }],
                 "bDestroy": true,
             });
 

@@ -37,7 +37,7 @@
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <input id="searchSk" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                        <input id="searchMitra" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
                 </div>
@@ -47,11 +47,6 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="w-25px">
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="checkbox" value="1" data-kt-check="true" data-kt-check-target=".widget-9-check" />
-                                </div>
-                            </th>
                             <th class="min-w-200px">Nama</th>
                             <th class="min-w-150px">Posisi</th>
                             <th class="min-w-100px">No Telp</th>
@@ -63,11 +58,6 @@
                     <tbody>
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
-                            <td>
-                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input widget-9-check" type="checkbox" value="1" />
-                                </div>
-                            </td>
                             <td class="d-flex flex-column">
                                 <a href="{{ route('master.mitra.show', $d->id) }}" class="text-gray-900 fw-bold text-hover-primary d-block fs-6 mb-1">{{ $d->nama }}</a>
                                 <span>{{ $d->id_sobat }}</span>
@@ -122,10 +112,15 @@
         var cancelButton;
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 3
+                }],
                 "bDestroy": true,
             });
 
-            $('#searchSk').on('keyup', function() {
+            $('#searchMitra').on('keyup', function() {
                 table.search(this.value).draw();
             });
 

@@ -87,6 +87,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let table = $('.datatable').DataTable({
+                order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 1
+                }],
                 "bDestroy": true,
             });
 

@@ -147,7 +147,7 @@
                                     <!--begin::Label-->
                                     <label class="form-check-label" for="kt_modal_update_role_option_{{ $role->id }}">
                                         <div class="fw-bold text-gray-800">{{ $role->name }}</div>
-                                        <div class="text-gray-600">Best for developers or people primarily using the API</div>
+                                        <!-- <div class="text-gray-600">Best for developers or people primarily using the API</div> -->
                                     </label>
                                     <!--end::Label-->
                                 </div>

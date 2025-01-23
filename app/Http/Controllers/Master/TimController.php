@@ -18,12 +18,9 @@ class TimController extends Controller
 
     public function list($tahun)
     {
-        $data = Tim::where('tahun', $tahun)->get();
-        foreach ($data as $d) {
-            $d->ketua = Pegawai::find($d->ketua);
-        }
-        $data->tahun = $tahun;
-
+        $data = Tim::select('tims.*', 'pegawais.nama as nama_ketua')
+            ->join('pegawais', 'pegawais.id', '=', 'tims.ketua')
+            ->where('tahun', $tahun)->get();
         return view('master.tim.list', compact('data'));
     }
 

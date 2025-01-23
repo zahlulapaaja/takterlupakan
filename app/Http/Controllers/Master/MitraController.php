@@ -7,7 +7,6 @@ use App\Imports\MitraImport;
 use App\Models\Master\Mitra;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,7 +15,6 @@ class MitraController extends Controller
     public function index(Request $request)
     {
         $data = Mitra::distinct()->get('tahun');
-        // dd($data);
         return view('master.mitra.index', compact('data'));
     }
 

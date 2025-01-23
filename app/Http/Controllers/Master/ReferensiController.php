@@ -13,7 +13,6 @@ class ReferensiController extends Controller
     public function index()
     {
         $data = Referensi::select('id', 'tahun')->orderBy('tahun', 'ASC')->get();
-
         return view('master.referensi.index', compact('data'));
     }
 

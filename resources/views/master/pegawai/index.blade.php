@@ -106,7 +106,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6">No Data Found!</td>
+                        <td colspan="3">No Data Found!</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -121,6 +121,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#kt_table_pegawais').DataTable({
+                order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 2
+                }],
                 "bDestroy": true,
             });
 
