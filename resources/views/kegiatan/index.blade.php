@@ -42,7 +42,7 @@
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <input id="searchSk" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                        <input id="searchKeg" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
                     <div class="flex flex-row gap-3">
@@ -157,7 +157,7 @@
                 "bDestroy": true,
             });
 
-            $('#searchSk').on('keyup', function() {
+            $('#searchKeg').on('keyup', function() {
                 table.search(this.value).draw();
             });
 

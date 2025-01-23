@@ -28,7 +28,7 @@
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Compact form-->
-                <div class="d-flex align-items-center mb-4">
+                <div class="d-flex flex-column flex-lg-row justify-between gap-y-3 mb-4">
                     <!--begin::Input group-->
                     <div class="position-relative w-md-400px me-md-2">
                         <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
@@ -38,6 +38,14 @@
                         <input id="searchSk" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
+                    <div class="flex flex-row gap-3">
+                        <select id="tahun" class="form-control text-center">
+                            <option value="">-- Tahun --</option>
+                            @foreach($list_tahun as $t)
+                            <option value="{{$t->tahun}}">{{$t->tahun}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
@@ -48,6 +56,7 @@
                             <th class="min-w-150px">Nomor</th>
                             <th class="min-w-150px">Rincian</th>
                             <th class="min-w-100px">Tanggal Ditetapkan</th>
+                            <th class="min-w-50px">Tahun</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -57,13 +66,16 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{$d->no}}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary text-nowrap d-block fs-6">{{$d->no}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->tentang,30)}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->tentang,75)}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tgl_ditetapkan}}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -109,11 +121,20 @@
             let table = $('.datatable').DataTable({
                 processing: true,
                 order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 4
+                }],
                 "bDestroy": true,
             });
 
             $('#searchSk').on('keyup', function() {
                 table.search(this.value).draw();
+            });
+
+            $('#tahun').on('change', function() {
+                var selectedTahun = $(this).val();
+                table.columns(3).search(selectedTahun).draw();
             });
 
             $(document.body).on('click', '.modal-delete', function(e) {

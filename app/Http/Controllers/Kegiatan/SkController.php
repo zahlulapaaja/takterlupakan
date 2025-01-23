@@ -17,12 +17,13 @@ class SkController extends Controller
 {
     public function index()
     {
-        $data = Sk::select('*')
+        $data = Sk::select('id', 'no', 'tentang', 'tgl_ditetapkan', 'tahun')
             ->orderBy('tahun', 'DESC')
-            ->orderBy('tgl_ditetapkan', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->get();
+        $list_tahun = Sk::distinct()->get('tahun');
 
-        return view('kegiatan.sk.index', compact('data'));
+        return view('kegiatan.sk.index', compact('data', 'list_tahun'));
     }
 
     public function create(Request $request)

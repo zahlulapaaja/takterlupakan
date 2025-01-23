@@ -18,12 +18,14 @@ class KakController extends Controller
 
     public function index()
     {
-        $data = Kak::select('*')
-            ->orderBy('tahun', 'DESC')
-            ->orderBy('tgl', 'DESC')
+        $data = Kak::select('kaks.id', 'kaks.jenis', 'kaks.judul', 'kaks.tgl', 'kaks.tahun', 'tims.singkatan as nama_tim')
+            ->orderBy('kaks.tahun', 'DESC')
+            ->join('tims', 'kaks.tim', '=', 'tims.id')
+            ->orderBy('kaks.created_at', 'DESC')
             ->get();
+        $list_tahun = Kak::distinct()->get('tahun');
 
-        return view('kegiatan.kak.index', compact('data'));
+        return view('kegiatan.kak.index', compact('data', 'list_tahun'));
     }
 
     public function create(Request $request)

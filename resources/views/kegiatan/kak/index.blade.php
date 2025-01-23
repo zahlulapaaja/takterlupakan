@@ -28,7 +28,7 @@
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Compact form-->
-                <div class="d-flex align-items-center mb-4">
+                <div class="d-flex flex-column flex-lg-row justify-between gap-y-3 mb-4">
                     <!--begin::Input group-->
                     <div class="position-relative w-md-400px me-md-2">
                         <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
@@ -38,6 +38,17 @@
                         <input id="searchKak" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
                     </div>
                     <!--end::Input group-->
+                    <div class="flex flex-row gap-3">
+                        <select id="tim" class="form-control text-center">
+                            <option value="">-- Tim --</option>
+                        </select>
+                        <select id="tahun" class="form-control text-center">
+                            <option value="">-- Tahun --</option>
+                            @foreach($list_tahun as $t)
+                            <option value="{{$t->tahun}}">{{$t->tahun}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <!--end::Compact form-->
                 <!--begin::Table-->
@@ -48,6 +59,8 @@
                             <th class="min-w-50px">Jenis</th>
                             <th class="min-w-150px">Judul</th>
                             <th class="min-w-100px">Tanggal Ditetapkan</th>
+                            <th class="min-w-50px">Tim</th>
+                            <th class="min-w-50px">Tahun</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -57,13 +70,27 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td>
+                                @if($d->jenis == 'kegiatan')
+                                <span class="badge badge-light-success">{{$d->jenis}}</span>
+                                @elseif($d->jenis == 'pelatihan')
+                                <span class="badge badge-light-primary">{{$d->jenis}}</span>
+                                @elseif($d->jenis == 'perjadin')
                                 <span class="badge badge-light-info">{{$d->jenis}}</span>
+                                @elseif($d->jenis == 'pengadaan')
+                                <span class="badge badge-light-warning">{{$d->jenis}}</span>
+                                @endif
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->judul,30)}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{Str::limit($d->judul,75)}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tgl}}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6">{{$d->nama_tim}}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
                             </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
@@ -117,11 +144,44 @@
             let table = $('.datatable').DataTable({
                 processing: true,
                 order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 5
+                }],
                 "bDestroy": true,
             });
 
             $('#searchKak').on('keyup', function() {
                 table.search(this.value).draw();
+            });
+
+            $('#tahun').change(function() {
+                tahun = $('#tahun').val();
+
+                $('#tim').html('<option value="">-- Tim --</option>');
+                $.ajax({
+                    url: "{{url('api/fetch-tim')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        $.each(res.tim, function(key, value) {
+                            $("#tim").append('<option value="' +
+                                value.singkatan + '">' + value.singkatan + '</option>');
+                        });
+                    }
+                });
+
+                table.columns(3).search('').draw();
+                table.columns(4).search(tahun).draw();
+            });
+
+            $('#tim').on('change', function() {
+                var selectedTim = $(this).val();
+                table.columns(3).search(selectedTim).draw();
             });
 
             $(document.body).on('click', '.modal-delete', function(e) {

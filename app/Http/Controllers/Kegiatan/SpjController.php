@@ -10,28 +10,26 @@ use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
 use App\Models\Pok;
 use App\Models\Surat\NoSuratTim;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Riskihajar\Terbilang\Facades\Terbilang;
 
 class SpjController extends Controller
 {
     public function index()
     {
-        $data_honor = Spj::where('kode_akun', config('constants.AKUN_HONOR'))
+        $data_honor = Spj::select('spjs.id', 'spjs.kode_akun', 'kegiatans.nama as nama_keg', 'spjs.tgl', 'tims.singkatan as nama_tim', 'spjs.tahun')
+            ->join('kegiatans', 'spjs.kegiatans_id', '=', 'kegiatans.id')
+            ->join('tims', 'kegiatans.tim', '=', 'tims.id')
+            ->where('spjs.kode_akun', config('constants.AKUN_HONOR'))
+            ->orderBy('spjs.tgl', 'DESC')->get();
+        $data_translok = Spj::select('spjs.id', 'spjs.kode_akun', 'kegiatans.nama as nama_keg', 'spjs.tgl', 'tims.singkatan as nama_tim', 'spjs.tahun')
+            ->join('kegiatans', 'spjs.kegiatans_id', '=', 'kegiatans.id')
+            ->join('tims', 'kegiatans.tim', '=', 'tims.id')
+            ->where('kode_akun', config('constants.AKUN_TRANSLOK'))
             ->orderBy('tgl', 'DESC')->get();
-        foreach ($data_honor as $d) {
-            $d->keg = Kegiatan::find($d->kegiatans_id);
-        }
+        $list_tahun = Spj::distinct()->get('tahun');
 
-        $data_translok = Spj::where('kode_akun', config('constants.AKUN_TRANSLOK'))
-            ->orderBy('tgl', 'DESC')->get();
-        foreach ($data_translok as $d) {
-            $d->keg = Kegiatan::find($d->kegiatans_id);
-        }
-
-        return view('kegiatan.spj.index', compact('data_honor', 'data_translok'));
+        return view('kegiatan.spj.index', compact('data_honor', 'data_translok', 'list_tahun'));
     }
 
     public function create(Request $request)
