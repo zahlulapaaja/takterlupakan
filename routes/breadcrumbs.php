@@ -117,5 +117,5 @@ Breadcrumbs::for("master.mitra.impor", function (BreadcrumbTrail $trail) {
 // Home > Matriks > Honor > 202X:XX
 Breadcrumbs::for("matriks.honor.list", function (BreadcrumbTrail $trail, $name) {
     $trail->parent("matriks.honor.index");
-    $trail->push($name[0] . ':' . $name[1], route("matriks.honor.list", [$name[0], $name[1]]));
+    $trail->push($name[1] . ' ' . $name[0], route("matriks.honor.list", [$name[0], $name[1]]));
 });

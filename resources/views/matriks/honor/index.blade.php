@@ -67,7 +67,7 @@
                                 <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->bulan}}</span>
+                                <span class="text-gray-900 d-block fs-6">{{$d->bulan}} ({{date_indo_bulan($d->bulan)}})</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->jumlah}} Orang</span>
@@ -116,6 +116,10 @@
             let table = $('.datatable').DataTable({
                 processing: true,
                 order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 3
+                }],
                 "bDestroy": true,
             });
 

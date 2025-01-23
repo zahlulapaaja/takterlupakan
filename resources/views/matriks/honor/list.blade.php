@@ -5,7 +5,7 @@
     @endsection
 
     @section('breadcrumbs')
-    {{Breadcrumbs::render('matriks.honor.list', [$tahun,$bulan])}}
+    {{Breadcrumbs::render('matriks.honor.list', [$tahun,date_indo_bulan($bulan)])}}
     @endsection
 
     <!--begin::Tables Widget 9-->
@@ -13,7 +13,7 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Matriks Honor [{{sprintf('%02d', $bulan)}} : {{$tahun}}]</span>
+                <span class="card-label fw-bold fs-3 mb-1">Matriks Honor [{{date_indo_bulan($bulan)}} {{$tahun}}]</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
@@ -35,17 +35,27 @@
             <div class="table-responsive">
                 <!--begin::Compact form-->
                 <div class="d-flex align-items-center mb-4">
-                    <!--begin::Input group-->
-                    <div class="position-relative w-md-400px me-md-2">
-                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <input id="searchData" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                    <div class="w-full d-flex flex-column flex-lg-row justify-between gap-y-3">
+                        <!--begin::Input group-->
+                        <div class="position-relative w-md-400px me-md-2">
+                            <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 translate-middle ms-6">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <input id="searchData" type="text" class="form-control form-control-solid ps-10" placeholder="Search" />
+                        </div>
+                        <!--end::Input group-->
                     </div>
-                    <!--end::Input group-->
+                    <!--end::Compact form-->
+                    <div class="flex flex-row gap-3">
+                        <select id="tim" class="form-control text-center">
+                            <option value="">-- Tim --</option>
+                            @foreach($list_tim as $t)
+                            <option value="{{$t->singkatan}}">{{$t->singkatan}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                <!--end::Compact form-->
 
                 <!-- begin::alert -->
                 <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
@@ -65,6 +75,7 @@
                             <th class="min-w-50px">Sebagai</th>
                             <th class="min-w-50px">Harga<br>Satuan</th>
                             <th class="min-w-50px">Vol</th>
+                            <th class="min-w-50px">Tim</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -77,7 +88,7 @@
                                 <span contenteditable="true" data-id="{{$d->id}}" data-column="no_bast" class="text-gray-900 d-block fs-6">{{$d->no_bast}}</span>
                             </td>
                             <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->keg->nama}}</span>
+                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{Str::limit($d->nama_keg, 75)}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->nama}}</span>
@@ -91,6 +102,9 @@
                             <td>
                                 <span contenteditable="true" data-id="{{$d->id}}" data-column="volume" class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
                             </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6">{{$d->nama_tim}}</span>
+                            </td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
                                     <a href="{{ route('matriks.honor.bast', $d->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
@@ -102,7 +116,7 @@
                                             </i>
                                         </button>
                                     </a>
-                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->nama}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
+                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->nama}} - {{$d->nama_keg}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
@@ -131,6 +145,10 @@
             let table = $('.datatable').DataTable({
                 processing: true,
                 order: [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: 7
+                }],
                 "bDestroy": true,
             });
 
@@ -138,6 +156,10 @@
                 table.search(this.value).draw();
             });
 
+            $('#tim').on('change', function() {
+                var selectedTim = $(this).val();
+                table.columns(6).search(selectedTim).draw();
+            });
 
             // modal untuk input angka no spk
             $(document.body).on('click', '#modal-no-spk', function(e) {

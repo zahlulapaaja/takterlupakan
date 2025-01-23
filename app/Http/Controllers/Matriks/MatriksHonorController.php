@@ -36,8 +36,11 @@ class MatriksHonorController extends Controller
 
     public function list($tahun, $bulan)
     {
-        $data = MatriksHonor::where('tahun', $tahun)
-            ->where('bulan', $bulan)
+        $data = MatriksHonor::select('matriks_honors.*', 'kegiatans.nama as nama_keg', 'tims.singkatan as nama_tim')
+            ->join('kegiatans', 'matriks_honors.kegiatans_id', '=', 'kegiatans.id')
+            ->join('tims', 'kegiatans.tim', '=', 'tims.id')
+            ->where('matriks_honors.tahun', $tahun)
+            ->where('matriks_honors.bulan', $bulan)
             ->get();
 
         foreach ($data as $d) {
@@ -46,10 +49,17 @@ class MatriksHonorController extends Controller
             } else {
                 $d->no_bast = sprintf('%04d', $d->no_bast);
             }
-            $d->keg = Kegiatan::find($d->kegiatans_id);
             $d->nama = $d->getNamaPetugas($d);
         }
-        return view('matriks.honor.list', compact('data', 'tahun', 'bulan'));
+
+        $list_tim = MatriksHonor::distinct()
+            ->join('kegiatans', 'matriks_honors.kegiatans_id', '=', 'kegiatans.id')
+            ->join('tims', 'kegiatans.tim', '=', 'tims.id')
+            ->where('matriks_honors.tahun', $tahun)
+            ->where('matriks_honors.bulan', $bulan)
+            ->get('tims.singkatan');
+
+        return view('matriks.honor.list', compact('data', 'tahun', 'bulan', 'list_tim'));
     }
 
     public function create(Request $request)
