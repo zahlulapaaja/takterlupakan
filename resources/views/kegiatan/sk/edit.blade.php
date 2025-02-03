@@ -66,7 +66,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">No SK</label>
-                            <input type="text" class="form-control" placeholder="B-001/11070/VS.300/2025" name="no" value="{{$data->no}}" />
+                            <input type="text" class="form-control" placeholder="B-001/11070/VS.300/2025" name="no" value="{{$data->no}}" required />
                             <div class="text-muted fs-7">Note : ambil nomor surat terlebih dahulu</div>
                             @error('no')
                             <small>{{ $message }}</small>
@@ -76,7 +76,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">SK Tentang</label>
-                            <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" value="{{$data->tentang}}" />
+                            <input type="text" class="form-control" placeholder="Kegiatan..." name="tentang" value="{{$data->tentang}}" required />
                             @error('tentang')
                             <small>{{ $message }}</small>
                             @enderror
@@ -102,7 +102,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Mulai</label>
-                            <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_mulai}}" />
+                            <input type="date" name="tgl_mulai" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_mulai}}" required />
                             @error('tgl_mulai')
                             <small>{{ $message }}</small>
                             @enderror
@@ -111,7 +111,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row flex-row-fluid">
                             <label class="required form-label">Tanggal Akhir</label>
-                            <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_akhir}}" />
+                            <input type="date" name="tgl_akhir" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_akhir}}" required />
                             @error('tgl_akhir')
                             <small>{{ $message }}</small>
                             @enderror
@@ -122,7 +122,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Berlaku</label>
-                            <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_berlaku}}" />
+                            <input type="date" name="tgl_berlaku" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_berlaku}}" required />
                             @error('tgl_berlaku')
                             <small>{{ $message }}</small>
                             @enderror
@@ -131,7 +131,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">Tanggal Ditetapkan</label>
-                            <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_ditetapkan}}" />
+                            <input type="date" name="tgl_ditetapkan" placeholder="Select a date" class="form-control mb-2" value="{{$data->tgl_ditetapkan}}" required />
                             @error('tgl_ditetapkan')
                             <small>{{ $message }}</small>
                             @enderror
