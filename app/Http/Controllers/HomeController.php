@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Master\Pegawai;
 use App\Models\Surat\NoFp;
 use App\Models\Surat\NoSuratMasukKeluar;
 use App\Models\Surat\NoSuratTim;
@@ -12,6 +13,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard');
+    }
+
+    public function landing()
+    {
+        // $pegawai = Pegawai::all();
+        $pegawai = Pegawai::where('id', 500)->get();
+        return view('landing', compact('pegawai'));
     }
 
     public function soon()
