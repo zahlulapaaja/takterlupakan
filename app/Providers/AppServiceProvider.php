@@ -12,7 +12,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // hilangkan tanda comment
+        // $this->app->usePublicPath(realpath(base_path().'/../public_html'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        URL::forceScheme('http');
+        // hilangkan tanda comment
         // URL::forceScheme('https');
     }
 }
