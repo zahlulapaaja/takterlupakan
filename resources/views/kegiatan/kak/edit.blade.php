@@ -11,7 +11,7 @@
     <!--begin::Form-->
     <form id="form_edit_kak" method="post" action="{{ route('kegiatan.kak.update', $data->id) }}" class="form d-flex flex-column gap-7 gap-lg-10" enctype="multipart/form-data">
         @csrf
-        @method('POST')
+        @method('PUT')
         <!--begin::Column-->
         <!--begin::Order details-->
         <div class="card card-flush py-4">
