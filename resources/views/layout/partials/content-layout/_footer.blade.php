@@ -5,19 +5,19 @@
 		<!--begin::Copyright-->
 		<div class="text-gray-900 order-2 order-md-1">
 			<span class="text-gray-500 fw-semibold me-1">Created by</span>
-			<a href="https://keenthemes.com" target="_blank" class="text-muted text-hover-primary fw-semibold me-2 fs-6">Keenthemes</a>
+			<a href="https://www.instagram.com/zahlulef/" target="_blank" class="text-muted text-hover-primary fw-semibold me-2 fs-6">Zedef</a>
 		</div>
 		<!--end::Copyright-->
 		<!--begin::Menu-->
 		<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
 			<li class="menu-item">
-				<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+				<a href="https://acehbaratkab.bps.go.id/" target="_blank" class="menu-link px-2">Website</a>
 			</li>
 			<li class="menu-item">
-				<a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+				<a href="https://s.bps.go.id/portal1107" target="_blank" class="menu-link px-2">Portal</a>
 			</li>
 			<li class="menu-item">
-				<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
+				<a href="https://www.instagram.com/bps.kab.acehbarat/" target="_blank" class="menu-link px-2">Instagram</a>
 			</li>
 		</ul>
 		<!--end::Menu-->
