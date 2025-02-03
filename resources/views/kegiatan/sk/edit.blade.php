@@ -163,7 +163,7 @@
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <div data-repeater-list="daftar_honor" class="d-flex flex-column gap-3">
-                                    @foreach($data->honor as $hnr)
+                                    @forelse($data->honor as $hnr)
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Input-->
                                         <input type="text" class="form-control w-2/5" name="uraian_honor" placeholder="Uraian" value="{{$hnr->uraian}}" required />
@@ -176,7 +176,20 @@
                                             </i>
                                         </button>
                                     </div>
-                                    @endforeach
+                                    @empty
+                                    <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
+                                        <!--begin::Input-->
+                                        <input type="text" class="form-control w-2/5" name="uraian_honor" placeholder="Uraian" required />
+                                        <input type="number" class="form-control w-2/5" name="honor" placeholder="Honor" required />
+                                        <!--end::Input-->
+                                        <button type="button" data-repeater-delete="" class="w-1/5 btn btn-sm btn-icon btn-light-danger">
+                                            <i class="ki-duotone ki-cross fs-1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </button>
+                                    </div>
+                                    @endforelse
                                 </div>
                             </div>
                             <!--end::Form group-->
@@ -239,16 +252,16 @@
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <div data-repeater-list="daftar_petugas" class="d-flex flex-column gap-3">
-                                    @foreach($data->petugas as $ptg)
+                                    @forelse($data->petugas as $ptg)
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Select2-->
                                         <div class="w-2/5">
-                                            <select class="form-select" name="petugas" data-kt-ecommerce-catalog-add-product="product_option" required>
-                                                <option value="{{$ptg->status . '-' . $ptg->id_status}}" selected>{{'[' . $ptg->status . '] ' . $ptg->nama}}</option>
+                                            <input name="petugas" class="form-select" list="petugas" placeholder="Pilih..." value="{{$ptg->status . '-' . $ptg->nama . '-' . $ptg->id_status}}" required>
+                                            <datalist id="petugas">
                                                 @foreach($list_petugas as $p)
-                                                <option value="{{$p->status . '-' . $p->id}}">{{$p->list}}</option>
-                                                @endforeach
-                                            </select>
+                                                <option value="{{$p->list}}">
+                                                    @endforeach
+                                            </datalist>
                                         </div>
                                         <!--end::Select2-->
                                         <!--begin::Input-->
@@ -261,7 +274,29 @@
                                             </i>
                                         </button>
                                     </div>
-                                    @endforeach
+                                    @empty
+                                    <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
+                                        <!--begin::Select2-->
+                                        <div class="w-2/5">
+                                            <input name="petugas" class="form-select" list="petugas" placeholder="Pilih..." required>
+                                            <datalist id="petugas">
+                                                @foreach($list_petugas as $p)
+                                                <option value="{{$p->list}}">
+                                                    @endforeach
+                                            </datalist>
+                                        </div>
+                                        <!--end::Select2-->
+                                        <!--begin::Input-->
+                                        <input type="text" class="form-control w-2/5" name="sebagai" placeholder="Sebagai" required />
+                                        <!--end::Input-->
+                                        <button type="button" data-repeater-delete="" class="w-1/5 btn btn-sm btn-icon btn-light-danger">
+                                            <i class="ki-duotone ki-cross fs-1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </button>
+                                    </div>
+                                    @endforelse
                                 </div>
                             </div>
                             <!--end::Form group-->

@@ -216,12 +216,12 @@
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <!--begin::Select2-->
                                         <div class="w-2/5">
-                                            <select class="form-select" name="petugas" data-kt-ecommerce-catalog-add-product="product_option" required>
-                                                <option value="" hidden>Pilih Petugas...</option>
+                                            <input name="petugas" class="form-select" list="petugas" placeholder="Pilih..." required>
+                                            <datalist id="petugas" required>
                                                 @foreach($list_petugas as $p)
-                                                <option value="{{$p->status . '-' . $p->id}}">{{$p->list}}</option>
-                                                @endforeach
-                                            </select>
+                                                <option value="{{$p->list}}">
+                                                    @endforeach
+                                            </datalist>
                                         </div>
                                         <!--end::Select2-->
                                         <!--begin::Input-->

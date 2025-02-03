@@ -53,10 +53,10 @@ class Spj extends Model
             $status = explode('-', $petugas['petugas']);
             $data['status'] = $status[0];
             if ($status[0] == config('constants.PEGAWAI')) {
-                $data['pegawai_id'] = $status[1];
+                $data['pegawai_id'] = $status[2];
                 $data['mitra_id'] = null;
             } else {
-                $data['mitra_id'] = $status[1];
+                $data['mitra_id'] = $status[2];
                 $data['pegawai_id'] = null;
             }
 
@@ -131,10 +131,10 @@ class Spj extends Model
                 $status = explode('-', $petugas['petugas']);
                 $data['status'] = $status[0];
                 if ($status[0] == config('constants.PEGAWAI')) {
-                    $data['pegawai_id'] = $status[1];
+                    $data['pegawai_id'] = $status[2];
                     $data['mitra_id'] = null;
                 } else {
-                    $data['mitra_id'] = $status[1];
+                    $data['mitra_id'] = $status[2];
                     $data['pegawai_id'] = null;
                 }
 

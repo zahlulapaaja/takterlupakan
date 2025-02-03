@@ -54,10 +54,10 @@ class Sk extends Model
             $status = explode('-', $petugas['petugas']);
             $data['status'] = $status[0];
             if ($status[0] == config('constants.PEGAWAI')) {
-                $data['pegawai_id'] = $status[1];
+                $data['pegawai_id'] = $status[2];
                 $data['mitra_id'] = null;
             } else {
-                $data['mitra_id'] = $status[1];
+                $data['mitra_id'] = $status[2];
                 $data['pegawai_id'] = null;
             }
 
@@ -94,10 +94,10 @@ class Sk extends Model
             $status = explode('-', $petugas['petugas']);
             $data['status'] = $status[0];
             if ($status[0] == config('constants.PEGAWAI')) {
-                $data['pegawai_id'] = $status[1];
+                $data['pegawai_id'] = $status[2];
                 $data['mitra_id'] = null;
             } else {
-                $data['mitra_id'] = $status[1];
+                $data['mitra_id'] = $status[2];
                 $data['pegawai_id'] = null;
             }
 
@@ -116,12 +116,12 @@ class Sk extends Model
         $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
         $list_petugas = [];
         foreach ($pegawai as $p) {
-            $p->list = '[O] ' . $p->nama;
+            $p->list = config('constants.PEGAWAI') . '-' . $p->nama . '-' . $p->id;
             $p->status = config('constants.PEGAWAI');
             $list_petugas[] = $p;
         }
         foreach ($mitra as $m) {
-            $m->list = '[N] ' . $m->nama;
+            $m->list = config('constants.MITRA') . '-' . $m->nama . '-' . $m->id;
             $m->status = config('constants.MITRA');
             $list_petugas[] = $m;
         }
