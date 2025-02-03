@@ -46,25 +46,22 @@
 				<!--end::Wrapper-->
 				<!--begin::Description-->
 				<div class="fs-5 fw-semibold text-gray-600">
-					<!--begin::Text-->
-					<p class="italic">(kata sambutan bapak kalo ada)</p>
-					<!-- <p class="mb-8">First, a disclaimer – the entire process of writing a blog post often takes more than a couple of hours, even if you can type eighty words per minute and your writing skills are sharp. From the seed of the idea to finally hitting “Publish,” you might spend several days or maybe even a week “writing” a blog post, but it’s important to spend those vital hours planning your post and even thinking about
-						<a href="pages/blog/post.html" class="link-primary pe-1">Your Post</a>(yes, thinking counts as working if you’re a blogger) before you actually write it.
-					</p> -->
-					<!--end::Text-->
-					<!--begin::Text-->
-					<!-- <p class="mb-8">There’s an old maxim that states,
-						<span class="text-gray-800 pe-1">“No fun for the writer, no fun for the reader.”</span>No matter what industry you’re working in, as a blogger, you should live and die by this statement.
-					</p> -->
-					<!--end::Text-->
-					<!--begin::Text-->
-					<!-- <p class="mb-8">Before you do any of the following steps, be sure to pick a topic that actually interests you. Nothing – and
-						<a href="pages/blog/home.html" class="link-primary pe-1">I mean NOTHING</a>– will kill a blog post more effectively than a lack of enthusiasm from the writer. You can tell when a writer is bored by their subject, and it’s so cringe-worthy it’s a little embarrassing.
-					</p> -->
-					<!--end::Text-->
-					<!--begin::Text-->
-					<!-- <p class="mb-17">I can hear your objections already. “But Dan, I have to blog for a cardboard box manufacturing company.” I feel your pain, I really do. During the course of my career, I’ve written content for dozens of clients in some less-than-thrilling industries (such as financial regulatory compliance and corporate housing), but the hallmark of a professional blogger is the ability to write well about any topic, no matter how dry it may be. Blogging is a lot easier, however, if you can muster at least a little enthusiasm for the topic at hand.</p> -->
-					<!--end::Text-->
+					<p class="text-justify mb-8">
+						Puji syukur dipersembahkan ke hadirat Allah Subhanahu wa ta'ala, atas limpahan rahmatNya sehingga Tim BPS Aceh Barat mampu membangun
+						aplikasi Sirasaka dengan baik. Selanjutnya saya sampaikan apresiasi setinggi-tingginya untuk Tim yang telah bekerja keras, bekerja cerdas
+						membangun aplikasi ini dengan berbagai upaya dengan harapan dapat memberikan manfaat untuk BPS Aceh Barat yang lebih baik.
+					</p>
+					<p class="text-justify mb-8">
+						Sirasaka merupakan jawaban atas berbagai kebutuhan dalam penyelenggaraan administrasi di BPS Kabupaten Aceh Barat. Aplikasi ini dibangun
+						sebagai pelengkap dari aplikasi yang sudah ada yang diharapkan mempermudah pegawai BPS Kabupaten Aceh Barat dalam penatausahaan administrasi keuangan.
+						Harapannya, semoga aplikasi ini dapat digunakan dengan optimal dalam menunjang kegiatan dan tertib administrasi di BPS Kabupaten Aceh Barat.
+					</p>
+					<p class="text-justify mb-8">
+						Demikian, wassalamuala'ikum warahmatulloohi wabarakatuh.
+					</p>
+					<p class="text-justify mb-8 italic">
+						~ Kepala BPS Kabupaten Aceh Barat
+					</p>
 				</div>
 				<!--end::Description-->
 			</div>

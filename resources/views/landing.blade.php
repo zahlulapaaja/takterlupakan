@@ -971,13 +971,11 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="d-flex flex-column justify-content-between h-lg-100 px-10 px-lg-0 pe-lg-10 mb-15 mb-lg-0">
 							<!--begin::Wrapper-->
 							<div class="mb-7">
-								<!--begin::Title-->
-								<!-- <div class="fs-2 fw-bold text-gray-900 mb-3">This is by far the cleanest template
-									<br />and the most well structured
-								</div> -->
-								<!--end::Title-->
 								<!--begin::Feedback-->
-								<div class="text-gray-500 fw-semibold fs-4">The most well thought out design theme I have ever used. The codes are up to tandard. The css styles are very clean. In fact the cleanest and the most up to standard I have ever seen.</div>
+								<div class="text-gray-500 fw-semibold fs-4">
+									Sirasaka merupakan jawaban atas berbagai kebutuhan dalam penyelenggaraan administrasi di BPS Kabupaten Aceh Barat. Aplikasi ini dibangun
+									sebagai pelengkap dari aplikasi yang sudah ada yang diharapkan mempermudah pegawai BPS Kabupaten Aceh Barat dalam penatausahaan administrasi keuangan.
+								</div>
 								<!--end::Feedback-->
 							</div>
 							<!--end::Wrapper-->
