@@ -21,9 +21,7 @@
         <!--begin::Body-->
         <div class="card-body pt-8">
             <!--begin::Form-->
-            <form class="form" action="{{ route('master.tim.update', $data->id) }}" method="post">
-                @csrf
-                @method('PUT')
+            <form class="form" action="#" method="post">
                 <!--begin::Input group-->
                 <div class="d-flex flex-row mb-7 fv-row">
                     <div class="d-flex flex-column w-1/2 mr-7">

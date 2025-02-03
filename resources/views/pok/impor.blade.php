@@ -41,13 +41,13 @@
                     @csrf
                     @method('POST')
 
-                    <input type="number" name="tahun" class="form-control my-2" placeholder="Tahun...">
-                    <input type="number" name="revisi" class="form-control my-2" placeholder="Revisi Ke...">
+                    <input type="number" name="tahun" class="form-control my-2" placeholder="Tahun..." required>
+                    <input type="number" name="revisi" class="form-control my-2" placeholder="Revisi Ke..." required>
 
-                    <div class="mb-3">
+                    <div class="mb-3 text-left">
                         <input class="form-control" type="file" id="file" name="file" required>
                         @error('file')
-                        <small>{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 

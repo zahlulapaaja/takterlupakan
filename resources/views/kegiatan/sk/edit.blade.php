@@ -9,7 +9,7 @@
     @endsection
 
     <!--begin::Form-->
-    <form id="form_create_sk" method="post" action="{{ route('kegiatan.sk.update', $data->id) }}" class="form d-flex flex-column flex-lg-row">
+    <form id="form_edit_sk" method="post" action="{{ route('kegiatan.sk.update', $data->id) }}" class="form d-flex flex-column flex-lg-row">
         @csrf
         @method('PUT')
         <!--begin::Aside column-->
@@ -316,10 +316,10 @@
             <!--end::Variations-->
             <div class="d-flex justify-content-end">
                 <!--begin::Button-->
-                <a href="{{ route('kegiatan.sk.index') }}" id="form_create_sk_cancel" class="btn btn-light me-5">Kembali</a>
+                <a href="{{ route('kegiatan.sk.index') }}" id="form_edit_sk_cancel" class="btn btn-light me-5">Kembali</a>
                 <!--end::Button-->
                 <!--begin::Button-->
-                <button type="submit" id="form_create_sk_submit" class="btn btn-primary">
+                <button type="submit" id="form_edit_sk_submit" class="btn btn-primary">
                     <span class="indicator-label">Simpan</span>
                     <span class="indicator-progress">Please wait...
                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

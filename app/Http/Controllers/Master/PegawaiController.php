@@ -33,11 +33,12 @@ class PegawaiController extends Controller
             'avatar'    => 'nullable|mimes:png,jpg,jpeg',
             'nama'      => 'required',
             'jabatan'   => 'required',
-            'nip_baru'  => 'required',
-            'nip_lama'  => 'required',
+            'nip_baru'  => 'required|min:16',
+            'nip_lama'  => 'required|min:9',
             'golongan'  => 'required',
             'pangkat'   => 'required',
             'email'     => 'required|email',
+            'no_hp'     => 'required',
         ]);
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
@@ -52,7 +53,7 @@ class PegawaiController extends Controller
             $data['avatar'] = $filename;
         }
 
-        // $data['nama'] = $request->nama;
+        $data['nama'] = $request->nama;
         $data['jabatan'] = $request->jabatan;
         $data['nip_baru'] = $request->nip_baru;
         $data['nip_lama'] = $request->nip_lama;
@@ -85,15 +86,13 @@ class PegawaiController extends Controller
             'avatar'    => 'nullable|mimes:png,jpg,jpeg',
             'nama'      => 'required',
             'jabatan'   => 'required',
-            'nip_baru'  => 'required',
-            'nip_lama'  => 'required',
+            'nip_baru'  => 'required|min:16',
+            'nip_lama'  => 'required|min:9',
             'golongan'  => 'required',
             'pangkat'   => 'required',
             'email'     => 'required|email',
             'no_hp'     => 'required',
         ]);
-        // dd($validator);
-        // dd($request->all());
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
@@ -107,7 +106,6 @@ class PegawaiController extends Controller
             Storage::disk('public')->put($path, file_get_contents($avatar));
 
             $data['avatar'] = $filename;
-            // dd($data);
         }
 
         $data['nama'] = $request->nama;

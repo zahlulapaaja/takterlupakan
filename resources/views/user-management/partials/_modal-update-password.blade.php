@@ -45,7 +45,8 @@
                             <label class="required fw-semibold fs-6 mb-2">Password Baru</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="password" name="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="********" /> <!--end::Input-->
+                            <input type="password" name="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="********" required />
+                            <!--end::Input-->
                         </div>
                         <!--end::Input group-->
                     </div>

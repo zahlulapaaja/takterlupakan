@@ -23,10 +23,14 @@ class AuthController extends Controller
     public function login_proses(Request $request): RedirectResponse
     {
         $request->validate([
-            'email'    => 'required',
+            'email'    => 'required|email',
             'password'    => 'required',
         ]);
 
+        // Check if email exists in the database
+        if (!User::where('email', $request->email)->exists()) {
+            return back()->withErrors(['email' => 'Email does not exist.'])->withInput();
+        }
 
         // gatau ini untuk apa
         // if (Auth::attempt($credentials)) {
@@ -39,7 +43,8 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
         ];
-        // dd(session()->all());
+
+        // Attempt login
         if (Auth::attempt($data)) {
             $user = Auth::user();
             Session::put('user_id', $user->id);
@@ -49,7 +54,8 @@ class AuthController extends Controller
             Session::put('avatar', User::find($user->id)->image);
             return redirect()->route('dashboard');
         } else {
-            return redirect()->route('login')->with('failed', 'Email atau Password Salah');
+            // Authentication failed
+            return back()->withErrors(['password' => 'Invalid password.'])->withInput();
         }
     }
 

@@ -89,7 +89,7 @@
                             <label class="required fw-semibold fs-6 mb-2">Full Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="{{$user->name}}" />
+                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" value="{{$user->name}}" required />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -99,7 +99,7 @@
                             <label class="required fw-semibold fs-6 mb-2">Email</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@bps.go.id" value="{{$user->email}}" />
+                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@bps.go.id" value="{{$user->email}}" required />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

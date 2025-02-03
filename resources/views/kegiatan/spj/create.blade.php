@@ -157,6 +157,9 @@
                     <!--begin::Input group-->
                     <div id="daftar-petugas-honor" class="my-4">
                     </div>
+                    @error('checkbox')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     <!--end::Input group-->
 
                     @elseif($keg->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
@@ -214,7 +217,6 @@
                     </div>
                     <!--end::Input group-->
                     @endif
-
                 </div>
                 <!--end::Card header-->
             </div>

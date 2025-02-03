@@ -72,6 +72,13 @@ class SpjController extends Controller
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
+        // jika spj honor 
+        if ($request->checkbox == null) {
+            // dd($request->all());
+            $validator = Validator::make($request->all(), ['checkbox'   => 'required']);
+            if ($validator->fails()) return redirect('sk.create')->back()->withErrors(['checkbox' => 'Minimal satu petugas dipilih.'])->withInput();
+        }
+
         $spj['kegiatans_id'] = $request->kegiatans_id;
         $spj['tgl'] = $request->tgl;
         $spj['no_st'] = $request->no_st;

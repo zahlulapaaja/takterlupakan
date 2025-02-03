@@ -54,7 +54,7 @@
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                             <span class="required">Ketua Tim</span>
                         </label>
-                        <select name="ketua" class="form-control form-control-solid">
+                        <select name="ketua" class="form-control form-control-solid" required>
                             <option value="" hidden>Pilih Ketua Tim</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>

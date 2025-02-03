@@ -9,7 +9,7 @@
     @endsection
 
     <!--begin::Form-->
-    <form id="form_create_sk" method="post" action="{{ route('kegiatan.store') }}" class="form d-flex flex-column flex-lg-row">
+    <form id="form_create_kegiatan" method="post" action="{{ route('kegiatan.store') }}" class="form d-flex flex-column flex-lg-row">
         @csrf
         @method('POST')
         <!--begin::Aside column-->
@@ -19,7 +19,7 @@
                 <!--begin::Card header-->
                 <div class="card-header">
                     <div class="card-title">
-                        <h2>Detail SK</h2>
+                        <h2>Detail POK</h2>
                     </div>
                 </div>
                 <!--end::Card header-->

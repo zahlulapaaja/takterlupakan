@@ -114,7 +114,10 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="nama" value="" />
+                        <input type="text" class="form-control form-control-solid" name="nama" value="{{old('nama')}}" required />
+                        @error('nama')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -133,7 +136,10 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="jabatan" value="" />
+                        <input type="text" class="form-control form-control-solid" name="jabatan" value="{{old('jabatan')}}" required />
+                        @error('jabatan')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -156,7 +162,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="" />
+                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="{{old('nip_baru')}}" required />
+                                @error('nip_baru')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -179,7 +188,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="" />
+                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="{{old('nip_lama')}}" required />
+                                @error('nip_lama')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -201,7 +213,7 @@
                                 <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan">
+                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan" required>
                                         <option value="" hidden>Pilih Golongan</option>
                                         <option value="I/a">I/a</option>
                                         <option value="I/b">I/b</option>
@@ -221,6 +233,9 @@
                                         <option value="IV/d">IV/d</option>
                                         <option value="IV/e">IV/e</option>
                                     </select>
+                                    @error('golongan')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                     <!--end::Select2-->
                                 </div>
                                 <!--end::Input-->
@@ -239,7 +254,7 @@
                                 <!--end::Label-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat">
+                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat" required>
                                         <option value="" hidden>Pilih Pangkat</option>
                                         <option value="Juru Muda">Juru Muda</option>
                                         <option value="Juru Muda Tingkat I">Juru Muda Tingkat I</option>
@@ -259,6 +274,9 @@
                                         <option value="Pembina Utama Madya">Pembina Utama Madya</option>
                                         <option value="Pembina Utama">Pembina Utama</option>
                                     </select>
+                                    @error('pangkat')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                     <!--end::Select2-->
                                 </div>
                             </div>
@@ -286,7 +304,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="email" class="form-control form-control-solid" name="email" value="" />
+                                <input type="email" class="form-control form-control-solid" name="email" value="{{old('email')}}" required />
+                                @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -309,7 +330,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_hp" value="" />
+                                <input type="text" class="form-control form-control-solid" name="no_hp" value="{{old('no_hp')}}" required />
+                                @error('no_hp')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -359,7 +383,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_rek" value="" />
+                                <input type="text" class="form-control form-control-solid" name="no_rek" value="{{old('no_rek')}}" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -375,7 +399,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="an_rek" value="" />
+                                <input type="text" class="form-control form-control-solid" name="an_rek" value="{{old('an_rek')}}" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -398,7 +422,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <textarea class="form-control form-control-solid" name="catatan"></textarea>
+                        <textarea class="form-control form-control-solid" name="catatan">{{old('catatan')}}</textarea>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->

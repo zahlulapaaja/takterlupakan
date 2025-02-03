@@ -30,7 +30,7 @@
             <!--begin::Card body-->
             <div class="card-body pt-5">
                 <!--begin::Form-->
-                <form id="edit_mitra_form" class="form" method="post" action="{{route('master.mitra.update', $data->id)}}">
+                <form id="detail_mitra_form" class="form" method="post" action="#">
                     @csrf
                     @method('PUT')
                     <!--begin::Input group-->

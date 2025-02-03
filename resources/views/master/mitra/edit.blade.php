@@ -38,7 +38,7 @@
                         <label class="fs-6 fw-semibold form-label mt-3">
                             <span class="required">Nama</span>
                         </label>
-                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" />
+                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" required />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -56,7 +56,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="posisi" value="{{$data->posisi}}" />
+                        <input type="text" class="form-control form-control-solid" name="posisi" value="{{$data->posisi}}" required />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -69,7 +69,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">ID Sobat</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="id_sobat" value="{{$data->id_sobat}}" />
+                                <input type="text" class="form-control form-control-solid" name="id_sobat" value="{{$data->id_sobat}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -81,7 +81,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Email</span>
                                 </label>
-                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" />
+                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -97,7 +97,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Alamat</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_detail" value="{{$data->alamat_detail}}" />
+                                <input type="text" class="form-control form-control-solid" name="alamat_detail" value="{{$data->alamat_detail}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -113,7 +113,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Prov</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_prov" value="{{$data->alamat_prov}}" />
+                                <input type="text" class="form-control form-control-solid" name="alamat_prov" value="{{$data->alamat_prov}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -125,7 +125,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Kab</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_kab" value="{{$data->alamat_kab}}" />
+                                <input type="text" class="form-control form-control-solid" name="alamat_kab" value="{{$data->alamat_kab}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -137,7 +137,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Kec</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_kec" value="{{$data->alamat_kec}}" />
+                                <input type="text" class="form-control form-control-solid" name="alamat_kec" value="{{$data->alamat_kec}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -149,7 +149,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Desa</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_desa" value="{{$data->alamat_desa}}" />
+                                <input type="text" class="form-control form-control-solid" name="alamat_desa" value="{{$data->alamat_desa}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -165,7 +165,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Tanggal Lahir</span>
                                 </label>
-                                <input type="date" class="form-control form-control-solid" name="tgl_lahir" value="{{$data->tgl_lahir}}" />
+                                <input type="date" class="form-control form-control-solid" name="tgl_lahir" value="{{$data->tgl_lahir}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -252,7 +252,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Pendidikan</span>
                                 </label>
-                                <input type="number" class="form-control form-control-solid" name="pendidikan" value="{{$data->pendidikan}}" />
+                                <input type="number" class="form-control form-control-solid" name="pendidikan" value="{{$data->pendidikan}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -264,7 +264,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Pekerjaan</span>
                                 </label>
-                                <input type="number" class="form-control form-control-solid" name="pekerjaan" value="{{$data->pekerjaan}}" />
+                                <input type="number" class="form-control form-control-solid" name="pekerjaan" value="{{$data->pekerjaan}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -280,7 +280,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">No Telp</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="no_telp" value="{{$data->no_telp}}" />
+                                <input type="text" class="form-control form-control-solid" name="no_telp" value="{{$data->no_telp}}" required />
                             </div>
                             <!--end::Input group-->
                         </div>

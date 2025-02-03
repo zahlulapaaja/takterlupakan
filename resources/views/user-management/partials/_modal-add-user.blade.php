@@ -89,11 +89,10 @@
                             <label class="required fw-semibold fs-6 mb-2">Full Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" />
+                            <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Full name" required />
                             @error('name')
                             <div class="text-muted fs-7">
                                 <small>{{ $message }}</small>
-                                <!-- Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted -->
                             </div>
                             @enderror
                             <!--end::Input-->
@@ -105,11 +104,10 @@
                             <label class="required fw-semibold fs-6 mb-2">Email</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" />
+                            <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="example@domain.com" required />
                             @error('email')
                             <div class="text-muted fs-7">
                                 <small>{{ $message }}</small>
-                                <!-- Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted -->
                             </div>
                             @enderror
                             <!--end::Input-->
@@ -121,7 +119,7 @@
                             <label class="required fw-semibold fs-6 mb-2">Password</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="password" name="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="********" />
+                            <input type="password" name="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="********" required />
                             @error('password')
                             <div class="text-muted fs-7">
                                 <small>{{ $message }}</small>

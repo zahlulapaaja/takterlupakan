@@ -39,7 +39,7 @@
                     <div class="mt-8 mb-3">
                         <input class="form-control" type="file" id="file" name="file" required>
                         @error('file')
-                        <small>{{ $message }}</small>
+                        <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 

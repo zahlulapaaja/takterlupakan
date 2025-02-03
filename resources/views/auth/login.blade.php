@@ -115,7 +115,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Email-->
 								<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" value="{{ old('email') }}" />
 								@error('email')
-								<small>{{ $message }}</small>
+								<small class="text-danger">{{ $message }}</small>
 								@enderror
 								<!--end::Email-->
 							</div>
@@ -124,7 +124,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--begin::Password-->
 								<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
 								@error('password')
-								<small>{{ $message }}</small>
+								<small class="text-danger">{{ $message }}</small>
 								@enderror
 								<!--end::Password-->
 							</div>
@@ -280,7 +280,7 @@ License: For each use you must have a valid license purchased only from above li
 	<script src="assets/js/scripts.bundle.js"></script>
 	<!--end::Global Javascript Bundle-->
 	<!--begin::Custom Javascript(used for this page only)-->
-	<script src="assets/js/custom/authentication/sign-in/general.js"></script>
+	<!-- <script src="assets/js/custom/authentication/sign-in/general.js"></script> -->
 	<!--end::Custom Javascript-->
 	<!--end::Javascript-->
 </body>

@@ -37,7 +37,9 @@ class PokController extends Controller
     public function proses_impor(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
+            'tahun'  => 'required',
+            'revisi' => 'required',
+            'file'   => 'required|mimes:xls,xlsx'
         ]);
 
         // inisiasi data session

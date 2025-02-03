@@ -114,7 +114,10 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" />
+                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" required />
+                        @error('nama')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -133,7 +136,10 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="jabatan" value="{{$data->jabatan}}" />
+                        <input type="text" class="form-control form-control-solid" name="jabatan" value="{{$data->jabatan}}" required />
+                        @error('jabatan')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -156,7 +162,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="{{$data->nip_baru}}" />
+                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="{{$data->nip_baru}}" required />
+                                @error('nip_baru')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -179,7 +188,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="{{$data->nip_lama}}" />
+                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="{{$data->nip_lama}}" required />
+                                @error('nip_lama')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -201,7 +213,7 @@
                                 <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan">
+                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan" required>
                                         <option value="{{$data->golongan}}" selected hidden>{{$data->golongan}}</option>
                                         <option value="I/a">I/a</option>
                                         <option value="I/b">I/b</option>
@@ -239,7 +251,7 @@
                                 <!--end::Label-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat">
+                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat" required>
                                         <option value="{{$data->pangkat}}" selected hidden>{{$data->pangkat}}</option>
                                         <option value="Juru Muda">Juru Muda</option>
                                         <option value="Juru Muda Tingkat I">Juru Muda Tingkat I</option>
@@ -286,7 +298,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" />
+                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" required />
+                                @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -309,7 +324,10 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_hp" value="{{$data->no_hp}}" />
+                                <input type="text" class="form-control form-control-solid" name="no_hp" value="{{$data->no_hp}}" required />
+                                @error('no_hp')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->

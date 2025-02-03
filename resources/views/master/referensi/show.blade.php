@@ -21,7 +21,7 @@
         <!--begin::Body-->
         <div class="card-body pt-8">
             <!--begin::Form-->
-            <form class="form" action="{{ route('master.referensi.update', $data->id) }}" method="post">
+            <form class="form" action="#" method="post">
                 @csrf
                 @method('PUT')
                 <!--begin::Input group-->
