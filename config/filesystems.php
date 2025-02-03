@@ -40,7 +40,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => public_path('uploads'),
-            // 'root' => realpath(base_path().'/../public_html'),
+            // 'root' => realpath(base_path().'/../public_html') . '/uploads',
             'url' => env('APP_URL') . '/uploads',
             'visibility' => 'public',
             'throw' => false,
