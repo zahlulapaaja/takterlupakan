@@ -165,6 +165,7 @@ class MatriksHonorController extends Controller
             ->get();
 
         foreach ($data as $d) {
+            // kalo ada matriks honor yang udh dibuat dan kegiatannya dihapus, akan error disini
             $d->keg = Kegiatan::find($d->kegiatans_id);
             $d->satuan = Pok::find($d->keg->poks_id)->first()->satuan;
             $d->keg->pjk = Pegawai::find($d->keg->pjk);

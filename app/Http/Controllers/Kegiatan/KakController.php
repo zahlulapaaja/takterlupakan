@@ -186,7 +186,6 @@ class KakController extends Controller
         $data['tgl'] = $request->tgl;
         $data['tim'] = $request->tim;
         $data['ppk'] = $request->ppk;
-        $data['tahun'] = $request->tahun;
         $data['edited_by'] = session('user_id');
 
         // setor file lampiran 
