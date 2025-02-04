@@ -47,6 +47,8 @@ return new class extends Migration
                 ->references('id')
                 ->on('poks')
                 ->onDelete('cascade');
+            $table->integer('volume')->length(5);
+            $table->integer('harga');
         });
 
         Schema::create('kaks_perjadin', function (Blueprint $table) {

@@ -58,6 +58,9 @@ class KakController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'detil'             => 'required',
+            'vol'               => 'required',
+            'harga'             => 'required',
             'jenis'             => 'required',
             'judul'             => 'required',
             'latar_belakang'    => 'required',
@@ -99,7 +102,7 @@ class KakController extends Controller
 
         // insert data
         $res = Kak::create($data);
-        $res->insertPoks($res->id, $request->detil);
+        $res->insertPoks($res->id, $request->detil, $request->id_pok, $request->vol, $request->harga);
         if ($request->jenis == 'pelatihan') $res->insertPelatihan($res->id, $request->all());
         if ($request->jenis == 'perjadin') $res->insertPeserta($res->id, $request->daftar_peserta_perjadin);
         if ($request->jenis == 'pengadaan') $res->insertSpesifikasi($res->id, $request->daftar_spesifikasi);
@@ -111,9 +114,9 @@ class KakController extends Controller
     {
         // mengambil data 
         $data = Kak::find($id);
-        $poks = DB::table('kaks_poks')->where('kaks_id', $data->id)->get();
+        $data->poks = DB::table('kaks_poks')->where('kaks_id', $data->id)->get();
         $list_pok = [];
-        foreach ($poks as $p) {
+        foreach ($data->poks as $p) {
             array_push($list_pok, $p->poks_id);
         }
         $data->list_pok = $list_pok;
@@ -163,6 +166,9 @@ class KakController extends Controller
         $find = Kak::find($id);
 
         $validator = Validator::make($request->all(), [
+            'detil'             => 'required',
+            'vol'               => 'required',
+            'harga'             => 'required',
             'judul'             => 'required',
             'latar_belakang'    => 'required',
             'tujuan'            => 'required',
@@ -206,7 +212,7 @@ class KakController extends Controller
 
         // update data
         $find->update($data);
-        $find->updatePoks($id, $request->detil);
+        $find->updatePoks($id, $request->detil, $request->id_pok, $request->vol, $request->harga);
         if ($find->jenis == 'pelatihan') $find->updatePelatihan($id, $request->all());
         if ($find->jenis == 'perjadin') $find->updatePeserta($id, $request->daftar_peserta_perjadin);
         if ($find->jenis == 'pengadaan') $find->updateSpesifikasi($id, $request->daftar_spesifikasi);
@@ -236,7 +242,7 @@ class KakController extends Controller
         $data->spesifikasi = DB::table('kaks_spesifikasi')->where('kaks_id', $data->id)->get();
         $data->pelatihan = DB::table('kaks_pelatihan')->where('kaks_id', $data->id)->first();
 
-        // mengambil data penanggung jawab 
+        // mengambil data penanggung jawab
         if ($data->tim == 0) {
             $data->pj = 'Kepala ' . config('constants.SATKER');
         } else {

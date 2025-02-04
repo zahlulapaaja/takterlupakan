@@ -15,13 +15,18 @@ class Kak extends Model
     protected $table = "kaks";
     protected $guarded = [];
 
-    public function insertPoks($kaks_id, $detil)
+    public function insertPoks($kaks_id, $detil, $id_pok, $vol, $harga)
     {
         $res = false;
-        foreach ($detil as $d) {
-            $data['kaks_id'] = $kaks_id;
-            $data['poks_id'] = $d;
-            $res[] = DB::table('kaks_poks')->insert($data);
+        $data['kaks_id'] = $kaks_id;
+
+        for ($i = 0; $i < count($id_pok); $i++) {
+            if (in_array($id_pok[$i], $detil)) {
+                $data['poks_id'] = $id_pok[$i];
+                $data['volume'] = $vol[$i];
+                $data['harga'] = $harga[$i];
+                $res[] = DB::table('kaks_poks')->insert($data);
+            }
         }
 
         return $res;
@@ -90,10 +95,10 @@ class Kak extends Model
         return $result;
     }
 
-    public function updatePoks($kaks_id, $detil)
+    public function updatePoks($kaks_id, $detil, $id_pok, $vol, $harga)
     {
         DB::table('kaks_poks')->where('kaks_id', $kaks_id)->delete();
-        $this->insertPoks($kaks_id, $detil);
+        $this->insertPoks($kaks_id, $detil, $id_pok, $vol, $harga);
 
         return true;
     }

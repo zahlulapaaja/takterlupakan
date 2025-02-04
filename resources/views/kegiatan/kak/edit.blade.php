@@ -55,15 +55,39 @@
                         <div class="d-flex flex-column gap-y-2">
                             @foreach($pok->list_detil as $p)
                             @if($loop->first || ($p->kode_akun != $akun))
-                            <label class="font-bold bg-cyan-300 me-auto">{{$p->kode_akun}}</label>
+                            <div class="d-flex flex-column flex-lg-row justify-between gap-x-4">
+                                <div class="w-3/4 d-flex flex-row">
+                                    <label class="font-bold bg-cyan-300 me-auto">{{$p->kode_akun}}</label>
+                                </div>
+                                <div class="w-250px d-flex flex-row gap-x-2">
+                                    <label class="font-bold me-auto">Volume</label>
+                                    <label class="font-bold me-auto">Harga</label>
+                                </div>
+                            </div>
                             @endif
-                            <div class="d-flex flex-row">
-                                @if(in_array($p->id, $data->list_pok))
-                                <input id="{{$p->id}}" class="form-check-input me-3" name="detil[]" type="checkbox" value="{{$p->id}}" checked />
-                                @else
-                                <input id="{{$p->id}}" class="form-check-input me-3" name="detil[]" type="checkbox" value="{{$p->id}}" />
-                                @endif
-                                <label for="{{$p->id}}">{{$p->item_kegiatan}}</label>
+                            <div class="d-flex flex-column flex-lg-row justify-between gap-x-4">
+                                <div class="w-3/4 d-flex flex-row">
+                                    @if(in_array($p->id, $data->list_pok))
+                                    <input id="{{$p->id}}" class="form-check-input me-3" name="detil[]" type="checkbox" value="{{$p->id}}" checked />
+                                    @else
+                                    <input id="{{$p->id}}" class="form-check-input me-3" name="detil[]" type="checkbox" value="{{$p->id}}" />
+                                    @endif
+                                    <label for="{{$p->id}}">{{$p->item_kegiatan}}</label>
+                                </div>
+                                <div class="w-250px d-flex flex-row gap-x-2">
+                                    <input type="hidden" name="id_pok[]" value="{{$p->id}}">
+                                    @if(in_array($p->id, $data->list_pok))
+                                    @foreach($data->poks as $d)
+                                    @if($d->poks_id == $p->id)
+                                    <input type="number" name="vol[]" class="form-control" value="{{$d->volume}}" required>
+                                    <input type="number" name="harga[]" class="form-control" value="{{$d->harga}}" required>
+                                    @endif
+                                    @endforeach
+                                    @else
+                                    <input type="number" name="vol[]" class="form-control" value="{{$p->volume}}" required>
+                                    <input type="number" name="harga[]" class="form-control" value="{{$p->harga}}" required>
+                                    @endif
+                                </div>
                             </div>
                             <?php $akun = $p->kode_akun; ?>
                             @endforeach
