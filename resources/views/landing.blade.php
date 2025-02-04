@@ -558,10 +558,10 @@ License: For each use you must have a valid license purchased only from above li
 									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#" data-bs-toggle="tab" data-bs-target="#galeri_pegawai">Pegawai</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#" data-bs-toggle="tab" data-bs-target="#galeri_lapangan">Lapangan</a>
+									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#" data-bs-toggle="tab" data-bs-target="#galeri_kegiatan">Kegiatan</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#" data-bs-toggle="tab" data-bs-target="#galeri_pengolahan">Pengolahan</a>
+									<a class="nav-link text-gray-500 text-active-primary px-3 px-lg-6" href="#" data-bs-toggle="tab" data-bs-target="#galeri_kerjasama">Kerja Sama</a>
 								</li>
 							</ul>
 							<!--end::Tabs-->
@@ -576,9 +576,9 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Col-->
 									<div class="col-lg-6">
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-23.jpg">
+										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-90.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x600/img-23.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x600/img-90.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -600,9 +600,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-22.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-91.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-22.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-91.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -620,9 +620,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-21.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-92.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-21.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-92.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -640,9 +640,9 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 										<!--end::Row-->
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-20.jpg">
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-82.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-20.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-82.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -668,9 +668,9 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Col-->
 									<div class="col-lg-6">
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-11.jpg">
+										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-83.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x600/img-11.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x400/img-83.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -692,9 +692,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-12.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-84.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-12.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-84.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -712,9 +712,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-21.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-85.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-21.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-85.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -732,9 +732,9 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 										<!--end::Row-->
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-20.jpg">
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-86.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-20.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-86.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -754,7 +754,7 @@ License: For each use you must have a valid license purchased only from above li
 							</div>
 							<!--end::Tab pane-->
 							<!--begin::Tab pane-->
-							<div class="tab-pane fade" id="galeri_lapangan">
+							<div class="tab-pane fade" id="galeri_kegiatan">
 								<!--begin::Row-->
 								<div class="row g-10">
 									<!--begin::Col-->
@@ -764,9 +764,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-16.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-87.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-16.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-87.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -784,9 +784,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-12.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-88.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-12.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-88.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -804,9 +804,9 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 										<!--end::Row-->
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-15.jpg">
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-89.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-15.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-89.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -824,9 +824,9 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin::Col-->
 									<div class="col-lg-6">
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-23.jpg">
+										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-90.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x600/img-23.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x400/img-90.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -846,15 +846,15 @@ License: For each use you must have a valid license purchased only from above li
 							</div>
 							<!--end::Tab pane-->
 							<!--begin::Tab pane-->
-							<div class="tab-pane fade" id="galeri_pengolahan">
+							<div class="tab-pane fade" id="galeri_kerjasama">
 								<!--begin::Row-->
 								<div class="row g-10">
 									<!--begin::Col-->
 									<div class="col-lg-6">
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-15.jpg">
+										<a class="d-block card-rounded overlay h-lg-100" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-91.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x600/img-15.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-lg-100 min-h-250px" style="background-image:url('assets/media/stock/600x400/img-91.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -876,9 +876,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-22.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-94.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-22.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-94.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -896,9 +896,9 @@ License: For each use you must have a valid license purchased only from above li
 											<!--begin::Col-->
 											<div class="col-lg-6">
 												<!--begin::Item-->
-												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x600/img-21.jpg">
+												<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-92.png">
 													<!--begin::Image-->
-													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-21.jpg')"></div>
+													<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-92.png')"></div>
 													<!--end::Image-->
 													<!--begin::Action-->
 													<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -916,9 +916,9 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 										<!--end::Row-->
 										<!--begin::Item-->
-										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-14.jpg">
+										<a class="d-block card-rounded overlay" data-fslightbox="lightbox-projects" href="assets/media/stock/600x400/img-93.png">
 											<!--begin::Image-->
-											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x600/img-14.jpg')"></div>
+											<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-250px" style="background-image:url('assets/media/stock/600x400/img-93.png')"></div>
 											<!--end::Image-->
 											<!--begin::Action-->
 											<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
@@ -983,7 +983,7 @@ License: For each use you must have a valid license purchased only from above li
 							<div class="d-flex align-items-center justify-center mx-auto">
 								<!--begin::Avatar-->
 								<div class="symbol symbol-circle symbol-50px me-5">
-									<img src="assets/media/avatars/300-16.jpg" class="" alt="" />
+									<img src="assets/media/avatars/pak-rudi.png" class="" alt="" />
 								</div>
 								<!--end::Avatar-->
 								<!--begin::Name-->
