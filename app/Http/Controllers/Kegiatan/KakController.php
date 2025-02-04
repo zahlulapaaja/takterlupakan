@@ -38,6 +38,8 @@ class KakController extends Controller
             ->where('kode_suboutput', $pok->kode_suboutput)
             ->where('kode_komponen', $pok->kode_komponen)
             ->where('kode_subkomponen', $pok->kode_subkomponen)
+            ->where('tahun', $pok->tahun)
+            ->where('revisi', $pok->revisi)
             ->orderBy('kode_akun', 'ASC')
             ->get();
 
@@ -136,6 +138,8 @@ class KakController extends Controller
             ->where('kode_suboutput', $pok->kode_suboutput)
             ->where('kode_komponen', $pok->kode_komponen)
             ->where('kode_subkomponen', $pok->kode_subkomponen)
+            ->where('tahun', $pok->tahun)
+            ->where('revisi', $pok->revisi)
             ->orderBy('kode_akun', 'ASC')
             ->get();
 
