@@ -482,7 +482,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Item-->
 						<div class="text-center">
 							<!--begin::Photo-->
-							<?php $avatar = $p->avatar ? asset('uploads/pegawai/' . $p->avatar) : avatar('blank.png'); ?>
+							<?php $avatar = $p->avatar ? asset('uploads/pegawai/' . $p->avatar) : asset('uploads/pegawai/blank.png'); ?>
 							<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{$avatar}}')"></div>
 							<!--end::Photo-->
 							<!--begin::Person-->
@@ -501,7 +501,7 @@ License: For each use you must have a valid license purchased only from above li
 						<!--begin::Item-->
 						<div class="text-center">
 							<!--begin::Photo-->
-							<?php $avatar = avatar('blank.png'); ?>
+							<?php $avatar = asset('uploads/pegawai/blank.png'); ?>
 							<div class="octagon mx-auto mb-5 d-flex w-200px h-200px bgi-no-repeat bgi-size-contain bgi-position-center" style="background-image:url('{{$avatar}}')"></div>
 							<!--end::Photo-->
 							<!--begin::Person-->
