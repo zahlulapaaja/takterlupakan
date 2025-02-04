@@ -15,7 +15,7 @@
                 <div class="w-full w-lg-5/6 flex flex-column flex-lg-row gap-5">
                     <input type="text" class="form-control" name="petugas[]" value="{{$p->nama}}" readonly />
                     <div class="flex flex-row gap-5">
-                        <input type="number" class="form-control" name="beban[]" placeholder="Beban" />
+                        <input type="number" class="form-control" name="beban[]" placeholder="Beban" value="0" />
                         <span class="text-left text-lg my-auto text-nowrap">{{$satuan}}</span>
                     </div>
                 </div>

@@ -32,7 +32,7 @@ Breadcrumbs::macro('resource', function (string $parent, string $name, string $t
 
 // Home
 Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
-    $trail->push('Home', route('dashboard'));
+    $trail->push('Home', route('home'));
 });
 
 

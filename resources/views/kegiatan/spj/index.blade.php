@@ -371,7 +371,8 @@
                                         }
                                     });
 
-                                    table.rows("#" + id + "").remove().draw();
+                                    table1.rows("#" + id + "").remove().draw();
+                                    table2.rows("#" + id + "").remove().draw();
                                 }
                             }
                         });

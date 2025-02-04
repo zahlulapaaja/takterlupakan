@@ -19,7 +19,6 @@ use App\Http\Controllers\Surat\NoSuratMasukKeluarController;
 use App\Http\Controllers\Surat\NoSuratTimController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
 Route::get('/', [HomeController::class, 'landing'])->name('landing');
 Route::get('/soon', [HomeController::class, 'soon'])->name('soon');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -27,7 +26,7 @@ Route::post('/login-proses', [AuthController::class, 'login_proses'])->name('log
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // User Management
     Route::middleware(['role:administrator'])->name('user-management.')->group(function () {
@@ -70,10 +69,7 @@ Route::middleware('auth')->group(function () {
         // print 
         Route::get('/kegiatan/sk/{sk}/print', [SkController::class, 'print'])->name('sk.print');
         Route::get('/kegiatan/spj/{spj}/print/{jenis}', [SpjController::class, 'print'])->name('spj.print');
-
-        // masih coba-coba 
         Route::get('/kegiatan/kak/{kak}/print', [KakController::class, 'print'])->name('kak.print');
-        Route::get('/kegiatan/kak/{kak}/print2', [KakController::class, 'print2'])->name('kak.print2');
     });
 
     // Matriks 

@@ -99,7 +99,7 @@ License: For each use you must have a valid license purchased only from above li
                         <!--end::Illustration-->
                         <!--begin::Link-->
                         <div class="mb-0">
-                            <a href="{{route('dashboard')}}" class="btn btn-sm btn-primary">Return Home</a>
+                            <a href="{{route('landing')}}" class="btn btn-sm btn-primary">Return Home</a>
                         </div>
                         <!--end::Link-->
                     </div>

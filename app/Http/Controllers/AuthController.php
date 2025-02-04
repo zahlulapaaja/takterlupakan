@@ -36,7 +36,7 @@ class AuthController extends Controller
         // if (Auth::attempt($credentials)) {
         //     $request->session()->regenerate();
 
-        //     return redirect()->intended('dashboard');
+        //     return redirect()->intended('landing');
         // }
 
         $data = [
@@ -52,7 +52,7 @@ class AuthController extends Controller
             Session::put('role', User::find($user->id)->roles);
             Session::put('email', User::find($user->id)->email);
             Session::put('avatar', User::find($user->id)->image);
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         } else {
             // Authentication failed
             return back()->withErrors(['password' => 'Invalid password.'])->withInput();

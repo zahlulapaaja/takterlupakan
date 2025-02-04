@@ -29,7 +29,7 @@ class Spj extends Model
         for ($i = 0; $i < count($request['status']); $i++) {
             $data['spjs_id'] = $spj_id;
             $data['status'] = $request['status'][$i];
-            if ($request['status'][$i] == "N") {
+            if ($request['status'][$i] == config('constants.MITRA')) {
                 $data['mitra_id'] = $request['id_status'][$i];
                 $data['pegawai_id'] = null;
             } else {
@@ -39,7 +39,7 @@ class Spj extends Model
             $data['checkbox'] = false;
             if (in_array($i, $request['checkbox'])) $data['checkbox'] = true;
 
-            $data['beban'] = $request['beban'][$i];
+            $data['beban'] = ($request['beban'][$i] == null) ? 0 : $request['beban'][$i];
             $res[] = DB::table('spjs_honor')->insert($data);
         }
 

@@ -163,7 +163,7 @@ License: For each use you must have a valid license purchased only from above li
 						</h1>
 						<!--end::Title-->
 						<!--begin::Action-->
-						<a href="{{route('dashboard')}}" class="btn btn-primary">Masuk</a>
+						<a href="{{route('home')}}" class="btn btn-primary">Masuk</a>
 						<!--end::Action-->
 					</div>
 					<!--end::Heading-->

@@ -246,7 +246,7 @@ class KakController extends Controller
         if ($data->tim == 0) {
             $data->pj = 'Kepala ' . config('constants.SATKER');
         } else {
-            $data->pj = 'Tim ' . Tim::find($data->tim)->nama;
+            $data->pj = Tim::find($data->tim)->nama;
         }
 
         // mengambil data referensi 

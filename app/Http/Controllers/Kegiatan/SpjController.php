@@ -21,12 +21,14 @@ class SpjController extends Controller
             ->join('kegiatans', 'spjs.kegiatans_id', '=', 'kegiatans.id')
             ->join('tims', 'kegiatans.tim', '=', 'tims.id')
             ->where('spjs.kode_akun', config('constants.AKUN_HONOR'))
-            ->orderBy('spjs.tgl', 'DESC')->get();
+            ->orderBy('spjs.tgl', 'DESC')
+            ->orderBy('spjs.created_at', 'DESC')->get();
         $data_translok = Spj::select('spjs.id', 'spjs.kode_akun', 'kegiatans.nama as nama_keg', 'spjs.tgl', 'tims.singkatan as nama_tim', 'spjs.tahun')
             ->join('kegiatans', 'spjs.kegiatans_id', '=', 'kegiatans.id')
             ->join('tims', 'kegiatans.tim', '=', 'tims.id')
             ->where('kode_akun', config('constants.AKUN_TRANSLOK'))
-            ->orderBy('tgl', 'DESC')->get();
+            ->orderBy('tgl', 'DESC')
+            ->orderBy('spjs.created_at', 'DESC')->get();
         $list_tahun = Spj::distinct()->get('tahun');
 
         return view('kegiatan.spj.index', compact('data_honor', 'data_translok', 'list_tahun'));
@@ -73,10 +75,9 @@ class SpjController extends Controller
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         // jika spj honor 
-        if ($request->checkbox == null) {
-            // dd($request->all());
+        if ($request->akun == config('constants.AKUN_HONOR') && $request->checkbox == null) {
             $validator = Validator::make($request->all(), ['checkbox'   => 'required']);
-            if ($validator->fails()) return redirect('sk.create')->back()->withErrors(['checkbox' => 'Minimal satu petugas dipilih.'])->withInput();
+            if ($validator->fails()) return redirect('spj.create')->back()->withErrors(['checkbox' => 'Minimal satu petugas dipilih.'])->withInput();
         }
 
         $spj['kegiatans_id'] = $request->kegiatans_id;

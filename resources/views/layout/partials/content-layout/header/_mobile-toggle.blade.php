@@ -9,7 +9,7 @@
 	</div>
 	<!--end::Aside mobile toggle-->
 	<!--begin::Logo-->
-	<a href="{{route('dashboard')}}" class="d-flex align-items-center">
+	<a href="{{route('home')}}" class="d-flex align-items-center">
 		<img alt="Logo" src="{{image('logos/default-small.svg')}}" class="h-30px" />
 	</a>
 	<!--end::Logo-->

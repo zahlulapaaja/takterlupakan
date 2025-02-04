@@ -71,7 +71,7 @@ License: For each use you must have a valid license purchased only from above li
 					<!--begin::Wrapper-->
 					<div class="w-lg-500px p-10">
 						<!--begin::Form-->
-						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="{{ route('dashboard') }}" action="{{ route('login.proses') }}" method="POST">
+						<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="{{ route('home') }}" action="{{ route('login.proses') }}" method="POST">
 							@csrf
 							@method('POST')
 							<!--begin::Heading-->
@@ -246,7 +246,7 @@ License: For each use you must have a valid license purchased only from above li
 				<!--begin::Content-->
 				<div class="d-flex flex-column flex-center py-7 py-lg-15 px-5 px-md-15 w-100">
 					<!--begin::Logo-->
-					<a href="{{ route('dashboard') }}" class="mb-0 mb-lg-12">
+					<a href="{{ route('home') }}" class="mb-0 mb-lg-12">
 						<img alt="Logo" src="assets/media/logos/custom-1.png" class="h-60px h-lg-75px" />
 					</a>
 					<!--end::Logo-->

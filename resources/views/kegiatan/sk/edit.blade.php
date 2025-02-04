@@ -66,7 +66,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row">
                             <label class="required form-label">No SK</label>
-                            <input type="text" class="form-control" placeholder="B-001/11070/VS.300/2025" name="no" value="{{$data->no}}" required />
+                            <input type="text" class="form-control" placeholder="001/11070/VS.300/2025" name="no" value="{{$data->no}}" required />
                             <div class="text-muted fs-7">Note : ambil nomor surat terlebih dahulu</div>
                             @error('no')
                             <small>{{ $message }}</small>

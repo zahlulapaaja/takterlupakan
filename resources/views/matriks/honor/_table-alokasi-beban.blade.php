@@ -17,7 +17,7 @@
                     <input type="text" class="form-control" name="sebagai[]" value="{{$p->sebagai}}" placeholder="Sebagai" />
                     <div class="w-full flex flex-row gap-5">
                         <input type="number" class="form-control" name="harga[]" placeholder="Harga @" value="{{$pok->harga}}" required />
-                        <input type="number" class="form-control" name="volume[]" placeholder="Volume" />
+                        <input type="number" class="form-control" name="volume[]" placeholder="Volume" value="0" />
                         <span class="text-left text-lg my-auto">{{$pok->satuan}}</span>
                     </div>
                 </div>
