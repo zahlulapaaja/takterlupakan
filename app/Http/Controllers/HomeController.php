@@ -6,7 +6,6 @@ use App\Models\Master\Pegawai;
 use App\Models\Surat\NoFp;
 use App\Models\Surat\NoSuratMasukKeluar;
 use App\Models\Surat\NoSuratTim;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -17,8 +16,7 @@ class HomeController extends Controller
 
     public function landing()
     {
-        // $pegawai = Pegawai::all();
-        $pegawai = Pegawai::where('id', 500)->get();
+        $pegawai = Pegawai::all();
         return view('landing', compact('pegawai'));
     }
 
