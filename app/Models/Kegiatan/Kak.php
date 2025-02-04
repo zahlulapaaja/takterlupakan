@@ -75,12 +75,12 @@ class Kak extends Model
 
     public function getDetilPok($kaks_id)
     {
-        $result = [];
         $list_detil = DB::table('kaks_poks')->where('kaks_id', $kaks_id)->get();
         foreach ($list_detil as $d) {
-            $result[] = Pok::find($d->poks_id);
+            $d->pok = Pok::find($d->poks_id);
         }
 
+        $result = $list_detil;
         return $result;
     }
 

@@ -42,12 +42,12 @@
                     <tr>
                         <td class="align-top pr-12">Program</td>
                         <td class="align-top px-4">:</td>
-                        <td class="capitalize">{{$data->detil[0]->program}}</td>
+                        <td class="capitalize">{{$data->detil[0]->pok->program}}</td>
                     </tr>
                     <tr>
                         <td class="align-top pr-12">Kegiatan</td>
                         <td class="align-top px-4">:</td>
-                        <td class="capitalize">{{$data->detil[0]->kegiatan}}</td>
+                        <td class="capitalize">{{$data->detil[0]->pok->kegiatan}}</td>
                     </tr>
                     <tr>
                         <td class="text-nowrap pr-12">Penanggung Jawab</td>
@@ -283,14 +283,14 @@
                     <td class="align-top py-2 pl-10">:</td>
                     <td class="align-top p-2">
                         Pembiayaan kegiatan dibebankan pada DIPA {{config('constants.SATKER')}} Tahun Anggaran {{$data->tahun}},
-                        Program : (054.01.{{$data->detil[0]->kode_program}}) {{$data->detil[0]->program}},
-                        ({{$data->detil[0]->kode_kegiatan}}.{{$data->detil[0]->kode_output}}.{{$data->detil[0]->kode_suboutput}})
-                        {{$data->detil[0]->suboutput}}, Akun
+                        Program : (054.01.{{$data->detil[0]->pok->kode_program}}) {{$data->detil[0]->pok->program}},
+                        ({{$data->detil[0]->pok->kode_kegiatan}}.{{$data->detil[0]->pok->kode_output}}.{{$data->detil[0]->pok->kode_suboutput}})
+                        {{$data->detil[0]->pok->suboutput}}, Akun
                         @foreach($data->detil as $d)
-                        @if($loop->first || ($d->kode_akun != $akun))
-                        {{$d->kode_akun}}{{($loop->last) ? '.' : ','}}
+                        @if($loop->first || ($d->pok->kode_akun != $akun))
+                        {{$d->pok->kode_akun}}{{($loop->last) ? '.' : ','}}
                         @endif
-                        <?php $akun = $d->kode_akun; ?>
+                        <?php $akun = $d->pok->kode_akun; ?>
                         @endforeach
                     </td>
                 </tr>
@@ -303,32 +303,32 @@
                                 <tr>
                                     <td class="align-top pr-12">Program</td>
                                     <td class="align-top px-4">:</td>
-                                    <td>(054.01.{{$data->detil[0]->kode_program}}) {{$data->detil[0]->program}}</td>
+                                    <td>(054.01.{{$data->detil[0]->pok->kode_program}}) {{$data->detil[0]->pok->program}}</td>
                                 </tr>
                                 <tr>
                                     <td class="align-top pr-12">Kegiatan</td>
                                     <td class="align-top px-4">:</td>
-                                    <td>({{$data->detil[0]->kode_kegiatan}}) {{$data->detil[0]->kegiatan}}</td>
+                                    <td>({{$data->detil[0]->pok->kode_kegiatan}}) {{$data->detil[0]->pok->kegiatan}}</td>
                                 </tr>
                                 <tr>
                                     <td class="align-top pr-12 text-nowrap">Klasifikasi Rincian Output (KRO)</td>
                                     <td class="align-top px-4">:</td>
-                                    <td>({{$data->detil[0]->kode_kegiatan}}.{{$data->detil[0]->kode_output}}) {{$data->detil[0]->output}}</td>
+                                    <td>({{$data->detil[0]->pok->kode_kegiatan}}.{{$data->detil[0]->pok->kode_output}}) {{$data->detil[0]->pok->output}}</td>
                                 </tr>
                                 <tr>
                                     <td class="align-top pr-12 text-nowrap">Rincian Output (RO)</td>
                                     <td class="align-top px-4">:</td>
-                                    <td class="capitalize">({{$data->detil[0]->kode_kegiatan}}.{{$data->detil[0]->kode_output}}.{{$data->detil[0]->kode_suboutput}}) {{$data->detil[0]->suboutput}}</td>
+                                    <td class="capitalize">({{$data->detil[0]->pok->kode_kegiatan}}.{{$data->detil[0]->pok->kode_output}}.{{$data->detil[0]->pok->kode_suboutput}}) {{$data->detil[0]->pok->suboutput}}</td>
                                 </tr>
                                 <tr>
                                     <td class="align-top pr-12">Komponen</td>
                                     <td class="align-top px-4">:</td>
-                                    <td class="capitalize">({{$data->detil[0]->kode_komponen}}) {{$data->detil[0]->komponen}}</td>
+                                    <td class="capitalize">({{$data->detil[0]->pok->kode_komponen}}) {{$data->detil[0]->pok->komponen}}</td>
                                 </tr>
                                 <tr>
                                     <td class="align-top pr-12">Sub Komponen</td>
                                     <td class="align-top px-4">:</td>
-                                    <td class="capitalize">({{$data->detil[0]->kode_subkomponen}}) {{$data->detil[0]->subkomponen}}</td>
+                                    <td class="capitalize">({{$data->detil[0]->pok->kode_subkomponen}}) {{$data->detil[0]->pok->subkomponen}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -347,21 +347,21 @@
                                 </thead>
                                 <tbody>
                                     @foreach($data->detil as $d)
-                                    @if($loop->first || ($d->kode_akun != $akun))
+                                    @if($loop->first || ($d->pok->kode_akun != $akun))
                                     <tr class="font-semibold fs-6">
-                                        <td class="border border-black px-2">{{$d->kode_akun}}</td>
-                                        <td colspan="5" class="border border-black text-left px-2">{{$d->akun}}</td>
+                                        <td class="border border-black px-2">{{$d->pok->kode_akun}}</td>
+                                        <td colspan="5" class="border border-black text-left px-2">{{$d->pok->akun}}</td>
                                     </tr>
                                     @endif
                                     <tr class="fs-7">
                                         <td class="border border-black px-2"></td>
-                                        <td class="border border-black text-left px-2">{{$d->item_kegiatan}}</td>
+                                        <td class="border border-black text-left px-2">{{$d->pok->item_kegiatan}}</td>
                                         <td class="border border-black px-2">{{$d->volume}}</td>
-                                        <td class="border border-black px-2">{{$d->satuan}}</td>
+                                        <td class="border border-black px-2">{{$d->pok->satuan}}</td>
                                         <td class="border border-black px-2">{{currency_IDR($d->harga)}}</td>
-                                        <td class="border border-black px-2 text-right">{{currency_IDR($d->jumlah)}}</td>
+                                        <td class="border border-black px-2 text-right">{{currency_IDR($d->volume * $d->harga)}}</td>
                                     </tr>
-                                    <?php $akun = $d->kode_akun; ?>
+                                    <?php $akun = $d->pok->kode_akun; ?>
                                     @endforeach
                                 </tbody>
                             </table>
