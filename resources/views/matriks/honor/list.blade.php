@@ -17,7 +17,7 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
-                <a id="modal-no-spk" href="#" class="btn btn-sm btn-light btn-active-primary me-2">
+                <a id="modal-no-spk" href="#" data-tahun="{{$tahun}}" data-bulan="{{$bulan}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>SPK</a>
                 <a href="{{route('matriks.honor.bast.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
                     <i class="ki-document ki-solid fs-2"></i>BAST</a>
@@ -164,8 +164,8 @@
             // modal untuk input angka no spk
             $(document.body).on('click', '#modal-no-spk', function(e) {
                 e.preventDefault();
-                var id = $(this).data('id');
-                var name = $(this).data('name');
+                var tahun = $(this).data('tahun');
+                var bulan = $(this).data('bulan');
 
                 Swal.fire({
                     title: "Cetak SPK!",
@@ -176,16 +176,20 @@
                     animation: "slide-from-top",
                     inputPlaceholder: "1"
                 }).then(function(input) {
-                    if (input.value === null) return false;
-
-                    if (input.value === "") {
+                    alert(tahun);
+                    if (input.value == undefined) { // jika cancel
+                        return false;
+                    } else if (input.value == "") { // jika kosong
                         Swal.fire("You need to write something!");
-                        return false
+                        return false;
+                    } else {
+                        var url = "{{route('matriks.honor.spk.print', [':tahun', ':bulan', ':no'])}}";
+                        url = url.replace(':tahun', tahun);
+                        url = url.replace(':bulan', bulan);
+                        url = url.replace(':no', input.value);
+                        window.open(url, "_blank");
+                        return false;
                     }
-                    var url = "{{route('matriks.honor.spk.print', [$tahun, $bulan, ':no'])}}";
-                    url = url.replace(':no', input.value);
-
-                    window.open(url, "_blank");
                 });
 
             });

@@ -5,7 +5,7 @@
     @endsection
 
     @section('breadcrumbs')
-    {{ Breadcrumbs::render('master.pegawai.edit', $data->id) }}
+    {{ Breadcrumbs::render('master.pegawai.show', $data->id) }}
     @endsection
 
     <div class="row g-7">
@@ -22,7 +22,7 @@
                         <span class="path4"></span>
                         <span class="path5"></span>
                     </i>
-                    <h2>Edit Data Pegawai</h2>
+                    <h2>Detail Data Pegawai</h2>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -38,13 +38,6 @@
                         <!--begin::Label-->
                         <label class="fs-6 fw-semibold mb-3">
                             <span>Update Avatar</span>
-                            <span class="ms-1" data-bs-toggle="tooltip" title="Allowed file types: png, jpg, jpeg. [Max file size 2MB]">
-                                <i class="ki-duotone ki-information fs-7">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </span>
                         </label>
                         <!--end::Label-->
                         <!--begin::Image input wrapper-->
@@ -66,34 +59,6 @@
                                 <?php $url = asset('uploads/' . $data->avatar); ?>
                                 <div class="image-input-wrapper w-100px h-100px" style="background-image: url('{{$url}}')"></div>
                                 <!--end::Preview existing avatar-->
-                                <!--begin::Edit-->
-                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                    <i class="ki-duotone ki-pencil fs-7">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                    <!--begin::Inputs-->
-                                    <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                    <input type="hidden" name="avatar_remove" />
-                                    <!--end::Inputs-->
-                                </label>
-                                <!--end::Edit-->
-                                <!--begin::Cancel-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-                                    <i class="ki-duotone ki-cross fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </span>
-                                <!--end::Cancel-->
-                                <!--begin::Remove-->
-                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-                                    <i class="ki-duotone ki-cross fs-2">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </span>
-                                <!--end::Remove-->
                             </div>
                             <!--end::Image input-->
                         </div>
@@ -102,46 +67,18 @@
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <!--begin::Label-->
                         <label class="fs-6 fw-semibold form-label mt-3">
-                            <span class="required">Nama</span>
-                            <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan nama pegawai beserta gelar.">
-                                <i class="ki-duotone ki-information fs-7">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </span>
+                            <span>Nama</span>
                         </label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" required />
-                        @error('nama')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                        <!--end::Input-->
+                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" disabled />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <!--begin::Label-->
                         <label class="fs-6 fw-semibold form-label mt-3">
-                            <span class="required">Jabatan</span>
-                            <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan nama jabatan fungsional atau struktural.">
-                                <i class="ki-duotone ki-information fs-7">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </span>
+                            <span>Jabatan</span>
                         </label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="jabatan" value="{{$data->jabatan}}" required />
-                        @error('jabatan')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                        <!--end::Input-->
+                        <input type="text" class="form-control form-control-solid" name="jabatan" value="{{$data->jabatan}}" disabled />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Row-->
@@ -150,24 +87,10 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">NIP Baru</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan NIP 16 Digit.">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
+                                    <span>NIP Baru</span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="{{$data->nip_baru}}" required />
-                                @error('nip_baru')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                                <!--end::Input-->
+                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="{{$data->nip_baru}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -176,24 +99,10 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span>NIP Lama</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan NIP 9 Digit.">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="{{$data->nip_lama}}" required />
-                                @error('nip_lama')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                                <!--end::Input-->
+                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="{{$data->nip_lama}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -206,15 +115,12 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Golongan</span>
+                                    <span>Golongan</span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan" required>
+                                    <select id="select-golongan" class="form-select form-select-solid" name="golongan" disabled>
                                         <option value="{{$data->golongan}}" selected hidden>{{$data->golongan}}</option>
                                         <option value="I/a">I/a</option>
                                         <option value="I/b">I/b</option>
@@ -236,7 +142,6 @@
                                     </select>
                                     <!--end::Select2-->
                                 </div>
-                                <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -245,14 +150,12 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Pangkat</span>
+                                    <span>Pangkat</span>
                                 </label>
-                                <!--end::Label-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat" required>
+                                    <select id="select-pangkat" class="form-select form-select-solid" name="pangkat" disabled>
                                         <option value="{{$data->pangkat}}" selected hidden>{{$data->pangkat}}</option>
                                         <option value="Juru Muda">Juru Muda</option>
                                         <option value="Juru Muda Tingkat I">Juru Muda Tingkat I</option>
@@ -286,24 +189,10 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Email</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Enter the contact's email.">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
+                                    <span>Email</span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" required />
-                                @error('email')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                                <!--end::Input-->
+                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -312,24 +201,10 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span>No HP</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan nomor HP.">
-                                        <i class="ki-duotone ki-information fs-7">
-                                            <span class="path1"></span>
-                                            <span class="path2"></span>
-                                            <span class="path3"></span>
-                                        </i>
-                                    </span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_hp" value="{{$data->no_hp}}" required />
-                                @error('no_hp')
-                                <small class="text-danger">{{ $message }}</small>
-                                @enderror
-                                <!--end::Input-->
+                                <input type="text" class="form-control form-control-solid" name="no_hp" value="{{$data->no_hp}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -342,15 +217,12 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span>Bank</span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank">
+                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank" disabled>
                                         <option value="{{$data->nama_bank}}" selected hidden>{{$data->nama_bank}}</option>
                                         <option value="BSI">BSI</option>
                                         <option value="Bank Aceh">Bank Aceh</option>
@@ -363,7 +235,6 @@
                                     </select>
                                     <!--end::Select2-->
                                 </div>
-                                <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -372,14 +243,10 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span>Nomor Rekening</span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_rek" value="{{$data->no_rek}}" />
-                                <!--end::Input-->
+                                <input type="text" class="form-control form-control-solid" name="no_rek" value="{{$data->no_rek}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -388,14 +255,10 @@
                         <div class="col">
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span>Nama Pemilik Rekening</span>
                                 </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="an_rek" value="{{$data->an_rek}}" />
-                                <!--end::Input-->
+                                <input type="text" class="form-control form-control-solid" name="an_rek" value="{{$data->an_rek}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -404,21 +267,10 @@
                     <!--end::Row-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <!--begin::Label-->
                         <label class="fs-6 fw-semibold form-label mt-3">
                             <span>Notes</span>
-                            <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan catatan tambahan (optional).">
-                                <i class="ki-duotone ki-information fs-7">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                            </span>
                         </label>
-                        <!--end::Label-->
-                        <!--begin::Input-->
-                        <textarea class="form-control form-control-solid" name="catatan">{{$data->catatan}}</textarea>
-                        <!--end::Input-->
+                        <textarea class="form-control form-control-solid" name="catatan" disabled>{{$data->catatan}}</textarea>
                     </div>
                     <!--end::Input group-->
                     <!--begin::Separator-->
@@ -427,14 +279,7 @@
                     <!--begin::Action buttons-->
                     <div class="d-flex justify-content-end">
                         <!--begin::Button-->
-                        <button type="reset" data-kt-contacts-type="cancel" class="btn btn-light me-3">Kembali</button>
-                        <!--end::Button-->
-                        <!--begin::Button-->
-                        <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">
-                            <span class="indicator-label">Simpan</span>
-                            <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
+                        <a href="{{route('master.pegawai.index')}}" class="btn btn-light me-3">Kembali</a>
                         <!--end::Button-->
                     </div>
                     <!--end::Action buttons-->

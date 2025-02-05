@@ -91,16 +91,16 @@ Route::middleware('auth')->group(function () {
         Route::resource('/master/referensi', ReferensiController::class);
         Route::resource('/master/tim', TimController::class);
         Route::resource('/master/pegawai', PegawaiController::class);
-        Route::resource('/master/mitra', MitraController::class);
+        Route::resource('/master/mitra', MitraController::class)->except('create');
         Route::get('/master/tim/list/{tahun}', [TimController::class, 'list'])->name('tim.list');
         Route::get('/master/export/pegawai', [PegawaiController::class, 'export'])->name('pegawai.export');
         Route::get('/master/impor/mitra', [MitraController::class, 'impor'])->name('mitra.impor');
         Route::post('/master/impor/mitra', [MitraController::class, 'proses_impor'])->name('mitra.prosesimpor');
         Route::get('/master/impor/mitra/template', [MitraController::class, 'template'])->name('mitra.template');
         Route::get('/master/mitra/list/{tahun}', [MitraController::class, 'list'])->name('mitra.list');
+        Route::get('/master/mitra/add/{tahun}', [MitraController::class, 'add'])->name('mitra.add');
         Route::delete('/master/mitra/delete/{tahun}', [MitraController::class, 'delete'])->name('mitra.delete');
     });
-
 
     // Api 
     Route::get('api/search-pok', [DropdownController::class, 'searchPok']);

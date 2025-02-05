@@ -68,6 +68,59 @@ class MitraController extends Controller
         return view('master.mitra.detail', compact('data'));
     }
 
+    public function add($tahun)
+    {
+        $tahun = $tahun;
+        return view('master.mitra.add', compact('tahun'));
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama'          => 'required',
+            'posisi'        => 'required',
+            'id_sobat'      => 'required',
+            'email'         => 'required|email',
+            'alamat_detail' => 'required',
+            'alamat_prov'   => 'required',
+            'alamat_kab'    => 'required',
+            'alamat_kec'    => 'required',
+            'jk'            => 'required',
+            'nama_bank'     => 'required',
+            'no_rek'        => 'required',
+            'an_rek'        => 'required',
+        ]);
+
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        // setor ke variabel data
+        $data['nama'] = $request->nama;
+        $data['posisi'] = $request->posisi;
+        $data['id_sobat'] = $request->id_sobat;
+        $data['email'] = $request->email;
+        $data['alamat_detail'] = $request->alamat_detail;
+        $data['alamat_prov'] = $request->alamat_prov;
+        $data['alamat_kab'] = $request->alamat_kab;
+        $data['alamat_kec'] = $request->alamat_kec;
+        $data['alamat_desa'] = $request->alamat_desa;
+        $data['tgl_lahir'] = $request->tgl_lahir;
+        $data['jk'] = $request->jk;
+        $data['agama'] = $request->agama;
+        $data['status'] = $request->status;
+        $data['pendidikan'] = $request->pendidikan;
+        $data['pekerjaan'] = $request->pekerjaan;
+        $data['no_telp'] = $request->no_telp;
+        $data['npwp'] = $request->npwp;
+        $data['nama_bank'] = $request->nama_bank;
+        $data['no_rek'] = $request->no_rek;
+        $data['an_rek'] = $request->an_rek;
+        $data['catatan'] = $request->catatan;
+        $data['tahun'] = $request->tahun;
+
+        Mitra::create($data);
+        return redirect()->route('master.mitra.list', $request->tahun)->with('success', 'Data mitra berhasil ditambah');
+    }
+
     public function edit($id)
     {
         $data = Mitra::find($id);
@@ -81,7 +134,6 @@ class MitraController extends Controller
     public function update($id, Request $request)
     {
         $find = Mitra::find($id);
-        // dd($find);
         $validator = Validator::make($request->all(), [
             'nama'          => 'required',
             'posisi'        => 'required',

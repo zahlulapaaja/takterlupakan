@@ -5,7 +5,7 @@
     @endsection
 
     @section('breadcrumbs')
-    {{ Breadcrumbs::render('master.mitra.edit', $data->id) }}
+    {{ Breadcrumbs::render('master.mitra.add', $tahun) }}
     @endsection
 
     <div class="row g-7">
@@ -22,23 +22,32 @@
                         <span class="path4"></span>
                         <span class="path5"></span>
                     </i>
-                    <h2>Edit Data Mitra</h2>
+                    <h2>Tambah Mitra</h2>
                 </div>
                 <!--end::Card title-->
+                <div class="card-toolbar">
+                    <div class="card-title mt-3">
+                        <h2>{{$tahun}}</h2>
+                    </div>
+                </div>
             </div>
             <!--end::Card header-->
             <!--begin::Card body-->
             <div class="card-body pt-5">
                 <!--begin::Form-->
-                <form id="edit_mitra_form" class="form" method="post" action="{{route('master.mitra.update', $data->id)}}">
+                <form id="add_mitra_form" class="form" method="post" action="{{route('master.mitra.store')}}">
                     @csrf
-                    @method('PUT')
+                    @method('POST')
+                    <input type="hidden" name="tahun" value="{{$tahun}}" />
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
                         <label class="fs-6 fw-semibold form-label mt-3">
                             <span class="required">Nama</span>
                         </label>
-                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" required />
+                        <input type="text" class="form-control form-control-solid" name="nama" value="{{old('nama')}}" placeholder="Masukkan nama..." required />
+                        @error('nama')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -56,7 +65,10 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="posisi" value="{{$data->posisi}}" required />
+                        <input type="text" class="form-control form-control-solid" name="posisi" value="{{old('posisi')}}" placeholder="Mitra Pendataan" required />
+                        @error('posisi')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -69,7 +81,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">ID Sobat</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="id_sobat" value="{{$data->id_sobat}}" required />
+                                <input type="text" class="form-control form-control-solid" name="id_sobat" value="{{old('id_sobat')}}" placeholder="1107..." required />
+                                @error('id_sobat')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -81,7 +96,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Email</span>
                                 </label>
-                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" required />
+                                <input type="email" class="form-control form-control-solid" name="email" value="{{old('email')}}" placeholder="Masukkan email..." required />
+                                @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -97,7 +115,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Alamat</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_detail" value="{{$data->alamat_detail}}" required />
+                                <input type="text" class="form-control form-control-solid" name="alamat_detail" value="{{old('alamat_detail')}}" placeholder="Masukkan alamat..." required />
+                                @error('alamat_detail')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -113,7 +134,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Prov</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_prov" value="{{$data->alamat_prov}}" required />
+                                <input type="text" class="form-control form-control-solid" name="alamat_prov" value="11" required />
+                                @error('alamat_prov')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -125,7 +149,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Kab</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_kab" value="{{$data->alamat_kab}}" required />
+                                <input type="text" class="form-control form-control-solid" name="alamat_kab" value="07" required />
+                                @error('alamat_kab')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -137,7 +164,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Kec</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_kec" value="{{$data->alamat_kec}}" required />
+                                <input type="text" class="form-control form-control-solid" name="alamat_kec" value="050" required />
+                                @error('alamat_kec')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -149,7 +179,10 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Desa</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="alamat_desa" value="{{$data->alamat_desa}}" required />
+                                <input type="text" class="form-control form-control-solid" name="alamat_desa" value="011" required />
+                                @error('alamat_desa')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -163,9 +196,9 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Tanggal Lahir</span>
+                                    <span>Tanggal Lahir</span>
                                 </label>
-                                <input type="date" class="form-control form-control-solid" name="tgl_lahir" value="{{$data->tgl_lahir}}" required />
+                                <input type="date" class="form-control form-control-solid" name="tgl_lahir" />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -180,10 +213,12 @@
                                 <div class="w-100">
                                     <!--begin::Select2-->
                                     <select id="select-jk" class="form-select form-select-solid" name="jk" required>
-                                        <option value="{{$data->jk}}" selected hidden>{{$data->jk_desc}}</option>
                                         <option value="1">Laki-laki</option>
                                         <option value="2">Perempuan</option>
                                     </select>
+                                    @error('jk')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                     <!--end::Select2-->
                                 </div>
                             </div>
@@ -199,12 +234,11 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Agama</span>
+                                    <span>Agama</span>
                                 </label>
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-agama" class="form-select form-select-solid" name="agama" required>
-                                        <option value="{{$data->agama}}" selected hidden>{{$data->agama_desc}}</option>
+                                    <select id="select-agama" class="form-select form-select-solid" name="agama">
                                         <option value="1">Islam</option>
                                         <option value="2">Kristen</option>
                                         <option value="3">Katolik</option>
@@ -224,12 +258,11 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Status</span>
+                                    <span>Status</span>
                                 </label>
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-status" class="form-select form-select-solid" name="status" required>
-                                        <option value="{{$data->status}}" selected hidden>{{$data->status_desc}}</option>
+                                    <select id="select-status" class="form-select form-select-solid" name="status">
                                         <option value="1">Belum Kawin</option>
                                         <option value="2">Kawin</option>
                                         <option value="3">Cerai Hidup</option>
@@ -250,9 +283,9 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Pendidikan</span>
+                                    <span>Pendidikan</span>
                                 </label>
-                                <input type="number" class="form-control form-control-solid" name="pendidikan" value="{{$data->pendidikan}}" required />
+                                <input type="number" class="form-control form-control-solid" name="pendidikan" value="5" />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -262,9 +295,9 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">Pekerjaan</span>
+                                    <span>Pekerjaan</span>
                                 </label>
-                                <input type="number" class="form-control form-control-solid" name="pekerjaan" value="{{$data->pekerjaan}}" required />
+                                <input type="number" class="form-control form-control-solid" name="pekerjaan" value="5" />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -278,9 +311,9 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span class="required">No Telp</span>
+                                    <span>No Telp</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="no_telp" value="{{$data->no_telp}}" required />
+                                <input type="text" class="form-control form-control-solid" name="no_telp" placeholder="+628 ... ..." />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -292,7 +325,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span>NPWP</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="npwp" value="{{$data->npwp}}" />
+                                <input type="text" class="form-control form-control-solid" placeholder="Masukkan NPWP..." name="npwp" />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -306,12 +339,11 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span>Bank</span>
+                                    <span class="required">Bank</span>
                                 </label>
                                 <div class="w-100">
                                     <!--begin::Select2-->
-                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank">
-                                        <option value="{{$data->nama_bank}}" selected hidden>{{$data->nama_bank}}</option>
+                                    <select id="select-bank" class="form-select form-select-solid" name="nama_bank" required>
                                         <option value="BSI">BSI</option>
                                         <option value="Bank Aceh">Bank Aceh</option>
                                         <option value="BRI">BRI</option>
@@ -321,6 +353,9 @@
                                         <option value="Bank BTN Syariah">Bank BTN Syariah</option>
                                         <option value="Bank Lainnya">Bank Lainnya</option>
                                     </select>
+                                    @error('nama_bank')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                     <!--end::Select2-->
                                 </div>
                             </div>
@@ -332,9 +367,12 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span>Nomor Rekening</span>
+                                    <span class="required">Nomor Rekening</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="no_rek" value="{{$data->no_rek}}" />
+                                <input type="text" class="form-control form-control-solid" name="no_rek" value="{{old('no_rek')}}" placeholder="123XXXXXX" />
+                                @error('no_rek')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -344,9 +382,12 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                    <span>Nama Pemilik Rekening</span>
+                                    <span class="required">Nama Pemilik Rekening</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" name="an_rek" value="{{$data->an_rek}}" />
+                                <input type="text" class="form-control form-control-solid" name="an_rek" value="{{old('an_rek')}}" placeholder="atas nama..." />
+                                @error('an_rek')
+                                <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -368,7 +409,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <textarea class="form-control form-control-solid" name="catatan">{{$data->catatan}}</textarea>
+                        <textarea class="form-control form-control-solid" name="catatan">{{old('catatan')}}</textarea>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -378,7 +419,7 @@
                     <!--begin::Action buttons-->
                     <div class="d-flex justify-content-end">
                         <!--begin::Button-->
-                        <a href="{{route('master.mitra.list', $data->tahun)}}" class="btn btn-light me-3">Kembali</a>
+                        <a href="{{route('master.mitra.list', $tahun)}}" class="btn btn-light me-3">Kembali</a>
                         <!--end::Button-->
                         <!--begin::Button-->
                         <button type="submit" data-kt-contacts-type="submit" class="btn btn-primary">

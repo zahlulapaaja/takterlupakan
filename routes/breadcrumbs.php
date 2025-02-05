@@ -114,6 +114,12 @@ Breadcrumbs::for("master.mitra.impor", function (BreadcrumbTrail $trail) {
     $trail->push('Impor', route("master.mitra.impor"));
 });
 
+// Home > Master > Mitra > Add
+Breadcrumbs::for("master.mitra.add", function (BreadcrumbTrail $trail, $tahun) {
+    $trail->parent("master.mitra.list", $tahun);
+    $trail->push('Add', route("master.mitra.add", $tahun));
+});
+
 // Home > Matriks > Honor > 202X:XX
 Breadcrumbs::for("matriks.honor.list", function (BreadcrumbTrail $trail, $name) {
     $trail->parent("matriks.honor.index");

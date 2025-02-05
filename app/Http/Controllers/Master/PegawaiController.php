@@ -70,6 +70,14 @@ class PegawaiController extends Controller
         return redirect()->route('master.pegawai.index')->with('success', 'Data pegawai berhasil ditambah');
     }
 
+    public function show($id)
+    {
+        $data = Pegawai::find($id);
+        $data->avatar = 'pegawai/' . $data->avatar;
+
+        return view('master.pegawai.show', compact('data'));
+    }
+
     public function edit($id)
     {
         $data = Pegawai::find($id);
