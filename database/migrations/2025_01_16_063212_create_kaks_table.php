@@ -48,6 +48,7 @@ return new class extends Migration
                 ->on('poks')
                 ->onDelete('cascade');
             $table->integer('volume')->length(5);
+            $table->string('satuan')->length(10);
             $table->integer('harga');
         });
 

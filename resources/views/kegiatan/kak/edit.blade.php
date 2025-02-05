@@ -61,6 +61,7 @@
                                 </div>
                                 <div class="w-250px d-flex flex-row gap-x-2">
                                     <label class="font-bold me-auto">Volume</label>
+                                    <label class="font-bold me-auto">Satuan</label>
                                     <label class="font-bold me-auto">Harga</label>
                                 </div>
                             </div>
@@ -80,11 +81,13 @@
                                     @foreach($data->poks as $d)
                                     @if($d->poks_id == $p->id)
                                     <input type="number" name="vol[]" class="form-control" value="{{$d->volume}}" required>
+                                    <input type="text" name="satuan[]" class="form-control" value="{{$d->satuan}}" required>
                                     <input type="number" name="harga[]" class="form-control" value="{{$d->harga}}" required>
                                     @endif
                                     @endforeach
                                     @else
                                     <input type="number" name="vol[]" class="form-control" value="{{$p->volume}}" required>
+                                    <input type="text" name="satuan[]" class="form-control" value="{{$p->satuan}}" required>
                                     <input type="number" name="harga[]" class="form-control" value="{{$p->harga}}" required>
                                     @endif
                                 </div>

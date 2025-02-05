@@ -62,6 +62,7 @@
                                 </div>
                                 <div class="w-250px d-flex flex-row gap-x-2">
                                     <label class="font-bold me-auto">Volume</label>
+                                    <label class="font-bold me-auto">Satuan</label>
                                     <label class="font-bold me-auto">Harga</label>
                                 </div>
                             </div>
@@ -74,6 +75,7 @@
                                 <div class="w-250px d-flex flex-row gap-x-2">
                                     <input type="hidden" name="id_pok[]" value="{{$p->id}}">
                                     <input type="number" name="vol[]" class="form-control" value="{{$p->volume}}" required>
+                                    <input type="text" name="satuan[]" class="form-control" value="{{$p->satuan}}" required>
                                     <input type="number" name="harga[]" class="form-control" value="{{$p->harga}}" required>
                                 </div>
                             </div>

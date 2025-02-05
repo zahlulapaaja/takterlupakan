@@ -104,7 +104,7 @@ class KakController extends Controller
 
         // insert data
         $res = Kak::create($data);
-        $res->insertPoks($res->id, $request->detil, $request->id_pok, $request->vol, $request->harga);
+        $res->insertPoks($res->id, $request->detil, $request->id_pok, $request->vol, $request->satuan, $request->harga);
         if ($request->jenis == 'pelatihan') $res->insertPelatihan($res->id, $request->all());
         if ($request->jenis == 'perjadin') $res->insertPeserta($res->id, $request->daftar_peserta_perjadin);
         if ($request->jenis == 'pengadaan') $res->insertSpesifikasi($res->id, $request->daftar_spesifikasi);
@@ -216,7 +216,7 @@ class KakController extends Controller
 
         // update data
         $find->update($data);
-        $find->updatePoks($id, $request->detil, $request->id_pok, $request->vol, $request->harga);
+        $find->updatePoks($id, $request->detil, $request->id_pok, $request->vol, $request->satuan, $request->harga);
         if ($find->jenis == 'pelatihan') $find->updatePelatihan($id, $request->all());
         if ($find->jenis == 'perjadin') $find->updatePeserta($id, $request->daftar_peserta_perjadin);
         if ($find->jenis == 'pengadaan') $find->updateSpesifikasi($id, $request->daftar_spesifikasi);

@@ -15,7 +15,7 @@ class Kak extends Model
     protected $table = "kaks";
     protected $guarded = [];
 
-    public function insertPoks($kaks_id, $detil, $id_pok, $vol, $harga)
+    public function insertPoks($kaks_id, $detil, $id_pok, $vol, $satuan, $harga)
     {
         $res = false;
         $data['kaks_id'] = $kaks_id;
@@ -24,6 +24,7 @@ class Kak extends Model
             if (in_array($id_pok[$i], $detil)) {
                 $data['poks_id'] = $id_pok[$i];
                 $data['volume'] = $vol[$i];
+                $data['satuan'] = $satuan[$i];
                 $data['harga'] = $harga[$i];
                 $res[] = DB::table('kaks_poks')->insert($data);
             }
@@ -95,10 +96,10 @@ class Kak extends Model
         return $result;
     }
 
-    public function updatePoks($kaks_id, $detil, $id_pok, $vol, $harga)
+    public function updatePoks($kaks_id, $detil, $id_pok, $vol, $satuan, $harga)
     {
         DB::table('kaks_poks')->where('kaks_id', $kaks_id)->delete();
-        $this->insertPoks($kaks_id, $detil, $id_pok, $vol, $harga);
+        $this->insertPoks($kaks_id, $detil, $id_pok, $vol, $satuan, $harga);
 
         return true;
     }
