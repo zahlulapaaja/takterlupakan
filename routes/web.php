@@ -102,6 +102,13 @@ Route::middleware('auth')->group(function () {
         Route::delete('/master/mitra/delete/{tahun}', [MitraController::class, 'delete'])->name('mitra.delete');
     });
 
+    // Profile
+    Route::get('/profile', [UserController::class, 'show_profile'])->name('profile.show');
+    Route::get('/profile/edit', [UserController::class, 'edit_profile'])->name('profile.edit');
+    Route::put('/profile/update', [UserController::class, 'update_profile'])->name('profile.update');
+    Route::get('/profile/change-password', [UserController::class, 'change_password_profile'])->name('profile.change-password');
+    Route::put('/profile/update-password', [UserController::class, 'update_password_profile'])->name('profile.update-password');
+
     // Api 
     Route::get('api/search-pok', [DropdownController::class, 'searchPok']);
     Route::post('api/fetch-revisi', [DropdownController::class, 'fetchRevisi']);

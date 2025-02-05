@@ -115,7 +115,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="nama" value="{{$data->nama}}" required />
+                        <input type="text" class="form-control form-control-solid" name="nama" placeholder="Masukkan Nama..." value="{{$data->nama}}" required />
                         @error('nama')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -137,7 +137,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input type="text" class="form-control form-control-solid" name="jabatan" value="{{$data->jabatan}}" required />
+                        <input type="text" class="form-control form-control-solid" name="jabatan" placeholder="Masukkan Jabatan..." value="{{$data->jabatan}}" required />
                         @error('jabatan')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -153,7 +153,7 @@
                                 <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">NIP Baru</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan NIP 16 Digit.">
+                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan NIP 18 Digit.">
                                         <i class="ki-duotone ki-information fs-7">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
@@ -163,7 +163,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_baru" value="{{$data->nip_baru}}" required />
+                                <input type="text" class="form-control form-control-solid" name="nip_baru" placeholder="NIP 18 Digit..." value="{{$data->nip_baru}}" required />
                                 @error('nip_baru')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -189,7 +189,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="nip_lama" value="{{$data->nip_lama}}" required />
+                                <input type="text" class="form-control form-control-solid" name="nip_lama" placeholder="NIP 9 Digit..." value="{{$data->nip_lama}}" required />
                                 @error('nip_lama')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -299,7 +299,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="email" class="form-control form-control-solid" name="email" value="{{$data->email}}" required />
+                                <input type="email" class="form-control form-control-solid" name="email" placeholder="Masukkan email..." value="{{$data->email}}" required />
                                 @error('email')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -325,7 +325,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_hp" value="{{$data->no_hp}}" required />
+                                <input type="text" class="form-control form-control-solid" name="no_hp" placeholder="Masukkan No HP..." value="{{$data->no_hp}}" required />
                                 @error('no_hp')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -378,7 +378,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="no_rek" value="{{$data->no_rek}}" />
+                                <input type="text" class="form-control form-control-solid" placeholder="72XXXXXXX" name="no_rek" value="{{$data->no_rek}}" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -394,7 +394,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" name="an_rek" value="{{$data->an_rek}}" />
+                                <input type="text" class="form-control form-control-solid" placeholder="atas nama..." name="an_rek" value="{{$data->an_rek}}" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -417,7 +417,7 @@
                         </label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <textarea class="form-control form-control-solid" name="catatan">{{$data->catatan}}</textarea>
+                        <textarea class="form-control form-control-solid" name="catatan" placeholder="...">{{$data->catatan}}</textarea>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->

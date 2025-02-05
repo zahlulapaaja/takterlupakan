@@ -152,7 +152,7 @@
                                 <!--begin::Label-->
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">NIP Baru</span>
-                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan NIP 16 Digit.">
+                                    <span class="ms-1" data-bs-toggle="tooltip" title="Masukkan NIP 18 Digit.">
                                         <i class="ki-duotone ki-information fs-7">
                                             <span class="path1"></span>
                                             <span class="path2"></span>

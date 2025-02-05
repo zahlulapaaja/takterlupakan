@@ -37,7 +37,7 @@
                                 {{ session('name') }}
                                 <!-- <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span> -->
                             </div>
-                            <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">{{ session('email') }}</a>
+                            <a href="{{route('profile.show')}}" class="fw-semibold text-muted text-hover-primary fs-7">{{ session('email') }}</a>
                         </div>
                         <!--end::Username-->
                     </div>
@@ -48,7 +48,7 @@
                 <!--end::Menu separator-->
                 <!--begin::Menu item-->
                 <div class="menu-item px-5">
-                    <a href="#" class="menu-link px-5">My Profile</a>
+                    <a href="{{route('profile.show')}}" class="menu-link px-5">My Profile</a>
                 </div>
                 <!--end::Menu item-->
                 <!--begin::Menu item-->

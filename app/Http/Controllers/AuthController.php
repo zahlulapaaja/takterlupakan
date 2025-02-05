@@ -66,6 +66,7 @@ class AuthController extends Controller
             session()->pull('name');
             session()->pull('role');
             session()->pull('email');
+            session()->pull('avatar');
         }
         Auth::logout();
         return redirect()->route('login')->with('success', 'Anda berhasil logout');

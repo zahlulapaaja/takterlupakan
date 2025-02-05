@@ -128,4 +128,80 @@ class UserController extends Controller
 
         return response()->json(array('success' => true));
     }
+
+    public function show_profile()
+    {
+        $id = session('user_id');
+        $data = User::find($id);
+        return view('user-management.profile.show', compact('data'));
+    }
+
+    public function edit_profile()
+    {
+        $id = session('user_id');
+        $data = User::find($id);
+        return view('user-management.profile.edit', compact('data'));
+    }
+
+    public function update_profile(Request $request)
+    {
+        $id = session('user_id');
+        $find = User::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'avatar'    => 'nullable|mimes:png,jpg,jpeg',
+            'email'     => 'required|email',
+            'name'      => 'required',
+        ]);
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        // setor gambar avatar 
+        if ($request->avatar) {
+            $avatar     = $request->file('avatar');
+            $filename   = date('YmdHis') . '_' . $avatar->getClientOriginalName();
+            $path       = 'avatar-user/' . $filename;
+
+            // hapus file yang udah ada 
+            if ($find->image != 'blank.png') {
+                Storage::disk('public')->delete('avatar-user/' . $find->image);
+            }
+            Storage::disk('public')->put($path, file_get_contents($avatar));
+            $data['image'] = $filename;
+        } elseif ($request->avatar_remove) {
+            if ($find->image != 'blank.png') {
+                Storage::disk('public')->delete('avatar-user/' . $find->image);
+            }
+            $data['image'] = 'blank.png';
+        }
+
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+
+        // update data
+        $find->update($data);
+        return redirect()->route('profile.show')->with('success', 'Profil berhasil diperbarui');
+    }
+
+    public function change_password_profile()
+    {
+        return view('user-management.profile.change-password');
+    }
+
+    public function update_password_profile(Request $request)
+    {
+        $id = session('user_id');
+        $find = User::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'password'               => 'required|string|min:8|confirmed',
+            'password_confirmation'  => 'required',
+        ]);
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        // update data
+        $data['password'] = Hash::make($request->password);
+        $find->update($data);
+
+        return redirect()->route('profile.show')->with('success', 'Password berhasil diperbarui');
+    }
 }

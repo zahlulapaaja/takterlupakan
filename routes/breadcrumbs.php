@@ -125,3 +125,21 @@ Breadcrumbs::for("matriks.honor.list", function (BreadcrumbTrail $trail, $name) 
     $trail->parent("matriks.honor.index");
     $trail->push($name[1] . ' ' . $name[0], route("matriks.honor.list", [$name[0], $name[1]]));
 });
+
+// Home > Profile
+Breadcrumbs::for('profile.show', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Profil', route('profile.show'));
+});
+
+// Home > Profile > Edit
+Breadcrumbs::for('profile.edit', function (BreadcrumbTrail $trail) {
+    $trail->parent('profile.show');
+    $trail->push('Edit', route('profile.edit'));
+});
+
+// Home > Profile > Ganti Password
+Breadcrumbs::for('profile.change-password', function (BreadcrumbTrail $trail) {
+    $trail->parent('profile.show');
+    $trail->push('Ganti Password', route('profile.change-password'));
+});

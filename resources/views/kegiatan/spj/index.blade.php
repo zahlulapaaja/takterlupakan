@@ -80,7 +80,7 @@
                                         <span class="badge badge-light-success">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->nama_keg, 75)}}</a>
+                                        <span class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->nama_keg, 75)}}</span>
                                         <span class="text-muted fw-semibold d-block">{{date_indo($d->tgl)}}</span>
                                     </td>
                                     <td>
@@ -173,7 +173,7 @@
                                         <span class="badge badge-light-info">{{$d->kode_akun}}</span>
                                     </td>
                                     <td>
-                                        <a href="#" class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->nama_keg, 100)}}</a>
+                                        <span class="text-gray-900 fw-bold text-hover-primary mb-1 fs-6">{{Str::limit($d->nama_keg, 100)}}</span>
                                         <span class="text-muted fw-semibold d-block">{{date_indo($d->tgl)}}</span>
                                     </td>
                                     <td>

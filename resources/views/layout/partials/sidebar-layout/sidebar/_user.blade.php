@@ -11,7 +11,7 @@
 		<!--begin::Info-->
 		<div class="text-center">
 			<!--begin::Username-->
-			<a href="#" class="text-gray-800 text-hover-primary fs-4 fw-bolder">{{ session('name') }}</a>
+			<a href="{{route('profile.show')}}" class="text-gray-800 text-hover-primary fs-4 fw-bolder">{{ session('name') }}</a>
 			<!--end::Username-->
 			<!--begin::Description-->
 			<span class="capitalize text-gray-600 fw-semibold d-block fs-7 mb-1">

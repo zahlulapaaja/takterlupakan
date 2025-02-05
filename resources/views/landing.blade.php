@@ -488,7 +488,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Person-->
 							<div class="mb-0">
 								<!--begin::Name-->
-								<a href="#" class="text-gray-900 fw-bold text-hover-primary fs-3">{{$p->nama}}</a>
+								<span class="text-gray-900 fw-bold text-hover-primary fs-3">{{$p->nama}}</span>
 								<!--end::Name-->
 								<!--begin::Position-->
 								<div class="text-muted fs-6 fw-semibold mt-1">{{$p->jabatan}}</div>
@@ -507,7 +507,7 @@ License: For each use you must have a valid license purchased only from above li
 							<!--begin::Person-->
 							<div class="mb-0">
 								<!--begin::Name-->
-								<a href="#" class="text-gray-900 fw-bold text-hover-primary fs-3">Tidak ditemukan data</a>
+								<span class="text-gray-900 fw-bold text-hover-primary fs-3">Tidak ditemukan data</span>
 								<!--end::Name-->
 							</div>
 							<!--end::Person-->
@@ -988,7 +988,7 @@ License: For each use you must have a valid license purchased only from above li
 								<!--end::Avatar-->
 								<!--begin::Name-->
 								<div class="">
-									<a href="#" class="text-gray-900 fw-bold text-hover-primary fs-6">Rudi Hermanto, SST., M.Si</a>
+									<span class="text-gray-900 fw-bold text-hover-primary fs-6">Rudi Hermanto, SST., M.Si</span>
 									<span class="text-muted d-block fw-bold">Kepala BPS Aceh Barat</span>
 								</div>
 								<!--end::Name-->
