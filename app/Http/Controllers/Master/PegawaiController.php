@@ -51,6 +51,8 @@ class PegawaiController extends Controller
 
             Storage::disk('public')->put($path, file_get_contents($avatar));
             $data['avatar'] = $filename;
+        } else {
+            $data['avatar'] = 'blank.png';
         }
 
         $data['nama'] = $request->nama;

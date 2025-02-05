@@ -1,5 +1,6 @@
 @extends('layout.master')
 @push('css')
+
 <style type="text/css" media="print">
     @page {
         size: auto;
@@ -7,8 +8,19 @@
         padding: 12mm 16mm;
     }
 
+    /* @font-face {
+        font-family: Arial;
+        src: url("{{asset('assets/fonts/arial/ARIAL.TTF')}}");
+    } */
+    /* @font-face {
+        font-family: Arial;
+        src: url("{{asset('assets/fonts/ArialMT.ttf')}}") format('woff2');
+    } */
+    /* Bisa tapi gatau kenapa lambat banget ngeload fontnya */
+
     body {
         color: black !important;
+        /* font-family: Arial; */
     }
 
     .page-break {

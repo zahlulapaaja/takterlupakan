@@ -5,7 +5,7 @@
 		<!--begin::Copyright-->
 		<div class="text-gray-900 order-2 order-md-1">
 			<span class="text-gray-500 fw-semibold me-1">Created by</span>
-			<a href="https://www.instagram.com/zahlulef/" target="_blank" class="text-muted text-hover-primary fw-semibold me-2 fs-6">Zedef</a>
+			<a href="http://s.bps.go.id/zahlul-portofolio" target="_blank" class="text-muted text-hover-primary fw-semibold me-2 fs-6">Zedef</a>
 		</div>
 		<!--end::Copyright-->
 		<!--begin::Menu-->

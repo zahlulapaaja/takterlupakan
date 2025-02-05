@@ -48,6 +48,8 @@ class UserController extends Controller
             $path       = 'avatar-user/' . $filename;
             Storage::disk('public')->put($path, file_get_contents($avatar));
             $data['image'] = $filename;
+        } else {
+            $data['image'] = 'blank.png';
         }
 
         $data['email'] = $request->email;
