@@ -29,21 +29,13 @@ class Referensi extends Model
     public function terbilang_tgl($tgl)
     {
         // menyesuaikan format 
-        $crb = new Carbon();
         if (gettype($tgl) != "string") $tgl = $tgl->toDateString();
 
-        $result = $crb->isoFormat('dddd', $tgl)
-            . ' Tanggal ' . Terbilang::make(explode('-', $tgl)[2])
-            . ', Bulan ' . $crb->isoFormat('MMMM', $tgl)
+        $result = Carbon::parse($tgl)->locale('id')->dayName
+            . ', Tanggal ' . Terbilang::make(explode('-', $tgl)[2])
+            . ', Bulan ' . date_indo_bulan(explode('-', $tgl)[1])
             . ', Tahun ' . Terbilang::make(explode('-', $tgl)[0]);
 
-        return $result;
-    }
-
-    public function terbilang_bulan($tgl)
-    {
-        $crb = new Carbon();
-        $result =  $crb->isoFormat('MMMM', $tgl);
         return $result;
     }
 }

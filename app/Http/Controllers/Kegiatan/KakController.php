@@ -18,7 +18,7 @@ class KakController extends Controller
 
     public function index()
     {
-        $data = Kak::select('kaks.id', 'kaks.jenis', 'kaks.judul', 'kaks.tgl', 'kaks.tahun', 'tims.singkatan as nama_tim')
+        $data = Kak::select('kaks.id', 'kaks.jenis', 'kaks.judul', 'kaks.tgl', 'kaks.tahun', 'tims.singkatan as nama_tim', 'kaks.file_lampiran')
             ->orderBy('kaks.tahun', 'DESC')
             ->join('tims', 'kaks.tim', '=', 'tims.id')
             ->orderBy('kaks.created_at', 'DESC')

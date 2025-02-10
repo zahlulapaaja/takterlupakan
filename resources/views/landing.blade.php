@@ -1060,15 +1060,15 @@ License: For each use you must have a valid license purchased only from above li
 									<h4 class="fw-bold text-gray-500 mb-6">Media Sosial</h4>
 									<!--end::Subtitle-->
 									<!--begin::Link-->
-									<a href="https://www.instagram.com/bps.kab.acehbarat/" class="mb-6">
+									<a href="https://www.instagram.com/bps.kab.acehbarat/" target="_blank" class="mb-6">
 										<img src="assets/media/svg/brand-logos/instagram-2-1.svg" class="h-20px me-2" alt="" />
 										<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Instagram</span>
 									</a>
-									<a href="https://api.whatsapp.com/send?phone=6285135880576&text=Hai" class="mb-6">
+									<a href="https://api.whatsapp.com/send?phone=6285135880576&text=Hai" target="_blank" class="mb-6">
 										<img src="assets/media/svg/brand-logos/whatsapp.svg" class="h-20px me-2" alt="" />
 										<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Whatsapp</span>
 									</a>
-									<a href="https://www.youtube.com/@bps.kab.acehbarat" class="mb-6">
+									<a href="https://www.youtube.com/@bps.kab.acehbarat" target="_blank" class="mb-6">
 										<img src="assets/media/svg/brand-logos/youtube-play.svg" class="h-20px me-2" alt="" />
 										<span class="text-white opacity-50 text-hover-primary fs-5 mb-6">Youtube</span>
 									</a>
