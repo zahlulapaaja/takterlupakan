@@ -41,8 +41,8 @@
                     @csrf
                     @method('POST')
 
-                    <input type="number" name="tahun" class="form-control my-2" placeholder="Tahun..." required>
-                    <input type="number" name="revisi" class="form-control my-2" placeholder="Revisi Ke..." required>
+                    <input type="number" name="tahun" class="form-control my-2" placeholder="Tahun..." value="{{old('tahun')}}" required>
+                    <input type="number" name="revisi" class="form-control my-2" placeholder="Revisi Ke..." value="{{old('revisi')}}" required>
 
                     <div class="mb-3 text-left">
                         <input class="form-control" type="file" id="file" name="file" required>
