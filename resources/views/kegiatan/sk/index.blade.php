@@ -39,6 +39,9 @@
                     </div>
                     <!--end::Input group-->
                     <div class="flex flex-row gap-3">
+                        <select id="tim" class="form-control text-center">
+                            <option value="">-- Tim --</option>
+                        </select>
                         <select id="tahun" class="form-control text-center">
                             <option value="">-- Tahun --</option>
                             @foreach($list_tahun as $t)
@@ -56,6 +59,7 @@
                             <th class="min-w-150px">Nomor</th>
                             <th class="min-w-150px">Rincian</th>
                             <th class="min-w-100px">Tanggal Ditetapkan</th>
+                            <th class="min-w-50px">Tim</th>
                             <th class="min-w-50px">Tahun</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
@@ -73,6 +77,9 @@
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tgl_ditetapkan}}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 d-block fs-6">{{$d->nama_tim}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->tahun}}</span>
@@ -132,9 +139,33 @@
                 table.search(this.value).draw();
             });
 
-            $('#tahun').on('change', function() {
-                var selectedTahun = $(this).val();
-                table.columns(3).search(selectedTahun).draw();
+            $('#tahun').change(function() {
+                tahun = $('#tahun').val();
+
+                $('#tim').html('<option value="">-- Tim --</option>');
+                $.ajax({
+                    url: "{{url('api/fetch-tim')}}",
+                    type: "POST",
+                    data: {
+                        tahun: tahun,
+                        _token: '{{csrf_token()}}'
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        $.each(res.tim, function(key, value) {
+                            $("#tim").append('<option value="' +
+                                value.singkatan + '">' + value.singkatan + '</option>');
+                        });
+                    }
+                });
+
+                table.columns(3).search('').draw();
+                table.columns(4).search(tahun).draw();
+            });
+
+            $('#tim').on('change', function() {
+                var selectedTim = $(this).val();
+                table.columns(3).search(selectedTim).draw();
             });
 
             $(document.body).on('click', '.modal-delete', function(e) {

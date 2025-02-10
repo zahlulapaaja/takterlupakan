@@ -17,9 +17,10 @@ class SkController extends Controller
 {
     public function index()
     {
-        $data = Sk::select('id', 'no', 'tentang', 'tgl_ditetapkan', 'tahun')
-            ->orderBy('tahun', 'DESC')
-            ->orderBy('created_at', 'DESC')
+        $data = Sk::select('sks.id', 'sks.no', 'sks.tentang', 'sks.tgl_ditetapkan', 'tims.singkatan as nama_tim', 'sks.tahun')
+            ->join('tims', 'sks.tim', '=', 'tims.id')
+            ->orderBy('sks.tahun', 'DESC')
+            ->orderBy('sks.created_at', 'DESC')
             ->get();
         $list_tahun = Sk::distinct()->get('tahun');
 
@@ -41,12 +42,13 @@ class SkController extends Controller
         // mengambil data
         $sk = new Sk();
         $last_no = $sk->where('tahun', $pok->tahun)->max('no');
+        $tim = Tim::where('tahun', $pok->tahun)->get();
 
         if ($request->has('kode_output')) {
             $mitra = Mitra::orderBy('nama', 'ASC')->where('tahun', $pok->tahun)->get();
             $pegawai = Pegawai::orderBy('nama', 'ASC')->get();
             $list_petugas = $sk->getListPetugas($pok->tahun);
-            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'last_no'));
+            return view('kegiatan.sk.create', compact('pok', 'list_petugas', 'tim', 'last_no'));
         } else {
             return redirect()->route('pok.index');
         }
@@ -58,6 +60,7 @@ class SkController extends Controller
         $validator = Validator::make($request->all(), [
             'no'             => 'required',
             'tentang'        => 'required',
+            'tim'            => 'required',
             'tgl_mulai'      => 'required',
             'tgl_akhir'      => 'required',
             'tgl_berlaku'    => 'required',
@@ -71,6 +74,7 @@ class SkController extends Controller
         $data['no'] = $request->no;
         $data['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
         $data['tentang'] = $request->tentang;
+        $data['tim'] = $request->tim;
         $data['tgl_mulai'] = $request->tgl_mulai;
         $data['tgl_akhir'] = $request->tgl_akhir;
         $data['tgl_berlaku'] = $request->tgl_berlaku;
@@ -91,6 +95,7 @@ class SkController extends Controller
         // mengambil data
         $data = Sk::find($id);
         $mak = explode('.', $data->mak);
+        $data->tim = Tim::find($data->tim);
         $pok = Pok::where('kode_kegiatan', $mak[0])
             ->where('kode_output', $mak[1])
             ->where('kode_suboutput', $mak[2])
@@ -99,6 +104,7 @@ class SkController extends Controller
             ->first();
 
         $last_no = Sk::where('tahun', $pok->tahun)->max('no');
+        $tim = Tim::where('tahun', $pok->tahun)->get();
 
         if ($pok->kode_output) {
             // mengambil data petugas dan honor
@@ -106,7 +112,7 @@ class SkController extends Controller
             $data->petugas = $data->getPetugas($id);
             $list_petugas = $data->getListPetugas($pok->tahun);
 
-            return view('kegiatan.sk.edit', compact('data', 'pok', 'list_petugas', 'last_no'));
+            return view('kegiatan.sk.edit', compact('data', 'pok', 'list_petugas', 'tim', 'last_no'));
         } else {
             return redirect()->route('kegiatan.sk.index');
         }
@@ -118,6 +124,7 @@ class SkController extends Controller
         $validator = Validator::make($request->all(), [
             'no'             => 'required',
             'tentang'        => 'required',
+            'tim'            => 'required',
             'tgl_mulai'      => 'required',
             'tgl_akhir'      => 'required',
             'tgl_berlaku'    => 'required',
@@ -131,6 +138,7 @@ class SkController extends Controller
         $data['no'] = $request->no;
         $data['mak'] = $request->kode_kegiatan . '.' . $request->kode_output . '.' . $request->kode_suboutput . '.' . $request->kode_komponen;
         $data['tentang'] = $request->tentang;
+        $data['tim'] = $request->tim;
         $data['tgl_mulai'] = $request->tgl_mulai;
         $data['tgl_akhir'] = $request->tgl_akhir;
         $data['tgl_berlaku'] = $request->tgl_berlaku;

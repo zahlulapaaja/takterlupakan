@@ -82,6 +82,17 @@
                             @enderror
                         </div>
                         <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row">
+                            <label class="required form-label">Tim Kerja</label>
+                            <select class="form-select" name="tim" required>
+                                <option value="" hidden>Pilih Tim...</option>
+                                @foreach($tim as $t)
+                                <option value="{{$t->id}}">{{$t->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!--end::Input group-->
                     </div>
                 </div>
                 <!--end::Card header-->

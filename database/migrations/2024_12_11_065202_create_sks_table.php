@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('no')->length(50);
             $table->string('mak')->length(30);
             $table->string('tentang');
+            $table->unsignedBigInteger('tim');
+            $table->foreign('tim')
+                ->references('id')
+                ->on('tims')
+                ->onDelete('cascade');
             $table->date('tgl_mulai');
             $table->date('tgl_akhir');
             $table->date('tgl_berlaku');
