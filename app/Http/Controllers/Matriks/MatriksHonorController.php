@@ -226,7 +226,7 @@ class MatriksHonorController extends Controller
 
         // format tanggal data spk
         $tgl = Carbon::create($tahun, $bulan, 1)->endOfMonth();
-        $ref->terbilang_bulan = date_indo_bulan($tgl);
+        $ref->terbilang_bulan = date_indo_bulan(explode('-', $tgl)[1]);
         $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
         $ref->awal_bulan = Carbon::create($tahun, $bulan, 1);
         $ref->akhir_bulan = Carbon::create($tahun, $bulan, 1)->endOfMonth();

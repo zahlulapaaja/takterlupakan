@@ -20,6 +20,7 @@ class Sk extends Model
         'no',
         'mak',
         'tentang',
+        'tim',
         'tgl_mulai',
         'tgl_akhir',
         'tgl_berlaku',
