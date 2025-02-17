@@ -28,7 +28,7 @@
 
     <div class="leading-normal text-justify text-lg potrait-page">
         <div>
-            Pada hari <span class="capitalize">{{$ref->terbilang_tgl}}</span>,
+            Pada hari <span class="capitalize">{{$d->terbilang_tgl}}</span>,
             bertempat di Kantor {{config('constants.SATKER')}},
             yang bertanda tangan di bawah ini:
         </div>

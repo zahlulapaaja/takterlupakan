@@ -8,7 +8,6 @@ use App\Models\Master\Pegawai;
 use App\Models\Pok;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class MatriksHonor extends Model
 {
@@ -66,8 +65,18 @@ class MatriksHonor extends Model
                     $data['pegawai_id'] = $request['id_status'][$i];
                 }
 
+                // data tanggal bast
+                $bulan_akhir_keg = (int)explode('-', $request['tgl_akhir'])[1];
+                if ($bulan_akhir_keg == $request['bulan']) {
+                    $tgl_bast = date('Y-m-d', strtotime('+1 Weekday', strtotime($request['tgl_akhir'])));
+                } else {
+                    $tgl = $request['tahun'] . '-' . $request['bulan'] . '-01';
+                    $tgl_bast = date('Y-m-d', strtotime('+1 Weekday', strtotime(date("Y-m-t", strtotime($tgl)))));
+                }
+
                 // assign data 
                 $data['no_bast'] = $no++;
+                $data['tgl_bast'] = $tgl_bast;
                 $data['kegiatans_id'] = $request['kegiatans_id'];
                 $data['sebagai'] = $request['sebagai'][$i];
                 $data['volume'] = $request['volume'][$i];

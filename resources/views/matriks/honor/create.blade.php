@@ -31,6 +31,7 @@
                             <div class="fv-row">
                                 <input type="hidden" name="kegiatans_id" value="{{$keg->id}}" />
                                 <input type="hidden" name="tahun" value="{{$keg->pok->tahun}}" />
+                                <input type="hidden" name="tgl_akhir" value="{{$keg->tgl_akhir}}" />
                                 <!--begin::MAK-->
                                 <div class="d-flex flex-column flex-lg-row py-auto gap-x-5 mb-2">
                                     <label class="w-32 font-semibold fs-6">MAK</label>

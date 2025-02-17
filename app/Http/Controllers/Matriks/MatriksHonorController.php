@@ -118,6 +118,8 @@ class MatriksHonorController extends Controller
             $data['volume'] = $request->value;
         } else if ($request->column == 'harga') {
             $data['harga'] = $request->value;
+        } else if ($request->column == 'tgl_bast') {
+            $data['tgl_bast'] = $request->value;
         }
 
         $find = MatriksHonor::find($id);
@@ -150,7 +152,7 @@ class MatriksHonorController extends Controller
         $data->no_bast = $data->getNoBast($data);
 
         // mengambil tanggal surat (masuk ke referensi)
-        $tgl = Carbon::create($data->tahun, $data->bulan, 1)->endOfMonth();
+        $tgl = $data->tgl_bast;
         $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
 
         return view('matriks.honor._print.bast', compact('data', 'ref'));
@@ -164,6 +166,10 @@ class MatriksHonorController extends Controller
             ->orderByRaw('CAST(no_bast AS UNSIGNED) ASC')
             ->get();
 
+        // mengambil data referensi
+        $ref = Referensi::where('tahun', $tahun)->first();
+
+        // melakukan looping data
         foreach ($data as $d) {
             // kalo ada matriks honor yang udh dibuat dan kegiatannya dihapus, akan error disini
             $d->keg = Kegiatan::find($d->kegiatans_id);
@@ -176,14 +182,13 @@ class MatriksHonorController extends Controller
 
             // generate nomor surat
             $d->no_bast = $d->getNoBast($d);
+
+            // mengambil tanggal surat (masuk ke referensi)
+            $tgl = $d->tgl_bast;
+            $d->terbilang_tgl = $ref->terbilang_tgl($tgl);
         }
 
-        // mengambil data referensi
-        $ref = Referensi::where('tahun', $tahun)->first();
 
-        // mengambil tanggal surat (masuk ke referensi)
-        $tgl = Carbon::create($tahun, $bulan, 1)->endOfMonth();
-        $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
 
         return view('matriks.honor._print.bast_list', compact('data', 'ref'));
     }

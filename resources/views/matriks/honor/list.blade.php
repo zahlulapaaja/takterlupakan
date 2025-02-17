@@ -75,6 +75,7 @@
                             <th class="min-w-50px">Sebagai</th>
                             <th class="min-w-50px">Harga<br>Satuan</th>
                             <th class="min-w-50px">Vol</th>
+                            <th class="min-w-75px">Tanggal BAST</th>
                             <th class="min-w-50px">Tim</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
@@ -101,6 +102,9 @@
                             </td>
                             <td>
                                 <span contenteditable="true" data-id="{{$d->id}}" data-column="volume" class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
+                            </td>
+                            <td>
+                                <span contenteditable="true" data-id="{{$d->id}}" data-column="tgl_bast" class="text-gray-900 d-block fs-6">{{$d->tgl_bast}}</span>
                             </td>
                             <td>
                                 <span class="text-gray-900 d-block fs-6">{{$d->nama_tim}}</span>

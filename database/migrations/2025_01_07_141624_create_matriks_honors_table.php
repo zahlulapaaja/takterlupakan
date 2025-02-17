@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('mitra_id')->length(5)->nullable();
             $table->integer('pegawai_id')->length(5)->nullable();
             $table->string('no_bast')->length(10);
+            $table->date('tgl_bast');
             $table->string('sebagai')->length(50);
             $table->integer('volume')->length(4);
             $table->integer('harga')->length(10);
