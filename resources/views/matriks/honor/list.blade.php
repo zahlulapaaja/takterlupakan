@@ -61,6 +61,25 @@
                 <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
                     <p class="font-bold">Perhatian</p>
                     <p>Perhatikan nomor urut bast dengan baik.</p>
+                    <p>Limit honor akumulasi
+                        <?php $text = '<span class="text-nowrap">' .
+                            'Pendataan Survei: ' . config('constants.LIMIT_HONOR_PENDATAAN_SURVEI') . '<br>' .
+                            'Pemeriksaan Survei: ' . config('constants.LIMIT_HONOR_PEMERIKSAAN_SURVEI') . '<br>' .
+                            'Pengolahan Survei: ' . config('constants.LIMIT_HONOR_PENGOLAHAN_SURVEI') . '<br>' .
+                            'Pendataan Sensus: ' . config('constants.LIMIT_HONOR_PENDATAAN_SENSUS') . '<br>' .
+                            'Pemeriksaan Sensus: ' . config('constants.LIMIT_HONOR_PEMERIKSAAN_SENSUS') . '<br>' .
+                            'Pengolahan Sensus: ' . config('constants.LIMIT_HONOR_PENGOLAHAN_SENSUS') . '<br>' .
+                            'Pengawasan Olah Sensus: ' . config('constants.LIMIT_HONOR_PENGAWASAN_OLAH_SENSUS') .
+                            '</span>';
+                        ?>
+                        <span class="ms-1" data-bs-toggle="tooltip" data-bs-html="true" title="{{$text}}">
+                            <i class="ki-duotone ki-information fs-7">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                            </i>
+                        </span>
+                    </p>
                 </div>
                 <!-- end::alert -->
 
@@ -75,6 +94,7 @@
                             <th class="min-w-50px">Sebagai</th>
                             <th class="min-w-50px">Harga<br>Satuan</th>
                             <th class="min-w-50px">Vol</th>
+                            <th class="min-w-75px">Akumulasi</th>
                             <th class="min-w-75px">Tanggal BAST</th>
                             <th class="min-w-50px">Tim</th>
                             <th class="min-w-100px text-end">Actions</th>
@@ -87,10 +107,17 @@
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
                             <td class="text-gray-900 fs-6 text-nowrap">{{$d->no_bast}}</td>
                             <td class="text-gray-900 fs-6 text-nowrap">{{Str::limit($d->nama_keg, 75)}}</td>
-                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->nama}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">
+                                @if($d->honor_akumulasi > config('constants.LIMIT_HONOR_UMUM'))
+                                <span class="bg-red-300" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="Cek kembali limitnya">{{$d->nama}}</span>
+                                @else
+                                {{$d->nama}}
+                                @endif
+                            </td>
                             <td class="text-gray-900 fs-6 text-nowrap">{{$d->sebagai}}</td>
                             <td class="text-gray-900 fs-6 text-nowrap">{{$d->harga}}</td>
                             <td class="text-gray-900 fs-6 text-nowrap">{{$d->volume}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{currency_IDR($d->honor_akumulasi)}}</td>
                             <td class="text-gray-900 fs-6 text-nowrap">{{$d->tgl_bast}}</td>
                             <td class="text-gray-900 fs-6 text-nowrap">{{$d->nama_tim}}</td>
                             <td class="p-0">
@@ -142,7 +169,7 @@
                 order: [],
                 columnDefs: [{
                     orderable: false,
-                    targets: 7
+                    targets: 9
                 }],
                 "bDestroy": true,
             });
@@ -153,7 +180,7 @@
 
             $('#tim').on('change', function() {
                 var selectedTim = $(this).val();
-                table.columns(7).search(selectedTim).draw();
+                table.columns(8).search(selectedTim).draw();
             });
 
             // modal untuk input angka no spk

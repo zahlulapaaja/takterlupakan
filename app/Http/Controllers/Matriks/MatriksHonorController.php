@@ -13,8 +13,6 @@ use App\Models\Pok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Str;
 
 class MatriksHonorController extends Controller
 {
@@ -52,6 +50,7 @@ class MatriksHonorController extends Controller
                 $d->no_bast = sprintf('%04d', $d->no_bast);
             }
             $d->nama = $d->getNamaPetugas($d);
+            $d->honor_akumulasi = $d->getHonorAkumulasi($d->mitra_id, $d->tahun, $d->bulan);
         }
 
         $list_tim = MatriksHonor::distinct()
