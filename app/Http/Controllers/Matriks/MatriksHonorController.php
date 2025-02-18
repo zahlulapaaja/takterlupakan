@@ -13,6 +13,8 @@ use App\Models\Pok;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class MatriksHonorController extends Controller
 {
@@ -110,21 +112,30 @@ class MatriksHonorController extends Controller
 
     public function update($id, Request $request)
     {
-        if ($request->column == 'no_bast') {
-            $data['no_bast'] = $request->value;
-        } else if ($request->column == 'sebagai') {
-            $data['sebagai'] = $request->value;
-        } else if ($request->column == 'volume') {
-            $data['volume'] = $request->value;
-        } else if ($request->column == 'harga') {
-            $data['harga'] = $request->value;
-        } else if ($request->column == 'tgl_bast') {
-            $data['tgl_bast'] = $request->value;
-        }
-
         $find = MatriksHonor::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'no_bast'      => 'required',
+            'sebagai'      => 'required',
+            'harga'        => 'required',
+            'volume'       => 'required',
+            'tgl_bast'     => 'required',
+        ]);
+        if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $data['no_bast'] = $request->no_bast;
+        $data['sebagai'] = $request->sebagai;
+        $data['harga'] = $request->harga;
+        $data['volume'] = $request->volume;
+        $data['tgl_bast'] = $request->tgl_bast;
+
+        // data redirect
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        // update data
         $find->update($data);
-        return response()->json(['success' => true, 'message' => 'Data updated successfully.']);
+        return redirect()->route('matriks.honor.list', [$tahun, $bulan])->with('success', 'Matriks Honor berhasil diperbarui');
     }
 
     public function destroy($id)

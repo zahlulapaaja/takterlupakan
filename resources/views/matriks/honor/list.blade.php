@@ -60,7 +60,7 @@
                 <!-- begin::alert -->
                 <div class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
                     <p class="font-bold">Perhatian</p>
-                    <p>Edit data dengan cara klik data di tabel.</p>
+                    <p>Perhatikan nomor urut bast dengan baik.</p>
                 </div>
                 <!-- end::alert -->
 
@@ -85,33 +85,17 @@
                     <tbody>
                         @foreach($data as $d)
                         <tr id="{{$d->id}}" class="hover:bg-blue-200">
-                            <td>
-                                <span contenteditable="true" data-id="{{$d->id}}" data-column="no_bast" class="text-gray-900 d-block fs-6">{{$d->no_bast}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{Str::limit($d->nama_keg, 75)}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6 text-nowrap">{{$d->nama}}</span>
-                            </td>
-                            <td>
-                                <span contenteditable="true" data-id="{{$d->id}}" data-column="sebagai" class="text-gray-900 d-block fs-6 text-nowrap">{{$d->sebagai}}</span>
-                            </td>
-                            <td>
-                                <span contenteditable="true" data-id="{{$d->id}}" data-column="harga" class="text-gray-900 d-block fs-6">{{$d->harga}}</span>
-                            </td>
-                            <td>
-                                <span contenteditable="true" data-id="{{$d->id}}" data-column="volume" class="text-gray-900 d-block fs-6">{{$d->volume}}</span>
-                            </td>
-                            <td>
-                                <span contenteditable="true" data-id="{{$d->id}}" data-column="tgl_bast" class="text-gray-900 d-block fs-6">{{$d->tgl_bast}}</span>
-                            </td>
-                            <td>
-                                <span class="text-gray-900 d-block fs-6">{{$d->nama_tim}}</span>
-                            </td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->no_bast}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{Str::limit($d->nama_keg, 75)}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->nama}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->sebagai}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->harga}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->volume}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->tgl_bast}}</td>
+                            <td class="text-gray-900 fs-6 text-nowrap">{{$d->nama_tim}}</td>
                             <td class="p-0">
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{ route('matriks.honor.bast', $d->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary me-1" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
+                                    <a href="{{ route('matriks.honor.bast', $d->id) }}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="hover" title="BAST">
                                         <button type="submit">
                                             <i class="ki-duotone ki-printer fs-2">
                                                 <span class="path1"></span>
@@ -119,6 +103,12 @@
                                                 <span class="path3"></span>
                                             </i>
                                         </button>
+                                    </a>
+                                    <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_honor_{{$d->id}}">
+                                        <i class="ki-duotone ki-pencil fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
                                     </a>
                                     <a href="#" data-id="{{$d->id}}" data-name="{{$d->nama}} - {{$d->nama_keg}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
@@ -132,6 +122,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @include('matriks.honor._modal-edit-honor')
                         @endforeach
                     </tbody>
                     <!--end::Table body-->
@@ -162,7 +153,7 @@
 
             $('#tim').on('change', function() {
                 var selectedTim = $(this).val();
-                table.columns(6).search(selectedTim).draw();
+                table.columns(7).search(selectedTim).draw();
             });
 
             // modal untuk input angka no spk
@@ -195,9 +186,7 @@
                         return false;
                     }
                 });
-
             });
-
 
             $(document.body).on('click', '.modal-delete', function(e) {
                 e.preventDefault();
@@ -244,31 +233,6 @@
                         });
                     } else if (result.dismiss === 'cancel') {
                         modal.hide(); // Hide modal				
-                    }
-                });
-            });
-
-            $('span[contenteditable=true]').on('focusout', function() {
-                let id = $(this).data('id');
-                let column = $(this).data('column');
-                let value = $(this).text();
-
-                var url = "{{route('matriks.honor.update',':id')}}";
-                url = url.replace(':id', id);
-                $.ajax({
-                    url: url,
-                    method: 'PUT',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        column: column,
-                        value: value
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert(response.message);
-                        } else {
-                            alert('Update failed.');
-                        }
                     }
                 });
             });
