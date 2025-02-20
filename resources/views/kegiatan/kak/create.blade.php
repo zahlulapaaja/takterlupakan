@@ -376,7 +376,7 @@
                                     <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
                                         <input type="text" class="form-control fs-7 p-2 w-2/5" name="rincian" placeholder="Rincian..." />
                                         <div class="d-flex flex-row gap-x-3 w-1/5">
-                                            <input type="number" class="form-control fs-7 p-2" name="volume" placeholder="Vol..." />
+                                            <input type="number" class="form-control fs-7 p-2" name="volume" step='0.01' value='0.00' placeholder="Vol..." />
                                             <input type="text" class="form-control fs-7 p-2" name="satuan" placeholder="Satuan..." />
                                         </div>
                                         <input type="text" class="form-control fs-7 p-2 w-1/5" name="spesifikasi" placeholder="Spesifikasi..." />

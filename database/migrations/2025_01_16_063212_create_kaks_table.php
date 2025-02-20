@@ -72,7 +72,7 @@ return new class extends Migration
                 ->on('kaks')
                 ->onDelete('cascade');
             $table->string('rincian');
-            $table->integer('volume');
+            $table->float('volume');
             $table->string('satuan')->length(20);
             $table->string('spesifikasi');
         });
