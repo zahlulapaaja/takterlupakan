@@ -25,7 +25,7 @@
                 <td class="align-top" width="86%">
                     Bahwa untuk kelancaran pelaksanaan kegiatan, perlu menetapkan
                     <span class="capitalize">{{ $data->tentang . ' ' . config('constants.SATKER') }}</span>
-                    Keputusan Kuasa Pengguna Anggaran <br>
+                    dengan Keputusan Kuasa Pengguna Anggaran <br>
                 </td>
             </tr>
         </table>
