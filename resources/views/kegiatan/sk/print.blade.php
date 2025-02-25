@@ -134,9 +134,9 @@
                 <td class="align-top"></td>
                 <td class="align-top">:</td>
                 <td class="align-top">
-                    <span class="capitalize">{{ $data->tentang }}</span> {{ config('constants.SATKER') }}
+                    <span class="capitalize">{{ substr(strstr($data->tentang," "), 1) }}</span> {{ config('constants.SATKER') }}
                     sebagaimana tersebut pada diktum PERTAMA mempunyai tanggungjawab penuh dalam pelaksanaan
-                    <span class="capitalize">{{ $data->tentang }}</span> sesuai dengan jadwal yang telah ditetapkan,
+                    <span class="capitalize">{{ substr(strstr(substr(strstr($data->tentang," "), 1)," "), 1) }}</span> sesuai dengan jadwal yang telah ditetapkan,
                 </td>
             </tr>
             <tr>
@@ -144,7 +144,7 @@
                 <td class="align-top"></td>
                 <td class="align-top">:</td>
                 <td class="align-top">
-                    Kepada Petugas {{ $data->tentang }} diberikan honor sesuai dengan beban kerja masing-masing;
+                    Kepada {{ substr(strstr($data->tentang," "), 1) }} diberikan honor sesuai dengan beban kerja masing-masing;
                     @include('kegiatan.sk._table-honor')
                 </td>
             </tr>
