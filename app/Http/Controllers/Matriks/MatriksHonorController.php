@@ -198,8 +198,6 @@ class MatriksHonorController extends Controller
             $d->terbilang_tgl = $ref->terbilang_tgl($tgl);
         }
 
-
-
         return view('matriks.honor._print.bast_list', compact('data', 'ref'));
     }
 
@@ -240,11 +238,10 @@ class MatriksHonorController extends Controller
         $ref->ppk = Pegawai::find($ref->ppk);
 
         // format tanggal data spk
-        $tgl = Carbon::create($tahun, $bulan, 1)->endOfMonth();
-        $ref->terbilang_bulan = date_indo_bulan(explode('-', $tgl)[1]);
-        $ref->terbilang_tgl = $ref->terbilang_tgl($tgl);
         $ref->awal_bulan = Carbon::create($tahun, $bulan, 1);
         $ref->akhir_bulan = Carbon::create($tahun, $bulan, 1)->endOfMonth();
+        $ref->terbilang_bulan = date_indo_bulan(explode('-', $ref->awal_bulan)[1]);
+        $ref->terbilang_tgl = $ref->terbilang_tgl($ref->awal_bulan);
 
         return view('matriks.honor._print.spk', compact('data', 'ref'));
     }
