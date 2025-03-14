@@ -8,6 +8,8 @@ use App\Models\Master\Pegawai;
 use App\Models\Pok;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class MatriksHonor extends Model
 {
@@ -121,6 +123,13 @@ class MatriksHonor extends Model
 
         foreach ($result as $r) {
             $r->keg = Kegiatan::find($r->kegiatans_id);
+            if((int)explode('-', $r->keg->tgl_mulai)[1] != $bulan){
+                $r->keg->tgl_mulai = Carbon::create($tahun, $bulan, 1);
+            }
+            if((int)explode('-', $r->keg->tgl_akhir)[1] != $bulan){
+                Carbon::create($tahun, $bulan, 1)->endOfMonth();
+            }
+            // dd($r->keg);
             $pok = Pok::find($r->keg->poks_id)->first();
             $r->satuan = $pok->satuan;
             $r->mak = $pok->getMak($pok);
