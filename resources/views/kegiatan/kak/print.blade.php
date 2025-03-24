@@ -231,7 +231,7 @@
                             <span>Setiap peserta membawa kelengkapan Surat Tugas dari BPS Kabupaten Aceh Barat; </span>
                         </div>
                         <div class="d-flex flex-row gap-3">
-                            <span>b</span>
+                            <span>b.</span>
                             <span> Persiapan Pribadi : </span>
                         </div>
                         <div class="d-flex flex-row gap-3 ms-8">
@@ -244,24 +244,26 @@
                         </div>
                         <div class="d-flex flex-row gap-3">
                             <span>c.</span>
+                            <span> Seluruh peserta pelatihan akan memperoleh materi yang akan disampaikan oleh Instruktur Daerah/Nasional. </span>
+                        </div>
+                        @if($data->pelatihan->translok == 1 || $data->pelatihan->akomodasi == 1)
+                        <div class="d-flex flex-row gap-3">
+                            <span>d.</span>
                             <span> Transport dan Akomodasi Peserta </span>
                         </div>
-                        @if($data->pelatihan->translok)
+                        @endif
+                        @if($data->pelatihan->translok == 1)
                         <div class="d-flex flex-row gap-3 ms-8">
                             <span>i.</span>
                             <span> Panitia menyediakan transport lokal sesuai aturan yang berlaku. </span>
                         </div>
                         @endif
-                        @if($data->pelatihan->akomodasi)
+                        @if($data->pelatihan->akomodasi == 1)
                         <div class="d-flex flex-row gap-3 ms-8">
                             <span>ii.</span>
                             <span> Panitia menyediakan penginapan karena pelatihan diadakan fullboard </span>
                         </div>
                         @endif
-                        <div class="d-flex flex-row gap-3">
-                            <span>d.</span>
-                            <span> Seluruh peserta pelatihan akan memperoleh materi yang akan disampaikan oleh Instruktur Daerah/Nasional. </span>
-                        </div>
                     </td>
                 </tr>
                 <tr>

@@ -66,9 +66,9 @@ class Kak extends Model
         $data['kaks_id'] = $kaks_id;
         $data['peserta'] = $pelatihan['peserta_pelatihan'];
         $data['waktu_tempat'] = $pelatihan['waktu_tempat_pelatihan'];
-        $data['konsumsi'] = ($pelatihan['konsumsi_pelatihan'] == "on");
-        $data['akomodasi'] = ($pelatihan['akomodasi_pelatihan'] == "on");
-        $data['translok'] = ($pelatihan['translok_pelatihan'] == "on");
+        $data['konsumsi'] = (empty($pelatihan['konsumsi_pelatihan'])) ? 0 : 1;
+        $data['akomodasi'] = (empty($pelatihan['akomodasi_pelatihan'])) ? 0 : 1;
+        $data['translok'] = (empty($pelatihan['translok_pelatihan'])) ? 0 : 1;
 
         $res = DB::table('kaks_pelatihan')->insert($data);
         return $res;
@@ -109,9 +109,9 @@ class Kak extends Model
         $data['kaks_id'] = $kaks_id;
         $data['peserta'] = $pelatihan['peserta_pelatihan'];
         $data['waktu_tempat'] = $pelatihan['waktu_tempat_pelatihan'];
-        $data['konsumsi'] = ($pelatihan['konsumsi_pelatihan'] == "on");
-        $data['akomodasi'] = ($pelatihan['akomodasi_pelatihan'] == "on");
-        $data['translok'] = ($pelatihan['translok_pelatihan'] == "on");
+        $data['konsumsi'] = (empty($pelatihan['konsumsi_pelatihan'])) ? 0 : 1;
+        $data['akomodasi'] = (empty($pelatihan['akomodasi_pelatihan'])) ? 0 : 1;
+        $data['translok'] = (empty($pelatihan['translok_pelatihan'])) ? 0 : 1;
 
         $res = DB::table('kaks_pelatihan')->where('kaks_id', $kaks_id)->update($data);
         return $res;

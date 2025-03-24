@@ -42,7 +42,7 @@
     @endforeach
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- @vite('resources/css/app.css') -->
+    <!-- vite('resources/css/app.css') -->
     <!--end::Custom Stylesheets-->
 
     <!--end::Custom Javascript-->
