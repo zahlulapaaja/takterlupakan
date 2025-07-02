@@ -18,7 +18,7 @@ return [
     'WEBSITE'   => 'https://acehbaratkab.bps.go.id/',
 
     // limit honor
-    'LIMIT_HONOR_UMUM' => 3250000,
+    'LIMIT_HONOR_UMUM' => 3414000,
     'LIMIT_HONOR_PENDATAAN_SURVEI' => 3439000,
     'LIMIT_HONOR_PEMERIKSAAN_SURVEI' => 3439000,
     'LIMIT_HONOR_PENGOLAHAN_SURVEI' => 3414000,

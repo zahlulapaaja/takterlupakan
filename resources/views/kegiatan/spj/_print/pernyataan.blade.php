@@ -69,13 +69,14 @@
         </thead>
         <tbody class="text-center">
             <?php $jumlah = 0; ?>
+            <?php $no = 1; ?>
             @foreach($data->petugas as $d)
             <!-- kalo lebih 10 nanti atur ttd nya kekmana biar rapi -->
 
             @if($d->checkbox == 1)
             <?php $jumlah += $d->beban; ?>
             <tr>
-                <td class="border border-black">{{ $loop->index+1 }}</td>
+                <td class="border border-black">{{ $no++ }}</td>
                 <td class="border border-black text-left pl-4">{{$d->nama}}</td>
                 <td class="border border-black">{{$d->gol}}</td>
                 <td class="border border-black">{{$d->beban}}</td>
