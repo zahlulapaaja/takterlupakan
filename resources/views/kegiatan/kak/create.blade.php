@@ -55,10 +55,13 @@
                         <label class="required form-label">Detil Kegiatan</label>
                         <div class="d-flex flex-column gap-y-2">
                             @foreach($pok->list_detil as $key => $p)
-                            @if($loop->first || ($p->kode_akun != $akun))
+                            @if($loop->first || (($p->kode_akun != $akun) || ($p->kode_subkomponen != $subkomponen)))
                             <div class="d-flex flex-column flex-lg-row justify-between gap-x-4">
                                 <div class="w-3/4 d-flex flex-row">
-                                    <label class="font-bold bg-cyan-300 me-auto">{{$p->kode_akun}}</label>
+                                    <label>
+                                        <span class="font-bold bg-lime-300 me-auto">{{$p->kode_subkomponen}}</span> : 
+                                        <span class="font-bold bg-cyan-300 me-auto">{{$p->kode_akun}}</span>
+                                    </label>
                                 </div>
                                 <div class="w-250px d-flex flex-row gap-x-2">
                                     <label class="font-bold me-auto">Volume</label>
@@ -80,6 +83,7 @@
                                 </div>
                             </div>
                             <?php $akun = $p->kode_akun; ?>
+                            <?php $subkomponen = $p->kode_subkomponen; ?>
                             @endforeach
                         </div>
                         @error('detil')

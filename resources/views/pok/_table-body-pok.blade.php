@@ -10,7 +10,7 @@
         $data->sama['output'] = $data[$i]->kode_output == $data[$i - 1]->kode_output;
         $data->sama['suboutput'] = $data[$i]->kode_suboutput == $data[$i - 1]->kode_suboutput;
         $data->sama['komponen'] = $data[$i]->kode_komponen == $data[$i - 1]->kode_komponen;
-        $data->sama['subkomponen'] = $data[$i]->kode_subkoponen == $data[$i - 1]->kode_subkoponen;
+        $data->sama['subkomponen'] = $data[$i]->kode_subkomponen == $data[$i - 1]->kode_subkomponen;
         $data->sama['akun'] = $data[$i]->kode_akun == $data[$i - 1]->kode_akun;
     } else {
         // jadi baris nol akan dianggap true semua nanti

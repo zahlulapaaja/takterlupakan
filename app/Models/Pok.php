@@ -71,7 +71,7 @@ class Pok extends Model
                 $sama['output'] = $poks[$i]->kode_output == $poks[$i - 1]->kode_output;
                 $sama['suboutput'] = $poks[$i]->kode_suboutput == $poks[$i - 1]->kode_suboutput;
                 $sama['komponen'] = $poks[$i]->kode_komponen == $poks[$i - 1]->kode_komponen;
-                $sama['subkomponen'] = $poks[$i]->kode_subkoponen == $poks[$i - 1]->kode_subkoponen;
+                $sama['subkomponen'] = $poks[$i]->kode_subkomponen == $poks[$i - 1]->kode_subkomponen;
                 $sama['akun'] = $poks[$i]->kode_akun == $poks[$i - 1]->kode_akun;
 
                 // program 

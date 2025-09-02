@@ -327,11 +327,32 @@
                                     <td class="align-top px-4">:</td>
                                     <td class="capitalize">({{$data->detil[0]->pok->kode_komponen}}) {{$data->detil[0]->pok->komponen}}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td class="align-top pr-12">Sub Komponen</td>
                                     <td class="align-top px-4">:</td>
                                     <td class="capitalize">({{$data->detil[0]->pok->kode_subkomponen}}) {{$data->detil[0]->pok->subkomponen}}</td>
+                                </tr> -->
+                                <?php $subkomponen_count = 1; ?>
+                                @foreach($data->detil as $d)
+                                @if($loop->first || ($d->pok->kode_subkomponen != $subkomponen))
+                                @if($loop->first)
+                                <tr>
+                                    <td class="align-top pr-12">Sub Komponen</td>
+                                    <td class="align-top px-4">:</td>
+                                    <td class="capitalize">({{$d->pok->kode_subkomponen}}) {{$d->pok->subkomponen}}</td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <td class="align-top pr-12"></td>
+                                    <td class="align-top px-4"></td>
+                                    <td class="capitalize">({{$d->pok->kode_subkomponen}}) {{$d->pok->subkomponen}}</td>
+                                </tr>
+                                @endif
+                                @endif
+                                <?php $akun = $d->pok->kode_akun; ?>
+                                <?php $subkomponen = $d->pok->kode_subkomponen; ?>
+                                <?php if($d->pok->kode_subkomponen != $subkomponen) $subkomponen_count++; ?>
+                                @endforeach
                             </table>
                         </div>
 
@@ -349,6 +370,11 @@
                                 </thead>
                                 <tbody>
                                     @foreach($data->detil as $d)
+                                    @if(($loop->first && $subkomponen_count > 1) || ($d->pok->kode_subkomponen != $subkomponen))
+                                    <tr class="font-semibold fs-6">
+                                        <td colspan="6" class="border border-black text-left px-2">({{$d->pok->kode_subkomponen}}) {{$d->pok->subkomponen}} {{$subkomponen_count}}</td>
+                                    </tr>
+                                    @endif
                                     @if($loop->first || ($d->pok->kode_akun != $akun))
                                     <tr class="font-semibold fs-6">
                                         <td class="border border-black px-2">{{$d->pok->kode_akun}}</td>
@@ -364,6 +390,7 @@
                                         <td class="border border-black px-2 text-right">{{currency_IDR($d->volume * $d->harga)}}</td>
                                     </tr>
                                     <?php $akun = $d->pok->kode_akun; ?>
+                                    <?php $subkomponen = $d->pok->kode_subkomponen; ?>
                                     @endforeach
                                 </tbody>
                             </table>
