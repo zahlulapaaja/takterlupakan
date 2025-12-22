@@ -66,6 +66,6 @@ class PokImport implements ToModel, WithStartRow
 
     public function startRow(): int
     {
-        return 8;
+        return 7;
     }
 }
