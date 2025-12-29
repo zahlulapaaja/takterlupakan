@@ -123,10 +123,10 @@ class MatriksHonor extends Model
 
         foreach ($result as $r) {
             $r->keg = Kegiatan::find($r->kegiatans_id);
-            if((int)explode('-', $r->keg->tgl_mulai)[1] != $bulan){
+            if ((int)explode('-', $r->keg->tgl_mulai)[1] != $bulan) {
                 $r->keg->tgl_mulai = Carbon::create($tahun, $bulan, 1);
             }
-            if((int)explode('-', $r->keg->tgl_akhir)[1] != $bulan){
+            if ((int)explode('-', $r->keg->tgl_akhir)[1] != $bulan) {
                 Carbon::create($tahun, $bulan, 1)->endOfMonth();
             }
             // dd($r->keg);
@@ -152,5 +152,22 @@ class MatriksHonor extends Model
         }
 
         return $total;
+    }
+
+    public static function rapikanNomorBast($tahun, $bulan)
+    {
+        $data = self::where('tahun', $tahun)
+            ->where('bulan', $bulan)
+            ->orderByRaw('CAST(no_bast AS UNSIGNED) ASC') // pastikan urut numerik
+            ->get();
+
+        $no = $data[0]->no_bast;
+        foreach ($data as $row) {
+            $row->no_bast = str_pad($no, 4, '0', STR_PAD_LEFT);
+            $row->save();
+            $no++;
+        }
+
+        return true;
     }
 }

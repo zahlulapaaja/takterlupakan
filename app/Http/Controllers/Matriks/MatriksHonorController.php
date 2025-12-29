@@ -245,4 +245,17 @@ class MatriksHonorController extends Controller
 
         return view('matriks.honor._print.spk', compact('data', 'ref'));
     }
+
+    public function rapikan(Request $request)
+    {
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        $result = MatriksHonor::rapikanNomorBast($tahun, $bulan);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Nomor berhasil dirapikan'
+        ]);
+    }
 }

@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/matriks/honor/create', [MatriksHonorController::class, 'create'])->name('honor.create');
         Route::get('/matriks/honor/{tahun}/{bulan}', [MatriksHonorController::class, 'list'])->name('honor.list');
         Route::resource('/matriks/honor', MatriksHonorController::class)->except(['create']);
+        Route::post('/matriks/rapikan-nomor-bast', [MatriksHonorController::class, 'rapikan'])->name('rapikan.nomor.bast');
 
         // print 
         Route::get('/matriks/honor/bast/{id}/print', [MatriksHonorController::class, 'bast_print'])->name('honor.bast');

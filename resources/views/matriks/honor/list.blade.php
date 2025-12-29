@@ -17,6 +17,11 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
+                @if(in_array(auth()->user()->role, ['admin', 'ppk']))
+                <div id="btn-rapikan-nomor" href="#" data-tahun="{{$tahun}}" data-bulan="{{$bulan}}" class="btn btn-sm btn-light btn-active-primary me-2">
+                    <i class="ki-arrows-loop ki-solid fs-2"></i>Rapikan Nomor
+                </div>
+                @endif
                 <a id="modal-no-spk" href="#" data-tahun="{{$tahun}}" data-bulan="{{$bulan}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>SPK</a>
                 <a href="{{route('matriks.honor.bast.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
@@ -260,6 +265,39 @@
                         });
                     } else if (result.dismiss === 'cancel') {
                         modal.hide(); // Hide modal				
+                    }
+                });
+            });
+
+            $('#btn-rapikan-nomor').on('click', function() {
+                let tahun = $(this).data('tahun');
+                let bulan = $(this).data('bulan');
+
+                if (!confirm('Yakin ingin merapikan nomor?')) return;
+
+                $.ajax({
+                    url: "{{ route('matriks.rapikan.nomor.bast') }}",
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        tahun: tahun,
+                        bulan: bulan
+                    },
+                    beforeSend: function() {
+                        $('#btn-rapikan-nomor').prop('disabled', true);
+                    },
+                    success: function(res) {
+                        if (res.status) {
+                            // table.ajax.reload(null, false); // 🔥 refresh DataTable
+                            location.reload();
+                        }
+                        alert(res.message);
+                    },
+                    error: function() {
+                        alert('Terjadi kesalahan');
+                    },
+                    complete: function() {
+                        $('#btn-rapikan-nomor').prop('disabled', false);
                     }
                 });
             });
