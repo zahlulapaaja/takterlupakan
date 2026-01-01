@@ -158,7 +158,7 @@ class MatriksHonor extends Model
     {
         $data = self::where('tahun', $tahun)
             ->where('bulan', $bulan)
-            ->orderByRaw('CAST(no_bast AS UNSIGNED) ASC') // pastikan urut numerik
+            // ->orderByRaw('CAST(no_bast AS UNSIGNED) ASC') // pastikan urut numerik
             ->get();
 
         $no = $data[0]->no_bast;

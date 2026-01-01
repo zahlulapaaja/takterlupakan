@@ -17,11 +17,11 @@
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
-                @if(in_array(auth()->user()->role, ['admin', 'ppk']))
+                @role('administrator|ppk')
                 <div id="btn-rapikan-nomor" href="#" data-tahun="{{$tahun}}" data-bulan="{{$bulan}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-arrows-loop ki-solid fs-2"></i>Rapikan Nomor
                 </div>
-                @endif
+                @endrole
                 <a id="modal-no-spk" href="#" data-tahun="{{$tahun}}" data-bulan="{{$bulan}}" class="btn btn-sm btn-light btn-active-primary me-2">
                     <i class="ki-document ki-solid fs-2"></i>SPK</a>
                 <a href="{{route('matriks.honor.bast.print', [$tahun, $bulan])}}" class="btn btn-sm btn-light btn-active-primary me-2" target="_blank">
