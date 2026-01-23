@@ -35,7 +35,9 @@ class PokImport implements ToModel, WithStartRow
         // dd($row);
         // dd(session()->all());
 
-        if (is_int($row[7])) {
+        // if (is_int($row[7])) { // gabisa pake karna template terbaru isinya integer
+        if (is_int($row[7]) && ($row[7] < 500000)) {
+
             return new Pok([
                 'kode_program' => session('kode_pro'),
                 'program' => session('pro'),
@@ -59,6 +61,9 @@ class PokImport implements ToModel, WithStartRow
                 'tahun' => session('tahun'),
                 'revisi' => session('revisi'),
             ]);
+
+            // dd($row);
+            // dd($d);
         }
 
         return null;
@@ -66,6 +71,6 @@ class PokImport implements ToModel, WithStartRow
 
     public function startRow(): int
     {
-        return 7;
+        return 8;
     }
 }
