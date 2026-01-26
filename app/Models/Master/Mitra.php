@@ -38,7 +38,9 @@ class Mitra extends Model
 
     public function getAgamaDesc($kode)
     {
+        if ($kode == null) $kode = 0;
         $desc = [
+            0 => '-',
             1 => 'Islam',
             2 => 'Kristen',
             3 => 'Katolik',
@@ -50,9 +52,11 @@ class Mitra extends Model
         return $desc[$kode];
     }
 
-    public function getStatusDesc($kode)
+    public function getStatusDesc($kode = 0)
     {
+        if ($kode == null) $kode = 0;
         $desc = [
+            0 => '-',
             1 => 'Belum Kawin',
             2 => 'Kawin',
             3 => 'Cerai Hidup',

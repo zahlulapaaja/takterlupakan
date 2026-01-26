@@ -252,7 +252,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Pendidikan</span>
                                 </label>
-                                <input type="number" class="form-control form-control-solid" name="pendidikan" value="{{$data->pendidikan}}" disabled />
+                                <input type="text" class="form-control form-control-solid" name="pendidikan" value="{{$data->pendidikan}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -264,7 +264,7 @@
                                 <label class="fs-6 fw-semibold form-label mt-3">
                                     <span class="required">Pekerjaan</span>
                                 </label>
-                                <input type="number" class="form-control form-control-solid" name="pekerjaan" value="{{$data->pekerjaan}}" disabled />
+                                <input type="text" class="form-control form-control-solid" name="pekerjaan" value="{{$data->pekerjaan}}" disabled />
                             </div>
                             <!--end::Input group-->
                         </div>

@@ -46,8 +46,8 @@ return new class extends Migration
             $table->string('jk')->length(1);
             $table->string('agama')->length(1)->nullable();
             $table->string('status')->length(1)->nullable();
-            $table->string('pendidikan')->length(1)->nullable();
-            $table->string('pekerjaan')->length(2)->nullable();
+            $table->string('pendidikan')->nullable();
+            $table->string('pekerjaan')->nullable();
             $table->string('no_telp')->length(30)->nullable();
             $table->string('npwp')->length(30)->nullable();
             $table->string('catatan')->nullable();
