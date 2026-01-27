@@ -398,6 +398,6 @@
     </div>
 
     @push('scripts')
-    <script src="'{{asset('assets/js/custom/apps/contacts/edit-contact.js')}}'"></script>
+    <script src="'{{asset('assets/js/custom/apps/contacts/edit-contact.js')}}"></script>
     @endpush
 </x-default-layout>

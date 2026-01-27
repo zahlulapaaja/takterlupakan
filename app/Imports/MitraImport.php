@@ -63,7 +63,7 @@ class MitraImport implements ToModel, WithStartRow
                 // 'npwp' => $row[19],
                 'catatan' => $row[13],
                 'nama_bank' => $row[17],
-                'no_rek' => $row[18],
+                'no_rek' => (string) $row[18],
                 'an_rek' => $row[19],
                 'tahun' => session('tahun'),
             ]);
