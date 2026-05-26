@@ -470,7 +470,7 @@ if (!function_exists('avatar')) {
      */
     function avatar($path)
     {
-        return asset('uploads/avatar-user/' . $path);
+        return $path;
     }
 }
 

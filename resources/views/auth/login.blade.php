@@ -138,7 +138,7 @@ License: For each use you must have a valid license purchased only from above li
 							</div>
 							<!--end::Wrapper-->
 							<!--begin::Submit button-->
-							<div class="d-grid mb-10">
+							<div class="d-grid mb-5">
 								<button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
 									<!--begin::Indicator label-->
 									<span class="indicator-label">Sign In</span>
@@ -150,6 +150,13 @@ License: For each use you must have a valid license purchased only from above li
 								</button>
 							</div>
 							<!--end::Submit button-->
+							<!--begin::SSO button-->
+							<div class="d-grid mb-10">
+								<a href="{{ route('login.sso') }}" class="btn btn-outline btn-outline-primary">
+									<span class="indicator-label">Login dengan SSO</span>
+								</a>
+							</div>
+							<!--end::SSO button-->
 							<!--begin::Sign up-->
 							<div class="text-gray-500 text-center fw-semibold fs-6">Belum punya akun?
 								<span class="link-primary">Tanya admin :)</span>

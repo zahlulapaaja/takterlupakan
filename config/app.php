@@ -123,4 +123,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    // sso bps
+    'authServerUrl' => env('AUTH_SERVER_URL', 'https://sso.bps.go.id'),
+    'realm' => env('REALM', 'pegawai-bps'),
+    'clientId' => env('CLIENT_ID', '11107-sirasaka-h7f'),
+    'clientSecret' => env('CLIENT_SECRET', '770826a7-8353-4649-8779-6aa4fb1088d2'),
+    'redirectUri' => env('REDIRECT_URI', 'http://localhost:8000/login-sso'),
+
 ];
