@@ -12,7 +12,7 @@
         <div class="card mt-3">
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold fs-3 mb-1">Form Import Mitra Tahun {{$last_tahun}}</span>
+                    <span class="card-label fw-bold fs-3 mb-1">Form Import Mitra</span>
                     <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
                 </h3>
                 <div class="card-toolbar">
@@ -27,7 +27,7 @@
                     <p class="font-bold">Perhatian</p>
                     <p>Download template mitra di Aplikasi Manajemen Mitra.</p>
                     <p>Manajemen Mitra >> Mitra >> Mitra Kepka >> Download</p>
-                    <p>Pastikan menambah tiga kolom tambahan (nomor rekening, nama bank, nama pemilik rekening).</p>
+                    <p>Pastikan menambah empat kolom tambahan (nomor rekening, nama bank, nama pemilik rekening, tahun).</p>
                 </div>
                 <!-- end::alert -->
 
