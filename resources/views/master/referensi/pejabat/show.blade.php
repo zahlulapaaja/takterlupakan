@@ -5,7 +5,7 @@
     @endsection
 
     @section('breadcrumbs')
-    {{ Breadcrumbs::render('master.referensi.edit', $data->id) }}
+    {{ Breadcrumbs::render('master.pejabat.show', $data->id) }}
     @endsection
 
     <!--begin::Tables Widget 9-->
@@ -13,34 +13,34 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Edit Referensi Tahun {{$data->tahun}}</span>
+                <span class="card-label fw-bold fs-3 mb-1">Detail Pejabat</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
-            <div class="card-toolbar">
-                <a href="{{ route('master.pejabat.index') }}" class="btn btn-sm btn-light btn-active-primary">
-                    <i class="ki-solid ki-user fs-2"></i>Pejabat</a>
-            </div>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
         <div class="card-body pt-8">
             <!--begin::Form-->
-            <form class="form" action="{{ route('master.referensi.update', $data->id) }}" method="post">
+            <form class="form" action="#" method="post">
                 @csrf
                 @method('PUT')
                 <!--begin::Input group-->
                 <div class="d-flex flex-row mb-7 fv-row">
                     <div class="d-flex flex-column w-1/2 mr-7">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required">Nomor DIPA</span>
+                            <span>Jabatan</span>
                         </label>
-                        <input name="no_dipa" type="text" class="form-control form-control-solid" placeholder="Masukkan Nomor DIPA..." value="{{$data->no_dipa}}" required />
+                        <select name="kpa" type="text" class="form-control form-control-solid" disabled>
+                            <option value="{{$data->jabatan}}" hidden selected>{{$data->jabatan}}</option>
+                        </select>
                     </div>
                     <div class="d-flex flex-column w-1/2 fv-row">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required">Tanggal DIPA</span>
+                            <span>Pegawai</span>
                         </label>
-                        <input name="tgl_dipa" type="date" class="form-control form-control-solid" placeholder="00/00/0000" value="{{$data->tgl_dipa}}" required />
+                        <select name="pegawai_id" type="text" class="form-control form-control-solid" disabled>
+                            <option value="{{$data->pegawai->id}}" hidden selected>{{$data->pegawai->nama}}</option>
+                        </select>
                     </div>
                 </div>
                 <!--end::Input group-->
@@ -48,36 +48,37 @@
                 <div class="d-flex flex-row mb-7 fv-row">
                     <div class="d-flex flex-column w-1/2 mr-7">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required">Nomor SK KPA</span>
+                            <span class="required">Tanggal Menjabat</span>
                         </label>
-                        <input name="no_sk_kpa" type="text" class="form-control form-control-solid" placeholder="Masukkan Nomor SK KPA..." value="{{$data->no_sk_kpa}}" required />
+                        <input name="tgl_mulai" type="date" class="form-control form-control-solid" placeholder="00/00/0000" value="{{$data->tgl_mulai}}" disabled required />
                     </div>
                     <div class="d-flex flex-column w-1/2 fv-row">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required">Tanggal SK KPA</span>
+                            <span>Tanggal Selesai</span>
                         </label>
-                        <input name="tgl_sk_kpa" type="date" class="form-control form-control-solid" placeholder="00/00/0000" value="{{$data->tgl_sk_kpa}}" required />
+                        <input name="tgl_selesai" type="date" class="form-control form-control-solid" placeholder="00/00/0000" value="{{$data->tgl_selesai}}" disabled />
                     </div>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Input group-->
                 <div class="d-flex flex-row mb-7 fv-row">
-                    <div class="d-flex flex-column w-full">
+                    <div class="d-flex flex-column w-1/2 mr-7">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                            <span class="required">Nomor PMK {{$data->tahun}}</span>
+                            <span>Nomor SK</span>
                         </label>
-                        <textarea name="pmk" class="form-control form-control-solid" rows="3" placeholder="Peraturan Menteri Keuangan tentang Standar Biaya Masukan Tahun Anggaran {{$data->tahun}}..." required>{{$data->pmk}}</textarea>
+                        <input name="no_sk" type="text" class="form-control form-control-solid" placeholder="Masukkan Nomor SK..." value="{{$data->no_sk}}" disabled />
+                    </div>
+                    <div class="d-flex flex-column w-1/2 fv-row">
+                        <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                            <span>Tanggal SK</span>
+                        </label>
+                        <input name="tgl_sk" type="date" class="form-control form-control-solid" placeholder="00/00/0000" value="{{$data->tgl_sk}}" disabled />
                     </div>
                 </div>
                 <!--end::Input group-->
                 <!--begin::Actions-->
-                <div class="text-center pt-15">
-                    <a href="{{ route('master.referensi.index') }}" class="btn btn-light me-3">Kembali</a>
-                    <button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
-                        <span class="indicator-label">Simpan</span>
-                        <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                    </button>
+                <div class="text-right pt-15">
+                    <a href="{{ route('master.pejabat.index') }}" class="btn btn-light me-3">Kembali</a>
                 </div>
                 <!--end::Actions-->
             </form>

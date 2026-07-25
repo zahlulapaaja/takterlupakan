@@ -96,6 +96,10 @@ Breadcrumbs::resource('master.index', 'master.mitra', 'Mitra');
 Breadcrumbs::resource('master.index', 'user-management.users', 'Users');
 Breadcrumbs::resource('master.index', 'user-management.roles', 'Roles');
 
+// Home > Master > Referensi > XXX
+Breadcrumbs::resource('master.referensi.index', 'master.pejabat', 'Pejabat');
+
+
 // Home > Master > Tim > 202X
 Breadcrumbs::for("master.tim.list", function (BreadcrumbTrail $trail, $tahun) {
     $trail->parent("master.tim.index");

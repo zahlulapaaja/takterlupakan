@@ -16,6 +16,10 @@
                 <span class="card-label fw-bold fs-3 mb-1">Detail Referensi Tahun {{$data->tahun}}</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
+            <div class="card-toolbar">
+                <a href="{{ route('master.pejabat.index') }}" class="btn btn-sm btn-light btn-active-primary">
+                    <i class="ki-solid ki-user fs-2"></i>Pejabat</a>
+            </div>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
@@ -31,7 +35,7 @@
                             <span>KPA (Kuasa Pengguna Anggaran)</span>
                         </label>
                         <select name="kpa" type="text" class="form-control form-control-solid" disabled>
-                            <option value="{{$data->kpa->id}}" hidden selected>{{$data->kpa->nama}}</option>
+                            <option value="{{$data->kpa->id ?? ''}}" hidden selected>{{$data->kpa->nama ?? ''}}</option>
                         </select>
                     </div>
                     <div class="d-flex flex-column w-1/2 fv-row">
@@ -39,7 +43,7 @@
                             <span>Bendahara</span>
                         </label>
                         <select name="bend" type="text" class="form-control form-control-solid" disabled>
-                            <option value="{{$data->bend->id}}" hidden selected>{{$data->bend->nama}}</option>
+                            <option value="{{$data->bend->id ?? ''}}" hidden selected>{{$data->bend->nama ?? ''}}</option>
                         </select>
                     </div>
                 </div>
@@ -51,7 +55,7 @@
                             <span>PPK</span>
                         </label>
                         <select name="ppk" type="text" class="form-control form-control-solid" disabled>
-                            <option value="{{$data->ppk->id}}" hidden selected>{{$data->ppk->nama}}</option>
+                            <option value="{{$data->ppk->id ?? ''}}" hidden selected>{{$data->ppk->nama ?? ''}}</option>
                         </select>
                     </div>
                     <div class="d-flex flex-column w-1/2 fv-row">
@@ -66,7 +70,7 @@
                             </span>
                         </label>
                         <select name="ppk2" type="text" class="form-control form-control-solid" disabled>
-                            <option value="{{$data->ppk2->id}}" hidden selected>{{$data->ppk2->nama}}</option>
+                            <option value="{{$data->ppk2->id ?? ''}}" hidden selected>{{$data->ppk2->nama ?? ''}}</option>
                         </select>
                     </div>
                 </div>

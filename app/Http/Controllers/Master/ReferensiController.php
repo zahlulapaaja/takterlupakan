@@ -5,11 +5,25 @@ namespace App\Http\Controllers\Master;
 use App\Http\Controllers\Controller;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\ReferensiPejabat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ReferensiController extends Controller
 {
+    private function getPejabat($jabatan, $tahun)
+    {
+        return ReferensiPejabat::where('jabatan', $jabatan)
+            ->whereYear('tgl_mulai', '<=', $tahun)
+            ->where(function ($q) use ($tahun) {
+                $q->whereNull('tgl_selesai')
+                    ->orWhereYear('tgl_selesai', '>=', $tahun);
+            })
+            ->orderBy('tgl_mulai', 'desc')
+            ->with('pegawai')
+            ->first()?->pegawai;
+    }
+
     public function index()
     {
         $data = Referensi::select('id', 'tahun')->orderBy('tahun', 'ASC')->get();
@@ -34,10 +48,10 @@ class ReferensiController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'tahun'       => 'required',
-            'kpa'         => 'required',
-            'ppk'         => 'required',
-            'ppk2'        => 'required',
-            'bend'        => 'required',
+            // 'kpa'         => 'required',
+            // 'ppk'         => 'required',
+            // 'ppk2'        => 'required',
+            // 'bend'        => 'required',
             'no_dipa'     => 'required',
             'tgl_dipa'    => 'required',
             'no_sk_kpa'   => 'required',
@@ -48,10 +62,10 @@ class ReferensiController extends Controller
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
         $data['tahun'] = $request->tahun;
-        $data['kpa'] = $request->kpa;
-        $data['ppk'] = $request->ppk;
-        $data['ppk2'] = $request->ppk2;
-        $data['bend'] = $request->bend;
+        // $data['kpa'] = $request->kpa;
+        // $data['ppk'] = $request->ppk;
+        // $data['ppk2'] = $request->ppk2;
+        // $data['bend'] = $request->bend;
         $data['no_dipa'] = $request->no_dipa;
         $data['tgl_dipa'] = $request->tgl_dipa;
         $data['no_sk_kpa'] = $request->no_sk_kpa;
@@ -65,10 +79,10 @@ class ReferensiController extends Controller
     public function edit($id)
     {
         $data = Referensi::find($id);
-        $data->kpa = Pegawai::find($data->kpa);
-        $data->ppk = Pegawai::find($data->ppk);
-        $data->ppk2 = Pegawai::find($data->ppk2);
-        $data->bend = Pegawai::find($data->bend);
+        // $data->kpa = Pegawai::find($data->kpa);
+        // $data->ppk = Pegawai::find($data->ppk);
+        // $data->ppk2 = Pegawai::find($data->ppk2);
+        // $data->bend = Pegawai::find($data->bend);
         $pegawai = Pegawai::all();
 
         return view('master.referensi.edit', compact('data', 'pegawai'));
@@ -77,10 +91,10 @@ class ReferensiController extends Controller
     public function show($id)
     {
         $data = Referensi::find($id);
-        $data->kpa = Pegawai::find($data->kpa);
-        $data->ppk = Pegawai::find($data->ppk);
-        $data->ppk2 = Pegawai::find($data->ppk2);
-        $data->bend = Pegawai::find($data->bend);
+        $data->kpa  = $this->getPejabat('KPA', $data->tahun);
+        $data->ppk  = $this->getPejabat('PPK', $data->tahun);
+        $data->ppk2 = $this->getPejabat('PPK2', $data->tahun);
+        $data->bend = $this->getPejabat('BEND', $data->tahun);
 
         return view('master.referensi.show', compact('data'));
     }
@@ -89,10 +103,10 @@ class ReferensiController extends Controller
     {
         $find = Referensi::find($id);
         $validator = Validator::make($request->all(), [
-            'kpa'         => 'required',
-            'ppk'         => 'required',
-            'ppk2'        => 'required',
-            'bend'        => 'required',
+            // 'kpa'         => 'required',
+            // 'ppk'         => 'required',
+            // 'ppk2'        => 'required',
+            // 'bend'        => 'required',
             'no_dipa'     => 'required',
             'tgl_dipa'    => 'required',
             'no_sk_kpa'   => 'required',
@@ -102,10 +116,10 @@ class ReferensiController extends Controller
 
         if ($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
 
-        $data['kpa'] = $request->kpa;
-        $data['ppk'] = $request->ppk;
-        $data['ppk2'] = $request->ppk2;
-        $data['bend'] = $request->bend;
+        // $data['kpa'] = $request->kpa;
+        // $data['ppk'] = $request->ppk;
+        // $data['ppk2'] = $request->ppk2;
+        // $data['bend'] = $request->bend;
         $data['no_dipa'] = $request->no_dipa;
         $data['tgl_dipa'] = $request->tgl_dipa;
         $data['no_sk_kpa'] = $request->no_sk_kpa;

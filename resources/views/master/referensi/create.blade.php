@@ -25,12 +25,12 @@
                 @method('POST')
                 <input name="tahun" type="hidden" value="{{$last_tahun}}" />
                 <!--begin::Input group-->
-                <div class="d-flex flex-row mb-7 fv-row">
+                <div class="d-flex flex-row mb-7 fv-row d-none">
                     <div class="d-flex flex-column w-1/2 mr-7">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                             <span class="required">KPA (Kuasa Pengguna Anggaran)</span>
                         </label>
-                        <select name="kpa" type="text" class="form-control form-control-solid" required>
+                        <select name="kpa" type="text" class="form-control form-control-solid">
                             <option value="" hidden>Pilih KPA...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>
@@ -41,7 +41,7 @@
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                             <span class="required">Bendahara</span>
                         </label>
-                        <select name="bend" type="text" class="form-control form-control-solid" required>
+                        <select name="bend" type="text" class="form-control form-control-solid">
                             <option value="" hidden>Pilih Bendahara...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>
@@ -51,12 +51,12 @@
                 </div>
                 <!--end::Input group-->
                 <!--begin::Input group-->
-                <div class="d-flex flex-row mb-7 fv-row">
+                <div class="d-flex flex-row mb-7 fv-row d-none">
                     <div class="d-flex flex-column w-1/2 mr-7">
                         <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
                             <span class="required">PPK</span>
                         </label>
-                        <select name="ppk" type="text" class="form-control form-control-solid" required>
+                        <select name="ppk" type="text" class="form-control form-control-solid">
                             <option value="" hidden>Pilih PPK...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>
@@ -74,7 +74,7 @@
                                 </i>
                             </span>
                         </label>
-                        <select name="ppk2" type="text" class="form-control form-control-solid" required>
+                        <select name="ppk2" type="text" class="form-control form-control-solid">
                             <option value="" hidden>Pilih PPK 2...</option>
                             @foreach($pegawai as $p)
                             <option value="{{$p->id}}">{{$p->nama}}</option>

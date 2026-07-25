@@ -5,7 +5,7 @@
     @endsection
 
     @section('breadcrumbs')
-    {{ Breadcrumbs::render('master.referensi.index') }}
+    {{ Breadcrumbs::render('master.pejabat.index') }}
     @endsection
 
     <!--begin::Tables Widget 9-->
@@ -13,14 +13,12 @@
         <!--begin::Header-->
         <div class="card-header border-0 pt-5">
             <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bold fs-3 mb-1">Daftar Referensi</span>
+                <span class="card-label fw-bold fs-3 mb-1">Daftar Referensi Pejabat</span>
                 <span class="text-muted mt-1 fw-semibold fs-7">{{config('constants.SATKER')}}</span>
             </h3>
             <div class="card-toolbar">
-                <a href="{{ route('master.referensi.create') }}" class="btn btn-sm btn-light btn-active-primary mr-5">
+                <a href="{{ route('master.pejabat.create') }}" class="btn btn-sm btn-light btn-active-primary">
                     <i class="ki-duotone ki-plus fs-2"></i>Tambah</a>
-                <a href="{{ route('master.pejabat.index') }}" class="btn btn-sm btn-light btn-active-primary">
-                    <i class="ki-solid ki-user fs-2"></i>Pejabat</a>
             </div>
         </div>
         <!--end::Header-->
@@ -33,7 +31,10 @@
                     <!--begin::Table head-->
                     <thead>
                         <tr class="fw-bold text-muted">
-                            <th class="min-w-400px">Tahun</th>
+                            <th class="min-w-200px">Nama</th>
+                            <th class="min-w-100px">Jabatan</th>
+                            <th class="min-w-100px">Tanggal Menjabat</th>
+                            <th class="min-w-100px">Tanggal Selesai</th>
                             <th class="min-w-100px text-end">Actions</th>
                         </tr>
                     </thead>
@@ -43,24 +44,32 @@
                         @foreach($data as $d)
                         <tr id="{{$d->id}}">
                             <td>
-                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">Referensi Tahun {{ $d->tahun }}</span>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->pegawai->nama }}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->jabatan }}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->tgl_mulai }}</span>
+                            </td>
+                            <td>
+                                <span class="text-gray-900 fw-bold text-hover-primary d-block fs-6">{{ $d->tgl_selesai }}</span>
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end flex-shrink-0">
-                                    <a href="{{route('master.referensi.show', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('master.pejabat.show', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-book-open fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    <a href="{{route('master.referensi.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <a href="{{route('master.pejabat.edit', $d->id)}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                         <i class="ki-duotone ki-pencil fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
                                         </i>
                                     </a>
-                                    @if($loop->last)
-                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->tahun}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
+                                    <a href="#" data-id="{{$d->id}}" data-name="{{$d->pegawai->nama}}" data-jabatan="{{$d->jabatan}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm modal-delete">
                                         <i class="ki-duotone ki-trash fs-2">
                                             <span class="path1"></span>
                                             <span class="path2"></span>
@@ -69,7 +78,6 @@
                                             <span class="path5"></span>
                                         </i>
                                     </a>
-                                    @endif
                                 </div>
                             </td>
                         </tr>
@@ -100,10 +108,11 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 var name = $(this).data('name');
+                var jabatan = $(this).data('jabatan');
 
                 // Show confirmation popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: "Anda yakin ingin menghapus data referensi tahun " + name + " ?",
+                    text: "Anda yakin ingin menghapus data " + name + " sebagai " + jabatan + " ?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -115,7 +124,7 @@
                     }
                 }).then(function(result) {
                     if (result.value) {
-                        var url = "{{route('master.referensi.destroy',':id')}}";
+                        var url = "{{route('master.pejabat.destroy',':id')}}";
                         url = url.replace(':id', id);
                         $.ajax({
                             type: "DELETE",

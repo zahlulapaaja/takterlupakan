@@ -11,6 +11,7 @@ use App\Http\Controllers\Kegiatan\SpjController;
 use App\Http\Controllers\Master\MitraController;
 use App\Http\Controllers\Master\PegawaiController;
 use App\Http\Controllers\Master\ReferensiController;
+use App\Http\Controllers\Master\ReferensiPejabatController;
 use App\Http\Controllers\Master\TimController;
 use App\Http\Controllers\Matriks\MatriksHonorController;
 use App\Http\Controllers\Pok\PokController;
@@ -91,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware(['role:administrator|kepala|ppk'])->name('master.')->group(function () {
         Route::get('/master', [HomeController::class, 'master'])->name('index');
         Route::resource('/master/referensi', ReferensiController::class);
+        Route::resource('/master/pejabat', ReferensiPejabatController::class);
         Route::resource('/master/tim', TimController::class);
         Route::resource('/master/pegawai', PegawaiController::class);
         Route::resource('/master/mitra', MitraController::class)->except('create');
