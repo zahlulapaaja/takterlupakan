@@ -79,11 +79,11 @@ Kwitansi
             <td class="pb-20"></td>
         </tr>
         <tr>
-            <td>{{$ref->ppk->nama}}</td>
+            <td>{{$ref->ppk?->nama}}</td>
             <td>{{$d->nama}}</td>
         </tr>
         <tr>
-            <td>{{$ref->ppk->nip_baru}}</td>
+            <td>{{$ref->ppk?->nip_baru}}</td>
             <td>{{$d->nip}}</td>
         </tr>
     </table>
@@ -105,8 +105,8 @@ Kwitansi
         </tr>
         <tr>
             <td>
-                <span>{{$ref->bend->nama}}</span><br>
-                <span>{{$ref->bend->nip_baru}}</span>
+                <span>{{$ref->bend?->nama}}</span><br>
+                <span>{{$ref->bend?->nip_baru}}</span>
             </td>
         </tr>
     </table>

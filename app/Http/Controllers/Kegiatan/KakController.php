@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kegiatan\Kak;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\ReferensiPejabat;
 use App\Models\Master\Tim;
 use App\Models\Pok;
 use Illuminate\Http\Request;
@@ -48,8 +49,8 @@ class KakController extends Controller
         $tim = Tim::where('tahun', $pok->tahun)->get();
         $pegawai = Pegawai::all();
         $ref = Referensi::where('tahun', $pok->tahun)->first();
-        $ref->ppk = Pegawai::find($ref->ppk);
-        $ref->ppk2 = Pegawai::find($ref->ppk2);
+        $ref->ppk  = ReferensiPejabat::getPejabat('PPK', now());
+        $ref->ppk2  = ReferensiPejabat::getPejabat('PPK2', now());
 
         if ($request->has('id_pok')) {
             return view('kegiatan.kak.create', compact('pok', 'tim', 'pegawai', 'ref'));
@@ -161,8 +162,8 @@ class KakController extends Controller
         $tim = Tim::where('tahun', $data->tahun)->get();
         $pegawai = Pegawai::all();
         $ref = Referensi::where('tahun', $data->tahun)->first();
-        $ref->ppk = Pegawai::find($ref->ppk);
-        $ref->ppk2 = Pegawai::find($ref->ppk2);
+        $ref->ppk  = ReferensiPejabat::getPejabat('PPK', now());
+        $ref->ppk2  = ReferensiPejabat::getPejabat('PPK2', now());
 
         return view('kegiatan.kak.edit', compact('data', 'pok', 'tim', 'pegawai', 'ref'));
     }
@@ -257,8 +258,8 @@ class KakController extends Controller
 
         // mengambil data referensi 
         $ref = Referensi::where('tahun', $data->tahun)->first();
-        $ref->kpa = Pegawai::find($ref->kpa);
-        $ref->ppk = Pegawai::find($data->ppk);
+        $ref->kpa  = ReferensiPejabat::getPejabat('KPA', $data->tgl);
+        $ref->ppk  = ReferensiPejabat::getPejabat('PPK', $data->tgl);
 
         return view('kegiatan.kak.print', compact('data', 'ref'));
     }

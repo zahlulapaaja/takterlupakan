@@ -30,7 +30,7 @@
         <table class="mt-8">
             <tr>
                 <td class="align-top p-2">1.</td>
-                <td class="align-top p-2 text-nowrap">{{$ref->ppk->nama}}</td>
+                <td class="align-top p-2 text-nowrap">{{$ref->ppk?->nama}}</td>
                 <td class="align-top py-2 pl-20">:</td>
                 <td class="align-top p-2">
                     Pejabat Pembuat Komitmen {{config('constants.SATKER')}},
@@ -258,7 +258,7 @@
             </tr>
             <tr>
                 <td class="uppercase">{{$d->petugas->nama}}</td>
-                <td class="uppercase">{{$ref->ppk->nama}}</td>
+                <td class="uppercase">{{$ref->ppk?->nama}}</td>
             </tr>
         </table>
     </div>

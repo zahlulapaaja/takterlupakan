@@ -351,7 +351,7 @@
                                 @endif
                                 <?php $akun = $d->pok->kode_akun; ?>
                                 <?php $subkomponen = $d->pok->kode_subkomponen; ?>
-                                <?php if($d->pok->kode_subkomponen != $subkomponen) $subkomponen_count++; ?>
+                                <?php if ($d->pok->kode_subkomponen != $subkomponen) $subkomponen_count++; ?>
                                 @endforeach
                             </table>
                         </div>
@@ -463,12 +463,12 @@
                     <td class="pb-20">Pejabat Pembuat Komitmen</td>
                 </tr>
                 <tr>
-                    <td>{{$ref->kpa->nama}}</td>
-                    <td>{{$ref->ppk->nama}}</td>
+                    <td>{{$ref->kpa?->nama}}</td>
+                    <td>{{$ref->ppk?->nama}}</td>
                 </tr>
                 <tr>
-                    <td>NIP. {{$ref->kpa->nip_baru}}</td>
-                    <td>NIP. {{$ref->ppk->nip_baru}}</td>
+                    <td>NIP. {{$ref->kpa?->nip_baru}}</td>
+                    <td>NIP. {{$ref->ppk?->nip_baru}}</td>
                 </tr>
             </table>
             <!-- end::Pengesahan -->

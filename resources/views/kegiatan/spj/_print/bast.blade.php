@@ -48,22 +48,22 @@
         <tr>
             <td class="pr-12">Nama</td>
             <td class="px-4">:</td>
-            <td>{{$ref->ppk->nama}}</td>
+            <td>{{$ref->ppk?->nama}}</td>
         </tr>
         <tr>
             <td class="pr-12">NIP</td>
             <td class="px-4">:</td>
-            <td>{{$ref->ppk->nip_baru}}</td>
+            <td>{{$ref->ppk?->nip_baru}}</td>
         </tr>
         <tr>
             <td class="pr-12">Gol/Pangkat</td>
             <td class="px-4">:</td>
-            <td>{{$ref->ppk->golongan}} / {{$ref->ppk->pangkat}}</td>
+            <td>{{$ref->ppk?->golongan}} / {{$ref->ppk?->pangkat}}</td>
         </tr>
         <tr>
             <td class="pr-12">Jabatan</td>
             <td class="px-4">:</td>
-            <td class="capitalize">{{$ref->ppk->jabatan}}</td>
+            <td class="capitalize">{{$ref->ppk?->jabatan}}</td>
         </tr>
     </table>
 </div>
@@ -118,11 +118,11 @@
         </tr>
         <tr>
             <td>{{$keg->pjk->nama}}</td>
-            <td>{{$ref->ppk->nama}}</td>
+            <td>{{$ref->ppk?->nama}}</td>
         </tr>
         <tr>
             <td>{{$keg->pjk->nip_baru}}</td>
-            <td>{{$ref->ppk->nip_baru}}</td>
+            <td>{{$ref->ppk?->nip_baru}}</td>
         </tr>
     </table>
 </div>

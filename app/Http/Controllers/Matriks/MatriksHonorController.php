@@ -8,6 +8,7 @@ use App\Models\Kegiatan\Sk;
 use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\ReferensiPejabat;
 use App\Models\Matriks\MatriksHonor;
 use App\Models\Pok;
 use Carbon\Carbon;
@@ -235,7 +236,8 @@ class MatriksHonorController extends Controller
 
         // mengambil data referensi
         $ref = Referensi::where('tahun', $tahun)->first();
-        $ref->ppk = Pegawai::find($ref->ppk);
+        $tanggal = \Carbon\Carbon::create($tahun, $bulan, 1);
+        $ref->ppk  = ReferensiPejabat::getPejabat('PPK', $tanggal);
 
         // format tanggal data spk
         $ref->awal_bulan = Carbon::create($tahun, $bulan, 1);

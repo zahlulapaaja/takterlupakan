@@ -178,8 +178,8 @@
                 <span>Pada tanggal : {{ date_indo($data->tgl_ditetapkan) }} </span>
                 <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
                 <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
-                <span class="font-bold">{{ $ref->kpa->nama }}</span>
-                <span>NIP. {{ $ref->kpa->nip_baru }}</span>
+                <span class="font-bold">{{ $ref->kpa?->nama }}</span>
+                <span>NIP. {{ $ref->kpa?->nip_baru }}</span>
             </div>
         </div>
     </div>
@@ -244,8 +244,8 @@
             <span>Pada tanggal : {{ date_indo($data->tgl_ditetapkan) }} </span>
             <span class="uppercase">KUASA PENGGUNA ANGGARAN {{ config('constants.INSTANSI') }}</span>
             <span class="uppercase mb-20">{{ config('constants.KABUPATEN') }},</span>
-            <span class="font-bold">{{ $ref->kpa->nama }}</span>
-            <span>NIP. {{ $ref->kpa->nip_baru }}</span>
+            <span class="font-bold">{{ $ref->kpa?->nama }}</span>
+            <span>NIP. {{ $ref->kpa?->nip_baru }}</span>
         </div>
     </div>
 </x-print-layout>

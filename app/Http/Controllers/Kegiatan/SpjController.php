@@ -8,6 +8,7 @@ use App\Models\Kegiatan\Sk;
 use App\Models\Kegiatan\Spj;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\ReferensiPejabat;
 use App\Models\Pok;
 use App\Models\Surat\NoSuratTim;
 use Illuminate\Http\Request;
@@ -168,9 +169,9 @@ class SpjController extends Controller
 
         // mengambil data referensi
         $ref = Referensi::where('tahun', $data->tahun)->first();
-        $ref->kpa = Pegawai::find($ref->kpa);
-        $ref->ppk = Pegawai::find($ref->ppk);
-        $ref->bend = Pegawai::find($ref->bend);
+        $ref->kpa  = ReferensiPejabat::getPejabat('KPA', $data->tgl);
+        $ref->ppk  = ReferensiPejabat::getPejabat('PPK', $data->tgl);
+        $ref->bend = ReferensiPejabat::getPejabat('BEND', $data->tgl);
 
         // mengambil data kegiatan
         $keg = Kegiatan::find($data->kegiatans_id);

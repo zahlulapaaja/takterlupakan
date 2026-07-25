@@ -7,6 +7,7 @@ use App\Models\Kegiatan\Sk;
 use App\Models\Master\Mitra;
 use App\Models\Master\Pegawai;
 use App\Models\Master\Referensi;
+use App\Models\Master\ReferensiPejabat;
 use App\Models\Master\Tim;
 use App\Models\Pok;
 use Illuminate\Http\Request;
@@ -170,7 +171,7 @@ class SkController extends Controller
 
         // mengambil referensi
         $ref = Referensi::where('tahun', $data->tahun)->first();
-        $ref->kpa = Pegawai::find($ref->kpa);
+        $ref->kpa  = ReferensiPejabat::getPejabat('KPA', $data->tgl_ditetapkan);
 
         return view('kegiatan.sk.print', compact('data', 'ref'));
     }

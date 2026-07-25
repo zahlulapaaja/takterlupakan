@@ -108,11 +108,11 @@ Daftar Pengeluaran Riil
             <td class="pb-20">Yang Melakukan Perjalanan Dinas</td>
         </tr>
         <tr>
-            <td>{{$ref->ppk->nama}}</td>
+            <td>{{$ref->ppk?->nama}}</td>
             <td>{{$d->nama}}</td>
         </tr>
         <tr>
-            <td>NIP. {{$ref->ppk->nip_baru}}</td>
+            <td>NIP. {{$ref->ppk?->nip_baru}}</td>
             <td>{{$d->nip}}</td>
         </tr>
     </table>

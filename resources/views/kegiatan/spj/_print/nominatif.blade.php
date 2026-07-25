@@ -158,13 +158,13 @@ Daftar Nominatif
                 <td class="pb-20">Pembuat Daftar,</td>
             </tr>
             <tr>
-                <td>{{$ref->bend->nama}}</td>
-                <td>{{$ref->ppk->nama}}</td>
+                <td>{{$ref->bend?->nama}}</td>
+                <td>{{$ref->ppk?->nama}}</td>
                 <td>{{$keg->pjk->nama}}</td>
             </tr>
             <tr>
-                <td>NIP. {{$ref->bend->nip_baru}}</td>
-                <td>NIP. {{$ref->ppk->nip_baru}}</td>
+                <td>NIP. {{$ref->bend?->nip_baru}}</td>
+                <td>NIP. {{$ref->ppk?->nip_baru}}</td>
                 <td>NIP. {{$keg->pjk->nip_baru}}</td>
             </tr>
         </table>

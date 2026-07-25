@@ -68,8 +68,8 @@ Surat Tugas
         <div class="w-3/5 flex flex-col leading-normal">
             <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl_st)}}</span>
             <span class="pb-20">Kepala</span>
-            <span class="font-bold">{{$ref->kpa->nama}}</span>
-            <span>NIP. {{$ref->kpa->nip_baru}}</span>
+            <span class="font-bold">{{$ref->kpa?->nama}}</span>
+            <span>NIP. {{$ref->kpa?->nip_baru}}</span>
         </div>
     </div>
 </div>
@@ -147,8 +147,8 @@ Surat Tugas
         <div class="w-3/5 flex flex-col leading-normal">
             <span>{{config('constants.MEULABOH')}}, {{date_indo($data->tgl_st)}}</span>
             <span class="pb-20">Kepala</span>
-            <span class="font-bold">{{$ref->kpa->nama}}</span>
-            <span>NIP. {{$ref->kpa->nip_baru}}</span>
+            <span class="font-bold">{{$ref->kpa?->nama}}</span>
+            <span>NIP. {{$ref->kpa?->nip_baru}}</span>
         </div>
     </div>
 </div>

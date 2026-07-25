@@ -59,7 +59,7 @@
                             <div class="d-flex flex-column flex-lg-row justify-between gap-x-4">
                                 <div class="w-3/4 d-flex flex-row">
                                     <label>
-                                        <span class="font-bold bg-lime-300 me-auto">{{$p->kode_subkomponen}}</span> : 
+                                        <span class="font-bold bg-lime-300 me-auto">{{$p->kode_subkomponen}}</span> :
                                         <span class="font-bold bg-cyan-300 me-auto">{{$p->kode_akun}}</span>
                                     </label>
                                 </div>
@@ -164,8 +164,8 @@
                             <label class="required form-label">Pilih PPK</label>
                             <select class="form-select" name="ppk" required>
                                 <option value="" hidden>Pilih PPK...</option>
-                                <option value="{{$ref->ppk->id}}">{{$ref->ppk->nama}}</option>
-                                <option value="{{$ref->ppk2->id}}">{{$ref->ppk2->nama}}</option>
+                                <option value="{{$ref->ppk?->id}}">{{$ref->ppk?->nama}}</option>
+                                <option value="{{$ref->ppk2?->id}}">{{$ref->ppk2?->nama}}</option>
                             </select>
                             @error('ppk')
                             <small>{{ $message }}</small>
