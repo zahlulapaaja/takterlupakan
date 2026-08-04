@@ -122,7 +122,7 @@ class MatriksHonor extends Model
             ->get();
 
         foreach ($result as $r) {
-            $r->keg = Kegiatan::find($r->kegiatans_id);
+            $r->keg = Kegiatan::withTrashed()->find($r->kegiatans_id);
             if ((int)explode('-', $r->keg->tgl_mulai)[1] != $bulan) {
                 $r->keg->tgl_mulai = Carbon::create($tahun, $bulan, 1);
             }
