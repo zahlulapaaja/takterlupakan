@@ -1,15 +1,16 @@
 <x-default-layout>
 
     @section('title')
-    Kegiatan
+        Kegiatan
     @endsection
 
     @section('breadcrumbs')
-    {{ Breadcrumbs::render('kegiatan.spj.edit', $data->id) }}
+        {{ Breadcrumbs::render('kegiatan.spj.edit', $data->id) }}
     @endsection
 
     <!--begin::Form-->
-    <form id="form_update_spj" method="post" action="{{ route('kegiatan.spj.update', $data->id) }}" class="form d-flex flex-column flex-lg-row">
+    <form id="form_update_spj" method="post" action="{{ route('kegiatan.spj.update', $data->id) }}"
+        class="form d-flex flex-column flex-lg-row">
         @csrf
         @method('PUT')
         <!--begin::Aside column-->
@@ -30,9 +31,9 @@
                         <div class="d-flex flex-column gap-10">
                             <!--begin::Input group-->
                             <div class="fv-row">
-                                <input type="hidden" name="kegiatans_id" value="{{$data->kegiatans_id}}" />
-                                <input type="hidden" name="akun" value="{{$keg->pok->kode_akun}}" />
-                                <input type="hidden" name="tahun" value="{{$data->tahun}}" />
+                                <input type="hidden" name="kegiatans_id" value="{{ $data->kegiatans_id }}" />
+                                <input type="hidden" name="akun" value="{{ $keg->pok->kode_akun }}" />
+                                <input type="hidden" name="tahun" value="{{ $data->tahun }}" />
                                 <!--begin::MAK-->
                                 <div class="d-flex flex-column flex-lg-row py-auto gap-x-5">
                                     <label class="w-32 font-semibold fs-6 text-nowrap">MAK</label>
@@ -47,14 +48,16 @@
                                 <!--end::Nama Kegiatan-->
                                 <!--begin::Jadwal Kegiatan-->
                                 <div class="d-flex flex-column flex-lg-row py-auto gap-x-5">
-                                    <label class="text-nowrap w-32 font-semibold fs-6 text-nowrap">Jadwal Kegiatan</label>
-                                    <div class="fw-semibold fs-6 pl-4">{{date_indo($keg->tgl_mulai)}} s.d. {{date_indo($keg->tgl_akhir)}}</div>
+                                    <label class="text-nowrap w-32 font-semibold fs-6 text-nowrap">Jadwal
+                                        Kegiatan</label>
+                                    <div class="fw-semibold fs-6 pl-4">{{ date_indo($keg->tgl_mulai) }} s.d.
+                                        {{ date_indo($keg->tgl_akhir) }}</div>
                                 </div>
                                 <!--end::Jadwal Kegiatan-->
                                 <!--begin::PJK-->
                                 <div class="d-flex flex-column flex-lg-row py-auto gap-x-5">
                                     <label class="w-32 font-semibold fs-6 text-nowrap">PJK</label>
-                                    <div class="fw-semibold fs-6 pl-4">{{$keg->pjk->nama}}</div>
+                                    <div class="fw-semibold fs-6 pl-4">{{ $keg->pjk->nama }}</div>
                                 </div>
                                 <!--end::PJK-->
                                 <!--begin::Detil Kegiatan-->
@@ -96,31 +99,36 @@
                             <!--begin::Input group-->
                             <div class="fv-row">
                                 <label class="required form-label">Input SPJ</label>
-                                <input type="date" class="form-control" name="tgl" value="{{$data->tgl}}" required />
+                                <input type="date" class="form-control" name="tgl" value="{{ $data->tgl }}"
+                                    required />
                             </div>
                             <!--end::Input group-->
 
-                            @if($keg->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
-                            <div class="d-flex flex-column flex-md-row gap-5">
-                                <!--begin::Input group-->
-                                <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
-                                    <label class="form-label">Nomor Surat Tugas</label>
-                                    <input name="no_st" type="text" list="nomot_st" class="form-control mb-2" placeholder="Masukkan Nomor Surat..." value="{{$data->no_st}}" required />
-                                    <div class="text-muted fs-7">Buat surat tugas di menu Nomor Surat - Tim Kerja</div>
-                                    <datalist id="nomot_st">
-                                        @foreach($nomor_st as $n)
-                                        <option value="{{$n->no_surat}}">{{$n->no_surat}}</option>
-                                        @endforeach
-                                    </datalist>
+                            @if ($keg->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
+                                <div class="d-flex flex-column flex-md-row gap-5">
+                                    <!--begin::Input group-->
+                                    <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
+                                        <label class="form-label">Nomor Surat Tugas</label>
+                                        <input name="no_st" type="text" list="nomot_st" class="form-control mb-2"
+                                            placeholder="Masukkan Nomor Surat..." value="{{ $data->no_st }}"
+                                            required />
+                                        <div class="text-muted fs-7">Buat surat tugas di menu Nomor Surat - Tim Kerja
+                                        </div>
+                                        <datalist id="nomot_st">
+                                            @foreach ($nomor_st as $n)
+                                                <option value="{{ $n->no_surat }}">{{ $n->no_surat }}</option>
+                                            @endforeach
+                                        </datalist>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
+                                        <label class="form-label">Tanggal Surat Tugas</label>
+                                        <input type="date" name="tgl_st" class="form-control mb-2"
+                                            value="{{ $data->tgl_st }}" />
+                                    </div>
+                                    <!--end::Input group-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="w-full w-lg-1/2 fv-row flex-row-fluid">
-                                    <label class="form-label">Tanggal Surat Tugas</label>
-                                    <input type="date" name="tgl_st" class="form-control mb-2" value="{{$data->tgl_st}}" />
-                                </div>
-                                <!--end::Input group-->
-                            </div>
                             @endif
 
                         </div>
@@ -142,72 +150,93 @@
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
 
-                    @if($keg->pok->kode_akun == config('constants.AKUN_HONOR'))
-                    <!--begin::Input group-->
-                    <div id="daftar-petugas-honor" class="my-4">
-                        @include('kegiatan.spj._table-edit-alokasi-beban')
-                    </div>
-                    <!--end::Input group-->
-
-                    @elseif($keg->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
-                    <!--begin::Input group-->
-                    <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
-                        <!--begin::Label-->
-                        <label class="form-label">Petugas</label>
-                        <!--end::Label-->
-                        <!--begin::Repeater-->
-                        <div id="daftar_petugas_translok">
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <div data-repeater-list="daftar_petugas_translok" class="d-flex flex-column gap-3">
-
-                                    @foreach($data->petugas as $ptg)
-                                    <div data-repeater-item="" class="form-group d-flex flex-column flex-lg-row gap-3">
-                                        <!--begin::Select2-->
-                                        <div class="w-full w-lg-1/6">
-                                            <input name="petugas" class="form-select" list="petugas" placeholder="Pilih..." value="{{$ptg->status . '-' . $ptg->nama . '-' . $ptg->id_status}}" required>
-                                            <datalist id="petugas">
-                                                @foreach($list_petugas as $p)
-                                                <option value="{{$p->list}}">
-                                                    @endforeach
-                                            </datalist>
-                                        </div>
-                                        <!--end::Select2-->
-                                        <!--begin::Input-->
-                                        <span class="d-flex flex-row w-full w-lg-1/6 gap-2">
-                                            <input type="number" class="form-control" name="byk_kunj" placeholder="Byk Kunj..." value="{{$ptg->byk_kunj}}" required />
-                                            <span class="text-left text-lg my-auto text-nowrap mx-1">{{$keg->pok->satuan}}</span>
-                                        </span>
-                                        <input type="text" class="form-control w-full w-lg-1/6" name="melakukan" placeholder="Melakukan" value="{{$ptg->melakukan}}" required />
-                                        <input type="text" class="form-control w-full w-lg-1/6" name="lokasi" placeholder="Lokasi" value="{{$ptg->lokasi}}" required />
-                                        <input type="text" class="form-control w-full w-lg-1/6" name="tgl_kunj" placeholder="Tgl Kunj" value="{{$ptg->tgl_kunj}}" required />
-                                        <span class="d-flex flex-row w-full w-lg-1/6 gap-2">
-                                            <input type="number" class="form-control" name="nominal" placeholder="Realisasi" value="{{$ptg->nominal}}" required />
-                                            <button type="button" data-repeater-delete="" class="btn btn-sm btn-icon btn-light-danger my-auto">
-                                                <i class="ki-duotone ki-cross fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </button>
-                                        </span>
-                                        <!--end::Input-->
-                                    </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                            <!--end::Form group-->
-                            <!--begin::Form group-->
-                            <div class="form-group mt-5">
-                                <button type="button" data-repeater-create="" class="btn btn-sm btn-light-primary">
-                                    <i class="ki-duotone ki-plus fs-2"></i>Tambah petugas
-                                </button>
-                            </div>
-                            <!--end::Form group-->
+                    @if ($keg->pok->kode_akun == config('constants.AKUN_HONOR'))
+                        <!--begin::Input group-->
+                        <div class="d-flex align-items-center gap-2 mb-4">
+                            <input class="form-check-input" type="checkbox" id="checklist-semua-petugas" />
+                            <label class="form-check-label fw-semibold" for="checklist-semua-petugas">Pilih Semua
+                                Petugas</label>
                         </div>
-                        <!--end::Repeater-->
-                    </div>
-                    <!--end::Input group-->
+                        <div id="daftar-petugas-honor" class="my-4">
+                            @include('kegiatan.spj._table-edit-alokasi-beban')
+                        </div>
+                        <!--end::Input group-->
+                    @elseif($keg->pok->kode_akun == config('constants.AKUN_TRANSLOK'))
+                        <!--begin::Input group-->
+                        <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
+                            <!--begin::Label-->
+                            <label class="form-label">Petugas</label>
+                            <!--end::Label-->
+                            <!--begin::Repeater-->
+                            <div id="daftar_petugas_translok">
+                                <!--begin::Form group-->
+                                <div class="form-group">
+                                    <div data-repeater-list="daftar_petugas_translok" class="d-flex flex-column gap-3">
+
+                                        @foreach ($data->petugas as $ptg)
+                                            <div data-repeater-item=""
+                                                class="form-group d-flex flex-column flex-lg-row gap-3">
+                                                <!--begin::Select2-->
+                                                <div class="w-full w-lg-1/6">
+                                                    <input name="petugas" class="form-select" list="petugas"
+                                                        placeholder="Pilih..."
+                                                        value="{{ $ptg->status . '-' . $ptg->nama . '-' . $ptg->id_status }}"
+                                                        required>
+                                                    <datalist id="petugas">
+                                                        @foreach ($list_petugas as $p)
+                                                            <option value="{{ $p->list }}">
+                                                        @endforeach
+                                                    </datalist>
+                                                </div>
+                                                <!--end::Select2-->
+                                                <!--begin::Input-->
+                                                <span class="d-flex flex-row w-full w-lg-1/6 gap-2">
+                                                    <input type="number" class="form-control" name="byk_kunj"
+                                                        placeholder="Byk Kunj..." value="{{ $ptg->byk_kunj ?? '' }}"
+                                                        required />
+                                                    <span
+                                                        class="text-left text-lg my-auto text-nowrap mx-1">{{ $keg->pok->satuan }}</span>
+                                                </span>
+                                                <input type="text" class="form-control w-full w-lg-1/6"
+                                                    name="melakukan" placeholder="Melakukan"
+                                                    value="{{ $ptg->melakukan ?? '' }}" required />
+                                                <input type="text" class="form-control w-full w-lg-1/6"
+                                                    name="lokasi" placeholder="Lokasi"
+                                                    value="{{ $ptg->lokasi ?? '' }}" required />
+                                                <input type="text" class="form-control w-full w-lg-1/6"
+                                                    name="tgl_kunj" placeholder="Tgl Kunj"
+                                                    value="{{ $ptg->tgl_kunj ?? '' }}" required />
+                                                <span class="d-flex flex-row w-full w-lg-1/6 gap-2">
+                                                    <input type="number" class="form-control" name="nominal"
+                                                        placeholder="Realisasi" value="{{ $ptg->nominal ?? '' }}"
+                                                        required />
+                                                    <button type="button" data-repeater-delete=""
+                                                        class="btn btn-sm btn-icon btn-light-danger my-auto">
+                                                        <i class="ki-duotone ki-cross fs-1">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                        </i>
+                                                    </button>
+                                                </span>
+                                                <!--end::Input-->
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+                                <!--end::Form group-->
+                                <!--begin::Form group-->
+                                <div class="form-group mt-5">
+                                    <button type="button" data-repeater-create=""
+                                        class="btn btn-sm btn-light-primary">
+                                        <i class="ki-duotone ki-plus fs-2"></i>Tambah petugas
+                                    </button>
+                                </div>
+                                <!--end::Form group-->
+                            </div>
+                            <!--end::Repeater-->
+                        </div>
+                        <!--end::Input group-->
                     @endif
 
                 </div>
@@ -216,7 +245,8 @@
             <!--end::Petugas-->
             <div class="d-flex justify-content-end">
                 <!--begin::Button-->
-                <a href="{{ route('pok.index') }}" id="form_update_spj_cancel" class="btn btn-light me-5">Kembali</a>
+                <a href="{{ route('pok.index') }}" id="form_update_spj_cancel"
+                    class="btn btn-light me-5">Kembali</a>
                 <!--end::Button-->
                 <!--begin::Button-->
                 <button type="submit" id="form_update_spj_submit" class="btn btn-primary">
@@ -233,34 +263,28 @@
     <!--end::Form-->
 
     @push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#daftar_petugas_translok').repeater();
+        <script>
+            $(document).ready(function() {
+                $('#daftar_petugas_translok').repeater();
 
-            // No SK Dropdown Change Event
-            $('#no-sk-dropdown').on('change', function() {
-                var id_sk = this.value;
-                $("#daftar-petugas-honor").html('');
-
-                $.ajax({
-                    url: "{{url('api/fetch-beban-spj')}}",
-                    type: "POST",
-                    data: {
-                        id_sk: id_sk,
-                        akun: '{{$keg->pok->kode_akun}}',
-                        satuan: '{{$keg->pok->satuan}}',
-                        _token: '{{csrf_token()}}'
-                    },
-                    dataType: 'json',
-                    success: function(result) {
-                        $('#daftar-petugas-honor').html(result.view);
-                    }
-
+                $(document).on('change', '#checklist-semua-petugas', function() {
+                    $('#daftar-beban input[name="checkbox[]"]').prop('checked', $(this).is(':checked'));
                 });
 
-            });
+                $(document).on('change', '#daftar-beban input[name="checkbox[]"]', function() {
+                    var total = $('#daftar-beban input[name="checkbox[]"]').length;
+                    var checked = $('#daftar-beban input[name="checkbox[]"]:checked').length;
+                    $('#checklist-semua-petugas').prop('checked', total > 0 && total === checked);
+                });
 
-        });
-    </script>
+                // Set status awal "pilih semua" jika semua sudah tercentang dari data
+                var totalInit = $('#daftar-beban input[name="checkbox[]"]').length;
+                var checkedInit = $('#daftar-beban input[name="checkbox[]"]:checked').length;
+                if (totalInit > 0 && totalInit === checkedInit) {
+                    $('#checklist-semua-petugas').prop('checked', true);
+                }
+
+            });
+        </script>
     @endpush
 </x-default-layout>
